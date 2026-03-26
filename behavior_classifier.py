@@ -95,7 +95,7 @@ class SequencePattern:
     steps: List[PatternStep]
     mitre: List[MITREMapping] = field(default_factory=list)
     repeatable: bool = False  # If True, pattern can match multiple times
-
+    same_tid: bool = False 
     @property
     def required_count(self):
         return sum(1 for s in self.steps if not s.optional)
@@ -715,6 +715,7 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
         behavior_id="AB1",
         sub_behavior=sub,
         mitre=mitre_list,
+        same_tid=True, 
         steps=[
             PatternStep(
                 sub_op="File.open",
@@ -752,6 +753,7 @@ def _ab1_exfil_udp(pid, sub, paths, mitre_list):
         behavior_id="AB1",
         sub_behavior=sub,
         mitre=mitre_list,
+        same_tid=True,
         steps=[
             PatternStep(
                 sub_op="File.open",
@@ -830,6 +832,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="System fingerprint via syscall + exfiltration",
         mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,       
         steps=[
             PatternStep(sub_op={"System.info", "System.identity"},
                         description="System fingerprint syscall"),
@@ -851,6 +854,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="System fingerprint via syscall + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op={"System.info", "System.identity"},
                         description="System fingerprint syscall"),
@@ -870,6 +874,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Netlink-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
                         description="Create AF_NETLINK NETLINK_ROUTE socket"),
@@ -893,6 +898,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Netlink-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
                         description="Create AF_NETLINK NETLINK_ROUTE socket"),
@@ -915,6 +921,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="ioctl-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
                         description="ioctl SIOCGIF* network interface query"),
@@ -936,6 +943,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="ioctl-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
                         description="ioctl SIOCGIF* network interface query"),
@@ -956,6 +964,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Socket-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
                         description="Query socket info (getsockname/getsockopt)"),
@@ -976,6 +985,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Socket-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
                         description="Query socket info (getsockname/getsockopt)"),
@@ -995,6 +1005,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="File and directory discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate",
                         path_match=path_contains("/home", "/etc", "/var", "/opt", "/usr"),
@@ -1014,6 +1025,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Current working directory discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="File.getcwd", description="Get current working directory"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
@@ -1032,6 +1044,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Process enumeration + exfiltration",
         mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
                         description="Enumerate /proc"),
@@ -1057,6 +1070,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Process enumeration + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
                         description="Enumerate /proc"),
@@ -1083,6 +1097,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="User/group ID discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Permission.query",
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
@@ -1103,6 +1118,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="User/group ID discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Permission.query",
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
@@ -1173,6 +1189,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Archive collected data before exfiltration",
         mitre=[MITREMapping("Collection", "T1560", "Archive Collected Data"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="CodeExec.exec",
                         path_match=path_contains("tar", "gzip", "zip", "bzip2", "xz", "7z"),
@@ -1207,6 +1224,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Keylogging + exfiltration",
         mitre=[MITREMapping("Credential Access", "T1056.001", "Keylogging"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/dev/input/event", "/dev/input/by-"),
@@ -1412,6 +1430,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             MITREMapping("Execution", "T1059.004", "Unix Shell"),
             MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
         ],
+        same_tid=True,
         steps=[
             PatternStep(
                 sub_op="CodeExec.exec",
@@ -1454,6 +1473,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             MITREMapping("Execution", "T1059.004", "Unix Shell"),
             MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
         ],
+        same_tid=True,
         steps=[
             PatternStep(
                 sub_op="CodeExec.exec",
@@ -2497,6 +2517,7 @@ def build_ab3_patterns() -> List[SequencePattern]:
         behavior_id="AB3",
         sub_behavior="Process name manipulation after network connection",
         mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="Network.connect",
                         flag_match=flag_inet_remote(),
@@ -2894,6 +2915,7 @@ def build_ab5_patterns() -> List[SequencePattern]:
         behavior_id="AB5",
         sub_behavior="Cryptojacking: profile → connect pool → mine",
         mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking")],
+        same_tid=True,
         steps=[
             PatternStep(sub_op="System.info", description="Resource profiling"),
             PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
@@ -3418,6 +3440,7 @@ def build_ab7_patterns() -> List[SequencePattern]:
         sub_behavior="Encryption key exfiltration to C2",
         mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
+        same_tid=True, 
         steps=[
             PatternStep(sub_op={"System.random", "File.open"},
                         path_match=lambda fn: _match_keygen(fn),
@@ -3712,6 +3735,9 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
     Walk events once, tracking all patterns simultaneously.
     Each pattern has its own step pointer.
 
+    When pattern.same_tid is True, all steps after step 0 must occur
+    on the same TID as the event that matched step 0.
+
     Repeatable patterns (single-step) reset after each match to collect
     all occurrences. Non-repeatable patterns complete after first match.
 
@@ -3723,10 +3749,12 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
     matched_evs = [[] for _ in range(n_patterns)]
     matched_idxs = [[] for _ in range(n_patterns)]
     completed = [False] * n_patterns
-    # For repeatable patterns, store each complete match separately
-    repeat_matches = [[] for _ in range(n_patterns)]  # list of (events, indices) tuples
+    anchor_tids = [None] * n_patterns  # TID from step 0 match (for same_tid patterns)
+    repeat_matches = [[] for _ in range(n_patterns)]
 
     for event in events:
+        ev_tid = event.get("tid")
+
         for pi in range(n_patterns):
             if completed[pi]:
                 continue
@@ -3734,10 +3762,19 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
             pat = patterns[pi]
             si = step_ptrs[pi]
 
+            # same_tid enforcement: skip this event if TID doesn't match anchor
+            if pat.same_tid and si > 0 and anchor_tids[pi] is not None:
+                if ev_tid != anchor_tids[pi]:
+                    continue
+
             while si < len(pat.steps):
                 step = pat.steps[si]
 
                 if step.matches(event):
+                    # Record anchor TID on first step match
+                    if si == 0 and pat.same_tid:
+                        anchor_tids[pi] = ev_tid
+
                     matched_evs[pi].append(event)
                     matched_idxs[pi].append(si)
                     si += 1
@@ -3762,13 +3799,13 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
 
             if pattern_done:
                 if pat.repeatable:
-                    # Save this match, reset for next occurrence
                     repeat_matches[pi].append(
                         (list(matched_evs[pi]), list(matched_idxs[pi]))
                     )
                     step_ptrs[pi] = 0
                     matched_evs[pi] = []
                     matched_idxs[pi] = []
+                    anchor_tids[pi] = None  # Reset anchor for next match
                 else:
                     completed[pi] = True
 
@@ -3777,7 +3814,6 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
         pat = patterns[pi]
 
         if pat.repeatable:
-            # Combine all repeated matches into one result
             all_evs = []
             all_idxs = []
             for evs, idxs in repeat_matches[pi]:
