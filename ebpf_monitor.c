@@ -530,6 +530,9 @@ TRACEPOINT_PROBE(syscalls, sys_enter_openat) {
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
     bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.io_fd = (u32)args->flags;    
+    event.io_size = (u32)args->mode;  
 
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
@@ -1889,7 +1892,7 @@ TRACEPOINT_PROBE(syscalls, sys_enter_bind) {
     event.operation_id = OP_BIND;
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
-    
+    event.io_fd = (u32)args->fd;
     u16 family = 0;
     bpf_probe_read_user(&family, sizeof(family), (void *)args->umyaddr);
     event.data.net.family = (u8)family;
@@ -2001,7 +2004,7 @@ TRACEPOINT_PROBE(syscalls, sys_enter_connect) {
     event.timestamp = bpf_ktime_get_ns();
     event.operation_id = OP_CONNECT;
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
-
+    event.io_fd = (u32)args->fd;
     u16 family = 0;
     bpf_probe_read_user(&family, sizeof(family), (void *)args->uservaddr);
     event.data.net.family = (u8)family;
