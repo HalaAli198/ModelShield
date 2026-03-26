@@ -1,4082 +1,3971 @@
-"""
-Attack Behavior Classifier — Ordered Subsequence Matching
-
-Classifies syscall event sequences into AB1–AB8 attack behaviors.
-
-Approach (7 steps):
-  1. Pre-filter: remove O_DIRECTORY events
-  2. Define patterns: sub_op + path + flags per step
-  3. One-pass scan: all patterns tracked simultaneously
-  4. Binary match: all required steps found or not
-  5. Loop detection: AB5 (mining) and AB7 (ransomware)
-  6. Cross-behavior correlation: compound attack detection
-  7. Collect results: group by behavior, report with MITRE mappings
-
-Usage:
-    from syscall_category_mapper import SyscallCategoryMapper
-    from attack_behavior_classifier import AttackBehaviorClassifier
-
-    mapper = SyscallCategoryMapper()
-    tagged = mapper.load_and_tag("/path/to/events/")
-
-    classifier = AttackBehaviorClassifier()
-    verdict = classifier.classify(tagged.loading_events, tagged.execution_events,
-                                  model_path="/path/to/model")
-
-"""
-
-import json
-import re
-import os
-import sys
-import fnmatch
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Any, Set, Tuple
-from collections import defaultdict
-import time
+#include <uapi/linux/ptrace.h>
+#include <linux/sched.h>
+#include <linux/fs.h>
+#include <linux/dcache.h>
+#include <linux/mount.h>
 
 
-# ============================================================================
-# DATA STRUCTURES
-# ============================================================================
-
-@dataclass
-class MITREMapping:
-    tactic: str
-    technique_id: str
-    technique_name: str
-
-
-@dataclass
-class PatternStep:
-    """
-    One step in an ordered pattern.
-    All three constraints must be true on the same event for the step to match.
-    """
-    sub_op: Any               # str or set of str (e.g., "File.open" or {"File.open", "File.read"})
-    path_match: Any = None    # callable(filename) -> bool, or None = any path
-    flag_match: Any = None    # callable(extra_details) -> bool, or None = any flags
-    description: str = ""
-    optional: bool = False
-
-    def matches(self, event: dict) -> bool:
-        ev_sub_op = event.get("sub_op", "")
-
-        # Check sub_op
-        if isinstance(self.sub_op, str):
-            if ev_sub_op != self.sub_op:
-                return False
-        elif isinstance(self.sub_op, (set, frozenset, list, tuple)):
-            if ev_sub_op not in self.sub_op:
-                return False
-        else:
-            return False
-
-        # Check path
-        if self.path_match is not None:
-            filename = event.get("filename", "")
-            if not self.path_match(filename):
-                return False
-
-        # Check flags
-        if self.flag_match is not None:
-            details = event.get("extra_details", {})
-            if not self.flag_match(details):
-                return False
-
-        return True
+// System Operations
+#define OP_UNAME 1
+#define OP_SYSINFO 2
+#define OP_SCHED_GETAFFINITY 3
+#define OP_IOCTL 4
+#define OP_GETRANDOM 5
+#define OP_SETHOSTNAME 6
+//#define OP_GETHOSTNAME 7
+#define OP_SETDOMAINNAME 8
 
 
-@dataclass
-class SequencePattern:
-    pattern_id: str           # e.g., "AB1-CRED-SSH-EXFIL"
-    behavior_id: str          # e.g., "AB1"
-    sub_behavior: str         # e.g., "SSH key theft + exfiltration"
-    steps: List[PatternStep]
-    mitre: List[MITREMapping] = field(default_factory=list)
-    repeatable: bool = False  # If True, pattern can match multiple times
+// File Operations
+#define OP_OPEN 9
+#define OP_OPENAT 10
+#define OP_CREAT 11
+#define OP_READ 12
+#define OP_PREAD64  13
+#define OP_READV 14
+#define OP_WRITE 15
+#define OP_PWRITE64  16
+#define OP_WRITEV 17
+#define OP_STAT 18
+#define OP_FSTAT 19
+#define OP_NEWFSTATAT 20 
+#define OP_STATX 21
+#define OP_ACCESS 22
+#define OP_FACCESSAT 23
+#define OP_RENAME 24
+#define OP_RENAMEAT 25
+#define OP_RENAMEAT2 26
+#define OP_LINK  27
+#define OP_LINKAT 28
+#define OP_UNLINK  29
+#define OP_UNLINKAT 30
+#define OP_SYMLINK 31
+#define OP_SYMLINKAT 32
+#define OP_CHMOD 33
+#define OP_FCHMOD 34
+#define OP_FCHMODAT 35
+#define OP_CHOWN 36
+#define OP_FCHOWN 37
+#define OP_FCHOWNAT 38
+#define OP_LCHOWN 39
+#define OP_GETDENTS64 40
+#define OP_MKDIR 41
+#define OP_MKDIRAT 42
+#define OP_RMDIR 43
+#define OP_READLINK 44 
+#define OP_READLINKAT 45
+#define OP_TRUNCATE 46
+#define OP_FTRUNCATE 47
+#define OP_FCNTL 48
+#define OP_CHDIR 49
+#define OP_FCHDIR 50
+#define OP_SENDFILE 51
+#define OP_DUP 52
+#define OP_DUP2 53
+#define OP_DUP3 54
+#define OP_GETCWD 55
+#define OP_LSEEK  56
+#define OP_CLOSE 57
+#define OP_SETXATTR 58            
+#define OP_LSETXATTR  59        
+#define OP_FSETXATTR  60       
+#define OP_REMOVEXATTR 61     
+#define OP_LREMOVEXATTR 62   
+#define OP_FREMOVEXATTR 63
 
-    @property
-    def required_count(self):
-        return sum(1 for s in self.steps if not s.optional)
-
-
-@dataclass
-class PatternMatch:
-    """Result of one matched pattern."""
-    pattern: SequencePattern
-    matched_events: List[dict]       # events that matched each step
-    matched_step_indices: List[int]  # which step indices matched
-    phase: str                       # "LOADING" or "EXECUTION"
-
-
-@dataclass
-class LoopMatch:
-    """Result of loop detection (AB5/AB7)."""
-    behavior_id: str
-    sub_behavior: str
-    loop_count: int                  # how many repetitions detected
-    sample_events: List[dict]        # a few example events
-    mitre: List[MITREMapping] = field(default_factory=list)
-    phase: str = ""
-
-
-@dataclass
-class BehaviorResult:
-    behavior_id: str
-    behavior_name: str
-    sub_behaviors: List[str]
-    pattern_matches: List[PatternMatch]
-    loop_matches: List[LoopMatch]
-    mitre_techniques: List[MITREMapping]
-    phase: str
-
-
-@dataclass
-class ClassificationVerdict:
-    model_path: str
-    is_malicious: bool
-    behaviors: List[BehaviorResult]
-    #compound_attacks: List[str]      # e.g., ["AB1+AB6: credential theft + reverse shell"]
-    total_loading_events: int
-    total_execution_events: int
-
-    def to_dict(self):
-        result = {
-            "model_path": self.model_path,
-            "is_malicious": self.is_malicious,
-            "total_loading_events": self.total_loading_events,
-            "total_execution_events": self.total_execution_events,
-            #"compound_attacks": self.compound_attacks,
-            "behaviors": [],
-        }
-        for b in self.behaviors:
-            bdict = {
-                "behavior_id": b.behavior_id,
-                "behavior_name": b.behavior_name,
-                "sub_behaviors": b.sub_behaviors,
-                "phase": b.phase,
-                "mitre_techniques": [
-                    {"tactic": m.tactic, "technique_id": m.technique_id,
-                     "technique_name": m.technique_name}
-                    for m in b.mitre_techniques
-                ],
-                "pattern_matches": [],
-                "loop_matches": [],
-            }
-            for pm in b.pattern_matches:
-                pmdict = {
-                    "pattern_id": pm.pattern.pattern_id,
-                    "sub_behavior": pm.pattern.sub_behavior,
-                    "matched_events": [
-                        {
-                            "operation": e.get("operation"),
-                            "filename": e.get("filename"),
-                            "sub_op": e.get("sub_op"),
-                            "timestamp": e.get("timestamp"),
-                            "tid": e.get("tid"),
-                            "extra_details": e.get("extra_details", {}),
-                        }
-                        for e in pm.matched_events
-                    ],
-                    "mitre": [
-                        {"tactic": m.tactic, "technique_id": m.technique_id,
-                         "technique_name": m.technique_name}
-                        for m in pm.pattern.mitre
-                    ],
-                }
-                bdict["pattern_matches"].append(pmdict)
-            for lm in b.loop_matches:
-                lmdict = {
-                    "behavior_id": lm.behavior_id,
-                    "sub_behavior": lm.sub_behavior,
-                    "loop_count": lm.loop_count,
-                    "mitre": [
-                        {"tactic": m.tactic, "technique_id": m.technique_id,
-                         "technique_name": m.technique_name}
-                        for m in lm.mitre
-                    ],
-                }
-                bdict["loop_matches"].append(lmdict)
-            result["behaviors"].append(bdict)
-        return result
+  
+// Network Operations 
+#define OP_SOCKET 64
+#define OP_BIND  65
+#define OP_LISTEN  66
+#define OP_ACCEPT 67
+#define OP_ACCEPT4  68
+#define OP_CONNECT 69
+#define OP_SENDTO 70
+#define OP_SENDMSG 71
+#define OP_RECVFROM 72
+#define OP_RECVMSG  73
+#define OP_GETSOCKNAME 74
+#define OP_GETPEERNAME 75
+#define OP_GETSOCKOPT 76
+#define OP_SETSOCKOPT 77
+#define OP_FORK 78
+#define OP_VFORK 79
+#define OP_CLONE 80
+#define OP_CLONE3 81
+#define OP_PRCTL 82
+#define OP_PTRACE 83
+#define OP_SETSID  84
+ 
+// Memory Operations 
+#define OP_MMAP 85
+#define OP_MPROTECT 86 
+#define OP_MEMFD_CREATE 87 
+   
+// Permission Operations
+#define OP_GETUID 88
+#define OP_GETEUID 89
+#define OP_GETGID 90
+#define OP_GETEGID 91
+#define OP_GETGROUPS 92
+#define OP_SETUID 93
+#define OP_SETGID 94
+#define OP_SETREUID 95
+#define OP_SETRESUID 96
+#define OP_SETREGID 97
+#define OP_SETRESGID 98
+#define OP_SETGROUPS 99
+#define OP_CAPSET 100
 
 
-# ============================================================================
-# PATH / FLAG MATCHING HELPERS
-# ============================================================================
+// Code Execution OPerations
+#define OP_EXECVE 101
+#define OP_EXECVEAT 102
+// #define OP_FEXECVE  103
+//----------------------------------------------------------------------------------
+// Extra- Process Operations
+#define OP_PROCESS_VM_READV 104
+#define OP_PROCESS_VM_WRITEV 105
+#define OP_KILL 106
+#define OP_TKILL 107
+#define OP_TGKILL 108
+// Extra- Kernel & System operations
+#define OP_INIT_MODULE 109
+#define OP_FINIT_MODULE 110
+#define OP_DELETE_MODULE 111
+#define OP_BPF 112
+#define OP_MOUNT 113
+#define OP_UMOUNT2 114
+#define OP_PIVOT_ROOT 115
+#define OP_CHROOT 116
+#define OP_SECCOMP 118
+#define OP_SETNS 119
+#define OP_UNSHARE 120
+#define OP_KEYCTL      121    // need TRACEPOINT_PROBE    
+#define OP_IOPRIO_SET  122        // need TRACEPOINT_PROBE   
+#define OP_MINCORE   123   // need TRACEPOINT_PROBE 
+// Extra- File operations (medi um priority)
+#define OP_MKNOD 124
+#define OP_MKNODAT 125
+#define OP_FALLOCATE 126
+#define OP_COPY_FILE_RANGE 127
+// Extra-  IPC & Data Transfer
+#define OP_PIPE 128
+#define OP_PIPE2 129
+#define OP_SPLICE 130
+#define OP_TEE 131
+#define OP_VMSPLICE 132
+#define OP_SYSFS 133   // need TRACEPOINT_PROBE 
+#define OP_GETRLIMIT 134  // need TRACEPOINT_PROBE 
+#define OP_PRLIMIT64 135 // need TRACEPOINT_PROBE 
+// Extra- Process Control
+#define OP_WAIT4 136
+#define OP_WAITID 137  // need TRACEPOINT_PROBE 
+#define OP_RT_SIGACTION 138  // need TRACEPOINT_PROBE 
+#define OP_RT_SIGPROCMASK 139  // need TRACEPOINT_PROBE 
+//Extra-  Shared Memory
+#define OP_SHMGET 140
+#define OP_SHMAT 141
+//Extra- Other
+#define OP_PERF_EVENT_OPEN 142
+#define OP_PERSONALITY 143
+#define OP_MADVISE 144
+#define OP_USERFAULTFD 145
+#define OP_REBOOT 146
+#define OP_IOPL 147
+#define OP_IOPERM 148  
+//----------------------------------------------------------------------------------
 
-def path_contains(*substrings):
-    """Match if filename contains ANY of the substrings (case-insensitive)."""
-    lower_subs = [s.lower() for s in substrings]
-    def _match(filename):
-        fn = (filename or "").lower()
-        return any(s in fn for s in lower_subs)
-    return _match
+// Define correlation_info struct FIRST
+struct correlation_info {
+    char correlation_id[16];
+    u8 phase;
+    u64 start_time;
+};
 
-
-def path_regex(pattern):
-    """Match filename against regex."""
-    compiled = re.compile(pattern)
-    def _match(filename):
-        return bool(compiled.search(filename or ""))
-    return _match
-
-
-def path_glob(*patterns):
-    """Match filename against glob patterns."""
-    def _match(filename):
-        fn = filename or ""
-        return any(fnmatch.fnmatch(fn, p) for p in patterns)
-    return _match
-
-
-def flag_readonly():
-    """File opened read-only (no write flags)."""
-    def _match(details):
-        flags = str(details.get("flags", ""))
-        return "O_WRONLY" not in flags and "O_RDWR" not in flags
-    return _match
-
-
-def flag_writable():
-    """File opened with write flags."""
-    def _match(details):
-        flags = str(details.get("flags", ""))
-        return any(f in flags for f in ["O_WRONLY", "O_RDWR", "O_CREAT",
-                                         "O_APPEND", "O_TRUNC"])
-    return _match
-
-
-def flag_family(*families):
-    """Match network socket family."""
-    def _match(details):
-        return details.get("family", "") in families
-    return _match
-
-
-def flag_nonstandard_port():
-    """Connect/bind to a non-standard port (not 80/443/8080/8443/53/22)."""
-    standard = {80, 443, 8080, 8443, 53, 22}
-    def _match(details):
-        port = details.get("port", 0)
-        if isinstance(port, str):
-            try:
-                port = int(port)
-            except ValueError:
-                return False
-        return port > 0 and port not in standard
-    return _match
-
-
-def flag_nonlocal_address():
-    """Connect to a non-localhost address."""
-    local_prefixes = ("127.", "0.0.0.0", "::1", "0:0:0:0")
-    def _match(details):
-        addr = str(details.get("address", ""))
-        if not addr:
-            return True  # if we can't tell, assume non-local
-        return not any(addr.startswith(p) for p in local_prefixes)
-    return _match
-
-
-def flag_inet_connect():
-    """Network connect to non-local, non-standard port over AF_INET/AF_INET6."""
-    _family = flag_family("AF_INET", "AF_INET6")
-    _port = flag_nonstandard_port()
-    _addr = flag_nonlocal_address()
-    def _match(details):
-        return _family(details) and _port(details) and _addr(details)
-    return _match
-
-def flag_inet_remote():
-    """Connect to any non-localhost AF_INET/AF_INET6 address (any port)."""
-    _family = flag_family("AF_INET", "AF_INET6")
-    _addr = flag_nonlocal_address()
-    def _match(details):
-        return _family(details) and _addr(details)
-    return _match
+// Optimized threat_event struct - reduced size
+struct threat_event {
+    u32 pid;
+    u32 tid;
+    u32 ppid;
+    char comm[16];
+    u8 operation_id;  
     
-def flag_inet_any():
-    """Any AF_INET/AF_INET6 connection (including standard ports)."""
-    def _match(details):
-        return details.get("family", "") in ("AF_INET", "AF_INET6")
-    return _match
-
-
-def flag_netlink_route():
-    """Socket family is AF_NETLINK with NETLINK_ROUTE protocol."""
-    def _match(details):
-        return (details.get("family", "") == "AF_NETLINK" and
-                details.get("protocol", "") == "NETLINK_ROUTE")
-    return _match
-
-
-def flag_netlink_netfilter():
-    """Socket family is AF_NETLINK with NETLINK_NETFILTER protocol."""
-    def _match(details):
-        return (details.get("family", "") == "AF_NETLINK" and
-                details.get("protocol", "") == "NETLINK_NETFILTER")
-    return _match
-
-
-def flag_ioctl_netif():
-    """ioctl request is a network interface query."""
-    net_ioctls = {"SIOCGIFCONF", "SIOCGIFADDR", "SIOCGIFNETMASK",
-                  "SIOCGIFBRDADDR", "SIOCGIFFLAGS", "SIOCGIFHWADDR"}
-    def _match(details):
-        req = str(details.get("request", ""))
-        return any(i in req for i in net_ioctls)
-    return _match
-
-
-def flag_ioctl_netif_set():
-    """ioctl request is a network interface modification."""
-    set_ioctls = {"SIOCSIFFLAGS", "SIOCSIFADDR", "SIOCSIFNETMASK",
-                  "SIOCSIFBRDADDR", "SIOCSIFMTU", "SIOCADDRT", "SIOCDELRT"}
-    def _match(details):
-        req = str(details.get("request", ""))
-        return any(i in req for i in set_ioctls)
-    return _match
-
-
-def flag_sockopt_iptables():
-    """setsockopt for iptables manipulation."""
-    def _match(details):
-        optname = str(details.get("optname", ""))
-        return "IPT_SO_SET_REPLACE" in optname or "IP6T_SO_SET_REPLACE" in optname
-    return _match
-
-
-def flag_wx_prot(details):
-    """mmap/mprotect with both PROT_WRITE and PROT_EXEC."""
-    prot = str(details.get("protection", ""))
-    return "PROT_WRITE" in prot and "PROT_EXEC" in prot
-
-
-def flag_exec_prot(details):
-    """mprotect adding PROT_EXEC (not library loading with MAP_FIXED)."""
-    prot = str(details.get("protection", ""))
-    flags = str(details.get("flags", ""))
-    if "PROT_EXEC" not in prot:
-        return False
-    if "MAP_FIXED" in flags:
-        return False
-    return True
-
-
-def flag_mining_port():
-    """Connect to a common mining pool port."""
-    mining_ports = {3333, 4444, 5555, 7777, 8888, 9999, 14444, 45700}
-    def _match(details):
-        port = details.get("port", 0)
-        if isinstance(port, str):
-            try:
-                port = int(port)
-            except ValueError:
-                return False
-        return port in mining_ports
-    return _match
-
-def flag_root_elevation():
-    """Check if privilege elevation targets root (uid=0/gid=0).
-    Checks both filename field and extra_details for flexibility
-    across different eBPF event formats."""
-    def _match_path(filename):
-        fn = (filename or "").lower()
-        return "uid=0" in fn or "gid=0" in fn or "=0" in fn
-    return _match_path
-
-
-def flag_root_elevation_details():
-    """Check extra_details for root elevation indicators."""
-    def _match(details):
-        for key in ("uid", "ruid", "euid", "suid", "gid", "rgid", "egid", "sgid"):
-            val = details.get(key)
-            if val is not None:
-                try:
-                    if int(val) == 0:
-                        return True
-                except (ValueError, TypeError):
-                    pass
-        # Also check if filename-style encoding is in any detail value
-        for v in details.values():
-            if isinstance(v, str) and ("uid=0" in v or "gid=0" in v):
-                return True
-        return False
-    return _match
-    
-def _match_keygen(filename):
-    """Match key generation events: /dev/urandom reads or getrandom with size >= 16."""
-    fn = filename or ""
-    if "/dev/urandom" in fn:
-        return True
-    if "getrandom_size=" in fn:
-        try:
-            size_str = fn.split("getrandom_size=")[-1].split()[0]
-            return int(size_str) >= 16
-        except (ValueError, IndexError):
-            return False
-    if "getrandom" in fn:
-        return True
-    return False
-    
-def _flag_remote_service_port():
-    """Connect to a common remote service port (SSH, RDP, SMB, VNC)."""
-    remote_ports = {22, 3389, 445, 5900, 5901, 5985, 5986}
-    def _match(details):
-        fam = details.get("family", "")
-        if fam not in ("AF_INET", "AF_INET6"):
-            return False
-        port = details.get("port", 0)
-        if isinstance(port, str):
-            try:
-                port = int(port)
-            except ValueError:
-                return False
-        addr = str(details.get("address", ""))
-        local_prefixes = ("127.", "0.0.0.0", "::1", "0:0:0:0")
-        if any(addr.startswith(p) for p in local_prefixes):
-            return False
-        return port in remote_ports
-    return _match   
-    
-# ============================================================================
-# SENSITIVE PATH LISTS (from taxonomy)
-# ============================================================================
-
-_SYS_INFO_PATHS = [
-    "/proc/version", "/proc/sys/kernel/ostype", "/proc/sys/kernel/osrelease",
-    "/etc/os-release", "/etc/lsb-release", "/etc/redhat-release",
-]
-
-_HOSTNAME_PATHS = [
-    "/proc/sys/kernel/hostname", "/etc/hostname", "/proc/sys/kernel/domainname",
-]
-
-_NET_CONFIG_PATHS = [
-    "/proc/net/route", "/proc/net/if_inet6", "/proc/net/arp",
-    "/proc/net/dev", "/proc/net/wireless",
-    "/proc/net/dev_mcast", "/proc/net/igmp",
-    "/etc/resolv.conf", "/etc/hosts",
-    "/sys/class/net/",
-]
-
-_NET_CONNECTIONS_PATHS = [
-    "/proc/net/tcp", "/proc/net/tcp6",
-    "/proc/net/udp", "/proc/net/udp6",
-]
-
-_HARDWARE_PATHS = [
-    "/proc/cpuinfo", "/proc/meminfo", "/proc/uptime",
-    "/proc/partitions", "/proc/loadavg", "/proc/cgroups",
-    "/sys/devices/system/cpu/", "/sys/class/dmi/id/",
-]
-
-_ENV_PATHS = [
-    "/proc/self/environ", "/etc/environment",
-]
-
-_USER_ACCOUNT_PATHS = [
-    "/etc/subuid", "/etc/subgid", "/etc/login.defs",
-    "/etc/passwd", "/etc/group", "/etc/shadow",
-]
-
-_CRED_LOGIN = [
-    "/etc/passwd", "/etc/shadow", "/etc/gshadow", "/etc/group",
-    "/var/backups/shadow", "/etc/security/opasswd",
-    "/var/log/auth.log", "/var/log/secure",
-    "/var/log/lastlog", "/var/log/btmp", "/var/log/wtmp",
-]
-
-_CRED_BROWSER = [
-    ".config/google-chrome/", ".config/chromium/",
-    ".config/BraveSoftware/", ".config/microsoft-edge/",
-    ".mozilla/firefox/", "Cookies", "Login Data",
-    "logins.json", "key4.db", "key3.db", "cookies.sqlite", "cert9.db",
-]
-
-_CRED_SSH = [
-    ".ssh/id_rsa", ".ssh/id_ed25519", ".ssh/id_ecdsa", ".ssh/id_dsa",
-    ".ssh/id_ed25519_sk", ".ssh/authorized_keys", ".ssh/config",
-    ".ssh/known_hosts", "/etc/ssh/ssh_host_", "/etc/ssh/sshd_config",
-    "/etc/ssh/ssh_config", ".ssh/",
-]
-
-_CRED_CLOUD = [
-    ".aws/credentials", ".aws/config",
-    ".azure/accessTokens.json", ".azure/azureProfile.json", ".azure/msal_token_cache",
-    ".config/gcloud/application_default_credentials.json",
-    ".config/gcloud/credentials.db",
-    ".config/gh/hosts.yml", ".docker/config.json",
-    ".kube/config", "kubernetes.io/serviceaccount/token",
-]
-
-_CRED_CRYPTO = [
-    ".ethereum/keystore/", ".bitcoin/wallets/",
-    ".electrum/wallets/", ".local/share/Ethereum/keystore/",
-]
-
-_CRED_TOKENS = [
-    ".netrc", ".git-credentials", ".npmrc", ".pypirc",
-    ".terraform.d/credentials.tfrc.json", ".gem/credentials",
-    ".config/rclone/rclone.conf", ".config/s3cmd/s3cfg",
-]
-
-_CRED_DISCORD = [
-    ".config/discord/Local Storage/leveldb/",
-    ".config/discordcanary/Local Storage/leveldb/",
-    ".config/discordptb/Local Storage/leveldb/",
-]
-
-_CRED_KEYRING = [
-    ".local/share/keyrings/", ".gnupg/",
-    ".local/share/kwalletd/", ".cache/kwalletd/",
-    ".config/keepassxc/", "/etc/krb5.keytab",
-    ".config/kwalletrc", ".k5login",
-     "gnupg/",
-]
-
-_FILE_CONFIG = [
-    ".gitconfig", ".bashrc", ".zshrc", ".profile",
-    ".bash_profile", ".zprofile", ".zshenv", ".vimrc", ".tmux.conf",
-]
-
-_FILE_HISTORY = [
-    ".bash_history", ".zsh_history",
-]
-
-_FILE_LOGS = ["/var/log/"]
-
-_FILE_TMP = ["/tmp/", "/var/tmp/", "/dev/shm/", ".cache/"]
-
-# Persistence paths
-_PERSIST_CRON = [
-    "/etc/crontab", "/etc/cron.d/", "/var/spool/cron/",
-    "/var/spool/cron/crontabs/",
-]
-
-_PERSIST_SYSTEMD = [
-    "/etc/systemd/system/", "/lib/systemd/system/",
-    "/usr/lib/systemd/system/",
-]
-
-_PERSIST_INIT = [
-    "/etc/init.d/", "/etc/rc.local", "/etc/rc.d/",
-]
-
-_PERSIST_PROFILE = [
-    ".bashrc", ".profile", ".bash_profile", ".zshrc",
-    "/etc/profile", "/etc/profile.d/",
-]
-
-_PERSIST_BOOT = [
-    "/etc/default/grub", "/boot/grub", "/boot/grub2",
-    "/boot/loader/entries/", "/sys/firmware/efi/efivars/",
-]
-
-# Desktop autostart persistence
-_PERSIST_AUTOSTART = [
-    ".config/autostart/",
-]
-
-# LD linker paths (preload and conf)
-_PERSIST_LDCONF = [
-    "/etc/ld.so.conf", "/etc/ld.so.conf.d/",
-]
-
-# Kernel module config persistence
-_PERSIST_KMOD_CONFIG = [
-    "/etc/modprobe.d/", "/etc/modules-load.d/",
-    "/lib/modules/",
-]
-
-# Cron access control
-_PERSIST_CRON_ACCESS = [
-    "/etc/cron.allow", "/etc/cron.deny",
-    "/etc/at.allow", "/etc/at.deny",
-]
-
-# System manipulation paths
-_MAC_PATHS = [
-    "/sys/fs/selinux/", "/sys/kernel/security/apparmor/",
-    "/etc/selinux/config",
-]
-
-_FIREWALL_PATHS = [
-    "/etc/nftables.conf", "/etc/iptables/",
-    "/etc/ufw/", "/etc/firewalld/",
-]
-
-_LOGGING_PATHS = [
-    "/etc/rsyslog.conf", "/etc/rsyslog.d/", "/etc/syslog-ng/",
-    "/etc/systemd/journald.conf",
-]
-
-_NET_MANIP_PATHS = [
-    "/proc/sys/net/", "/etc/network/", "/etc/netplan/",
-    "/etc/sysconfig/network", "/etc/NetworkManager/",
-]
-
-_SECURITY_SETTING_PATHS = [
-    "/proc/sys/kernel/kptr_restrict", "/proc/sys/kernel/dmesg_restrict",
-    "/proc/sys/kernel/yama/ptrace_scope", "/proc/sys/kernel/unprivileged_bpf_disabled",
-]
-
-_AUDIT_PATHS = [
-    "/proc/sys/kernel/audit", "/etc/audit/", "/etc/audisp/",
-    "/etc/default/auditd",
-]
-
-
-_SHELL_PATHS = ["/bin/sh", "/bin/bash", "/bin/dash", "/bin/zsh",
-                "/usr/bin/sh", "/usr/bin/bash", "/usr/bin/dash", "/usr/bin/zsh"]
-
-# Paths for AB3 policy manipulation (sudoers + PAM + security config)
-_POLICY_PATHS = [
-    "/etc/sudoers", "/etc/sudoers.d/",
-    "/etc/pam.d/", "/etc/security/",
-    "/etc/securetty", "/etc/polkit-1/rules.d/",
-]
-
-# Fstab
-_FSTAB_PATHS = ["/etc/fstab"]
-
-# Core pattern hijack
-_CORE_PATTERN_PATHS = ["/proc/sys/kernel/core_pattern"]
-
-# Sysctl persistence
-_SYSCTL_PATHS = ["/etc/sysctl.conf", "/etc/sysctl.d/"]
-
-# Hosts access control
-_HOSTS_ACCESS_PATHS = ["/etc/hosts.allow", "/etc/hosts.deny"]
-
-# Database config paths (credential stores)
-_DB_CONFIG_PATHS = [
-    "/etc/mysql/", "/root/.my.cnf",
-    ".pgpass", "/var/lib/pgsql/data/pg_hba.conf",
-    "/etc/redis/redis.conf", "/etc/mongod.conf",
-]
-
-# Container runtime paths
-_CONTAINER_PATHS = [
-    "/etc/docker/", "/etc/containerd/", "/etc/crio/",
-    "/var/lib/docker/",
-]
-
-# SSL/TLS private keys
-_SSL_KEY_PATHS = [
-    "/etc/ssl/private/", "/etc/pki/tls/private/",
-    "/etc/letsencrypt/live/",
-]
-
-_NET_PREP_PATHS = [
-    "/usr/lib/ssl/openssl.cnf", "/usr/lib/ssl/cert.pem",
-    "/usr/lib/ssl/certs/", "/etc/ssl/openssl.cnf",
-    "/etc/ssl/cert.pem", "/etc/ssl/certs/",
-    "/etc/pki/tls/", "/etc/ca-certificates/",
-    "/usr/share/ca-certificates/",
-]
-
-_DNS_RESOLVE_PATHS = [
-    "/etc/resolv.conf", "/etc/nsswitch.conf",
-    "/etc/host.conf", "/etc/hosts",
-    "/etc/gai.conf",
-]
-# ============================================================================
-# STEP 1: PRE-FILTER
-# ============================================================================
-
-def prefilter_events(events: list) -> list:
-    """
-    Remove File.open events where flags contain O_DIRECTORY.
-    These are directory existence checks, not file access.
-    """
-    filtered = []
-    for ev in events:
-        if ev.get("sub_op") == "File.open":
-            flags = str(ev.get("extra_details", {}).get("flags", ""))
-            if "O_DIRECTORY" in flags:
-                continue
-        filtered.append(ev)
-    return filtered
-
-
-# ============================================================================
-# STEP 2: PATTERN DEFINITIONS
-# ============================================================================
-
-def _ab1_exfil(pid, sub, paths, mitre_list):
-    """AB1 helper: open(sensitive, readonly) → read → connect(suspicious) → send."""
-    return SequencePattern(
-        pattern_id=pid,
-        behavior_id="AB1",
-        sub_behavior=sub,
-        mitre=mitre_list,
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*paths),
-                flag_match=flag_readonly(),
-                description=f"Open sensitive file ({sub})",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read file contents",
-            ),
-            PatternStep(
-                sub_op="Network.socket",
-                description="Create network socket",
-                optional=True,
-            ),
-            PatternStep(
-                sub_op="Network.connect",
-                flag_match=flag_inet_remote(),
-                description="Connect to suspicious remote server",
-            ),
-            PatternStep(
-               sub_op={"Network.send", "File.sendfile", "File.write"},
-               path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-               description="Send stolen data",
-            ),
-        ],
-    )
-
-
-def _ab1_exfil_udp(pid, sub, paths, mitre_list):
-    """AB1 helper: open(sensitive, readonly) → read → socket(AF_INET) → sendto (UDP, no connect)."""
-    return SequencePattern(
-        pattern_id=pid,
-        behavior_id="AB1",
-        sub_behavior=sub,
-        mitre=mitre_list,
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*paths),
-                flag_match=flag_readonly(),
-                description=f"Open sensitive file ({sub})",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read file contents",
-            ),
-            PatternStep(
-                sub_op="Network.socket",
-                flag_match=flag_family("AF_INET", "AF_INET6"),
-                description="Create UDP socket (AF_INET/AF_INET6)",
-            ),
-            PatternStep(
-                sub_op="Network.send",
-                description="Send stolen data (UDP sendto)",
-            ),
-        ],
-    )
-
-
-
-
-def build_ab1_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # System info exfil variants (TCP + UDP + read-only)
-    # ------------------------------------------------------------------
-    for pid, sub, paths, mitre in [
-        ("AB1-SYS-EXFIL", "OS/kernel version theft + exfiltration", _SYS_INFO_PATHS,
-         [MITREMapping("Discovery", "T1082", "System Information Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-        ("AB1-HOST-EXFIL", "Hostname theft + exfiltration", _HOSTNAME_PATHS,
-         [MITREMapping("Discovery", "T1082", "System Information Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-        ("AB1-NET-EXFIL", "Network config theft + exfiltration", _NET_CONFIG_PATHS,
-         [MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-        ("AB1-NETCONN-EXFIL", "Network connections theft + exfiltration", _NET_CONNECTIONS_PATHS,
-         [MITREMapping("Discovery", "T1049", "System Network Connections Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-          
-        ("AB1-ENV-EXFIL", "Environment variable theft + exfiltration", _ENV_PATHS,
-         [MITREMapping("Discovery", "T1082", "System Information Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-        ("AB1-USERACCT-EXFIL", "User account info theft + exfiltration", _USER_ACCOUNT_PATHS,
-         [MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
-          MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]),
-    ]:
-        patterns.append(_ab1_exfil(pid, sub, paths, mitre))
-        patterns.append(_ab1_exfil_udp(pid + "-UDP", sub + " (UDP)", paths,
-                                        [m for m in mitre if m.technique_id != "T1041"] +
-                                        [MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]))
+    // Union for operation-specific data to save space
+    union {
+        struct {
+            char path[64];
+        } file;
         
+        struct {
+         u32 ip_addr;
+         u16 port;
+         u8  family;
+         u8  sock_type;
+         u8  ip6[16];
+         } net;
 
-    # Hardware — exfil only, read-only is framework noise
-    patterns.append(_ab1_exfil(
-        "AB1-HW-EXFIL", "Hardware info theft + exfiltration", _HARDWARE_PATHS,
-        [MITREMapping("Discovery", "T1082", "System Information Discovery"),
-         MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]))
-    patterns.append(_ab1_exfil_udp(
-        "AB1-HW-EXFIL-UDP", "Hardware info theft + exfiltration (UDP)", _HARDWARE_PATHS,
-        [MITREMapping("Discovery", "T1082", "System Information Discovery"),
-         MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]))
-
-    # ------------------------------------------------------------------
-    # uname/sysinfo/gethostname → connect → send (TCP)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-UNAME-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="System fingerprint via syscall + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op={"System.info", "System.identity"},
-                        description="System fingerprint syscall"),
-            PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Transmit fingerprint"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # uname/sysinfo/gethostname → socket → sendto (UDP)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-UNAME-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="System fingerprint via syscall + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op={"System.info", "System.identity"},
-                        description="System fingerprint syscall"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket (AF_INET/AF_INET6)"),
-            PatternStep(sub_op="Network.send",
-                        description="Send fingerprint (UDP sendto)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Netlink discovery + TCP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NETLINK-RECON-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Netlink-based network discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
-                        description="Create AF_NETLINK NETLINK_ROUTE socket"),
-            PatternStep(sub_op="Network.bind", description="Bind netlink socket", optional=True),
-            PatternStep(sub_op="Network.send", description="Send RTM_GET* request"),
-            PatternStep(sub_op="Network.recv", description="Receive netlink response"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Netlink discovery + UDP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NETLINK-RECON-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="Netlink-based network discovery + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
-                        description="Create AF_NETLINK NETLINK_ROUTE socket"),
-            PatternStep(sub_op="Network.bind", description="Bind netlink socket", optional=True),
-            PatternStep(sub_op="Network.send", description="Send RTM_GET* request"),
-            PatternStep(sub_op="Network.recv", description="Receive netlink response"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)"),
-        ],
-    ))
+        struct {
+            u32 uid;
+            u32 gid;
+            u32 flags;
+        } proc;
+        
+        struct {
+            u64 arg1;
+            u64 arg2;
+            u32 arg3;
+        } generic;
+    } data;
     
-    # ------------------------------------------------------------------
-    # ioctl discovery + TCP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-IOCTL-NETIF-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="ioctl-based network discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
-                        description="ioctl SIOCGIF* network interface query"),
-            PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # ioctl discovery + UDP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-IOCTL-NETIF-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="ioctl-based network discovery + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
-                        description="ioctl SIOCGIF* network interface query"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)"),
-        ],
-    ))
+    // I/O metadata — OUTSIDE union so they survive path writes
+    u32 io_fd;
+    u32 io_size;
+    u64 io_offset;
     
+    int user_stack_id;
+    u32 _pad;
+    u64 timestamp;
+    char correlation_id[16];
+    u8 phase;
+};
+struct thread_event {
+    u32 parent_pid;
+    u32 parent_tid;
+    u32 child_pid;
+    u32 child_tid;
+    char parent_correlation_id[16];
+    u8 parent_phase;
+    u64 timestamp;
+    char comm[16];
+};
+
+struct fd_info {
+    char path[64];  // Reduced from 256
+    u64 timestamp;
+    u32 pid;
+    u32 flags;   
+    u32 mode;     
+};
+
+struct iovec {
+    void *iov_base;
+    __kernel_size_t iov_len;
+};
+
+struct user_msghdr {
+    void *msg_name;
+    int msg_namelen;
+    struct iovec *msg_iov;
+    __kernel_size_t msg_iovlen;
+    void *msg_control;
+    __kernel_size_t msg_controllen;
+    unsigned int msg_flags;
+};
+
+struct syscall_data {
+    u64 fd;
+    u64 buff_ptr;
+    u64 msg_ptr;
+    u64 flags;
+};
+
+
+// Hash maps
+BPF_HASH(target_pids, u32, u8);
+BPF_HASH(model_threads, u32, u64);
+BPF_HASH(thread_context, u32, struct correlation_info);
+BPF_HASH(fd_paths, u64, struct fd_info);
+BPF_STACK_TRACE(stack_traces, 10240);
+BPF_PERF_OUTPUT(events);
+BPF_PERF_OUTPUT(thread_events);
+BPF_HASH(syscall_args, u32, struct syscall_data);
+
+static inline bool should_trace(u32 pid, u32 tid) {
+    u8 *val = target_pids.lookup(&pid);
+    if (val != NULL) {
+        u64 timestamp = bpf_ktime_get_ns();
+        model_threads.update(&tid, &timestamp);
+        return true;
+    }
     
-    # ------------------------------------------------------------------
-    # Socket info discovery + TCP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-SOCKINFO-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Socket-based network discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="Network.info",
-                        description="Query socket info (getsockname/getsockopt)"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network info"),
-        ],
-    ))
+    u64 *thread_val = model_threads.lookup(&tid);
+    return thread_val != NULL;
+}
 
-    # ------------------------------------------------------------------
-    # Socket info discovery + UDP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-SOCKINFO-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="Socket-based network discovery + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.info",
-                        description="Query socket info (getsockname/getsockopt)"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # File/directory discovery (T1083)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-DIR-DISCOVERY",
-        behavior_id="AB1",
-        sub_behavior="File and directory discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="File.enumerate",
-                        path_match=path_contains("/home", "/etc", "/var", "/opt", "/usr"),
-                        description="Enumerate sensitive directories"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate listing"),
-        ],
-    ))
+static inline void copy_correlation_context(struct threat_event *event, u32 tid) {
+    struct correlation_info *ctx = thread_context.lookup(&tid);
+    if (ctx != NULL) {
+        // Use bpf_probe_read for efficiency
+        bpf_probe_read(event->correlation_id, sizeof(event->correlation_id), ctx->correlation_id);
+        event->phase = ctx->phase;
+    } else {
+        __builtin_memcpy(event->correlation_id, "unknown", 8);
+        event->phase = 0;
+    }
+}
 
-    # ------------------------------------------------------------------
-    # getcwd discovery + exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-CWD-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Current working directory discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="File.getcwd", description="Get current working directory"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Send CWD info"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Process enumeration (TCP)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-PROC-ENUM-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Process enumeration + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
-                        description="Enumerate /proc"),
-            PatternStep(sub_op="File.open",
-                        path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
-                        flag_match=flag_readonly(),
-                        description="Open process info file"),
-            PatternStep(sub_op="File.read", description="Read process data"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Process enumeration (UDP)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-PROC-ENUM-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="Process enumeration + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
-                        description="Enumerate /proc"),
-            PatternStep(sub_op="File.open",
-                        path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
-                        flag_match=flag_readonly(),
-                        description="Open process info file"),
-            PatternStep(sub_op="File.read", description="Read process data"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
-        ],
-    ))
+//---------------------------------------------------------------------------------------------------------------------------------------
+// OP_UNAME 
+TRACEPOINT_PROBE(syscalls, sys_enter_newuname) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
     
+    if (!should_trace(pid, tid)) return 0;
     
-    # ------------------------------------------------------------------
-    # Permission query discovery + TCP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-PERMQUERY-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="User/group ID discovery + exfiltration",
-        mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="Permission.query",
-                        description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
-                        path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate user/group info"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Permission query discovery + UDP exfiltration
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-PERMQUERY-EXFIL-UDP",
-        behavior_id="AB1",
-        sub_behavior="User/group ID discovery + exfiltration (UDP)",
-        mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
-               MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        steps=[
-            PatternStep(sub_op="Permission.query",
-                        description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
-            PatternStep(sub_op="Network.socket",
-                        flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Credential theft variants (TCP + UDP + read-only)
-    # ------------------------------------------------------------------
-    for pid, sub, paths, mitre in [
-        ("AB1-CRED-LOGIN", "Login credential theft", _CRED_LOGIN,
-         [MITREMapping("Credential Access", "T1003.008", "/etc/passwd and /etc/shadow")]),
-        ("AB1-CRED-BROWSER", "Browser credential theft", _CRED_BROWSER,
-         [MITREMapping("Credential Access", "T1555.003", "Credentials from Web Browsers")]),
-        ("AB1-CRED-SSH", "SSH key theft", _CRED_SSH,
-         [MITREMapping("Credential Access", "T1552.004", "Private Keys")]),
-        ("AB1-CRED-CLOUD", "Cloud credential theft", _CRED_CLOUD,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-        ("AB1-CRED-CRYPTO", "Cryptocurrency wallet theft", _CRED_CRYPTO,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-        ("AB1-CRED-TOKEN", "Auth token theft", _CRED_TOKENS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-        ("AB1-CRED-DISCORD", "Discord token theft", _CRED_DISCORD,
-         [MITREMapping("Credential Access", "T1550.004", "Web Session Cookie")]),
-        ("AB1-CRED-KEYRING", "Keyring content theft", _CRED_KEYRING,
-         [MITREMapping("Credential Access", "T1555.005", "Password Managers")]),
-        ("AB1-CRED-SSL", "SSL/TLS private key theft", _SSL_KEY_PATHS,
-         [MITREMapping("Credential Access", "T1552.004", "Private Keys")]),
-        ("AB1-CRED-DBCONFIG", "Database config credential theft", _DB_CONFIG_PATHS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-        ("AB1-CRED-CONTAINER", "Container runtime credential theft", _CONTAINER_PATHS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-    ]:
-        exfil_mitre = mitre + [MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]
-        patterns.append(_ab1_exfil(pid + "-EXFIL", sub + " + exfiltration", paths, exfil_mitre))
-        udp_mitre = mitre + [MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]
-        patterns.append(_ab1_exfil_udp(pid + "-EXFIL-UDP", sub + " + exfiltration (UDP)", paths, udp_mitre))
-     
-
-    # ------------------------------------------------------------------
-    # File theft variants (TCP + UDP)
-    # ------------------------------------------------------------------
-    for pid, sub, paths, mitre in [
-        ("AB1-FILE-CONFIG", "Configuration file theft", _FILE_CONFIG,
-         [MITREMapping("Collection", "T1005", "Data from Local System")]),
-        ("AB1-FILE-HISTORY", "Command history theft", _FILE_HISTORY,
-         [MITREMapping("Credential Access", "T1552.003", "Bash History")]),
-        ("AB1-FILE-LOGS", "Log file theft", _FILE_LOGS,
-         [MITREMapping("Collection", "T1005", "Data from Local System")]),
-        ("AB1-FILE-TMP", "Temporary/cache file theft", _FILE_TMP,
-         [MITREMapping("Collection", "T1005", "Data from Local System")]),
-    ]:
-        exfil_mitre = mitre + [MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]
-        patterns.append(_ab1_exfil(pid + "-EXFIL", sub + " + exfiltration", paths, exfil_mitre))
-        udp_mitre = mitre + [MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]
-        patterns.append(_ab1_exfil_udp(pid + "-EXFIL-UDP", sub + " + exfiltration (UDP)", paths, udp_mitre))
-
-    # ------------------------------------------------------------------
-    # Archive before exfil (T1560)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-ARCHIVE-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Archive collected data before exfiltration",
-        mitre=[MITREMapping("Collection", "T1560", "Archive Collected Data"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("tar", "gzip", "zip", "bzip2", "xz", "7z"),
-                        description="Execute archive/compression tool"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate archive"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Keylogging via /dev/input (T1056.001)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-KEYLOG",
-        behavior_id="AB1",
-        sub_behavior="Keylogging via /dev/input",
-        mitre=[MITREMapping("Credential Access", "T1056.001", "Keylogging")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/dev/input/event", "/dev/input/by-"),
-                        flag_match=flag_readonly(),
-                        description="Open input device"),
-            PatternStep(sub_op="File.read",
-                        description="Read input events"),
-        ],
-    ))
-
-    # Keylogging + exfiltration
-    patterns.append(SequencePattern(
-        pattern_id="AB1-KEYLOG-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Keylogging + exfiltration",
-        mitre=[MITREMapping("Credential Access", "T1056.001", "Keylogging"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/dev/input/event", "/dev/input/by-"),
-                        flag_match=flag_readonly(),
-                        description="Open input device"),
-            PatternStep(sub_op="File.read",
-                        description="Read input events"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate keystrokes"),
-        ],
-    ))
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_UNAME;
     
-    # ------------------------------------------------------------------
-    # Network shared drive data theft (T1039)
-    # ------------------------------------------------------------------
-    patterns.append(_ab1_exfil(
-        "AB1-NETSHARE-EXFIL", "Network share data theft + exfiltration",
-        ["/mnt/", "/nfs/", "/smb/", "/cifs/"],
-        [MITREMapping("Collection", "T1039", "Data from Network Shared Drive"),
-         MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]))
-    patterns.append(_ab1_exfil_udp(
-        "AB1-NETSHARE-EXFIL-UDP", "Network share data theft + exfiltration (UDP)",
-        ["/mnt/", "/nfs/", "/smb/", "/cifs/"],
-        [MITREMapping("Collection", "T1039", "Data from Network Shared Drive"),
-         MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]))
-
-    # ------------------------------------------------------------------
-    # Removable media data theft (T1025)
-    # ------------------------------------------------------------------
-    patterns.append(_ab1_exfil(
-        "AB1-REMOVABLE-EXFIL", "Removable media data theft + exfiltration",
-        ["/media/", "/run/media/"],
-        [MITREMapping("Collection", "T1025", "Data from Removable Media"),
-         MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")]))
-    patterns.append(_ab1_exfil_udp(
-        "AB1-REMOVABLE-EXFIL-UDP", "Removable media data theft + exfiltration (UDP)",
-        ["/media/", "/run/media/"],
-        [MITREMapping("Collection", "T1025", "Data from Removable Media"),
-         MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")]))
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    # ------------------------------------------------------------------
-    # Command-based sensitive file access (os.system / subprocess)
-    # Catches: os.system('cat /etc/passwd'), subprocess.run(['grep', 'root', '/etc/shadow'])
-    # The exec of a file-reading tool followed by open+read of sensitive files
-    # is the primary attack vector for malicious pickle payloads.
-    # ------------------------------------------------------------------
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-    # Aggregate all credential paths into one list for command-based patterns
-    # For command-based patterns, exclude /etc/passwd and /etc/group
-    # which are read by glibc getpwuid() in every command execution
-    _CRED_LOGIN_CMD = [p for p in _CRED_LOGIN
-                       if p not in ("/etc/passwd", "/etc/group")]
-    _CRED_ALL_PATHS = (
-        _CRED_LOGIN_CMD + _CRED_SSH + _CRED_CLOUD + _CRED_TOKENS +
-        _CRED_BROWSER + _CRED_CRYPTO + _CRED_KEYRING + _CRED_DISCORD +
-        _SSL_KEY_PATHS + _DB_CONFIG_PATHS + _CONTAINER_PATHS
-    )
-
-    # File-reading commands that are suspicious when targeting sensitive files
-    _FILE_READ_COMMANDS = [
-        "cat", "head", "tail", "xxd", "base64", "strings",
-        "grep", "awk", "sed", "less", "more", "tac",
-        "sort", "cut", "od", "hexdump",
-    ]
-
-    # exec(file-reading tool) → open(credential file) → read
-    patterns.append(SequencePattern(
-        pattern_id="AB1-EXEC-CRED-ACCESS",
-        behavior_id="AB1",
-        sub_behavior="Command-based credential file access",
-        mitre=[
-            MITREMapping("Credential Access", "T1003.008", "/etc/passwd and /etc/shadow"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*_FILE_READ_COMMANDS),
-                description="Execute file-reading command (cat/head/grep/etc.)",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_CRED_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open credential/sensitive file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read credential data",
-            ),
-        ],
-    ))
-
-    # exec(file-reading tool) → open(system info file) → read
-    _USER_ACCOUNT_CMD = [p for p in _USER_ACCOUNT_PATHS
-                         if p not in ("/etc/passwd", "/etc/group")]
-    _SYSINFO_ALL_PATHS = (
-        _SYS_INFO_PATHS + _HOSTNAME_PATHS + _NET_CONFIG_PATHS +
-        _NET_CONNECTIONS_PATHS + _ENV_PATHS +
-        _USER_ACCOUNT_CMD
-    )
-    # NOTE: _HARDWARE_PATHS intentionally excluded from command-based patterns.
-    # Reading /proc/cpuinfo, /sys/devices/system/cpu/, etc. is standard
-    # behavior for ML frameworks (NumPy, PyTorch, OpenMP) doing CPU
-    # feature/topology detection. Hardware info is only flagged when
-    # followed by network exfiltration (AB1-HW-EXFIL patterns).
-
-    patterns.append(SequencePattern(
-        pattern_id="AB1-EXEC-SYSINFO-ACCESS",
-        behavior_id="AB1",
-        sub_behavior="Command-based system info access",
-        mitre=[
-            MITREMapping("Discovery", "T1082", "System Information Discovery"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*_FILE_READ_COMMANDS),
-                description="Execute file-reading command",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_SYSINFO_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open system info file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read system info",
-            ),
-        ],
-    ))
-
-    # exec(shell) → open(credential file) → read
-    # Catches os.system('cat /etc/passwd') where we see the shell exec
-    # before the inner command's file access
-    patterns.append(SequencePattern(
-        pattern_id="AB1-SHELL-CRED-ACCESS",
-        behavior_id="AB1",
-        sub_behavior="Shell-based credential file access",
-        mitre=[
-            MITREMapping("Credential Access", "T1003.008", "/etc/passwd and /etc/shadow"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*_SHELL_PATHS),
-                description="Execute shell interpreter",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_CRED_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open credential file from shell command",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read credential data",
-            ),
-        ],
-    ))
-
-    # exec(shell) → open(system info) → read
-    patterns.append(SequencePattern(
-        pattern_id="AB1-SHELL-SYSINFO-ACCESS",
-        behavior_id="AB1",
-        sub_behavior="Shell-based system info access",
-        mitre=[
-            MITREMapping("Discovery", "T1082", "System Information Discovery"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*_SHELL_PATHS),
-                description="Execute shell interpreter",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_SYSINFO_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open system info file from shell command",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read system info",
-            ),
-        ],
-    ))
-
-    # Command-based credential access + network exfiltration
-    # exec(curl/wget/nc with credential file) or exec(cat) → open → read → connect → send
-    patterns.append(SequencePattern(
-        pattern_id="AB1-EXEC-CRED-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Command-based credential theft + exfiltration",
-        mitre=[
-            MITREMapping("Credential Access", "T1003.008", "/etc/passwd and /etc/shadow"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-            MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*(
-                    _FILE_READ_COMMANDS + _SHELL_PATHS +
-                    ["curl", "wget", "nc", "ncat"]
-                )),
-                description="Execute command",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_CRED_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open credential file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read credential data",
-            ),
-            PatternStep(
-                sub_op="Network.connect",
-                flag_match=flag_inet_remote(),
-                description="Connect to remote server",
-            ),
-            PatternStep(
-                sub_op={"Network.send", "File.sendfile", "File.write"},
-                path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate stolen credentials",
-            ),
-        ],
-    ))
-
-    # Command-based system info + exfiltration
-    patterns.append(SequencePattern(
-        pattern_id="AB1-EXEC-SYSINFO-EXFIL",
-        behavior_id="AB1",
-        sub_behavior="Command-based system info theft + exfiltration",
-        mitre=[
-            MITREMapping("Discovery", "T1082", "System Information Discovery"),
-            MITREMapping("Execution", "T1059.004", "Unix Shell"),
-            MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*(
-                    _FILE_READ_COMMANDS + _SHELL_PATHS +
-                    ["curl", "wget", "nc", "ncat"]
-                )),
-                description="Execute command",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_SYSINFO_ALL_PATHS),
-                flag_match=flag_readonly(),
-                description="Open system info file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read system info",
-            ),
-            PatternStep(
-                sub_op="Network.connect",
-                flag_match=flag_inet_remote(),
-                description="Connect to remote server",
-            ),
-            PatternStep(
-                sub_op={"Network.send", "File.sendfile", "File.write"},
-                path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate system info",
-            ),
-        ],
-    )) 
+// -------------------------------------------// System Operations //-------------------------------------------//
+// Add tracepoint probe
+TRACEPOINT_PROBE(syscalls, sys_enter_sysinfo) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
     
-    # ==================================================================
-    # LOCAL SENSITIVE FILE ACCESS (no exec, no exfil required)
-    #
-    # Only files that NO legitimate ML framework ever reads.
-    # /etc/passwd, /proc/cpuinfo, /etc/hosts, .bashrc etc. are excluded
-    # because frameworks read them routinely.
-    #
-    # /etc/passwd via os.system('cat /etc/passwd') is caught by
-    # AB1-EXEC-CRED-ACCESS above (exec → open → read).
-    # /etc/passwd with exfil is caught by AB1-CRED-LOGIN-EXFIL.
-    # ==================================================================
-
-    # Shadow files and auth logs — never read by any framework
-    _CRED_LOGIN_HIGH_SIGNAL = [
-        "/etc/shadow", "/etc/gshadow",
-        "/var/backups/shadow", "/etc/security/opasswd",
-        "/var/log/auth.log", "/var/log/secure",
-        "/var/log/lastlog", "/var/log/btmp", "/var/log/wtmp",
-    ]
-
-    patterns.append(SequencePattern(
-        pattern_id="AB1-CRED-SHADOW-LOCAL",
-        behavior_id="AB1",
-        sub_behavior="Shadow/auth log access during model execution",
-        mitre=[MITREMapping("Credential Access", "T1003.008",
-                            "/etc/passwd and /etc/shadow")],
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_CRED_LOGIN_HIGH_SIGNAL),
-                flag_match=flag_readonly(),
-                description="Open shadow/auth file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read credential data",
-            ),
-        ],
-    ))
-
-    # Credential files no framework ever touches
-    for pid, sub, paths, mitre in [
-        ("AB1-CRED-SSH-LOCAL",
-         "SSH key access during model execution",
-         _CRED_SSH,
-         [MITREMapping("Credential Access", "T1552.004", "Private Keys")]),
-
-        ("AB1-CRED-CLOUD-LOCAL",
-         "Cloud credential access during model execution",
-         _CRED_CLOUD,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-
-        ("AB1-CRED-TOKEN-LOCAL",
-         "Auth token access during model execution",
-         _CRED_TOKENS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-
-        ("AB1-CRED-BROWSER-LOCAL",
-         "Browser credential access during model execution",
-         _CRED_BROWSER,
-         [MITREMapping("Credential Access", "T1555.003", "Credentials from Web Browsers")]),
-
-        ("AB1-CRED-CRYPTO-LOCAL",
-         "Cryptocurrency wallet access during model execution",
-         _CRED_CRYPTO,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-
-        ("AB1-CRED-KEYRING-LOCAL",
-         "Keyring access during model execution",
-         _CRED_KEYRING,
-         [MITREMapping("Credential Access", "T1555.005", "Password Managers")]),
-
-        ("AB1-CRED-SSL-LOCAL",
-         "SSL private key access during model execution",
-         _SSL_KEY_PATHS,
-         [MITREMapping("Credential Access", "T1552.004", "Private Keys")]),
-
-        ("AB1-CRED-DBCONFIG-LOCAL",
-         "Database credential access during model execution",
-         _DB_CONFIG_PATHS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-
-        ("AB1-CRED-DISCORD-LOCAL",
-         "Discord token access during model execution",
-         _CRED_DISCORD,
-         [MITREMapping("Credential Access", "T1550.004", "Web Session Cookie")]),
-
-        ("AB1-CRED-CONTAINER-LOCAL",
-         "Container credential access during model execution",
-         _CONTAINER_PATHS,
-         [MITREMapping("Credential Access", "T1552.001", "Credentials In Files")]),
-    ]:
-        patterns.append(SequencePattern(
-            pattern_id=pid,
-            behavior_id="AB1",
-            sub_behavior=sub,
-            mitre=mitre,
-            steps=[
-                PatternStep(
-                    sub_op="File.open",
-                    path_match=path_contains(*paths),
-                    flag_match=flag_readonly(),
-                    description=f"Open credential file ({sub})",
-                ),
-                PatternStep(
-                    sub_op="File.read",
-                    description="Read credential data",
-                ),
-            ],
-        ))
-
-    # Command history — no framework reads these
-    patterns.append(SequencePattern(
-        pattern_id="AB1-FILE-HISTORY-LOCAL",
-        behavior_id="AB1",
-        sub_behavior="Command history access during model execution",
-        mitre=[MITREMapping("Credential Access", "T1552.003", "Bash History")],
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_FILE_HISTORY),
-                flag_match=flag_readonly(),
-                description="Open command history file",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read command history",
-            ),
-        ],
-    ))  
+    if (!should_trace(pid, tid)) return 0;
     
-     # ------------------------------------------------------------------
-    # Network preparation: SSL init + DNS resolver config reading
-    # Catches urllib.request.urlopen(), requests.get(), etc.
-    # even when the TCP connection fails before completing.
-    # No legitimate ML framework reads SSL/DNS config during model loading.
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NET-PREP-SSL-DNS",
-        behavior_id="AB1",
-        sub_behavior="SSL/DNS initialization (outbound HTTPS attempt)",
-        mitre=[MITREMapping("Command and Control", "T1071.001", "Web Protocols"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_NET_PREP_PATHS),
-                flag_match=flag_readonly(),
-                description="Open SSL/TLS configuration or certificates",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read SSL/TLS config",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_DNS_RESOLVE_PATHS),
-                flag_match=flag_readonly(),
-                description="Open DNS resolver configuration",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read DNS resolver config",
-            ),
-        ],
-    ))
-
-    # Reverse order: DNS first, then SSL (some HTTP clients do DNS before SSL)
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NET-PREP-DNS-SSL",
-        behavior_id="AB1",
-        sub_behavior="DNS/SSL initialization (outbound HTTPS attempt, reverse order)",
-        mitre=[MITREMapping("Command and Control", "T1071.001", "Web Protocols"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_DNS_RESOLVE_PATHS),
-                flag_match=flag_readonly(),
-                description="Open DNS resolver configuration",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read DNS resolver config",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_NET_PREP_PATHS),
-                flag_match=flag_readonly(),
-                description="Open SSL/TLS configuration or certificates",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read SSL/TLS config",
-            ),
-        ],
-    ))
-
-    # SSL init only (no DNS — might use cached DNS or /etc/hosts)
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NET-PREP-SSL-ONLY",
-        behavior_id="AB1",
-        sub_behavior="SSL/TLS initialization during model loading",
-        mitre=[MITREMapping("Command and Control", "T1071.001", "Web Protocols")],
-        steps=[
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(
-                    "/usr/lib/ssl/openssl.cnf", "/etc/ssl/openssl.cnf",
-                    "/usr/lib/ssl/cert.pem", "/etc/ssl/cert.pem",
-                    "/etc/pki/tls/",
-                ),
-                flag_match=flag_readonly(),
-                description="Open SSL/TLS config (openssl.cnf or CA certs)",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read SSL config",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(
-                    "/usr/lib/ssl/cert.pem", "/etc/ssl/cert.pem",
-                    "/etc/ssl/certs/", "/usr/share/ca-certificates/",
-                    "/etc/ca-certificates/", "/etc/pki/tls/certs/",
-                ),
-                flag_match=flag_readonly(),
-                description="Open CA certificate store",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read CA certificates",
-            ),
-        ],
-    ))
-
-    # DNS resolver reading + AF_UNIX socket (nscd/systemd-resolved)
-    # This catches the exact pattern from model #25
-    patterns.append(SequencePattern(
-        pattern_id="AB1-NET-PREP-DNS-NSCD",
-        behavior_id="AB1",
-        sub_behavior="DNS resolution via nscd/systemd-resolved during model loading",
-        mitre=[MITREMapping("Command and Control", "T1071.001", "Web Protocols")],
-        steps=[
-            PatternStep(
-                sub_op="Network.socket",
-                flag_match=flag_family("AF_UNIX"),
-                description="Create AF_UNIX socket (nscd/resolved connection)",
-            ),
-            PatternStep(
-                sub_op="Network.connect",
-                description="Connect to nscd/resolved",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(*_DNS_RESOLVE_PATHS),
-                flag_match=flag_readonly(),
-                description="Open DNS resolver config",
-            ),
-            PatternStep(
-                sub_op="File.read",
-                description="Read DNS resolver config",
-            ),
-        ],
-    ))
-  
-    return patterns
-
-
-def build_ab2_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # Cron job: open(cron path, writable) → write
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-CRON-WRITE",
-        behavior_id="AB2",
-        sub_behavior="Cron job installation",
-        mitre=[MITREMapping("Persistence", "T1053.003", "Cron")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_CRON),
-                        flag_match=flag_writable(), description="Open cron file for writing"),
-            PatternStep(sub_op="File.write", description="Write cron entry"),
-        ],
-    ))
-
-    # Cron via execve
-    patterns.append(SequencePattern(
-        pattern_id="AB2-CRON-EXEC",
-        behavior_id="AB2",
-        sub_behavior="Cron installation via crontab command",
-        mitre=[MITREMapping("Persistence", "T1053.003", "Cron")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains("crontab"),
-                        description="Execute crontab"),
-        ],
-    ))
-
-    # Cron access control manipulation
-    patterns.append(SequencePattern(
-        pattern_id="AB2-CRON-ACCESS",
-        behavior_id="AB2",
-        sub_behavior="Cron access control manipulation",
-        mitre=[MITREMapping("Persistence", "T1053.003", "Cron")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_CRON_ACCESS),
-                        flag_match=flag_writable(), description="Open cron access control file"),
-            PatternStep(sub_op="File.write", description="Modify cron access control"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Systemd service: open(.service, writable) → write → [symlink] → [systemctl]
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-SYSTEMD",
-        behavior_id="AB2",
-        sub_behavior="Systemd service creation",
-        mitre=[MITREMapping("Persistence", "T1543.002", "Systemd Service")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_SYSTEMD),
-                        flag_match=flag_writable(), description="Create/open systemd service file"),
-            PatternStep(sub_op="File.write", description="Write service definition"),
-            PatternStep(sub_op="File.symlink", path_match=path_contains("target.wants", "systemd"),
-                        description="Create enable symlink", optional=True),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains("systemctl"),
-                        description="Run systemctl", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Init script: open(init path, writable) → write → [chmod] → [symlink]
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-INIT",
-        behavior_id="AB2",
-        sub_behavior="Init script modification",
-        mitre=[MITREMapping("Persistence", "T1037.004", "RC Scripts")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_INIT),
-                        flag_match=flag_writable(), description="Open init script"),
-            PatternStep(sub_op="File.write", description="Write init script content"),
-            PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
-            PatternStep(sub_op="File.symlink", path_match=path_contains("/etc/rc"),
-                        description="Create runlevel symlink", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Boot config: open(grub/efi, writable) → write
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-BOOT",
-        behavior_id="AB2",
-        sub_behavior="Boot configuration modification",
-        mitre=[MITREMapping("Persistence", "T1542.001", "System Firmware")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_BOOT),
-                        flag_match=flag_writable(), description="Open boot config"),
-            PatternStep(sub_op="File.write", description="Modify boot config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Shell profile: open(.bashrc etc, writable) → write
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-PROFILE",
-        behavior_id="AB2",
-        sub_behavior="Shell profile modification",
-        mitre=[MITREMapping("Persistence", "T1546.004", "Unix Shell Configuration Modification")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_PROFILE),
-                        flag_match=flag_writable(), description="Open shell profile"),
-            PatternStep(sub_op="File.write", description="Append malicious commands"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # SSH authorized_keys injection
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-SSH-KEYS",
-        behavior_id="AB2",
-        sub_behavior="SSH authorized_keys injection",
-        mitre=[MITREMapping("Persistence", "T1098.004", "SSH Authorized Keys")],
-        steps=[
-            PatternStep(sub_op="File.mkdir", path_match=path_contains(".ssh"),
-                        description="Create .ssh directory", optional=True),
-            PatternStep(sub_op="File.open", path_match=path_contains("authorized_keys"),
-                        flag_match=flag_writable(), description="Open authorized_keys"),
-            PatternStep(sub_op="File.write", description="Write SSH public key"),
-            PatternStep(sub_op="File.permission", description="Set permissions", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # PAM bypass
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-PAM",
-        behavior_id="AB2",
-        sub_behavior="PAM authentication bypass",
-        mitre=[MITREMapping("Persistence", "T1556.003", "Pluggable Authentication Modules")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/etc/pam.d/"),
-                        flag_match=flag_writable(), description="Open PAM config"),
-            PatternStep(sub_op="File.write", description="Modify PAM rules"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # User account creation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-USERADD",
-        behavior_id="AB2",
-        sub_behavior="Backdoor user account creation",
-        mitre=[MITREMapping("Persistence", "T1136.001", "Local Account"),
-               MITREMapping("Persistence", "T1098", "Account Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/etc/passwd", "/etc/shadow"),
-                        flag_match=flag_writable(), description="Open /etc/passwd for writing"),
-            PatternStep(sub_op="File.write", description="Append new user entry"),
-        ],
-    ))
-
-    # useradd via execve
-    patterns.append(SequencePattern(
-        pattern_id="AB2-USERADD-EXEC",
-        behavior_id="AB2",
-        sub_behavior="User creation via useradd command",
-        mitre=[MITREMapping("Persistence", "T1136.001", "Local Account"),
-               MITREMapping("Persistence", "T1098", "Account Manipulation")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains("useradd", "adduser"),
-                        description="Execute useradd"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Sudoers modification
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-SUDOERS",
-        behavior_id="AB2",
-        sub_behavior="Sudoers modification",
-        mitre=[MITREMapping("Persistence", "T1548.003", "Sudo and Sudo Caching")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/etc/sudoers"),
-                        flag_match=flag_writable(), description="Open sudoers"),
-            PatternStep(sub_op="File.write", description="Write NOPASSWD rule"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Binary replacement
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-BINARY-REPLACE",
-        behavior_id="AB2",
-        sub_behavior="Binary replacement/trojanization",
-        mitre=[MITREMapping("Persistence", "T1574.007", "Path Interception by PATH Environment Variable")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/usr/bin/", "/usr/sbin/", "/bin/", "/sbin/",
-                                                  "/usr/local/bin/", "/usr/local/lib/",
-                                                  "/lib/", "/lib64/", "/usr/lib/", "/usr/lib64/"),
-                        flag_match=flag_writable(), description="Open system binary/lib for writing"),
-            PatternStep(sub_op="File.write", description="Write trojanized content"),
-            PatternStep(sub_op="File.permission", description="Set executable", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # LD_PRELOAD library injection
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-LDPRELOAD",
-        behavior_id="AB2",
-        sub_behavior="LD_PRELOAD library injection",
-        mitre=[MITREMapping("Persistence", "T1574.006", "Dynamic Linker Hijacking")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/etc/ld.so.preload"),
-                        flag_match=flag_writable(), description="Open ld.so.preload"),
-            PatternStep(sub_op="File.write", description="Write library path"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # LD_CONF manipulation (ld.so.conf / ld.so.conf.d)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-LDCONF",
-        behavior_id="AB2",
-        sub_behavior="Dynamic linker config manipulation",
-        mitre=[MITREMapping("Persistence", "T1574.006", "Dynamic Linker Hijacking")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_LDCONF),
-                        flag_match=flag_writable(), description="Open ld.so.conf"),
-            PatternStep(sub_op="File.write", description="Write malicious library path"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Desktop autostart persistence
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-AUTOSTART",
-        behavior_id="AB2",
-        sub_behavior="Desktop autostart persistence",
-        mitre=[MITREMapping("Persistence", "T1547.001", "Registry Run Keys / Startup Folder")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_AUTOSTART),
-                        flag_match=flag_writable(), description="Open autostart .desktop file"),
-            PatternStep(sub_op="File.write", description="Write autostart entry"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Kernel module config persistence
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-KMOD-CONFIG",
-        behavior_id="AB2",
-        sub_behavior="Kernel module config persistence",
-        mitre=[MITREMapping("Persistence", "T1547.006", "Kernel Modules and Extensions")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_KMOD_CONFIG),
-                        flag_match=flag_writable(), description="Open kernel module config"),
-            PatternStep(sub_op="File.write", description="Write module config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Core pattern hijack (execution via crash handler)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-CORE-PATTERN",
-        behavior_id="AB2",
-        sub_behavior="Core pattern hijack for persistence",
-        mitre=[MITREMapping("Persistence", "T1546", "Event Triggered Execution")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_CORE_PATTERN_PATHS),
-                        flag_match=flag_writable(), description="Open /proc/sys/kernel/core_pattern"),
-            PatternStep(sub_op="File.write", description="Write malicious core handler"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Sysctl persistence
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB2-SYSCTL",
-        behavior_id="AB2",
-        sub_behavior="Sysctl configuration persistence",
-        mitre=[MITREMapping("Persistence", "T1546", "Event Triggered Execution")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_SYSCTL_PATHS),
-                        flag_match=flag_writable(), description="Open sysctl config"),
-            PatternStep(sub_op="File.write", description="Write sysctl persistence entry"),
-        ],
-    ))
-
-    return patterns
-
-
-def build_ab3_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # File deletion
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-DELETE",
-        behavior_id="AB3",
-        sub_behavior="System/log file deletion",
-        mitre=[MITREMapping("Defense Evasion", "T1070.004", "File Deletion"),
-               MITREMapping("Impact", "T1485", "Data Destruction")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="File.delete",
-                        path_match=lambda fn: (
-                            path_contains("/var/log", "/etc/")(fn) or
-                            (path_contains("/home")(fn) and
-                             not path_contains(".cache/", ".local/share/",
-                                               ".cache/huggingface/", ".cache/torch/",
-                                               ".cache/pip/")(fn))
-                        ),
-                        description="Delete system/log file"),
-        ],
-    ))
-
-    # Mass deletion: enumerate → delete
-    patterns.append(SequencePattern(
-        pattern_id="AB3-MASS-DELETE",
-        behavior_id="AB3",
-        sub_behavior="Directory enumeration + mass deletion",
-        mitre=[MITREMapping("Impact", "T1485", "Data Destruction")],
-        steps=[
-            PatternStep(sub_op="File.enumerate", description="Enumerate directory"),
-            PatternStep(sub_op="File.delete",
-                        path_match=lambda fn: (
-                            path_contains("/etc/", "/var/log/", "/usr/")(fn) or
-                            (path_contains("/home/")(fn) and
-                             not path_contains(".cache/", ".local/share/",
-                                               ".cache/huggingface/", ".cache/torch/",
-                                               ".cache/pip/")(fn))
-                        ),
-                        description="Delete system files"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # File modification
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-MODIFY",
-        behavior_id="AB3",
-        sub_behavior="System file modification",
-        mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains(
-                            "/etc/passwd", "/etc/shadow", "/etc/group", "/etc/gshadow",
-                            "/etc/sudoers", "/etc/hosts", "/etc/hostname",
-                            "/etc/resolv.conf", "/etc/nsswitch.conf",
-                            "/etc/ssh/", "/etc/pam.d/", "/etc/security/",
-                            "/etc/crontab", "/etc/cron.d/",
-                            "/etc/systemd/", "/etc/init.d/",
-                            "/etc/ld.so.preload", "/etc/ld.so.conf",
-                            "/etc/profile", "/etc/environment",
-                            "/etc/fstab", "/etc/motd",
-                            "/var/log/",
-                        ),
-                        flag_match=flag_writable(), description="Open sensitive system file for writing"),
-            PatternStep(sub_op="File.write", description="Write modified content"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Log truncation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-LOG-TRUNC",
-        behavior_id="AB3",
-        sub_behavior="Log file truncation",
-        mitre=[MITREMapping("Defense Evasion", "T1070.002", "Clear Linux System Logs")],
-        steps=[
-            PatternStep(sub_op="File.truncate", path_match=path_contains("/var/log"),
-                        description="Truncate log file"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Permission modification on system files
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-CHMOD",
-        behavior_id="AB3",
-        sub_behavior="Permission modification on system files",
-        mitre=[MITREMapping("Defense Evasion", "T1222.002", "Linux File Permissions Modification")],
-        steps=[
-            PatternStep(sub_op="File.permission",
-                        path_match=path_contains("/etc/", "/usr/bin/", "/usr/sbin/", "/var/"),
-                        description="chmod on system file"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Ownership change
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-CHOWN",
-        behavior_id="AB3",
-        sub_behavior="Ownership change on system files",
-        mitre=[MITREMapping("Defense Evasion", "T1222.002", "Linux File Permissions Modification")],
-        steps=[
-            PatternStep(sub_op="File.ownership",
-                        path_match=path_contains("/etc/", "/usr/", "/var/"),
-                        description="chown on system file"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Symlink attack: delete → symlink
-    # ------------------------------------------------------------------
-    _sensitive_symlink_paths = (
-        "/etc/", "/usr/bin/", "/usr/sbin/", "/usr/lib/", "/usr/lib64/",
-        "/bin/", "/sbin/", "/lib/", "/lib64/",
-        "/var/log/", "/var/spool/cron/",
-        ".ssh/", ".bashrc", ".profile", ".bash_profile",
-    )
-    patterns.append(SequencePattern(
-        pattern_id="AB3-SYMLINK",
-        behavior_id="AB3",
-        sub_behavior="Symlink/hardlink attack on sensitive file",
-        mitre=[MITREMapping("Privilege Escalation", "T1548", "Abuse Elevation Control Mechanism")],
-        steps=[
-            PatternStep(sub_op="File.delete",
-                        path_match=path_contains(*_sensitive_symlink_paths),
-                        description="Remove sensitive file"),
-            PatternStep(sub_op={"File.symlink", "File.link"},
-                        description="Create replacement symlink or hardlink"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Hostname/domain manipulation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-HOSTNAME",
-        behavior_id="AB3",
-        sub_behavior="System identity manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
-        steps=[
-            PatternStep(sub_op="System.identity_set", description="Change hostname/domain"),
-        ],
-    ))
-
-    # Hostname via file write (taxonomy lists /etc/hostname, /etc/hosts, /etc/machine-info)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-HOSTNAME-FILE",
-        behavior_id="AB3",
-        sub_behavior="System identity manipulation via file write",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/etc/hostname", "/etc/machine-info"),
-                        flag_match=flag_writable(), description="Open hostname/identity file"),
-            PatternStep(sub_op="File.write", description="Write new identity"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # SELinux/AppArmor disable
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-MAC-DISABLE",
-        behavior_id="AB3",
-        sub_behavior="MAC policy manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_MAC_PATHS),
-                        flag_match=flag_writable(), description="Open MAC policy file"),
-            PatternStep(sub_op="File.write", description="Modify MAC policy"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Firewall manipulation (file-based)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-FIREWALL",
-        behavior_id="AB3",
-        sub_behavior="Firewall rule manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_FIREWALL_PATHS),
-                        flag_match=flag_writable(), description="Open firewall config"),
-            PatternStep(sub_op="File.write", description="Modify firewall rules"),
-        ],
-    ))
-
-    # Firewall via Netlink (nftables)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-FIREWALL-NETLINK",
-        behavior_id="AB3",
-        sub_behavior="Firewall manipulation via Netlink (nftables)",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="Network.socket", flag_match=flag_netlink_netfilter(),
-                        description="Create AF_NETLINK NETLINK_NETFILTER socket"),
-            PatternStep(sub_op="Network.send", description="Send NFT_MSG modification"),
-        ],
-    ))
-
-    # Firewall via setsockopt (iptables)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-FIREWALL-SOCKOPT",
-        behavior_id="AB3",
-        sub_behavior="Firewall manipulation via setsockopt (iptables)",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="Network.sockopt", flag_match=flag_sockopt_iptables(),
-                        description="setsockopt IPT_SO_SET_REPLACE"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Logging config tampering
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-LOGGING",
-        behavior_id="AB3",
-        sub_behavior="Logging configuration tampering",
-        mitre=[MITREMapping("Defense Evasion", "T1562.003", "Impair Command History Logging")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_LOGGING_PATHS),
-                        flag_match=flag_writable(), description="Open logging config"),
-            PatternStep(sub_op="File.write", description="Modify logging config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Network config manipulation (file-based)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-NETCONFIG",
-        behavior_id="AB3",
-        sub_behavior="Network configuration manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_NET_MANIP_PATHS),
-                        flag_match=flag_writable(), description="Open network config"),
-            PatternStep(sub_op="File.write", description="Modify network config"),
-        ],
-    ))
-
-    # Network manipulation via Netlink (route changes)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-NETCONFIG-NETLINK",
-        behavior_id="AB3",
-        sub_behavior="Network manipulation via Netlink (route/address changes)",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
-                        description="Create AF_NETLINK NETLINK_ROUTE socket"),
-            PatternStep(sub_op="Network.send",
-                        description="Send RTM_NEW*/RTM_SET*/RTM_DEL* modification"),
-        ],
-    ))
-
-    # Network manipulation via ioctl
-    patterns.append(SequencePattern(
-        pattern_id="AB3-NETCONFIG-IOCTL",
-        behavior_id="AB3",
-        sub_behavior="Network manipulation via ioctl",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif_set(),
-                        description="ioctl SIOCS* network interface modification"),
-        ],
-    ))
-
-    # DNS manipulation (resolv.conf, hosts, nsswitch)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-DNS-MANIP",
-        behavior_id="AB3",
-        sub_behavior="DNS/resolver configuration manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/etc/resolv.conf", "/etc/hosts", "/etc/nsswitch.conf"),
-                        flag_match=flag_writable(), description="Open DNS/resolver config"),
-            PatternStep(sub_op="File.write", description="Modify DNS config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Security setting weakening
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-SECURITY",
-        behavior_id="AB3",
-        sub_behavior="Security setting weakening",
-        mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_SECURITY_SETTING_PATHS),
-                        flag_match=flag_writable(), description="Open security setting"),
-            PatternStep(sub_op="File.write", description="Weaken security setting"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Policy manipulation (sudoers/PAM/security under AB3)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-POLICY",
-        behavior_id="AB3",
-        sub_behavior="Authentication/authorization policy manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1556", "Modify Authentication Process"),
-               MITREMapping("Persistence", "T1098", "Account Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_POLICY_PATHS),
-                        flag_match=flag_writable(), description="Open policy file"),
-            PatternStep(sub_op="File.write", description="Modify policy"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Hosts access control (hosts.allow / hosts.deny)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-HOSTS-ACCESS",
-        behavior_id="AB3",
-        sub_behavior="Hosts access control manipulation",
-        mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_HOSTS_ACCESS_PATHS),
-                        flag_match=flag_writable(), description="Open hosts access control"),
-            PatternStep(sub_op="File.write", description="Modify hosts access rules"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Fstab manipulation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-FSTAB",
-        behavior_id="AB3",
-        sub_behavior="Filesystem mount table manipulation",
-        mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_FSTAB_PATHS),
-                        flag_match=flag_writable(), description="Open /etc/fstab"),
-            PatternStep(sub_op="File.write", description="Modify fstab"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Boot modification under AB3 (different intent from AB2 persistence)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-BOOT",
-        behavior_id="AB3",
-        sub_behavior="Boot configuration tampering",
-        mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_BOOT),
-                        flag_match=flag_writable(), description="Open boot config"),
-            PatternStep(sub_op="File.write", description="Tamper with boot config"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Capability modification
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-CAPS",
-        behavior_id="AB3",
-        sub_behavior="Capability modifications",
-        mitre=[MITREMapping("Privilege Escalation", "T1548", "Abuse Elevation Control Mechanism")],
-        steps=[
-            PatternStep(sub_op={"File.xattr_set", "File.xattr_remove"},
-                        path_match=path_contains("security.capability"),
-                        description="Modify file capabilities"),
-        ],
-    ))
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SYSINFO;
     
-    # ------------------------------------------------------------------
-    # ACL tampering
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-ACL",
-        behavior_id="AB3",
-        sub_behavior="ACL tampering",
-        mitre=[MITREMapping("Defense Evasion", "T1222.002", "Linux File Permissions Modification")],
-        steps=[
-            PatternStep(sub_op={"File.xattr_set", "File.xattr_remove"},
-                        path_match=path_contains("system.posix_acl"),
-                        description="Modify ACL via xattr"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Process name manipulation (masquerading)
-    # ------------------------------------------------------------------
-    # Masquerading: only flag PR_SET_NAME after a network connection
-    # to a remote server (hiding a C2 process), not after any exec
-    # (which fires on every browser/subprocess thread naming)
-    patterns.append(SequencePattern(
-        pattern_id="AB3-MASQUERADE",
-        behavior_id="AB3",
-        sub_behavior="Process name manipulation after network connection",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
-        steps=[
-            PatternStep(sub_op="Network.connect",
-                        flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op="Process.control",
-                        path_match=path_contains("PR_SET_NAME"),
-                        description="Rename process via prctl(PR_SET_NAME)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Audit/security monitoring disabling (T1562.006)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB3-AUDIT-DISABLE",
-        behavior_id="AB3",
-        sub_behavior="Audit/security monitoring disabling",
-        mitre=[MITREMapping("Defense Evasion", "T1562.006", "Indicator Blocking")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains(*_AUDIT_PATHS),
-                        flag_match=flag_writable(),
-                        description="Open audit configuration"),
-            PatternStep(sub_op="File.write", description="Modify audit configuration"),
-        ],
-    ))
-    patterns.append(SequencePattern(
-        pattern_id="AB3-TRUNC",
-        behavior_id="AB3",
-        sub_behavior="System file truncation",
-        mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.truncate",
-                        path_match=path_contains("/etc/", "/var/log", "/usr/"),
-                        description="Truncate system file"),
-        ],
-    ))
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    patterns.append(SequencePattern(
-        pattern_id="AB3-RENAME",
-        behavior_id="AB3",
-        sub_behavior="System file rename",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading"),
-               MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.rename",
-                        path_match=path_contains("/etc/", "/var/log/", "/usr/bin/", "/usr/sbin/"),
-                        description="Rename system file"),
-        ],
-    ))
-    patterns.append(SequencePattern(
-        pattern_id="AB3-EFI-XATTR",
-        behavior_id="AB3",
-        sub_behavior="EFI variable tampering via xattr removal",
-        mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(sub_op="File.xattr_remove",
-                        path_match=path_contains("/sys/firmware/efi/efivars/"),
-                        description="Remove EFI variable via removexattr"),
-        ],
-    ))
-    return patterns
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-
-def build_ab4_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # Shell execution
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-SHELL",
-        behavior_id="AB4",
-        sub_behavior="Shell interpreter spawning",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Execute shell"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Python interpreter execution (T1059.006)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-PYTHON",
-        behavior_id="AB4",
-        sub_behavior="Python interpreter execution",
-        mitre=[MITREMapping("Execution", "T1059.006", "Python")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("python", "python3", "python2"),
-                        description="Execute Python interpreter"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # High-signal system binary execution (recon, network, and destructive tools)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-SYSBIN-RECON",
-        behavior_id="AB4",
-        sub_behavior="Reconnaissance/network binary execution",
-        mitre=[MITREMapping("Execution", "T1106", "Native API")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains(
-                            "/usr/bin/nc", "/usr/bin/ncat",
-                            "/usr/bin/ss", "/usr/bin/netstat",
-                            "/usr/bin/curl", "/usr/bin/wget",
-                            "/usr/bin/find",
-                            "/usr/bin/id", "/usr/bin/whoami",
-                            "/bin/nc",
-                            "/bin/id", "/bin/whoami"),
-                        description="Execute recon/network binary"),
-        ],
-    ))
-
-     
-    # ------------------------------------------------------------------
-    # Script injection: open(tmp, writable) → write → [chmod] → execve
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-SCRIPT",
-        behavior_id="AB4",
-        sub_behavior="Malicious script injection",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/tmp/", ".sh"),
-                        flag_match=flag_writable(), description="Create script file"),
-            PatternStep(sub_op="File.write", description="Write script content"),
-            PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
-            PatternStep(sub_op="CodeExec.exec", description="Execute script"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Download + execute (direct)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-DOWNLOAD-EXEC",
-        behavior_id="AB4",
-        sub_behavior="Download and execute payload",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1105", "Ingress Tool Transfer")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains("curl", "wget"),
-                        description="Download payload"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Download → write to disk → execute (staged)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-DOWNLOAD-STAGE-EXEC",
-        behavior_id="AB4",
-        sub_behavior="Download, stage to disk, and execute payload",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1105", "Ingress Tool Transfer")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to download server"),
-            PatternStep(sub_op="Network.recv", description="Receive payload data"),
-            PatternStep(sub_op="File.open", flag_match=flag_writable(),
-                        description="Create payload file"),
-            PatternStep(sub_op="File.write", description="Write payload to disk"),
-            PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
-            PatternStep(sub_op="CodeExec.exec", description="Execute staged payload"),
-        ],
-    ))
-
+//OP_SCHED_GETAFFINITY
+TRACEPOINT_PROBE(syscalls, sys_enter_sched_getaffinity) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
     
-
+    if (!should_trace(pid, tid)) return 0;
     
-    # ------------------------------------------------------------------
-    # Fileless: memfd_create → write → execve
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-FILELESS",
-        behavior_id="AB4",
-        sub_behavior="Fileless execution via memfd_create",
-        mitre=[MITREMapping("Defense Evasion", "T1620", "Reflective Code Loading")],
-        steps=[
-            PatternStep(sub_op="Memory.anon_fd", description="Create anonymous fd"),
-            PatternStep(sub_op="File.write", description="Write ELF to memfd"),
-            PatternStep(sub_op="CodeExec.exec", description="Execute from memfd"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Ptrace injection
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-PTRACE",
-        behavior_id="AB4",
-        sub_behavior="Process injection via ptrace",
-        mitre=[MITREMapping("Defense Evasion", "T1055.008", "Ptrace System Calls")],
-        steps=[
-            PatternStep(sub_op="Process.ptrace",
-                        path_match=path_contains("PTRACE_ATTACH", "PTRACE_SEIZE"),
-                        description="Attach to target"),
-            PatternStep(sub_op="Process.ptrace",
-                        path_match=path_contains("PTRACE_POKETEXT", "PTRACE_POKEDATA"),
-                        description="Inject code"),
-            PatternStep(sub_op="Process.ptrace",
-                        path_match=path_contains("PTRACE_CONT", "PTRACE_DETACH"),
-                        description="Resume target"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Suspicious command execution targeting sensitive paths
-    # Catches os.system() running ANY command that then touches sensitive files
-    # This is broader than AB1's file-reading-tool patterns
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-EXEC-SENSITIVE-WRITE",
-        behavior_id="AB4",
-        sub_behavior="Command execution with sensitive file modification",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(*_SHELL_PATHS),
-                description="Execute shell",
-            ),
-            PatternStep(
-                sub_op="File.open",
-                path_match=path_contains(
-                    "/etc/passwd", "/etc/shadow", "/etc/sudoers",
-                    "/etc/crontab", "/etc/cron.d/", "/var/spool/cron/",
-                    "/etc/ssh/", ".ssh/authorized_keys",
-                    "/etc/systemd/system/", "/etc/init.d/",
-                    "/etc/ld.so.preload",
-                ),
-                flag_match=flag_writable(),
-                description="Open sensitive system file for writing",
-            ),
-            PatternStep(
-                sub_op="File.write",
-                description="Write to sensitive file",
-            ),
-        ],
-    ))
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SCHED_GETAFFINITY;
     
-    # ------------------------------------------------------------------
-    # Unexpected external program execution during ML inference
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-UNEXPECTED-EXEC",
-        behavior_id="AB4",
-        sub_behavior="Unexpected external program execution during model inference",
-        mitre=[MITREMapping("Execution", "T1204", "User Execution"),
-               MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains(
-                            "firefox", "chromium", "chrome", "brave",
-                            "microsoft-edge", "opera", "vivaldi",
-                            "iceweasel", "iceape", "seamonkey",
-                            "mozilla-firefox", "mozilla-firebird",
-                            "konqueror", "netscape",
-                            "xdg-open", "sensible-browser", "x-www-browser",
-                            "gnome-open", "kde-open",
-                            "/usr/bin/ssh", "/bin/ssh",
-                            "/usr/bin/scp", "/bin/scp",
-                            "/usr/bin/nc", "/usr/bin/ncat",
-                            "/usr/bin/curl", "/usr/bin/wget",
-                            "/usr/bin/gcc", "/usr/bin/cc", "/usr/bin/make",
-                            "/usr/bin/perl", "/usr/bin/ruby", "/usr/bin/node",
-                            "/usr/bin/pip", "/usr/bin/pip3",
-                        ),
-                        description="Execute program unexpected during ML inference"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Subprocess spawning (pipe → fork → dup2 → exec)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-SUBPROCESS",
-        behavior_id="AB4",
-        sub_behavior="Suspicious subprocess spawning via pipe+fork+redirect",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Execution", "T1106", "Native API")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="File.pipe", description="Create pipe for IPC"),
-            PatternStep(sub_op="Process.fork", description="Fork child process"),
-            PatternStep(sub_op="File.dup", description="Redirect child stdio"),
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains(
-                            # Browsers and URL openers
-                            "firefox", "chrome", "chromium", "brave",
-                            "opera", "vivaldi", "xdg-open",
-                            "sensible-browser", "x-www-browser",
-                            "gnome-open", "kde-open",
-                            # Network tools
-                            "/usr/bin/nc", "/usr/bin/ncat",
-                            "/usr/bin/curl", "/usr/bin/wget",
-                            "/usr/bin/ssh", "/usr/bin/scp",
-                            # Discovery tools
-                            "/usr/bin/find",
-                            # Shells (when spawned as subprocess, not Python itself)
-                            *_SHELL_PATHS,
-                            # Compilers / package managers
-                            "/usr/bin/gcc", "/usr/bin/cc", "/usr/bin/make",
-                            "/usr/bin/pip", "/usr/bin/pip3",
-                            "/usr/bin/npm", "/usr/bin/gem",
-                            # Credential access tools
-                            "cat /etc/shadow", "base64",
-                        ),
-                        description="Execute suspicious command in child"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Browser discovery scan (webbrowser.open fingerprint)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB4-BROWSER-DISCOVERY",
-        behavior_id="AB4",
-        sub_behavior="Browser discovery scan (webbrowser.open fingerprint)",
-        mitre=[MITREMapping("Execution", "T1204", "User Execution"),
-               MITREMapping("Discovery", "T1083", "File and Directory Discovery")],
-        steps=[
-            PatternStep(sub_op="File.stat",
-                        path_match=path_contains(
-                            "firefox", "chrome", "chromium",
-                            "x-www-browser", "xdg-open",
-                            "iceweasel", "iceape", "seamonkey",
-                            "mozilla", "konqueror", "netscape",
-                            "opera", "brave", "vivaldi",
-                            "sensible-browser", "gnome-open"),
-                        description="Stat browser binary in PATH"),
-            PatternStep(sub_op={"File.stat", "File.access"},
-                        path_match=path_contains(
-                            "firefox", "chrome", "chromium",
-                            "x-www-browser", "xdg-open",
-                            "iceweasel", "iceape", "seamonkey",
-                            "mozilla", "konqueror", "netscape",
-                            "opera", "brave", "vivaldi",
-                            "sensible-browser", "gnome-open"),
-                        description="Verify browser accessibility"),
-        ],
-    ))
-    return patterns
-
-
-def build_ab5_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # Full mining: profile → socket → connect(pool) → send → recv
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-FULL",
-        behavior_id="AB5",
-        sub_behavior="Cryptojacking: profile → connect pool → mine",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking")],
-        steps=[
-            PatternStep(sub_op="System.info", description="Resource profiling"),
-            PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
-            PatternStep(sub_op="Network.connect", flag_match=flag_mining_port(),
-                        description="Connect to mining pool"),
-            PatternStep(sub_op="Network.send", description="Submit hash"),
-            PatternStep(sub_op="Network.recv", description="Receive work", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Known miner execution
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-MINER-EXEC",
-        behavior_id="AB5",
-        sub_behavior="Known miner binary execution",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking"),
-               MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("xmrig", "minerd", "cpuminer",
-                                                  "ccminer", "ethminer"),
-                        description="Execute miner"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Miner deployment via file write + execute
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-MINER-DEPLOY",
-        behavior_id="AB5",
-        sub_behavior="Miner deployment (write + execute)",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking"),
-               MITREMapping("Command and Control", "T1105", "Ingress Tool Transfer")],
-        steps=[
-            PatternStep(sub_op="File.open", flag_match=flag_writable(),
-                        description="Create miner binary file"),
-            PatternStep(sub_op="File.write", description="Write miner binary"),
-            PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
-            PatternStep(sub_op="CodeExec.exec", description="Execute deployed miner"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Fileless miner deployment (memfd_create → write → fexecve)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-MINER-FILELESS",
-        behavior_id="AB5",
-        sub_behavior="Fileless miner deployment",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking"),
-               MITREMapping("Defense Evasion", "T1620", "Reflective Code Loading")],
-        steps=[
-            PatternStep(sub_op="Memory.anon_fd", description="Create anonymous fd (memfd_create)"),
-            PatternStep(sub_op="File.write", description="Write miner to memfd"),
-            PatternStep(sub_op="CodeExec.exec", description="Execute miner from memfd"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Miner download via curl/wget + execute
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-MINER-DOWNLOAD",
-        behavior_id="AB5",
-        sub_behavior="Miner download and execution",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking"),
-               MITREMapping("Command and Control", "T1105", "Ingress Tool Transfer")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains("curl", "wget"),
-                        description="Download miner"),
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("xmrig", "minerd", "cpuminer",
-                                                  "ccminer", "ethminer"),
-                        description="Execute downloaded miner", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Mining pool port connection
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-POOL-PORT",
-        behavior_id="AB5",
-        sub_behavior="Connection to mining pool port",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_mining_port(),
-                        description="Connect to mining pool port"),
-        ],
-    ))
-    '''
-    # ------------------------------------------------------------------
-    # Process masquerading as kernel thread
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-MASQUERADE",
-        behavior_id="AB5",
-        sub_behavior="Process masquerading (hiding miner)",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
-        steps=[
-            PatternStep(sub_op="Process.control", path_match=path_contains("PR_SET_NAME"),
-                        description="Rename process"),
-        ],
-    ))
-    '''
-    # ------------------------------------------------------------------
-    # Persistent mining via scheduled task
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB5-PERSISTENT",
-        behavior_id="AB5",
-        sub_behavior="Persistent mining via scheduled task",
-        mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking"),
-               MITREMapping("Persistence", "T1053", "Scheduled Task/Job")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("/etc/crontab", "/etc/cron.d/",
-                                                  "/var/spool/cron/", "/etc/systemd/system/"),
-                        flag_match=flag_writable(), description="Open scheduling config"),
-            PatternStep(sub_op="File.write", description="Write mining task schedule"),
-        ],
-    ))
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->pid;
+    event.data.generic.arg2 = (u64)args->len;
     
-  
-    return patterns
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-
-def build_ab6_patterns() -> List[SequencePattern]:
-    patterns = []
-
-    # ------------------------------------------------------------------
-    # Reverse shell: socket → connect → dup2(0) → dup2(1) → dup2(2) → execve(shell)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REVSHELL",
-        behavior_id="AB6",
-        sub_behavior="Reverse shell",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.socket", description="Create TCP socket"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to attacker"),
-            PatternStep(sub_op="File.dup", path_match=path_contains("->0"),
-                        description="Redirect stdin"),
-            PatternStep(sub_op="File.dup", path_match=path_contains("->1"),
-                        description="Redirect stdout"),
-            PatternStep(sub_op="File.dup", path_match=path_contains("->2"),
-                        description="Redirect stderr"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-
-    # Reverse shell relaxed (with fd redirect info): connect → 2 dup2s → exec
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REVSHELL-RELAXED",
-        behavior_id="AB6",
-        sub_behavior="Reverse shell (relaxed)",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to attacker"),
-            PatternStep(sub_op="File.dup", path_match=path_regex(r"->[012]"),
-                        description="Redirect first stdio"),
-            PatternStep(sub_op="File.dup", path_match=path_regex(r"->[012]"),
-                        description="Redirect second stdio"),
-            PatternStep(sub_op="CodeExec.exec", description="Spawn process"),
-        ],
-    ))
-
-    # Reverse shell minimal (no fd format dependency): connect → any dup2s → exec
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REVSHELL-MINIMAL",
-        behavior_id="AB6",
-        sub_behavior="Reverse shell (minimal — no fd format dependency)",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to attacker"),
-            PatternStep(sub_op="File.dup", description="Redirect stdio (first)"),
-            PatternStep(sub_op="File.dup", description="Redirect stdio (second)"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Reverse shell with setsid (daemonized)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REVSHELL-DAEMON",
-        behavior_id="AB6",
-        sub_behavior="Daemonized reverse shell",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to attacker"),
-            PatternStep(sub_op="Process.session", description="setsid to daemonize"),
-            PatternStep(sub_op="File.dup", path_match=path_regex(r"->[012]"),
-                        description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", description="Spawn shell"),
-        ],
-    ))
-
-    # Daemonized reverse shell minimal (no fd format dependency)
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REVSHELL-DAEMON-MINIMAL",
-        behavior_id="AB6",
-        sub_behavior="Daemonized reverse shell (minimal — no fd format dependency)",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to attacker"),
-            PatternStep(sub_op="Process.session", description="setsid to daemonize"),
-            PatternStep(sub_op="File.dup", description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Bind shell
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-BINDSHELL",
-        behavior_id="AB6",
-        sub_behavior="Bind shell",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.socket", description="Create socket"),
-            PatternStep(sub_op="Network.bind", description="Bind to port"),
-            PatternStep(sub_op="Network.listen", description="Listen"),
-            PatternStep(sub_op="Network.accept", description="Accept connection"),
-            PatternStep(sub_op="File.dup", path_match=path_regex(r"->[012]"),
-                        description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-
-    # Bind shell minimal (no fd format dependency)
-    patterns.append(SequencePattern(
-        pattern_id="AB6-BINDSHELL-MINIMAL",
-        behavior_id="AB6",
-        sub_behavior="Bind shell (minimal — no fd format dependency)",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.socket", description="Create socket"),
-            PatternStep(sub_op="Network.bind", description="Bind to port"),
-            PatternStep(sub_op="Network.listen", description="Listen"),
-            PatternStep(sub_op="Network.accept", description="Accept connection"),
-            PatternStep(sub_op="File.dup", description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Pipe-based shell
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-PIPESHELL",
-        behavior_id="AB6",
-        sub_behavior="Pipe-based shell",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        steps=[
-            PatternStep(sub_op="File.pipe", description="Create pipe"),
-            PatternStep(sub_op="Process.fork", description="Fork child"),
-            PatternStep(sub_op="File.dup", path_match=path_regex(r"->[012]"),
-                        description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-
-    # Pipe-based shell minimal (no fd format dependency)
-    patterns.append(SequencePattern(
-        pattern_id="AB6-PIPESHELL-MINIMAL",
-        behavior_id="AB6",
-        sub_behavior="Pipe-based shell (minimal — no fd format dependency)",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
-        steps=[
-            PatternStep(sub_op="File.pipe", description="Create pipe"),
-            PatternStep(sub_op="Process.fork", description="Fork child"),
-            PatternStep(sub_op="File.dup", description="Redirect stdio"),
-            PatternStep(sub_op="CodeExec.exec", path_match=path_contains(*_SHELL_PATHS),
-                        description="Spawn shell"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Remote command: connect → recv → exec → [send]
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-REMOTE-CMD",
-        behavior_id="AB6",
-        sub_behavior="Remote command execution",
-        mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell"),
-               MITREMapping("Command and Control", "T1071.001", "Web Protocols")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to C2"),
-            PatternStep(sub_op="Network.recv", description="Receive command"),
-            PatternStep(sub_op="CodeExec.exec", description="Execute command"),
-            PatternStep(sub_op="Network.send", description="Send results", optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Shell process masquerading (hiding shell)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-SHELL-MASQUERADE",
-        behavior_id="AB6",
-        sub_behavior="Shell process masquerading",
-        mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading"),
-               MITREMapping("Command and Control", "T1095", "Non-Application Layer Protocol")],
-        steps=[
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op="Process.control", path_match=path_contains("PR_SET_NAME"),
-                        description="Rename shell process"),
-            PatternStep(sub_op="CodeExec.exec", description="Execute shell"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Lateral movement via remote services (T1021)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-LATERAL-SSH",
-        behavior_id="AB6",
-        sub_behavior="Lateral movement via SSH",
-        mitre=[MITREMapping("Lateral Movement", "T1021.004", "SSH"),
-               MITREMapping("Lateral Movement", "T1021", "Remote Services")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("/usr/bin/ssh", "/bin/ssh",
-                                                  "/usr/bin/scp", "/bin/scp",
-                                                  "/usr/bin/sftp", "/bin/sftp"),
-                        description="Execute SSH/SCP/SFTP client"),
-        ],
-    ))
-
-    patterns.append(SequencePattern(
-        pattern_id="AB6-LATERAL-CONNECT",
-        behavior_id="AB6",
-        sub_behavior="Connection to remote service port",
-        mitre=[MITREMapping("Lateral Movement", "T1021", "Remote Services")],
-        steps=[
-            PatternStep(sub_op="Network.connect",
-                        flag_match=_flag_remote_service_port(),
-                        description="Connect to remote service port (SSH/RDP/SMB/VNC)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # Proxy / port forwarding (T1090)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-PROXY",
-        behavior_id="AB6",
-        sub_behavior="Proxy / port forwarding",
-        mitre=[MITREMapping("Command and Control", "T1090", "Proxy")],
-        steps=[
-            PatternStep(sub_op="Network.socket", description="Create listening socket"),
-            PatternStep(sub_op="Network.bind", description="Bind to local port"),
-            PatternStep(sub_op="Network.listen", description="Listen for connections"),
-            PatternStep(sub_op="Network.accept", description="Accept inbound connection"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to forwarding target"),
-        ],
-    ))
+//OP_IOCTL
+TRACEPOINT_PROBE(syscalls, sys_enter_ioctl) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
     
-    # ------------------------------------------------------------------
-    # Remote system discovery / network scanning (T1018)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-SCAN",
-        behavior_id="AB6",
-        sub_behavior="Remote system discovery / network scanning",
-        mitre=[MITREMapping("Discovery", "T1018", "Remote System Discovery")],
-        repeatable=True,
-        steps=[
-            PatternStep(sub_op="Network.socket", description="Create socket"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Probe remote host"),
-        ],
-    ))
-    #------------------------------------------------------------------
-    # Browser-based C2 / phishing URL open
-    # Catches webbrowser.open() from malicious pickle payloads
-    # exec(shell/xdg-open/browser) → socket → connect(remote)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB6-BROWSER-C2",
-        behavior_id="AB6",
-        sub_behavior="Browser-based URL open (potential C2/phishing)",
-        mitre=[
-            MITREMapping("Execution", "T1204.001", "Malicious Link"),
-            MITREMapping("Command and Control", "T1071.001", "Web Protocols"),
-        ],
-        steps=[
-            PatternStep(
-                sub_op="CodeExec.exec",
-                path_match=path_contains(
-                    "xdg-open", "sensible-browser", "x-www-browser",
-                    "gnome-open", "kde-open", "open",
-                    "firefox", "chrome", "chromium", "brave",
-                ),
-                description="Execute browser/URL opener",
-            ),
-            PatternStep(
-                sub_op="Network.socket",
-                flag_match=flag_family("AF_INET", "AF_INET6"),
-                description="Create network socket",
-                optional=True,
-            ),
-            PatternStep(
-                sub_op="Network.connect",
-                flag_match=flag_inet_remote(),
-                description="Connect to external URL",
-            ),
-        ],
-    ))
-    return patterns
-
-
-def build_ab7_patterns() -> List[SequencePattern]:
-    patterns = []
-
-     # Paths that are normal Python/framework imports — NOT ransomware targets
-    _BENIGN_LIB_PATHS = (
-        "site-packages/", "/usr/lib/python", "/usr/local/lib/python",
-        "/lib/x86_64-linux-gnu/", "/usr/lib/x86_64-linux-gnu/",
-        "__pycache__/", ".pyc", "/etc/ld.so",
-        "/proc/", "/sys/", "/dev/",
-    )
-
-    def _not_library_path(fn: str) -> bool:
-        """Return True only if the path is NOT a standard library/framework path."""
-        if not fn:
-            return False
-        return not any(excl in fn for excl in _BENIGN_LIB_PATHS)
-
-    def _is_file_not_stdio(fn: str) -> bool:
-        """Return True only if the write target is a real file, not stdout/stderr."""
-        if not fn:
-            return False
-        if fn in ("stdout", "stderr", "stdin"):
-            return False
-        if fn.startswith("fd="):
-            return False
-        if "/dev/shm" in fn or "/tmp/" in fn:
-            return False
-        if any(excl in fn for excl in _BENIGN_LIB_PATHS):
-            return False
-        return True
-
-    patterns.append(SequencePattern(
-        pattern_id="AB7-INPLACE",
-        behavior_id="AB7",
-        sub_behavior="Ransomware (in-place overwrite)",
-        mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
-               MITREMapping("Impact", "T1490", "Inhibit System Recovery"),
-               MITREMapping("Discovery", "T1083", "File and Directory Discovery")],
-        steps=[
-            PatternStep(sub_op={"System.random", "File.open"},
-                        path_match=lambda fn: _match_keygen(fn),
-                        description="Generate encryption key (>= 16 bytes)"),
-            PatternStep(sub_op="File.enumerate",
-                        path_match=lambda fn: path_contains("/home", "/mnt", "/var", "/opt")(fn)
-                                              and _not_library_path(fn or ""),
-                        description="Enumerate user data directories"),
-            PatternStep(sub_op="File.open",
-                        path_match=lambda fn: _not_library_path(fn or ""),
-                        description="Open target file (not a library)"),
-            PatternStep(sub_op="File.read",
-                        description="Read plaintext"),
-            PatternStep(sub_op="File.write",
-                        path_match=lambda fn: _is_file_not_stdio(fn or ""),
-                        description="Write encrypted data to file"),
-            PatternStep(sub_op="File.rename", description="Rename with .locked extension",
-                        optional=True),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Ransomware copy-delete
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-COPY-DELETE",
-        behavior_id="AB7",
-        sub_behavior="Ransomware (copy-delete)",
-        mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
-               MITREMapping("Discovery", "T1083", "File and Directory Discovery")],
-        steps=[
-            PatternStep(sub_op="File.enumerate", description="Enumerate files"),
-            PatternStep(sub_op="File.open", flag_match=flag_readonly(),
-                        description="Open original (read)"),
-            PatternStep(sub_op="File.read", description="Read plaintext"),
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains(".enc", ".locked", ".encrypted", ".cry"),
-                        flag_match=flag_writable(), description="Create encrypted output"),
-            PatternStep(sub_op="File.write", description="Write encrypted content"),
-            PatternStep(sub_op="File.delete", description="Delete original"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Key exfiltration to C2
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-KEY-EXFIL",
-        behavior_id="AB7",
-        sub_behavior="Encryption key exfiltration to C2",
-        mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
-               MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        steps=[
-            PatternStep(sub_op={"System.random", "File.open"},
-                        path_match=lambda fn: _match_keygen(fn),
-                        description="Generate encryption key"),
-            PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to C2 server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate encryption key"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Ransom note creation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-RANSOM-NOTE",
-        behavior_id="AB7",
-        sub_behavior="Ransom note creation",
-        mitre=[MITREMapping("Impact", "T1491.001", "Internal Defacement")],
-        steps=[
-            PatternStep(sub_op="File.open",
-                        path_match=path_contains("readme", "ransom", "decrypt", "locked",
-                                                  "recover", "restore", "payment",
-                                                  "bitcoin", ".onion", "/etc/motd"),
-                        flag_match=flag_writable(), description="Create ransom note"),
-            PatternStep(sub_op="File.write", description="Write ransom demands"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Recovery prevention: delete backups
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-ANTI-RECOVERY",
-        behavior_id="AB7",
-        sub_behavior="Recovery prevention (backup deletion)",
-        mitre=[MITREMapping("Impact", "T1490", "Inhibit System Recovery")],
-        steps=[
-            PatternStep(sub_op="File.delete",
-                        path_match=path_contains("/var/backups/", ".backup", "shadow.backup"),
-                        description="Delete backup files"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Recovery prevention: fstab manipulation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-FSTAB-TRAP",
-        behavior_id="AB7",
-        sub_behavior="Recovery prevention (fstab reboot trap)",
-        mitre=[MITREMapping("Impact", "T1490", "Inhibit System Recovery")],
-        steps=[
-            PatternStep(sub_op="File.open", path_match=path_contains("/etc/fstab"),
-                        flag_match=flag_writable(), description="Open /etc/fstab"),
-            PatternStep(sub_op="File.write", description="Write malicious fstab entry"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # inotify-based file monitoring for new targets
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-INOTIFY-WATCH",
-        behavior_id="AB7",
-        sub_behavior="inotify-based new file target monitoring",
-        mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
-               MITREMapping("Discovery", "T1083", "File and Directory Discovery")],
-        steps=[
-            PatternStep(sub_op="File.inotify_init", description="Initialize inotify"),
-            PatternStep(sub_op="File.inotify_watch",
-                        path_match=path_contains("/home", "/mnt", "/var", "/opt"),
-                        description="Watch directories for new files"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Network share discovery for lateral ransomware spread
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB7-SHARE-DISCOVERY",
-        behavior_id="AB7",
-        sub_behavior="Network share discovery for ransomware spread",
-        mitre=[MITREMapping("Discovery", "T1135", "Network Share Discovery")],
-        steps=[
-            PatternStep(sub_op="File.enumerate",
-                        path_match=path_contains("/mnt/", "/media/", "/nfs/", "/smb/"),
-                        description="Enumerate network mount points"),
-        ],
-    ))
+    if (!should_trace(pid, tid)) return 0;
     
-    return patterns
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_IOCTL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->cmd;
+    event.data.generic.arg3 = (u32)args->arg;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
+// OP_GETRANDOM
+TRACEPOINT_PROBE(syscalls, sys_enter_getrandom) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETRANDOM;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->len;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-def build_ab8_patterns() -> List[SequencePattern]:
-    patterns = []
+// OP_SETHOSTNAME
+TRACEPOINT_PROBE(syscalls, sys_enter_sethostname) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETHOSTNAME;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->name);
+    event.data.generic.arg1 = (u64)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+/*
+// OP_GETHOSTNAME
+TRACEPOINT_PROBE(syscalls, sys_enter_gethostname) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETHOSTNAME;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+*/
 
-    # ------------------------------------------------------------------
-    # setuid(0) — direct elevation (checks both filename and extra_details)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-SETUID-ROOT",
-        behavior_id="AB8",
-        sub_behavior="Direct privilege elevation (setuid to root)",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid")],
-        steps=[
-            PatternStep(sub_op="Permission.elevate",
-                        path_match=flag_root_elevation(),
-                        flag_match=flag_root_elevation_details(),
-                        description="Set UID/GID to root"),
-        ],
-    ))
+// OP_SETDOMAINNAME
+TRACEPOINT_PROBE(syscalls, sys_enter_setdomainname) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETDOMAINNAME;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->name);
+    event.data.generic.arg1 = (u64)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-    # Fallback: setuid(0) detected only via filename encoding
-    patterns.append(SequencePattern(
-        pattern_id="AB8-SETUID-ROOT-PATH",
-        behavior_id="AB8",
-        sub_behavior="Direct privilege elevation (setuid to root — path-based detection)",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid")],
-        steps=[
-            PatternStep(sub_op="Permission.elevate",
-                        path_match=flag_root_elevation(),
-                        description="Set UID/GID to root (filename-encoded)"),
-        ],
-    ))
+// -------------------------------------------// File Operations //-------------------------------------------//
 
-    # Fallback: setuid(0) detected only via extra_details
-    patterns.append(SequencePattern(
-        pattern_id="AB8-SETUID-ROOT-DETAILS",
-        behavior_id="AB8",
-        sub_behavior="Direct privilege elevation (setuid to root — details-based detection)",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid")],
-        steps=[
-            PatternStep(sub_op="Permission.elevate",
-                        flag_match=flag_root_elevation_details(),
-                        description="Set UID/GID to root (extra_details)"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # setgroups(0, []) — group elevation
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-SETGROUPS",
-        behavior_id="AB8",
-        sub_behavior="Group privilege manipulation",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid")],
-        steps=[
-            PatternStep(sub_op="Permission.elevate",
-                        path_match=path_contains("gid=0", "=0", "setgroups"),
-                        description="Modify group membership via setgroups (to root)"),
-        ],
-    ))
-    # ------------------------------------------------------------------
-    # exec → setuid (execute then elevate)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-EXEC-ELEVATE",
-        behavior_id="AB8",
-        sub_behavior="Execute then elevate",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid"),
-               MITREMapping("Privilege Escalation", "T1068", "Exploitation for Privilege Escalation")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec", description="Execute binary"),
-            PatternStep(sub_op="Permission.elevate", description="Elevate privileges"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # SUID binary abuse (implicit elevation — exec of known SUID binaries)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-SUID-ABUSE",
-        behavior_id="AB8",
-        sub_behavior="SUID binary abuse (implicit privilege elevation)",
-        mitre=[MITREMapping("Privilege Escalation", "T1548.001", "Setuid and Setgid")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains(
-                            "/usr/bin/sudo", "/usr/bin/su", "/usr/bin/pkexec",
-                            "/usr/bin/newgrp", "/usr/bin/chsh", "/usr/bin/chfn",
-                            "/usr/bin/passwd", "/usr/bin/gpasswd",
-                            "/usr/bin/mount", "/usr/bin/umount",
-                            "/usr/bin/at", "/usr/bin/crontab",
-                            "/usr/sbin/usermod", "/usr/sbin/groupmod",
-                            "/usr/lib/dbus-1.0/dbus-daemon-launch-helper",
-                            "/usr/lib/openssh/ssh-keysign",
-                            "/usr/lib/polkit-1/polkit-agent-helper-1",
-                        ),
-                        description="Execute known SUID binary"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # capset
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-CAPSET",
-        behavior_id="AB8",
-        sub_behavior="Capability manipulation",
-        mitre=[MITREMapping("Privilege Escalation", "T1548", "Abuse Elevation Control Mechanism")],
-        steps=[
-            PatternStep(sub_op="Permission.capability", description="Modify capabilities"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Kernel module loading via syscall (init_module / finit_module)
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-KMOD-SYSCALL",
-        behavior_id="AB8",
-        sub_behavior="Kernel module loading via syscall",
-        mitre=[MITREMapping("Persistence", "T1547.006", "Kernel Modules and Extensions")],
-        steps=[
-            PatternStep(sub_op="CodeExec.kmod_load",
-                        description="Load kernel module (init_module/finit_module)"),
-        ],
-    ))
-
-    # ------------------------------------------------------------------
-    # Kernel module loading via insmod/modprobe exec
-    # ------------------------------------------------------------------
-    patterns.append(SequencePattern(
-        pattern_id="AB8-KMOD-EXEC",
-        behavior_id="AB8",
-        sub_behavior="Kernel module loading via command",
-        mitre=[MITREMapping("Persistence", "T1547.006", "Kernel Modules and Extensions")],
-        steps=[
-            PatternStep(sub_op="CodeExec.exec",
-                        path_match=path_contains("insmod", "modprobe"),
-                        description="Execute insmod/modprobe"),
-        ],
-    ))
-
-    # Namespace escape — only suspicious when not from a browser sandbox
-    # Single unshare(NEWPID) is done by Chrome/Firefox for sandboxing
-    # Suspicious: exec(non-browser) → unshare, or elevate → unshare
-    patterns.append(SequencePattern(
-        pattern_id="AB8-NS-ESCAPE-EXEC",
-        behavior_id="AB8",
-        sub_behavior="Namespace manipulation after suspicious execution",
-        mitre=[MITREMapping("Privilege Escalation", "T1611", "Escape to Host")],
-        steps=[
-             PatternStep(sub_op="CodeExec.exec",
-                        path_match=lambda fn: (
-                            fn and
-                            not path_contains(
-                                # Browsers and desktop apps
-                                "firefox", "chrome", "chromium", "brave",
-                                "opera", "vivaldi", "thunderbird",
-                                "electron", "xdg-open", "sensible-browser",
-                                "x-www-browser", "gnome-open",
-                                # Desktop integration (launched by browsers)
-                                "dbus-send", "dbus-launch", "dbus-daemon",
-                                "gdbus", "gconftool",
-                                "xprop", "xdotool", "xwininfo","xdg-mime",
-                                # Common utilities (not suspicious before unshare)
-                                "which", "whereis", "grep", "sed", "awk",
-                                "cat", "head", "tail", "uname", "hostname",
-                                "id", "whoami", "ps", "env",
-                            )(fn)
-                        ),
-                        description="Execute non-browser binary"),
-            PatternStep(sub_op="Process.namespace",
-                        description="Namespace manipulation (unshare/setns)"),
-        ],
-    ))
-
-    # Namespace escape via setns (joining existing namespace) — always suspicious
-    # setns is not used by browser sandboxes (they use unshare)
-    patterns.append(SequencePattern(
-        pattern_id="AB8-NS-SETNS",
-        behavior_id="AB8",
-        sub_behavior="Namespace joining (potential container escape)",
-        mitre=[MITREMapping("Privilege Escalation", "T1611", "Escape to Host")],
-        steps=[
-            PatternStep(sub_op="Process.namespace",
-                        path_match=path_contains("setns"),
-                        description="Join existing namespace via setns"),
-        ],
-    ))
-    return patterns
-
-
-# ============================================================================
-# STEP 3: ONE-PASS SCANNER
-# ============================================================================
-
-def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePattern, List[dict], List[int]]]:
-    """
-    Walk events once, tracking all patterns simultaneously.
-    Each pattern has its own step pointer.
-
-    Repeatable patterns (single-step) reset after each match to collect
-    all occurrences. Non-repeatable patterns complete after first match.
-
-    Returns list of (pattern, matched_events, matched_step_indices) for
-    patterns that fully matched (all required steps found in order).
-    """
-    n_patterns = len(patterns)
-    step_ptrs = [0] * n_patterns
-    matched_evs = [[] for _ in range(n_patterns)]
-    matched_idxs = [[] for _ in range(n_patterns)]
-    completed = [False] * n_patterns
-    # For repeatable patterns, store each complete match separately
-    repeat_matches = [[] for _ in range(n_patterns)]  # list of (events, indices) tuples
-
-    for event in events:
-        for pi in range(n_patterns):
-            if completed[pi]:
-                continue
-
-            pat = patterns[pi]
-            si = step_ptrs[pi]
-
-            while si < len(pat.steps):
-                step = pat.steps[si]
-
-                if step.matches(event):
-                    matched_evs[pi].append(event)
-                    matched_idxs[pi].append(si)
-                    si += 1
-                    step_ptrs[pi] = si
-                    break
-                elif step.optional:
-                    si += 1
-                    step_ptrs[pi] = si
-                else:
-                    break
-
-            # Check completion
-            pattern_done = False
-            if step_ptrs[pi] >= len(pat.steps):
-                pattern_done = True
-            else:
-                all_remaining_optional = all(
-                    pat.steps[s].optional for s in range(step_ptrs[pi], len(pat.steps))
-                )
-                if all_remaining_optional and len(matched_evs[pi]) > 0:
-                    pattern_done = True
-
-            if pattern_done:
-                if pat.repeatable:
-                    # Save this match, reset for next occurrence
-                    repeat_matches[pi].append(
-                        (list(matched_evs[pi]), list(matched_idxs[pi]))
-                    )
-                    step_ptrs[pi] = 0
-                    matched_evs[pi] = []
-                    matched_idxs[pi] = []
-                else:
-                    completed[pi] = True
-
-    results = []
-    for pi in range(n_patterns):
-        pat = patterns[pi]
-
-        if pat.repeatable:
-            # Combine all repeated matches into one result
-            all_evs = []
-            all_idxs = []
-            for evs, idxs in repeat_matches[pi]:
-                all_evs.extend(evs)
-                all_idxs.extend(idxs)
-            if all_evs:
-                results.append((pat, all_evs, all_idxs))
-        else:
-            required_matched = sum(
-                1 for si in matched_idxs[pi] if not pat.steps[si].optional
-            )
-            if required_matched >= pat.required_count:
-                results.append((pat, matched_evs[pi], matched_idxs[pi]))
-
-    return results
-
-# ============================================================================
-# STEP 5: LOOP DETECTION (AB5 mining, AB7 ransomware)
-# ============================================================================
-
-def detect_ransomware_loops(events: list, threshold: int = 10) -> List[LoopMatch]:
-    """
-    Detect repeated File.open → File.read → File.write cycles where
-    the write is to a DIFFERENT file than the read (or same file opened writable).
-    Excludes: stdout/stderr, fd-only filenames, framework model files.
-    """
-    cycle_count = 0
-    seen_files = set()
-    state = 0
-    current_file = None
-
-    # Paths that are framework noise, not ransomware targets
-    _noise_paths = ("/proc/", "/sys/", "/dev/", "/usr/lib/", "/usr/share/",
-                    "site-packages/", ".so", ".pyc", "pytorch_model.bin",
-                    "model.bin", ".safetensors", ".h5", ".keras", ".onnx",
-                    ".msgpack", ".joblib", ".pkl", ".pickle", ".pt", ".pth",
-                    ".bin", ".pb", ".tflite", ".params", ".pdmodel",
-                    ".pdiparams", ".cbm", ".xgb", ".bst", ".ubj", ".lgb",
-                    "config.json", "tokenizer.json", "vocab.txt",
-                    ".cache/huggingface/", ".cache/torch/")
-
-    def _is_real_file(filename):
-        """Filter out fd references, stdout/stderr, and framework paths."""
-        if not filename:
-            return False
-        if filename.startswith("fd=") or filename in ("stdout", "stderr", "stdin"):
-            return False
-        fn_lower = filename.lower()
-        return not any(p in fn_lower for p in _noise_paths)
-
-    for ev in events:
-        sub_op = ev.get("sub_op", "")
-        filename = ev.get("filename", "")
-
-        if state == 0 and sub_op == "File.open" and _is_real_file(filename):
-            current_file = filename
-            state = 1
-        elif state == 1 and sub_op == "File.read":
-            state = 2
-        elif (state == 1 or state == 2) and sub_op == "File.write":
-            write_file = filename
-            if _is_real_file(write_file) and current_file and current_file not in seen_files:
-                seen_files.add(current_file)
-                cycle_count += 1
-            state = 0
-            current_file = None
-        elif sub_op == "File.open" and _is_real_file(filename):
-            current_file = filename
-            state = 1
-        elif sub_op not in ("File.stat", "File.seek", "File.close",
-                            "System.ioctl", "File.control", "File.access",
-                            "File.enumerate", "File.readlink", "File.chdir",
-                            "File.rename", "File.delete", "File.permission",
-                            "File.ownership", "File.truncate",
-                            "Network.send", "Network.recv", "Network.connect",
-                            "Network.socket", "Network.info", "Network.sockopt",
-                            "System.random", "System.info",
-                            "Memory.map", "Memory.protect",
-                            "Permission.query", "Permission.elevate"):
-            # Only reset on truly unrelated operations (e.g., fork/exec)
-            # Allow file metadata ops, network ops (key exfil mid-encryption),
-            # memory ops, and permission checks to interleave
-            if state == 1 or state == 2:
-                pass  # Allow interleaved ops within a partial cycle
-            else:
-                state = 0
-                current_file = None
-
-    if cycle_count >= threshold:
-        return [LoopMatch(
-            behavior_id="AB7",
-            sub_behavior=f"Ransomware encryption loop ({cycle_count} files)",
-            loop_count=cycle_count,
-            sample_events=[],
-            mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact")],
-        )]
-    return []
-
-def detect_mining_loops(events: list, threshold: int = 20) -> List[LoopMatch]:
-    """
-    Detect sustained Network.send → Network.recv alternations on the same fd.
-    If count >= threshold, flag as mining stratum protocol loop.
-    """
-    send_recv_count = 0
-    last_was_send = False
-
-    for ev in events:
-        sub_op = ev.get("sub_op", "")
-        if sub_op == "Network.send":
-            last_was_send = True
-        elif sub_op == "Network.recv" and last_was_send:
-            send_recv_count += 1
-            last_was_send = False
-        else:
-            last_was_send = False
-
-    if send_recv_count >= threshold:
-        return [LoopMatch(
-            behavior_id="AB5",
-            sub_behavior=f"Mining stratum loop ({send_recv_count} send/recv cycles)",
-            loop_count=send_recv_count,
-            sample_events=[],
-            mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking")],
-        )]
-    return []
-
-
-# ============================================================================
-# STEP 6: CROSS-BEHAVIOR CORRELATION
-# ============================================================================
-
-_COMPOUND_RULES = [
-    ({"AB1", "AB6"}, "Credential theft + reverse shell (data exfil via interactive access)"),
-    ({"AB1", "AB2"}, "Credential theft + backdoor installation (persistent access after theft)"),
-    ({"AB4", "AB6"}, "Code execution + remote control (malware deployment with C2)"),
-    ({"AB7", "AB3"}, "Ransomware + system manipulation (encrypt then tamper recovery)"),
-    ({"AB4", "AB2"}, "Code execution + persistence (execute payload then persist)"),
-    ({"AB1", "AB5"}, "Information theft + cryptojacking (recon then mine)"),
-    ({"AB8", "AB2"}, "Privilege escalation + backdoor (elevate then persist)"),
-    ({"AB8", "AB4"}, "Privilege escalation + code execution (elevate then execute)"),
-    ({"AB7", "AB8"}, "Ransomware + privilege escalation (elevate then encrypt)"),
-    ({"AB6", "AB2"}, "Remote control + persistence (C2 with persistent access)"),
-    ({"AB7", "AB6"}, "Ransomware + remote control (encrypt with C2 channel)"),
-]
-
-
-def detect_compound_attacks(behavior_ids: Set[str]) -> List[str]:
-    compounds = []
-    for required_ids, description in _COMPOUND_RULES:
-        if required_ids.issubset(behavior_ids):
-            compounds.append(f"{'+'.join(sorted(required_ids))}: {description}")
-    return compounds
-
-
-# ============================================================================
-# STEP 7: MAIN CLASSIFIER
-# ============================================================================
-
-_BEHAVIOR_NAMES = {
-    "AB1": "Sensitive Information Theft",
-    "AB2": "Backdoor Installation / Persistence",
-    "AB3": "System Manipulation",
-    "AB4": "Malicious Code Execution",
-    "AB5": "Cryptojacking",
-    "AB6": "Remote Control",
-    "AB7": "Ransomware",
-    "AB8": "Privilege Escalation",
+TRACEPOINT_PROBE(syscalls, sys_enter_open) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_OPEN;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    event.data.generic.arg1 = (u64)args->flags;
+    event.data.generic.arg2 = (u64)args->mode;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
 }
 
 
-class AttackBehaviorClassifier:
+TRACEPOINT_PROBE(syscalls, sys_enter_openat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+   
+    bpf_trace_printk("C size=%d\n", sizeof(struct threat_event)); 
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_OPENAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
 
-    def __init__(self, verbose: bool = False):
-        self.verbose = verbose
-        self.patterns = self._build_all_patterns()
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    
+    struct fd_info info = {};
+    bpf_probe_read_user_str(info.path, sizeof(info.path), (void *)args->filename);
+    info.timestamp = bpf_ktime_get_ns();
+    info.pid = pid;
+    info.flags = (u32)args->flags;
+    info.mode = (u32)args->mode;
+    
+    u64 temp_key = ((u64)pid << 32) | tid;
+    fd_paths.update(&temp_key, &info);
+      
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_creat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CREAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    event.data.generic.arg1 = (u64)args->mode;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-    def _build_all_patterns(self) -> List[SequencePattern]:
-        all_patterns = []
-        all_patterns.extend(build_ab1_patterns())
-        all_patterns.extend(build_ab2_patterns())
-        all_patterns.extend(build_ab3_patterns())
-        all_patterns.extend(build_ab4_patterns())
-        all_patterns.extend(build_ab5_patterns())
-        all_patterns.extend(build_ab6_patterns())
-        all_patterns.extend(build_ab7_patterns())
-        all_patterns.extend(build_ab8_patterns())
-        return all_patterns
+TRACEPOINT_PROBE(syscalls, sys_enter_read) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_READ;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store fd and count OUTSIDE the union
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->count;
+    
+    // Look up path — writes into union, no longer conflicts
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-    def classify(self, loading_events: list, execution_events: list,
-                 model_path: str = "unknown") -> ClassificationVerdict:
+TRACEPOINT_PROBE(syscalls, sys_enter_pread64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PREAD64;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store fd, count, offset OUTSIDE the union — never clobbered by path
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->count;
+    event.io_offset = (u64)args->pos;
+    
+    // Path lookup writes into union — safe now since fd/size/offset are elsewhere
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-        if self.verbose:
-            print(f"\n{'='*70}")
-            print(f"ATTACK BEHAVIOR CLASSIFICATION")
-            print(f"Model: {model_path}")
-            print(f"Loading events: {len(loading_events)}")
-            print(f"Execution events: {len(execution_events)}")
-            print(f"Patterns defined: {len(self.patterns)}")
-            print(f"{'='*70}")
+TRACEPOINT_PROBE(syscalls, sys_enter_readv) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_READV;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->vlen;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_write) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_WRITE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store fd and count OUTSIDE the union
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->count;
+    
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-        all_pattern_matches = []
-        all_loop_matches = []
+TRACEPOINT_PROBE(syscalls, sys_enter_pwrite64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PWRITE64;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store fd, count, offset OUTSIDE the union — never clobbered by path
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->count;
+    event.io_offset = (u64)args->pos;
+    
+    // Path lookup writes into union — safe now since fd/size/offset are elsewhere
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-        for phase_name, raw_events in [("LOADING", loading_events),
-                                        ("EXECUTION", execution_events)]:
-            if not raw_events:
-                continue
+TRACEPOINT_PROBE(syscalls, sys_enter_writev) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_WRITEV;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->vlen;
+    
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-            # Step 1: Pre-filter
-            events = prefilter_events(raw_events)
-            if self.verbose:
-                removed = len(raw_events) - len(events)
-                if removed:
-                    print(f"\n  [{phase_name}] Pre-filtered: removed {removed} O_DIRECTORY events")
+TRACEPOINT_PROBE(syscalls, sys_enter_newstat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_STAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
-            # Step 3: One-pass scan
-            matches = scan_all_patterns(events, self.patterns)
-
-            for pat, matched_evs, matched_idxs in matches:
-                pm = PatternMatch(
-                    pattern=pat,
-                    matched_events=matched_evs,
-                    matched_step_indices=matched_idxs,
-                    phase=phase_name,
-                )
-                all_pattern_matches.append(pm)
-
-                if self.verbose:
-                    print(f"\n  [{phase_name}] {pat.pattern_id}: {pat.sub_behavior}")
-                    for i, ev in enumerate(matched_evs):
-                        si = matched_idxs[i] if i < len(matched_idxs) else "?"
-                        step_desc = pat.steps[si].description if isinstance(si, int) and si < len(pat.steps) else ""
-                        print(f"    Step {si}: {ev.get('operation')} -> "
-                              f"{ev.get('filename', '')[:60]}  ({step_desc})")
-                    for m in pat.mitre:
-                        print(f"    MITRE: {m.tactic} / {m.technique_id} ({m.technique_name})")
-
-            # Step 5: Loop detection
-            ransomware_loops = detect_ransomware_loops(events)
-            mining_loops = detect_mining_loops(events)
-            for lm in ransomware_loops + mining_loops:
-                lm.phase = phase_name
-                all_loop_matches.append(lm)
-                if self.verbose:
-                    print(f"\n  [{phase_name}] LOOP: {lm.sub_behavior}")
-
-        # Group by behavior ID
-        behavior_groups = defaultdict(lambda: {"patterns": [], "loops": []})
-        for pm in all_pattern_matches:
-            behavior_groups[pm.pattern.behavior_id]["patterns"].append(pm)
-        for lm in all_loop_matches:
-            behavior_groups[lm.behavior_id]["loops"].append(lm)
-
-        # Build BehaviorResult objects
-        behaviors = []
-        for ab_id in sorted(behavior_groups.keys()):
-            group = behavior_groups[ab_id]
-            pattern_matches = group["patterns"]
-            loop_matches = group["loops"]
-
-            # Collect unique MITRE
-            seen = set()
-            all_mitre = []
-            for pm in pattern_matches:
-                for m in pm.pattern.mitre:
-                    if m.technique_id not in seen:
-                        seen.add(m.technique_id)
-                        all_mitre.append(m)
-            for lm in loop_matches:
-                for m in lm.mitre:
-                    if m.technique_id not in seen:
-                        seen.add(m.technique_id)
-                        all_mitre.append(m)
-
-            sub_behaviors = list(set(
-                [pm.pattern.sub_behavior for pm in pattern_matches] +
-                [lm.sub_behavior for lm in loop_matches]
-            ))
-
-            phases = set()
-            for pm in pattern_matches:
-                phases.add(pm.phase)
-            for lm in loop_matches:
-                phases.add(lm.phase)
-
-            behaviors.append(BehaviorResult(
-                behavior_id=ab_id,
-                behavior_name=_BEHAVIOR_NAMES.get(ab_id, ab_id),
-                sub_behaviors=sub_behaviors,
-                pattern_matches=pattern_matches,
-                loop_matches=loop_matches,
-                mitre_techniques=all_mitre,
-                phase=", ".join(sorted(phases)),
-            ))
-
-        # Step 6: Cross-behavior correlation
-        detected_ids = set(b.behavior_id for b in behaviors)
-        #compound_attacks = detect_compound_attacks(detected_ids)
-
-        # Verdict
-        is_malicious = len(behaviors) > 0
-        verdict = ClassificationVerdict(
-            model_path=model_path,
-            is_malicious=is_malicious,
-            behaviors=behaviors,
-            #compound_attacks=compound_attacks,
-            total_loading_events=len(loading_events),
-            total_execution_events=len(execution_events),
-        )
-
-        if self.verbose:
-            print(f"\n{'='*70}")
-            if is_malicious:
-                print(f"  VERDICT: MALICIOUS — {len(behaviors)} attack behavior(s) detected")
-                for b in behaviors:
-                    print(f"    {b.behavior_id}: {b.behavior_name}")
-                    for sb in b.sub_behaviors:
-                        print(f"      - {sb}")
-                    for m in b.mitre_techniques:
-                        print(f"      MITRE: {m.technique_id} ({m.technique_name})")
-                #if compound_attacks:
-                 #   print(f"\n  COMPOUND ATTACKS:")
-                   # for ca in compound_attacks:
-                      #  print(f"    {ca}")
-            else:
-                print(f"  VERDICT: BENIGN — no attack behaviors detected")
-            print(f"{'='*70}")
-
-        return verdict
-
-
-# ============================================================================
-# CLI
-# ============================================================================
-
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description="Classify eBPF events into AB1-AB8")
-    parser.add_argument("events_dir", help="Directory with tagged event JSON files")
-    parser.add_argument("--verbose", "-v", action="store_true", default=True)
-    parser.add_argument("--output", "-o", type=str, default=None)
-    args = parser.parse_args()
-
-    try:
-        from syscall_category_mapper import SyscallCategoryMapper
-    except ImportError:
-        print("Error: syscall_category_mapper.py must be in the same directory")
-        sys.exit(1)
-
-    mapper = SyscallCategoryMapper()
-    tagged = mapper.load_and_tag(args.events_dir)
-
-    if not tagged:
-        print("Failed to load events")
-        sys.exit(1)
-
-    classifier = AttackBehaviorClassifier(verbose=args.verbose)
-    verdict = classifier.classify(
-        tagged.loading_events,
-        tagged.execution_events,
-        model_path=args.events_dir,
-    )
-
-    if args.output:
-        with open(args.output, "w") as f:
-            json.dump(verdict.to_dict(), f, indent=2, default=str)
-        print(f"\nResults written to {args.output}")
+TRACEPOINT_PROBE(syscalls, sys_enter_newfstat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FSTAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
 
 
-if __name__ == "__main__":
-    main()
+TRACEPOINT_PROBE(syscalls, sys_enter_newfstatat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_NEWFSTATAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->dfd;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_statx) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_STATX;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->flags;
+    event.data.generic.arg3 = (u32)args->mask;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_access) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_ACCESS;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    event.data.generic.arg1 = (u64)args->mode;
+   // Validate pointer before reading
+    if (args->filename != NULL) {
+        bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    } else {
+        // Mark as null pointer
+        event.data.file.path[0] = '\0';
+    }
+ 
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+    
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_faccessat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FACCESSAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->mode;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_rename) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_RENAME;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   // Just store old name in path, new name we'll pass via arg
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+   // Store first 8 bytes of new name in arg1 for reference
+   bpf_probe_read_user(&event.data.generic.arg1, 8, (void *)args->newname);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_renameat) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_RENAMEAT;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.data.generic.arg1 = (u64)args->olddfd;
+   event.data.generic.arg2 = (u64)args->newdfd;
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_renameat2) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_RENAMEAT2;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->olddfd;
+    event.data.generic.arg2 = (u64)args->newdfd;
+    event.data.generic.arg3 = (u32)args->flags;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_link) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LINK;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+    // Store first 8 bytes of newname in arg1
+    bpf_probe_read_user(&event.data.generic.arg1, 8, (void *)args->newname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_linkat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LINKAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->olddfd;
+    event.data.generic.arg2 = (u64)args->newdfd;
+    event.data.generic.arg3 = (u32)args->flags;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_unlink) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_UNLINK;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_unlinkat) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_UNLINKAT;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.data.generic.arg1 = (u64)args->dfd;
+   event.data.generic.arg2 = (u64)args->flag;
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_symlink) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SYMLINK;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+    bpf_probe_read_user(&event.data.generic.arg1, 8, (void *)args->newname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_symlinkat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SYMLINKAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->oldname);
+    event.data.generic.arg1 = (u64)args->newdfd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_chmod) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_CHMOD;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+   event.data.generic.arg1 = (u64)args->mode;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fchmod) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCHMOD;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->mode;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fchmodat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCHMODAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->mode;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_chown) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_CHOWN;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+   event.data.proc.uid = (u32)args->user;
+   event.data.proc.gid = (u32)args->group;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fchown) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCHOWN;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.proc.uid = (u32)args->user;
+    event.data.proc.gid = (u32)args->group;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fchownat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCHOWNAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.proc.uid = (u32)args->user;
+    event.data.proc.gid = (u32)args->group;
+    event.data.proc.flags = (u32)args->flag;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_lchown) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LCHOWN;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    event.data.proc.uid = (u32)args->user;
+    event.data.proc.gid = (u32)args->group;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getdents64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETDENTS64;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    int fd = args->fd;
+    event.io_fd = (u32)fd;
+    
+    u64 fd_key = ((u64)pid << 32) | (u32)fd;
+    struct fd_info *path_info = fd_paths.lookup(&fd_key);
+    if (path_info != NULL) {
+        bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mkdir) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MKDIR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    event.data.generic.arg1 = (u64)args->mode;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mkdirat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MKDIRAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->mode;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_rmdir) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_RMDIR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_readlink) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_READLINK;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->path);
+    //event.data.generic.arg1 = (u64)args->bufsiz;
+    event.data.proc.flags = (u32)args->bufsiz;
+   
+   
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_readlinkat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_READLINKAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->bufsiz;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_truncate) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_TRUNCATE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->path);
+    event.data.generic.arg1 = (u64)args->length;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_ftruncate) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FTRUNCATE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->length;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fcntl) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCNTL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->cmd;
+    event.data.generic.arg3 = (u32)args->arg;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_chdir) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CHDIR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fchdir) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FCHDIR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_sendfile64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SENDFILE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->out_fd;
+    event.data.generic.arg2 = (u64)args->in_fd;
+    event.data.generic.arg3 = (u32)args->count;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_dup) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_DUP;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fildes;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_dup2) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_DUP2;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->oldfd;
+    event.data.generic.arg2 = (u64)args->newfd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_dup3) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_DUP3;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->oldfd;
+    event.data.generic.arg2 = (u64)args->newfd;
+    event.data.generic.arg3 = (u32)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_getcwd) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETCWD;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->size;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_lseek) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LSEEK;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->offset;
+    event.data.generic.arg3 = (u32)args->whence;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_close) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CLOSE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    
+    // Clean up fd mapping after submitting event
+    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    fd_paths.delete(&fd_key);
+    
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_exit_openat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long fd = args->ret;
+    if (fd < 0) {
+        u64 temp_key = ((u64)pid << 32) | tid;
+        fd_paths.delete(&temp_key);
+        return 0;
+    }
+    
+    u64 temp_key = ((u64)pid << 32) | tid;
+    struct fd_info *info = fd_paths.lookup(&temp_key);
+    
+    if (info != NULL) {
+        u64 fd_key = ((u64)pid << 32) | (u32)fd;
+        fd_paths.update(&fd_key, info);
+        fd_paths.delete(&temp_key);
+    }
+    
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_setxattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    event.data.generic.arg1 = (u64)args->size;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_lsetxattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LSETXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    event.data.generic.arg1 = (u64)args->size;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fsetxattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FSETXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->size;
+    event.data.generic.arg3 = (u32)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_removexattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_REMOVEXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_lremovexattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LREMOVEXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->pathname);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fremovexattr) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FREMOVEXATTR;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+// -------------------------------------------// Network Operations //-------------------------------------------//
+
+TRACEPOINT_PROBE(syscalls, sys_enter_socket) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SOCKET;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store raw values - no formatting
+    event.data.net.family = (u8)args->family;
+    event.data.net.sock_type = (u8)(args->type & 0xF);  // Remove flags
+    event.data.generic.arg3 = (u32)args->protocol;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_bind) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_BIND;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    u16 family = 0;
+    bpf_probe_read_user(&family, sizeof(family), (void *)args->umyaddr);
+    event.data.net.family = (u8)family;
+    
+    if (family == 2) {  // AF_INET
+        struct sockaddr_in {
+            u16 sin_family;
+            u16 sin_port;
+            u32 s_addr;
+            char sin_zero[8];
+        };
+        
+        struct sockaddr_in addr;
+        bpf_probe_read_user(&addr, sizeof(addr), (void *)args->umyaddr);
+        
+        event.data.net.ip_addr = addr.s_addr;
+        event.data.net.port = addr.sin_port;
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_listen) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_LISTEN;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->backlog;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_accept) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_ACCEPT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_accept4) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_ACCEPT4;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_connect) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    if (!should_trace(pid, tid)) return 0;
+
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CONNECT;
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+
+    u16 family = 0;
+    bpf_probe_read_user(&family, sizeof(family), (void *)args->uservaddr);
+    event.data.net.family = (u8)family;
+
+    if (family == 2 /* AF_INET */) {
+        struct sockaddr_in {
+            u16 sin_family;
+            u16 sin_port;   /* network order */
+            u32 s_addr;     /* network order */
+            char sin_zero[8];
+        } a4 = {};
+        bpf_probe_read_user(&a4, sizeof(a4), (void *)args->uservaddr);
+
+        event.data.net.ip_addr = bpf_ntohl(a4.s_addr);
+        event.data.net.port    = bpf_ntohs(a4.sin_port);
+    } else if (family == 10 /* AF_INET6 */) {
+        struct sockaddr_in6 {
+            u16 sin6_family;
+            u16 sin6_port;      /* network order */
+            u32 sin6_flowinfo;
+            u8  sin6_addr[16];  /* raw bytes */
+            u32 sin6_scope_id;
+        } a6 = {};
+        bpf_probe_read_user(&a6, sizeof(a6), (void *)args->uservaddr);
+
+        event.data.net.port = bpf_ntohs(a6.sin6_port);
+        __builtin_memcpy(event.data.net.ip6, a6.sin6_addr, 16);
+    }
+
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+// For sendto - capture outgoing message content
+TRACEPOINT_PROBE(syscalls, sys_enter_sendto) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = 70;  // OP_SENDTO
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // fd, len, flags all OUTSIDE the union
+    event.io_fd = (u32)args->fd;
+    event.io_size = (u32)args->len;
+    event.io_offset = (u64)args->flags;  // reuse io_offset for flags
+    
+    // Message content into union — safe now, no longer clobbers fd/len/flags
+    if (args->buff && args->len > 0) {
+        bpf_probe_read_user_str(&event.data.file.path, 
+                                sizeof(event.data.file.path),
+                                (void *)args->buff);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_sendmsg) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = 71;  // OP_SENDMSG
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.io_fd = (u32)args->fd;
+    event.io_offset = (u64)args->flags;  // reuse io_offset for flags
+    
+    struct user_msghdr msg = {};
+    if (args->msg) {
+        bpf_probe_read_user(&msg, sizeof(msg), (void *)args->msg);
+        
+        if (msg.msg_iov && msg.msg_iovlen > 0) {
+            struct iovec iov = {};
+            bpf_probe_read_user(&iov, sizeof(iov), msg.msg_iov);
+            
+            if (iov.iov_base && iov.iov_len > 0) {
+                bpf_probe_read_user_str(&event.data.file.path,
+                                        sizeof(event.data.file.path),
+                                        iov.iov_base);
+                event.io_size = (u32)iov.iov_len;
+            }
+        }
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+// ========== RECVFROM ENTER ==========
+TRACEPOINT_PROBE(syscalls, sys_enter_recvfrom) {
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    struct syscall_data data = {};
+    data.fd = args->fd;
+    data.buff_ptr = (u64)args->ubuf;
+    data.flags = args->flags;
+    syscall_args.update(&tid, &data);
+    
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_recvfrom) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) return 0;
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = 72;  // OP_RECVFROM
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;          // Actual bytes received
+    event.io_offset = (u64)data->flags; // reuse io_offset for flags
+    
+    // Capture received content — safe now, no longer clobbers fd/size/flags
+    if (data->buff_ptr && ret > 0) {
+        u64 copy_len = ret < 63 ? ret : 63;
+        bpf_probe_read_user_str(&event.data.file.path,
+                                sizeof(event.data.file.path),
+                                (void *)data->buff_ptr);
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
+    return 0;
+}
+// ========== RECVMSG ENTER - Fixed ==========
+TRACEPOINT_PROBE(syscalls, sys_enter_recvmsg) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;  // Make sure to cast properly
+    data.msg_ptr = (u64)args->msg;
+    data.flags = (u64)args->flags;
+    syscall_args.update(&tid, &data);
+    
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_exit_recvmsg) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) return 0;
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) {
+        struct threat_event event = {};
+        event.pid = pid;
+        event.tid = tid;
+        event.timestamp = bpf_ktime_get_ns();
+        event.operation_id = 73;  // OP_RECVMSG
+        
+        bpf_get_current_comm(&event.comm, sizeof(event.comm));
+        
+        event.io_fd = 0xFFFFFFFF;   // Invalid fd marker
+        event.io_size = (u32)ret;
+        event.io_offset = 0;
+        
+        event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+        copy_correlation_context(&event, tid);
+        events.perf_submit(args, &event, sizeof(event));
+        return 0;
+    }
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = 73;  // OP_RECVMSG
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;           // Actual bytes received
+    event.io_offset = (u64)data->flags;  // reuse io_offset for flags
+    
+    struct user_msghdr msg = {};
+    if (data->msg_ptr) {
+        bpf_probe_read_user(&msg, sizeof(msg), (void *)data->msg_ptr);
+        
+        if (msg.msg_iov && msg.msg_iovlen > 0 && ret > 0) {
+            struct iovec iov = {};
+            bpf_probe_read_user(&iov, sizeof(iov), msg.msg_iov);
+            
+            if (iov.iov_base) {
+                u64 copy_len = ret < 63 ? ret : 63;
+                bpf_probe_read_user_str(&event.data.file.path,
+                                        sizeof(event.data.file.path),
+                                        iov.iov_base);
+            }
+        }
+    }
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_getsockname) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETSOCKNAME;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getpeername) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETPEERNAME;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getsockopt) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETSOCKOPT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->level;
+    event.data.generic.arg3 = (u32)args->optname;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setsockopt) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETSOCKOPT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->level;
+    event.data.generic.arg3 = (u32)args->optname;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_fork) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_FORK;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_vfork) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_VFORK;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_clone) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_CLONE;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   event.data.proc.flags = (u32)(args->clone_flags & 0xFFFFFFFF);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_clone3) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_CLONE3;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_ptrace) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PTRACE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->request;  // PTRACE_* request
+    event.data.generic.arg2 = (u64)args->pid;      // Target PID
+    event.data.generic.arg3 = (u32)args->addr;     // Address (truncated)
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setsid) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETSID;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+// -------------------------------------------// Memory Operations //-------------------------------------------//
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mmap) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MMAP;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Store mmap parameters
+    event.data.generic.arg1 = (u64)args->addr;  // Requested address
+    event.data.generic.arg2 = (u64)args->len;   // Length
+    event.data.generic.arg3 = (u32)args->prot;  // Protection flags
+    event.data.proc.flags = (u32)args->flags;   // MAP_* flags
+    
+    
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mprotect) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MPROTECT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->start;  // Changed from addr to start
+    event.data.generic.arg2 = (u64)args->len;    // Length
+    event.data.generic.arg3 = (u32)args->prot;   // New protection
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_memfd_create) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MEMFD_CREATE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    // Get the name
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->uname);
+    event.data.generic.arg1 = (u64)args->flags;  // MFD_* flags
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+// -------------------------------------------// Permission Operations //-------------------------------------------//
+TRACEPOINT_PROBE(syscalls, sys_enter_getuid) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETUID;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_geteuid) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETEUID;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getgid) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETGID;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getegid) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETEGID;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_getgroups) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_GETGROUPS;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->gidsetsize;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setuid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETUID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   event.data.proc.uid = (u32)args->uid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setgid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETGID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   event.data.proc.gid = (u32)args->gid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setreuid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETREUID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   event.data.proc.uid = (u32)args->ruid;
+   event.data.proc.gid = (u32)args->euid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setresuid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETRESUID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   // Pack ruid, euid, suid into available fields
+   event.data.proc.uid = (u32)args->ruid;
+   event.data.proc.gid = (u32)args->euid;
+   event.data.proc.flags = (u32)args->suid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setregid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETREGID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   event.data.proc.uid = (u32)args->rgid;
+   event.data.proc.gid = (u32)args->egid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setresgid) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_SETRESGID;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   // Pack rgid, egid, sgid into available fields
+   event.data.proc.uid = (u32)args->rgid;
+   event.data.proc.gid = (u32)args->egid;
+   event.data.proc.flags = (u32)args->sgid;
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_setgroups) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETGROUPS;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->gidsetsize;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_capset) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CAPSET;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+// -------------------------------------------// Code Execution Operations //-------------------------------------------//
+
+TRACEPOINT_PROBE(syscalls, sys_enter_execve) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_EXECVE;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_execveat) {
+   u32 pid = bpf_get_current_pid_tgid() >> 32;
+   u32 tid = bpf_get_current_pid_tgid();
+   
+   if (!should_trace(pid, tid)) return 0;
+   
+   struct threat_event event = {};
+   event.pid = pid;
+   event.tid = tid;
+   event.timestamp = bpf_ktime_get_ns();
+   event.operation_id = OP_EXECVEAT;
+   
+   bpf_get_current_comm(&event.comm, sizeof(event.comm));
+   
+   event.data.generic.arg1 = (u64)args->fd;
+   bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+   
+   event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+   copy_correlation_context(&event, tid);
+   events.perf_submit(args, &event, sizeof(event));
+   return 0;
+}
+
+/*
+TRACEPOINT_PROBE(syscalls, sys_enter_fexecve) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FEXECVE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+*/
+// -------------------------------------------// Extra OPerations //-------------------------------------------//
+
+TRACEPOINT_PROBE(syscalls, sys_enter_process_vm_readv) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PROCESS_VM_READV;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->pid;    // Target PID
+    event.data.generic.arg2 = (u64)args->liovcnt;  // Local iovec count
+    event.data.generic.arg3 = (u32)args->riovcnt;  // Remote iovec count
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_process_vm_writev) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PROCESS_VM_WRITEV;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->pid;      // Target PID
+    event.data.generic.arg2 = (u64)args->liovcnt;  // Local iovec count
+    event.data.generic.arg3 = (u32)args->riovcnt;  // Remote iovec count
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_kill) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_KILL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->pid;  // Target PID
+    event.data.generic.arg2 = (u64)args->sig;  // Signal number
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_tkill) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_TKILL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->pid;  // Changed from tid to pid (it's actually the target TID despite the name)
+    event.data.generic.arg2 = (u64)args->sig;  // Signal number
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_tgkill) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_TGKILL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->tgid;  // Thread group ID
+    event.data.generic.arg2 = (u64)args->pid;   // Changed from tid to pid (target TID)
+    event.data.generic.arg3 = (u32)args->sig;   // Signal number
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_init_module) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_INIT_MODULE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->umod;  // Module image
+    event.data.generic.arg2 = (u64)args->len;   // Module length
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_finit_module) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FINIT_MODULE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->fd;     // File descriptor
+    event.data.generic.arg3 = (u32)args->flags;  // Module flags
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_delete_module) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_DELETE_MODULE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->name_user);
+    event.data.generic.arg1 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_bpf) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_BPF;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->cmd;  // BPF command
+    event.data.generic.arg2 = (u64)args->uattr;  // Attributes
+    event.data.generic.arg3 = (u32)args->size;   // Size
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mount) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MOUNT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+   
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->dir_name);
+
+    event.data.proc.flags = (u32)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_umount) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_UMOUNT2;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->name);
+    event.data.generic.arg1 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_pivot_root) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PIVOT_ROOT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->new_root);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_chroot) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_CHROOT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_prctl) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PRCTL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->option;
+    event.data.generic.arg2 = (u64)args->arg2;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_seccomp) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SECCOMP;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->op;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_setns) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SETNS;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_unshare) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_UNSHARE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.data.generic.arg1 = (u64)args->unshare_flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mknod) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MKNOD;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    event.data.generic.arg1 = (u64)args->mode;
+    event.data.generic.arg2 = (u64)args->dev;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_mknodat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MKNODAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->dfd;
+    event.data.generic.arg2 = (u64)args->mode;
+    event.data.generic.arg3 = (u32)args->dev;
+    bpf_probe_read_user_str(event.data.file.path, sizeof(event.data.file.path), (void *)args->filename);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_fallocate) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_FALLOCATE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->mode;
+    // Store offset and len in limited space
+    event.data.generic.arg3 = (u32)(args->len & 0xFFFFFFFF);
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_copy_file_range) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_COPY_FILE_RANGE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd_in;
+    event.data.generic.arg2 = (u64)args->fd_out;
+    event.data.generic.arg3 = (u32)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_pipe) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PIPE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_pipe2) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PIPE2;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_splice) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SPLICE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd_in;
+    event.data.generic.arg2 = (u64)args->fd_out;
+    event.data.generic.arg3 = (u32)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_tee) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_TEE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fdin;
+    event.data.generic.arg2 = (u64)args->fdout;
+    event.data.generic.arg3 = (u32)args->len;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_vmsplice) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_VMSPLICE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->fd;
+    event.data.generic.arg2 = (u64)args->nr_segs;
+    event.data.generic.arg3 = (u32)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_shmget) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SHMGET;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->key;
+    event.data.generic.arg2 = (u64)args->size;
+    event.data.generic.arg3 = (u32)args->shmflg;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_shmat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_SHMAT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->shmid;
+    event.data.generic.arg2 = (u64)args->shmaddr;
+    event.data.generic.arg3 = (u32)args->shmflg;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_perf_event_open) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PERF_EVENT_OPEN;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->pid;
+    event.data.generic.arg2 = (u64)args->cpu;
+    event.data.generic.arg3 = (u32)args->group_fd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_personality) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_PERSONALITY;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->personality;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_enter_madvise) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_MADVISE;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->start;
+    event.data.generic.arg2 = (u64)args->len_in;
+    event.data.generic.arg3 = (u32)args->behavior;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_userfaultfd) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_USERFAULTFD;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->flags;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_enter_reboot) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_REBOOT;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->magic1;
+    event.data.generic.arg2 = (u64)args->magic2;
+    event.data.generic.arg3 = (u32)args->cmd;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_iopl) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_IOPL;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->level;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+TRACEPOINT_PROBE(syscalls, sys_enter_ioperm) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    struct threat_event event = {};
+    event.pid = pid;
+    event.tid = tid;
+    event.timestamp = bpf_ktime_get_ns();
+    event.operation_id = OP_IOPERM;
+    
+    bpf_get_current_comm(&event.comm, sizeof(event.comm));
+    event.data.generic.arg1 = (u64)args->from;
+    event.data.generic.arg2 = (u64)args->num;
+    event.data.generic.arg3 = (u32)args->turn_on;
+    
+    event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
+    copy_correlation_context(&event, tid);
+    events.perf_submit(args, &event, sizeof(event));
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_clone) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    // Only process if parent is tracked
+    if (!should_trace(pid, tid)) return 0;
+    
+    // The return value contains the child PID/TID
+    long ret = args->ret;
+    if (ret <= 0) return 0;  // Clone failed or invalid
+    
+    u32 child_pid = (u32)ret;
+    
+    // Add child process to target_pids for tracking
+    u8 val = 1;
+    target_pids.update(&child_pid, &val);
+    
+    // Also track as a model thread
+    u64 timestamp = bpf_ktime_get_ns();
+    model_threads.update(&child_pid, &timestamp);
+    
+    // Propagate correlation context to child
+    struct correlation_info *parent_ctx = thread_context.lookup(&tid);
+    if (parent_ctx) {
+        thread_context.update(&child_pid, parent_ctx);
+        
+        // Log the child creation
+        struct thread_event tevent = {};
+        tevent.parent_pid = pid;
+        tevent.parent_tid = tid;
+        tevent.child_pid = child_pid;  // Note: using child_pid field
+        tevent.child_tid = child_pid;  // For processes, PID == TID initially
+        tevent.timestamp = timestamp;
+        bpf_get_current_comm(&tevent.comm, sizeof(tevent.comm));
+        
+        // Copy parent correlation
+        __builtin_memcpy(tevent.parent_correlation_id, 
+                        parent_ctx->correlation_id, 16);
+        tevent.parent_phase = parent_ctx->phase;
+        
+        thread_events.perf_submit(args, &tevent, sizeof(tevent));
+    }
+    
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_fork) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    // Only process if parent is tracked
+    if (!should_trace(pid, tid)) return 0;
+    
+    // The return value contains the child PID
+    long ret = args->ret;
+    if (ret <= 0) return 0;  // Fork failed or returned 0 (child's perspective)
+    
+    u32 child_pid = (u32)ret;
+    
+    // Add child process to target_pids for tracking
+    u8 val = 1;
+    target_pids.update(&child_pid, &val);
+    
+    // Also track as a model thread
+    u64 timestamp = bpf_ktime_get_ns();
+    model_threads.update(&child_pid, &timestamp);
+    
+    // Propagate correlation context to child
+    struct correlation_info *parent_ctx = thread_context.lookup(&tid);
+    if (parent_ctx) {
+        thread_context.update(&child_pid, parent_ctx);
+        
+        // Log the child creation
+        struct thread_event tevent = {};
+        tevent.parent_pid = pid;
+        tevent.parent_tid = tid;
+        tevent.child_pid = child_pid;
+        tevent.child_tid = child_pid;
+        tevent.timestamp = timestamp;
+        bpf_get_current_comm(&tevent.comm, sizeof(tevent.comm));
+        
+        // Copy parent correlation
+        __builtin_memcpy(tevent.parent_correlation_id, 
+                        parent_ctx->correlation_id, 16);
+        tevent.parent_phase = parent_ctx->phase;
+        
+        thread_events.perf_submit(args, &tevent, sizeof(tevent));
+    }
+    
+    return 0;
+}
+
+// Handler for when vfork() completes - captures child PID
+TRACEPOINT_PROBE(syscalls, sys_exit_vfork) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    // Only process if parent is tracked
+    if (!should_trace(pid, tid)) return 0;
+    
+    // The return value contains the child PID
+    long ret = args->ret;
+    if (ret <= 0) return 0;  // Vfork failed or returned 0 (child's perspective)
+    
+    u32 child_pid = (u32)ret;
+    
+    // Add child process to target_pids for tracking
+    u8 val = 1;
+    target_pids.update(&child_pid, &val);
+    
+    // Also track as a model thread
+    u64 timestamp = bpf_ktime_get_ns();
+    model_threads.update(&child_pid, &timestamp);
+    
+    // Propagate correlation context to child
+    struct correlation_info *parent_ctx = thread_context.lookup(&tid);
+    if (parent_ctx) {
+        thread_context.update(&child_pid, parent_ctx);
+        
+        // Log the child creation
+        struct thread_event tevent = {};
+        tevent.parent_pid = pid;
+        tevent.parent_tid = tid;
+        tevent.child_pid = child_pid;
+        tevent.child_tid = child_pid;
+        tevent.timestamp = timestamp;
+        bpf_get_current_comm(&tevent.comm, sizeof(tevent.comm));
+        
+        // Copy parent correlation
+        __builtin_memcpy(tevent.parent_correlation_id, 
+                        parent_ctx->correlation_id, 16);
+        tevent.parent_phase = parent_ctx->phase;
+        
+        thread_events.perf_submit(args, &tevent, sizeof(tevent));
+    }
+    
+    return 0;
+}
+
+// Handler for clone3 exit (newer clone variant)
+TRACEPOINT_PROBE(syscalls, sys_exit_clone3) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    // Only process if parent is tracked
+    if (!should_trace(pid, tid)) return 0;
+    
+    // The return value contains the child PID/TID
+    long ret = args->ret;
+    if (ret <= 0) return 0;  // Clone3 failed or returned 0 (child's perspective)
+    
+    u32 child_pid = (u32)ret;
+    
+    // Add child process to target_pids for tracking
+    u8 val = 1;
+    target_pids.update(&child_pid, &val);
+    
+    // Also track as a model thread
+    u64 timestamp = bpf_ktime_get_ns();
+    model_threads.update(&child_pid, &timestamp);
+    
+    // Propagate correlation context to child
+    struct correlation_info *parent_ctx = thread_context.lookup(&tid);
+    if (parent_ctx) {
+        thread_context.update(&child_pid, parent_ctx);
+        
+        // Log the child creation
+        struct thread_event tevent = {};
+        tevent.parent_pid = pid;
+        tevent.parent_tid = tid;
+        tevent.child_pid = child_pid;
+        tevent.child_tid = child_pid;
+        tevent.timestamp = timestamp;
+        bpf_get_current_comm(&tevent.comm, sizeof(tevent.comm));
+        
+        // Copy parent correlation
+        __builtin_memcpy(tevent.parent_correlation_id, 
+                        parent_ctx->correlation_id, 16);
+        tevent.parent_phase = parent_ctx->phase;
+        
+        thread_events.perf_submit(args, &tevent, sizeof(tevent));
+    }
+    
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_execve) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    long ret = args->ret;
+    
+    // Check if already tracked
+    u8 *already_tracked = target_pids.lookup(&pid);
+    if (already_tracked != NULL) {
+        u64 timestamp = bpf_ktime_get_ns();
+        model_threads.update(&tid, &timestamp);
+        return 0;
+    }
+    
+    // Get parent PID
+    struct task_struct *task = (struct task_struct *)bpf_get_current_task();
+    u32 ppid;
+    bpf_probe_read_kernel(&ppid, sizeof(ppid), &task->real_parent->tgid);
+    
+    u8 *parent_tracked = target_pids.lookup(&ppid);
+    if (parent_tracked != NULL) {
+        // Add child to tracking
+        u8 val = 1;
+        target_pids.update(&pid, &val);
+        
+        u64 timestamp = bpf_ktime_get_ns();
+        model_threads.update(&tid, &timestamp);
+        
+        // Propagate correlation context
+        struct correlation_info *parent_ctx = thread_context.lookup(&ppid);
+        if (parent_ctx) {
+            // INITIALIZE ENTIRE STRUCT TO ZERO FIRST
+            struct correlation_info child_ctx = {};  // ← THIS IS CRITICAL
+            
+            // Now copy data
+            __builtin_memcpy(child_ctx.correlation_id, 
+                           parent_ctx->correlation_id, 16);
+            child_ctx.phase = parent_ctx->phase;
+            child_ctx.start_time = timestamp;
+            
+            thread_context.update(&tid, &child_ctx);
+            
+            // Log thread event
+            struct thread_event tevent = {};
+            tevent.parent_pid = ppid;
+            tevent.parent_tid = ppid;
+            tevent.child_pid = pid;
+            tevent.child_tid = tid;
+            tevent.timestamp = timestamp;
+            bpf_get_current_comm(&tevent.comm, sizeof(tevent.comm));
+            
+            __builtin_memcpy(tevent.parent_correlation_id, 
+                           parent_ctx->correlation_id, 16);
+            tevent.parent_phase = parent_ctx->phase;
+            
+            thread_events.perf_submit(args, &tevent, sizeof(tevent));
+        }
+    }
+    
+    return 0;
+}
+
+
+TRACEPOINT_PROBE(syscalls, sys_exit_execveat) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    long ret = args->ret;
+    
+    u8 *already_tracked = target_pids.lookup(&pid);
+    if (already_tracked != NULL) {
+        u64 timestamp = bpf_ktime_get_ns();
+        model_threads.update(&tid, &timestamp);
+        return 0;
+    }
+    
+    struct task_struct *task = (struct task_struct *)bpf_get_current_task();
+    u32 ppid;
+    bpf_probe_read_kernel(&ppid, sizeof(ppid), &task->real_parent->tgid);
+    
+    u8 *parent_tracked = target_pids.lookup(&ppid);
+    if (parent_tracked != NULL) {
+        u8 val = 1;
+        target_pids.update(&pid, &val);
+        
+        u64 timestamp = bpf_ktime_get_ns();
+        model_threads.update(&tid, &timestamp);
+        
+        struct correlation_info *parent_ctx = thread_context.lookup(&ppid);
+        if (parent_ctx) {
+            struct correlation_info child_ctx = {};  // ← INITIALIZE
+            
+            __builtin_memcpy(child_ctx.correlation_id, 
+                           parent_ctx->correlation_id, 16);
+            child_ctx.phase = parent_ctx->phase;
+            child_ctx.start_time = timestamp;
+            
+            thread_context.update(&tid, &child_ctx);
+        }
+    }
+    
+    return 0;
+}
