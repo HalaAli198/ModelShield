@@ -683,6 +683,8 @@ _DNS_RESOLVE_PATHS = [
     "/etc/host.conf", "/etc/hosts",
     "/etc/gai.conf",
 ]
+
+
 # ============================================================================
 # STEP 1: PRE-FILTER
 # ============================================================================
@@ -2048,6 +2050,41 @@ def build_ab2_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.write", description="Write sysctl persistence entry"),
         ],
     ))
+    
+    patterns.append(SequencePattern(
+      pattern_id="AB2-PYTHON-MODULE-SHADOW",
+      behavior_id="AB2",
+      sub_behavior="Python module shadowing (trojanized module file)",
+      mitre=[MITREMapping("Persistence", "T1574.001", "Hijack Execution Flow")],
+      steps=[
+        PatternStep(sub_op="File.open",
+                    path_match=lambda fn: fn and (
+                        fn.endswith("tensorflow.py") or
+                        fn.endswith("torch.py") or
+                        fn.endswith("numpy.py")
+                    ),
+                    flag_match=flag_writable(),
+                    description="Create trojanized Python module file"),
+        PatternStep(sub_op="File.write",
+                    description="Write malicious module content"),
+      ],
+    ))
+
+    patterns.append(SequencePattern(
+      pattern_id="AB2-PYTHON-MODULE-SHADOW-ATTEMPT",
+      behavior_id="AB2",
+      sub_behavior="Python module shadowing attempt (write may have been blocked)",
+      mitre=[MITREMapping("Persistence", "T1574.001", "Hijack Execution Flow")],
+      steps=[
+        PatternStep(sub_op="File.open",
+                    path_match=lambda fn: fn and (
+                        fn.endswith("tensorflow.py") or
+                        fn.endswith("torch.py") or
+                        fn.endswith("numpy.py")
+                    ),
+                    description="Attempt to create trojanized Python module file"),
+      ],
+    ))
 
     return patterns
 
@@ -2519,6 +2556,38 @@ def build_ab3_patterns() -> List[SequencePattern]:
                         path_match=path_contains("/sys/firmware/efi/efivars/"),
                         description="Remove EFI variable via removexattr"),
         ],
+    ))
+    
+    patterns.append(SequencePattern(
+      pattern_id="AB3-TMP-SCRIPT-STAGE",
+      behavior_id="AB3",
+      sub_behavior="Temporary shell script staging for potential execution",
+      mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
+      steps=[
+        PatternStep(sub_op="File.open",
+                    path_match=path_regex(
+                        r"(/tmp/|/var/tmp/|/dev/shm/).*\.(sh|py|pl|rb|bash|csh|ksh|zsh)"
+                    ),
+                    description="Create script file in temp directory"),
+        PatternStep(sub_op="File.write",
+                    path_match=path_regex(
+                        r"(/tmp/|/var/tmp/|/dev/shm/).*\.(sh|py|pl|rb|bash|csh|ksh|zsh)"
+                    ),
+                    description="Write script content"),
+      ],
+    ))
+    patterns.append(SequencePattern(
+      pattern_id="AB3-TMP-SCRIPT-STAGE-ATTEMPT",
+      behavior_id="AB3",
+      sub_behavior="Temporary shell script staging for potential execution (write may have been blocked)",
+      mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
+      steps=[
+        PatternStep(sub_op="File.open",
+                    path_match=path_regex(
+                        r"(/tmp/|/var/tmp/|/dev/shm/).*\.(sh|py|pl|rb|bash|csh|ksh|zsh)"
+                    ),
+                    description="Attempt to stage script in temp directory"),
+      ],
     ))
     return patterns
 
