@@ -58,7 +58,11 @@ class PatternStep:
     flag_match: Any = None    # callable(extra_details) -> bool, or None = any flags
     description: str = ""
     optional: bool = False
-
+    capture_fd: str = ""      # name to store fd under (e.g., "file_fd", "sock_fd")
+    require_fd: str = ""      # name of previously captured fd to require match
+    capture_path: str = ""    # name to store path under (e.g., "file_path")
+    require_path: str = ""    # name of previously captured path to match
+    
     def matches(self, event: dict) -> bool:
         ev_sub_op = event.get("sub_op", "")
 
@@ -95,7 +99,7 @@ class SequencePattern:
     steps: List[PatternStep]
     mitre: List[MITREMapping] = field(default_factory=list)
     repeatable: bool = False  # If True, pattern can match multiple times
-    same_tid: bool = False 
+    #same_tid: bool = False 
     @property
     def required_count(self):
         return sum(1 for s in self.steps if not s.optional)
@@ -202,6 +206,71 @@ class ClassificationVerdict:
         return result
 
 
+
+
+ 
+def _extract_fd(event: dict) -> Optional[int]:
+    """
+    Extract file descriptor from an event.
+    
+    Works with your actual eBPF event format:
+      - read/write/close/sendmsg/recvmsg: fd in extra_details["fd"]
+      - some events: fd encoded in filename as "fd=N"
+    
+    Returns None if fd cannot be determined.
+    """
+    details = event.get("extra_details", {})
+    
+    # Direct fd field (read, write, close, sendto, recvfrom, sendmsg, etc.)
+    fd = details.get("fd")
+    if fd is not None:
+        try:
+            return int(fd)
+        except (ValueError, TypeError):
+            pass
+    
+    # Filename encodes "fd=N" (e.g., "fd=320" or "fd=314")
+    filename = event.get("filename", "")
+    if filename and filename.startswith("fd="):
+        try:
+            fd_str = filename.split("=")[1].split()[0].split("[")[0]
+            return int(fd_str)
+        except (ValueError, IndexError):
+            pass
+    
+    return None
+ 
+ 
+def _extract_path(event: dict) -> str:
+    """
+    Extract the file path from an event.
+    
+    Your eBPF events resolve paths for read/write operations:
+      - openat: filename = "/proc/cpuinfo"
+      - read:   filename = "/proc/cpuinfo" (resolved from fd)
+      - write:  filename = "/home/hala/.ssh/authorized_keys.temp..."
+    
+    Returns empty string if no path.
+    """
+    filename = event.get("filename", "")
+    if not filename:
+        return ""
+    # Skip non-path filenames
+    if filename.startswith("fd=") or filename in ("stdout", "stderr", "stdin"):
+        return ""
+    if filename in ("uname", "sysinfo", "sethostname", "gethostname", "getcwd"):
+        return ""
+    return filename
+ 
+ 
+def _paths_match(captured_path: str, event_path: str) -> bool:
+    """
+    Check if two paths refer to the same file.
+    Strict equality only — no substring matching.
+    """
+    if not captured_path or not event_path:
+        return False
+    return captured_path == event_path
 # ============================================================================
 # PATH / FLAG MATCHING HELPERS
 # ============================================================================
@@ -715,17 +784,19 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
         behavior_id="AB1",
         sub_behavior=sub,
         mitre=mitre_list,
-        same_tid=True, 
+        #same_tid=True, 
         steps=[
             PatternStep(
                 sub_op="File.open",
                 path_match=path_contains(*paths),
                 flag_match=flag_readonly(),
                 description=f"Open sensitive file ({sub})",
+                capture_path="file_path",  
             ),
             PatternStep(
                 sub_op="File.read",
                 description="Read file contents",
+                require_path="file_path",
             ),
             PatternStep(
                 sub_op="Network.socket",
@@ -746,6 +817,7 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
     )
 
 
+
 def _ab1_exfil_udp(pid, sub, paths, mitre_list):
     """AB1 helper: open(sensitive, readonly) → read → socket(AF_INET) → sendto (UDP, no connect)."""
     return SequencePattern(
@@ -753,17 +825,19 @@ def _ab1_exfil_udp(pid, sub, paths, mitre_list):
         behavior_id="AB1",
         sub_behavior=sub,
         mitre=mitre_list,
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(
                 sub_op="File.open",
                 path_match=path_contains(*paths),
                 flag_match=flag_readonly(),
                 description=f"Open sensitive file ({sub})",
+                capture_path="file_path",     
             ),
             PatternStep(
                 sub_op="File.read",
                 description="Read file contents",
+                require_path="file_path"
             ),
             PatternStep(
                 sub_op="Network.socket",
@@ -832,7 +906,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="System fingerprint via syscall + exfiltration",
         mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,       
+        #same_tid=True,       
         steps=[
             PatternStep(sub_op={"System.info", "System.identity"},
                         description="System fingerprint syscall"),
@@ -854,7 +928,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="System fingerprint via syscall + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1082", "System Information Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op={"System.info", "System.identity"},
                         description="System fingerprint syscall"),
@@ -874,7 +948,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Netlink-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
                         description="Create AF_NETLINK NETLINK_ROUTE socket"),
@@ -898,7 +972,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Netlink-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.socket", flag_match=flag_netlink_route(),
                         description="Create AF_NETLINK NETLINK_ROUTE socket"),
@@ -921,7 +995,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="ioctl-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
                         description="ioctl SIOCGIF* network interface query"),
@@ -943,7 +1017,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="ioctl-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="System.ioctl", flag_match=flag_ioctl_netif(),
                         description="ioctl SIOCGIF* network interface query"),
@@ -964,7 +1038,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Socket-based network discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
                         description="Query socket info (getsockname/getsockopt)"),
@@ -985,7 +1059,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Socket-based network discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1016", "System Network Configuration Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
                         description="Query socket info (getsockname/getsockopt)"),
@@ -1005,7 +1079,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="File and directory discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate",
                         path_match=path_contains("/home", "/etc", "/var", "/opt", "/usr"),
@@ -1025,7 +1099,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Current working directory discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1083", "File and Directory Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="File.getcwd", description="Get current working directory"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
@@ -1044,15 +1118,15 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Process enumeration + exfiltration",
         mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
                         description="Enumerate /proc"),
             PatternStep(sub_op="File.open",
                         path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
                         flag_match=flag_readonly(),
-                        description="Open process info file"),
-            PatternStep(sub_op="File.read", description="Read process data"),
+                        description="Open process info file", capture_path="file_path"),
+            PatternStep(sub_op="File.read", description="Read process data", require_path="file_path"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
                         description="Connect to remote server"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
@@ -1070,15 +1144,15 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Process enumeration + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1057", "Process Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="File.enumerate", path_match=path_contains("/proc"),
                         description="Enumerate /proc"),
             PatternStep(sub_op="File.open",
                         path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
                         flag_match=flag_readonly(),
-                        description="Open process info file"),
-            PatternStep(sub_op="File.read", description="Read process data"),
+                        description="Open process info file",capture_path="file_path"),
+            PatternStep(sub_op="File.read", description="Read process data",require_path="file_path"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
                         description="Create UDP socket"),
@@ -1097,7 +1171,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="User/group ID discovery + exfiltration",
         mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Permission.query",
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
@@ -1118,7 +1192,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="User/group ID discovery + exfiltration (UDP)",
         mitre=[MITREMapping("Discovery", "T1033", "System Owner/User Discovery"),
                MITREMapping("Exfiltration", "T1048", "Exfiltration Over Alternative Protocol")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Permission.query",
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
@@ -1189,7 +1263,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Archive collected data before exfiltration",
         mitre=[MITREMapping("Collection", "T1560", "Archive Collected Data"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="CodeExec.exec",
                         path_match=path_contains("tar", "gzip", "zip", "bzip2", "xz", "7z"),
@@ -1211,9 +1285,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/dev/input/event", "/dev/input/by-"),
                         flag_match=flag_readonly(),
-                        description="Open input device"),
+                        description="Open input device",capture_path="file_path"),
             PatternStep(sub_op="File.read",
-                        description="Read input events"),
+                        description="Read input events",require_path="file_path"),
         ],
     ))
 
@@ -1224,14 +1298,14 @@ def build_ab1_patterns() -> List[SequencePattern]:
         sub_behavior="Keylogging + exfiltration",
         mitre=[MITREMapping("Credential Access", "T1056.001", "Keylogging"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/dev/input/event", "/dev/input/by-"),
                         flag_match=flag_readonly(),
-                        description="Open input device"),
+                        description="Open input device",capture_path="file_path"),
             PatternStep(sub_op="File.read",
-                        description="Read input events"),
+                        description="Read input events",require_path="file_path"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
                         description="Connect to remote server"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
@@ -1311,11 +1385,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_CRED_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open credential/sensitive file",
+                description="Open credential/sensitive file",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read credential data",
+                description="Read credential data",require_path="file_path"
             ),
         ],
     ))
@@ -1346,17 +1420,17 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(
                 sub_op="CodeExec.exec",
                 path_match=path_contains(*_FILE_READ_COMMANDS),
-                description="Execute file-reading command",
+                description="Execute file-reading command", 
             ),
             PatternStep(
                 sub_op="File.open",
                 path_match=path_contains(*_SYSINFO_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open system info file",
+                description="Open system info file",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read system info",
+                description="Read system info",require_path="file_path"
             ),
         ],
     ))
@@ -1382,11 +1456,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_CRED_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open credential file from shell command",
+                description="Open credential file from shell command",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read credential data",
+                description="Read credential data",require_path="file_path"
             ),
         ],
     ))
@@ -1410,11 +1484,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_SYSINFO_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open system info file from shell command",
+                description="Open system info file from shell command",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read system info",
+                description="Read system info",require_path="file_path"
             ),
         ],
     ))
@@ -1430,7 +1504,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             MITREMapping("Execution", "T1059.004", "Unix Shell"),
             MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
         ],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(
                 sub_op="CodeExec.exec",
@@ -1444,11 +1518,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_CRED_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open credential file",
+                description="Open credential file", capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read credential data",
+                description="Read credential data", require_path="file_path"
             ),
             PatternStep(
                 sub_op="Network.connect",
@@ -1473,7 +1547,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             MITREMapping("Execution", "T1059.004", "Unix Shell"),
             MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel"),
         ],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(
                 sub_op="CodeExec.exec",
@@ -1487,11 +1561,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_SYSINFO_ALL_PATHS),
                 flag_match=flag_readonly(),
-                description="Open system info file",
+                description="Open system info file", capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read system info",
+                description="Read system info",require_path="file_path"
             ),
             PatternStep(
                 sub_op="Network.connect",
@@ -1537,11 +1611,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_CRED_LOGIN_HIGH_SIGNAL),
                 flag_match=flag_readonly(),
-                description="Open shadow/auth file",
+                description="Open shadow/auth file", capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read credential data",
+                description="Read credential data",require_path="file_path"
             ),
         ],
     ))
@@ -1608,11 +1682,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                     sub_op="File.open",
                     path_match=path_contains(*paths),
                     flag_match=flag_readonly(),
-                    description=f"Open credential file ({sub})",
+                    description=f"Open credential file ({sub})",capture_path="file_path"
                 ),
                 PatternStep(
                     sub_op="File.read",
-                    description="Read credential data",
+                    description="Read credential data",require_path="file_path"
                 ),
             ],
         ))
@@ -1628,11 +1702,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_FILE_HISTORY),
                 flag_match=flag_readonly(),
-                description="Open command history file",
+                description="Open command history file",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read command history",
+                description="Read command history",require_path="file_path"
             ),
         ],
     ))  
@@ -1654,21 +1728,21 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_NET_PREP_PATHS),
                 flag_match=flag_readonly(),
-                description="Open SSL/TLS configuration or certificates",
+                description="Open SSL/TLS configuration or certificates",capture_path="ssl_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read SSL/TLS config",
+                description="Read SSL/TLS config",require_path="ssl_path"
             ),
             PatternStep(
                 sub_op="File.open",
                 path_match=path_contains(*_DNS_RESOLVE_PATHS),
                 flag_match=flag_readonly(),
-                description="Open DNS resolver configuration",
+                description="Open DNS resolver configuration", capture_path="dns_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read DNS resolver config",
+                description="Read DNS resolver config",require_path="dns_path"
             ),
         ],
     ))
@@ -1685,21 +1759,21 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_DNS_RESOLVE_PATHS),
                 flag_match=flag_readonly(),
-                description="Open DNS resolver configuration",
+                description="Open DNS resolver configuration",capture_path="dns_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read DNS resolver config",
+                description="Read DNS resolver config",require_path="dns_path"
             ),
             PatternStep(
                 sub_op="File.open",
                 path_match=path_contains(*_NET_PREP_PATHS),
                 flag_match=flag_readonly(),
-                description="Open SSL/TLS configuration or certificates",
+                description="Open SSL/TLS configuration or certificates",capture_path="ssl_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read SSL/TLS config",
+                description="Read SSL/TLS config",require_path="ssl_path"
             ),
         ],
     ))
@@ -1719,11 +1793,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                     "/etc/pki/tls/",
                 ),
                 flag_match=flag_readonly(),
-                description="Open SSL/TLS config (openssl.cnf or CA certs)",
+                description="Open SSL/TLS config (openssl.cnf or CA certs)",capture_path="ssl_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read SSL config",
+                description="Read SSL config", require_path="ssl_path"
             ),
             PatternStep(
                 sub_op="File.open",
@@ -1733,11 +1807,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                     "/etc/ca-certificates/", "/etc/pki/tls/certs/",
                 ),
                 flag_match=flag_readonly(),
-                description="Open CA certificate store",
+                description="Open CA certificate store",capture_path="ca_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read CA certificates",
+                description="Read CA certificates",require_path="ca_path"
             ),
         ],
     ))
@@ -1763,11 +1837,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                 sub_op="File.open",
                 path_match=path_contains(*_DNS_RESOLVE_PATHS),
                 flag_match=flag_readonly(),
-                description="Open DNS resolver config",
+                description="Open DNS resolver config", capture_path="dns_path"
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read DNS resolver config",
+                description="Read DNS resolver config",require_path="dns_path"
             ),
         ],
     ))
@@ -1788,8 +1862,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1053.003", "Cron")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_CRON),
-                        flag_match=flag_writable(), description="Open cron file for writing"),
-            PatternStep(sub_op="File.write", description="Write cron entry"),
+                        flag_match=flag_writable(), description="Open cron file for writing",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write cron entry",require_path="file_path"),
         ],
     ))
 
@@ -1813,8 +1887,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1053.003", "Cron")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_CRON_ACCESS),
-                        flag_match=flag_writable(), description="Open cron access control file"),
-            PatternStep(sub_op="File.write", description="Modify cron access control"),
+                        flag_match=flag_writable(), description="Open cron access control file",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify cron access control",require_path="file_path"),
         ],
     ))
 
@@ -1828,8 +1902,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1543.002", "Systemd Service")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_SYSTEMD),
-                        flag_match=flag_writable(), description="Create/open systemd service file"),
-            PatternStep(sub_op="File.write", description="Write service definition"),
+                        flag_match=flag_writable(), description="Create/open systemd service file",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write service definition",require_path="file_path"),
             PatternStep(sub_op="File.symlink", path_match=path_contains("target.wants", "systemd"),
                         description="Create enable symlink", optional=True),
             PatternStep(sub_op="CodeExec.exec", path_match=path_contains("systemctl"),
@@ -1847,8 +1921,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1037.004", "RC Scripts")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_INIT),
-                        flag_match=flag_writable(), description="Open init script"),
-            PatternStep(sub_op="File.write", description="Write init script content"),
+                        flag_match=flag_writable(), description="Open init script",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write init script content",require_path="file_path"),
             PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
             PatternStep(sub_op="File.symlink", path_match=path_contains("/etc/rc"),
                         description="Create runlevel symlink", optional=True),
@@ -1865,8 +1939,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1542.001", "System Firmware")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_BOOT),
-                        flag_match=flag_writable(), description="Open boot config"),
-            PatternStep(sub_op="File.write", description="Modify boot config"),
+                        flag_match=flag_writable(), description="Open boot config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify boot config",require_path="file_path"),
         ],
     ))
 
@@ -1880,8 +1954,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1546.004", "Unix Shell Configuration Modification")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_PROFILE),
-                        flag_match=flag_writable(), description="Open shell profile"),
-            PatternStep(sub_op="File.write", description="Append malicious commands"),
+                        flag_match=flag_writable(), description="Open shell profile",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Append malicious commands",require_path="file_path"),
         ],
     ))
 
@@ -1897,8 +1971,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.mkdir", path_match=path_contains(".ssh"),
                         description="Create .ssh directory", optional=True),
             PatternStep(sub_op="File.open", path_match=path_contains("authorized_keys"),
-                        flag_match=flag_writable(), description="Open authorized_keys"),
-            PatternStep(sub_op="File.write", description="Write SSH public key"),
+                        flag_match=flag_writable(), description="Open authorized_keys",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write SSH public key",require_path="file_path"),
             PatternStep(sub_op="File.permission", description="Set permissions", optional=True),
         ],
     ))
@@ -1913,8 +1987,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1556.003", "Pluggable Authentication Modules")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/etc/pam.d/"),
-                        flag_match=flag_writable(), description="Open PAM config"),
-            PatternStep(sub_op="File.write", description="Modify PAM rules"),
+                        flag_match=flag_writable(), description="Open PAM config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify PAM rules",require_path="file_path"),
         ],
     ))
 
@@ -1929,8 +2003,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
                MITREMapping("Persistence", "T1098", "Account Manipulation")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/etc/passwd", "/etc/shadow"),
-                        flag_match=flag_writable(), description="Open /etc/passwd for writing"),
-            PatternStep(sub_op="File.write", description="Append new user entry"),
+                        flag_match=flag_writable(), description="Open /etc/passwd for writing",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Append new user entry",require_path="file_path"),
         ],
     ))
 
@@ -1957,8 +2031,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1548.003", "Sudo and Sudo Caching")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/etc/sudoers"),
-                        flag_match=flag_writable(), description="Open sudoers"),
-            PatternStep(sub_op="File.write", description="Write NOPASSWD rule"),
+                        flag_match=flag_writable(), description="Open sudoers",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write NOPASSWD rule",require_path="file_path"),
         ],
     ))
 
@@ -1975,8 +2049,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
                         path_match=path_contains("/usr/bin/", "/usr/sbin/", "/bin/", "/sbin/",
                                                   "/usr/local/bin/", "/usr/local/lib/",
                                                   "/lib/", "/lib64/", "/usr/lib/", "/usr/lib64/"),
-                        flag_match=flag_writable(), description="Open system binary/lib for writing"),
-            PatternStep(sub_op="File.write", description="Write trojanized content"),
+                        flag_match=flag_writable(), description="Open system binary/lib for writing",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write trojanized content",require_path="file_path"),
             PatternStep(sub_op="File.permission", description="Set executable", optional=True),
         ],
     ))
@@ -1991,8 +2065,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1574.006", "Dynamic Linker Hijacking")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/etc/ld.so.preload"),
-                        flag_match=flag_writable(), description="Open ld.so.preload"),
-            PatternStep(sub_op="File.write", description="Write library path"),
+                        flag_match=flag_writable(), description="Open ld.so.preload",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write library path",require_path="file_path"),
         ],
     ))
 
@@ -2006,8 +2080,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1574.006", "Dynamic Linker Hijacking")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_LDCONF),
-                        flag_match=flag_writable(), description="Open ld.so.conf"),
-            PatternStep(sub_op="File.write", description="Write malicious library path"),
+                        flag_match=flag_writable(), description="Open ld.so.conf",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write malicious library path",require_path="file_path"),
         ],
     ))
 
@@ -2021,8 +2095,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1547.001", "Registry Run Keys / Startup Folder")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_AUTOSTART),
-                        flag_match=flag_writable(), description="Open autostart .desktop file"),
-            PatternStep(sub_op="File.write", description="Write autostart entry"),
+                        flag_match=flag_writable(), description="Open autostart .desktop file",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write autostart entry",require_path="file_path"),
         ],
     ))
 
@@ -2036,8 +2110,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1547.006", "Kernel Modules and Extensions")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_KMOD_CONFIG),
-                        flag_match=flag_writable(), description="Open kernel module config"),
-            PatternStep(sub_op="File.write", description="Write module config"),
+                        flag_match=flag_writable(), description="Open kernel module config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write module config",require_path="file_path"),
         ],
     ))
 
@@ -2051,8 +2125,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1546", "Event Triggered Execution")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_CORE_PATTERN_PATHS),
-                        flag_match=flag_writable(), description="Open /proc/sys/kernel/core_pattern"),
-            PatternStep(sub_op="File.write", description="Write malicious core handler"),
+                        flag_match=flag_writable(), description="Open /proc/sys/kernel/core_pattern",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write malicious core handler",require_path="file_path"),
         ],
     ))
 
@@ -2066,8 +2140,8 @@ def build_ab2_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Persistence", "T1546", "Event Triggered Execution")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_SYSCTL_PATHS),
-                        flag_match=flag_writable(), description="Open sysctl config"),
-            PatternStep(sub_op="File.write", description="Write sysctl persistence entry"),
+                        flag_match=flag_writable(), description="Open sysctl config", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write sysctl persistence entry",require_path="file_path"),
         ],
     ))
     
@@ -2084,9 +2158,9 @@ def build_ab2_patterns() -> List[SequencePattern]:
                         fn.endswith("numpy.py")
                     ),
                     flag_match=flag_writable(),
-                    description="Create trojanized Python module file"),
+                    description="Create trojanized Python module file", capture_path="file_path"),
         PatternStep(sub_op="File.write",
-                    description="Write malicious module content"),
+                    description="Write malicious module content",require_path="file_path"),
       ],
     ))
 
@@ -2177,8 +2251,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
                             "/etc/fstab", "/etc/motd",
                             "/var/log/",
                         ),
-                        flag_match=flag_writable(), description="Open sensitive system file for writing"),
-            PatternStep(sub_op="File.write", description="Write modified content"),
+                        flag_match=flag_writable(), description="Open sensitive system file for writing",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write modified content",require_path="file_path"),
         ],
     ))
 
@@ -2271,8 +2345,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         steps=[
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/etc/hostname", "/etc/machine-info"),
-                        flag_match=flag_writable(), description="Open hostname/identity file"),
-            PatternStep(sub_op="File.write", description="Write new identity"),
+                        flag_match=flag_writable(), description="Open hostname/identity file",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write new identity", require_path="file_path"),
         ],
     ))
 
@@ -2286,8 +2360,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_MAC_PATHS),
-                        flag_match=flag_writable(), description="Open MAC policy file"),
-            PatternStep(sub_op="File.write", description="Modify MAC policy"),
+                        flag_match=flag_writable(), description="Open MAC policy file",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify MAC policy",require_path="file_path"),
         ],
     ))
 
@@ -2301,8 +2375,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_FIREWALL_PATHS),
-                        flag_match=flag_writable(), description="Open firewall config"),
-            PatternStep(sub_op="File.write", description="Modify firewall rules"),
+                        flag_match=flag_writable(), description="Open firewall config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify firewall rules",require_path="file_path"),
         ],
     ))
 
@@ -2341,8 +2415,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.003", "Impair Command History Logging")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_LOGGING_PATHS),
-                        flag_match=flag_writable(), description="Open logging config"),
-            PatternStep(sub_op="File.write", description="Modify logging config"),
+                        flag_match=flag_writable(), description="Open logging config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify logging config",require_path="file_path"),
         ],
     ))
 
@@ -2356,8 +2430,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.004", "Disable or Modify System Firewall")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_NET_MANIP_PATHS),
-                        flag_match=flag_writable(), description="Open network config"),
-            PatternStep(sub_op="File.write", description="Modify network config"),
+                        flag_match=flag_writable(), description="Open network config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify network config",require_path="file_path"),
         ],
     ))
 
@@ -2396,8 +2470,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         steps=[
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/etc/resolv.conf", "/etc/hosts", "/etc/nsswitch.conf"),
-                        flag_match=flag_writable(), description="Open DNS/resolver config"),
-            PatternStep(sub_op="File.write", description="Modify DNS config"),
+                        flag_match=flag_writable(), description="Open DNS/resolver config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify DNS config",require_path="file_path"),
         ],
     ))
 
@@ -2411,8 +2485,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_SECURITY_SETTING_PATHS),
-                        flag_match=flag_writable(), description="Open security setting"),
-            PatternStep(sub_op="File.write", description="Weaken security setting"),
+                        flag_match=flag_writable(), description="Open security setting",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Weaken security setting",require_path="file_path"),
         ],
     ))
 
@@ -2427,8 +2501,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
                MITREMapping("Persistence", "T1098", "Account Manipulation")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_POLICY_PATHS),
-                        flag_match=flag_writable(), description="Open policy file"),
-            PatternStep(sub_op="File.write", description="Modify policy"),
+                        flag_match=flag_writable(), description="Open policy file", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify policy", require_path="file_path"),
         ],
     ))
 
@@ -2442,8 +2516,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Defense Evasion", "T1562.001", "Disable or Modify Tools")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_HOSTS_ACCESS_PATHS),
-                        flag_match=flag_writable(), description="Open hosts access control"),
-            PatternStep(sub_op="File.write", description="Modify hosts access rules"),
+                        flag_match=flag_writable(), description="Open hosts access control", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify hosts access rules",require_path="file_path"),
         ],
     ))
 
@@ -2457,8 +2531,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_FSTAB_PATHS),
-                        flag_match=flag_writable(), description="Open /etc/fstab"),
-            PatternStep(sub_op="File.write", description="Modify fstab"),
+                        flag_match=flag_writable(), description="Open /etc/fstab", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify fstab", require_path="file_path"),
         ],
     ))
 
@@ -2472,8 +2546,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Impact", "T1565.001", "Stored Data Manipulation")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains(*_PERSIST_BOOT),
-                        flag_match=flag_writable(), description="Open boot config"),
-            PatternStep(sub_op="File.write", description="Tamper with boot config"),
+                        flag_match=flag_writable(), description="Open boot config",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Tamper with boot config", require_path="file_path"),
         ],
     ))
 
@@ -2517,7 +2591,7 @@ def build_ab3_patterns() -> List[SequencePattern]:
         behavior_id="AB3",
         sub_behavior="Process name manipulation after network connection",
         mitre=[MITREMapping("Defense Evasion", "T1036", "Masquerading")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.connect",
                         flag_match=flag_inet_remote(),
@@ -2539,8 +2613,8 @@ def build_ab3_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.open",
                         path_match=path_contains(*_AUDIT_PATHS),
                         flag_match=flag_writable(),
-                        description="Open audit configuration"),
-            PatternStep(sub_op="File.write", description="Modify audit configuration"),
+                        description="Open audit configuration",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Modify audit configuration",require_path="file_path"),
         ],
     ))
     patterns.append(SequencePattern(
@@ -2589,12 +2663,12 @@ def build_ab3_patterns() -> List[SequencePattern]:
                     path_match=path_regex(
                         r"(/tmp/|/var/tmp/|/dev/shm/).*\.(sh|py|pl|rb|bash|csh|ksh|zsh)"
                     ),
-                    description="Create script file in temp directory"),
+                    description="Create script file in temp directory", capture_path="file_path"),
         PatternStep(sub_op="File.write",
                     path_match=path_regex(
                         r"(/tmp/|/var/tmp/|/dev/shm/).*\.(sh|py|pl|rb|bash|csh|ksh|zsh)"
                     ),
-                    description="Write script content"),
+                    description="Write script content",  require_path="file_path"),
       ],
     ))
     patterns.append(SequencePattern(
@@ -2681,8 +2755,8 @@ def build_ab4_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Execution", "T1059.004", "Unix Shell")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/tmp/", ".sh"),
-                        flag_match=flag_writable(), description="Create script file"),
-            PatternStep(sub_op="File.write", description="Write script content"),
+                        flag_match=flag_writable(), description="Create script file", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write script content", require_path="file_path"),
             PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
             PatternStep(sub_op="CodeExec.exec", description="Execute script"),
         ],
@@ -2718,8 +2792,8 @@ def build_ab4_patterns() -> List[SequencePattern]:
                         description="Connect to download server"),
             PatternStep(sub_op="Network.recv", description="Receive payload data"),
             PatternStep(sub_op="File.open", flag_match=flag_writable(),
-                        description="Create payload file"),
-            PatternStep(sub_op="File.write", description="Write payload to disk"),
+                        description="Create payload file", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write payload to disk", require_path="file_path"),
             PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
             PatternStep(sub_op="CodeExec.exec", description="Execute staged payload"),
         ],
@@ -2790,11 +2864,11 @@ def build_ab4_patterns() -> List[SequencePattern]:
                     "/etc/ld.so.preload",
                 ),
                 flag_match=flag_writable(),
-                description="Open sensitive system file for writing",
+                description="Open sensitive system file for writing",capture_path="file_path"
             ),
             PatternStep(
                 sub_op="File.write",
-                description="Write to sensitive file",
+                description="Write to sensitive file",  require_path="file_path"
             ),
         ],
     ))
@@ -2915,14 +2989,14 @@ def build_ab5_patterns() -> List[SequencePattern]:
         behavior_id="AB5",
         sub_behavior="Cryptojacking: profile → connect pool → mine",
         mitre=[MITREMapping("Impact", "T1496", "Resource Hijacking")],
-        same_tid=True,
+        #same_tid=True,
         steps=[
             PatternStep(sub_op="System.info", description="Resource profiling"),
             PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
             PatternStep(sub_op="Network.connect", flag_match=flag_mining_port(),
                         description="Connect to mining pool"),
-            PatternStep(sub_op="Network.send", description="Submit hash"),
-            PatternStep(sub_op="Network.recv", description="Receive work", optional=True),
+            PatternStep(sub_op="Network.send", description="Submit hash", capture_fd="pool_fd"),
+            PatternStep(sub_op="Network.recv", description="Receive work", require_fd="pool_fd", optional=True),
         ],
     ))
 
@@ -2954,8 +3028,8 @@ def build_ab5_patterns() -> List[SequencePattern]:
                MITREMapping("Command and Control", "T1105", "Ingress Tool Transfer")],
         steps=[
             PatternStep(sub_op="File.open", flag_match=flag_writable(),
-                        description="Create miner binary file"),
-            PatternStep(sub_op="File.write", description="Write miner binary"),
+                        description="Create miner binary file", capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write miner binary", require_path="file_path"),
             PatternStep(sub_op="File.permission", description="chmod executable", optional=True),
             PatternStep(sub_op="CodeExec.exec", description="Execute deployed miner"),
         ],
@@ -3037,8 +3111,8 @@ def build_ab5_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.open",
                         path_match=path_contains("/etc/crontab", "/etc/cron.d/",
                                                   "/var/spool/cron/", "/etc/systemd/system/"),
-                        flag_match=flag_writable(), description="Open scheduling config"),
-            PatternStep(sub_op="File.write", description="Write mining task schedule"),
+                        flag_match=flag_writable(), description="Open scheduling config",  capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write mining task schedule", require_path="file_path"),
         ],
     ))
     
@@ -3226,9 +3300,9 @@ def build_ab6_patterns() -> List[SequencePattern]:
         steps=[
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
                         description="Connect to C2"),
-            PatternStep(sub_op="Network.recv", description="Receive command"),
+            PatternStep(sub_op="Network.recv", description="Receive command", capture_fd="c2_fd"),
             PatternStep(sub_op="CodeExec.exec", description="Execute command"),
-            PatternStep(sub_op="Network.send", description="Send results", optional=True),
+            PatternStep(sub_op="Network.send", description="Send results", require_fd="c2_fd", optional=True),
         ],
     ))
 
@@ -3398,9 +3472,9 @@ def build_ab7_patterns() -> List[SequencePattern]:
                         description="Enumerate user data directories"),
             PatternStep(sub_op="File.open",
                         path_match=lambda fn: _not_library_path(fn or ""),
-                        description="Open target file (not a library)"),
+                        description="Open target file (not a library)", capture_path="target_path"),
             PatternStep(sub_op="File.read",
-                        description="Read plaintext"),
+                        description="Read plaintext", require_path="target_path"),
             PatternStep(sub_op="File.write",
                         path_match=lambda fn: _is_file_not_stdio(fn or ""),
                         description="Write encrypted data to file"),
@@ -3421,12 +3495,12 @@ def build_ab7_patterns() -> List[SequencePattern]:
         steps=[
             PatternStep(sub_op="File.enumerate", description="Enumerate files"),
             PatternStep(sub_op="File.open", flag_match=flag_readonly(),
-                        description="Open original (read)"),
-            PatternStep(sub_op="File.read", description="Read plaintext"),
+                        description="Open original (read)", capture_path="src_path"),
+            PatternStep(sub_op="File.read", description="Read plaintext", require_path="src_path"),
             PatternStep(sub_op="File.open",
                         path_match=path_contains(".enc", ".locked", ".encrypted", ".cry"),
-                        flag_match=flag_writable(), description="Create encrypted output"),
-            PatternStep(sub_op="File.write", description="Write encrypted content"),
+                        flag_match=flag_writable(), description="Create encrypted output",  capture_path="dst_path"),
+            PatternStep(sub_op="File.write", description="Write encrypted content", require_path="dst_path"),
             PatternStep(sub_op="File.delete", description="Delete original"),
         ],
     ))
@@ -3440,7 +3514,7 @@ def build_ab7_patterns() -> List[SequencePattern]:
         sub_behavior="Encryption key exfiltration to C2",
         mitre=[MITREMapping("Impact", "T1486", "Data Encrypted for Impact"),
                MITREMapping("Exfiltration", "T1041", "Exfiltration Over C2 Channel")],
-        same_tid=True, 
+        #same_tid=True, 
         steps=[
             PatternStep(sub_op={"System.random", "File.open"},
                         path_match=lambda fn: _match_keygen(fn),
@@ -3465,8 +3539,8 @@ def build_ab7_patterns() -> List[SequencePattern]:
                         path_match=path_contains("readme", "ransom", "decrypt", "locked",
                                                   "recover", "restore", "payment",
                                                   "bitcoin", ".onion", "/etc/motd"),
-                        flag_match=flag_writable(), description="Create ransom note"),
-            PatternStep(sub_op="File.write", description="Write ransom demands"),
+                        flag_match=flag_writable(), description="Create ransom note",  capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write ransom demands", require_path="file_path"),
         ],
     ))
 
@@ -3495,8 +3569,8 @@ def build_ab7_patterns() -> List[SequencePattern]:
         mitre=[MITREMapping("Impact", "T1490", "Inhibit System Recovery")],
         steps=[
             PatternStep(sub_op="File.open", path_match=path_contains("/etc/fstab"),
-                        flag_match=flag_writable(), description="Open /etc/fstab"),
-            PatternStep(sub_op="File.write", description="Write malicious fstab entry"),
+                        flag_match=flag_writable(), description="Open /etc/fstab",capture_path="file_path"),
+            PatternStep(sub_op="File.write", description="Write malicious fstab entry", require_path="file_path"),
         ],
     ))
 
@@ -3729,7 +3803,97 @@ def build_ab8_patterns() -> List[SequencePattern]:
 # ============================================================================
 # STEP 3: ONE-PASS SCANNER
 # ============================================================================
+# original one
+'''
+def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePattern, List[dict], List[int]]]:
+    """
+    Walk events once, tracking all patterns simultaneously.
+    Each pattern has its own step pointer.
 
+    Repeatable patterns (single-step) reset after each match to collect
+    all occurrences. Non-repeatable patterns complete after first match.
+
+    Returns list of (pattern, matched_events, matched_step_indices) for
+    patterns that fully matched (all required steps found in order).
+    """
+    n_patterns = len(patterns)
+    step_ptrs = [0] * n_patterns
+    matched_evs = [[] for _ in range(n_patterns)]
+    matched_idxs = [[] for _ in range(n_patterns)]
+    completed = [False] * n_patterns
+    # For repeatable patterns, store each complete match separately
+    repeat_matches = [[] for _ in range(n_patterns)]  # list of (events, indices) tuples
+
+    for event in events:
+        for pi in range(n_patterns):
+            if completed[pi]:
+                continue
+
+            pat = patterns[pi]
+            si = step_ptrs[pi]
+
+            while si < len(pat.steps):
+                step = pat.steps[si]
+
+                if step.matches(event):
+                    matched_evs[pi].append(event)
+                    matched_idxs[pi].append(si)
+                    si += 1
+                    step_ptrs[pi] = si
+                    break
+                elif step.optional:
+                    si += 1
+                    step_ptrs[pi] = si
+                else:
+                    break
+
+            # Check completion
+            pattern_done = False
+            if step_ptrs[pi] >= len(pat.steps):
+                pattern_done = True
+            else:
+                all_remaining_optional = all(
+                    pat.steps[s].optional for s in range(step_ptrs[pi], len(pat.steps))
+                )
+                if all_remaining_optional and len(matched_evs[pi]) > 0:
+                    pattern_done = True
+
+            if pattern_done:
+                if pat.repeatable:
+                    # Save this match, reset for next occurrence
+                    repeat_matches[pi].append(
+                        (list(matched_evs[pi]), list(matched_idxs[pi]))
+                    )
+                    step_ptrs[pi] = 0
+                    matched_evs[pi] = []
+                    matched_idxs[pi] = []
+                else:
+                    completed[pi] = True
+
+    results = []
+    for pi in range(n_patterns):
+        pat = patterns[pi]
+
+        if pat.repeatable:
+            # Combine all repeated matches into one result
+            all_evs = []
+            all_idxs = []
+            for evs, idxs in repeat_matches[pi]:
+                all_evs.extend(evs)
+                all_idxs.extend(idxs)
+            if all_evs:
+                results.append((pat, all_evs, all_idxs))
+        else:
+            required_matched = sum(
+                1 for si in matched_idxs[pi] if not pat.steps[si].optional
+            )
+            if required_matched >= pat.required_count:
+                results.append((pat, matched_evs[pi], matched_idxs[pi]))
+
+    return results
+'''
+# The following    scan_all_patterns consider same_tid 
+'''        
 def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePattern, List[dict], List[int]]]:
     """
     Walk events once, tracking all patterns simultaneously.
@@ -3829,7 +3993,126 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
                 results.append((pat, matched_evs[pi], matched_idxs[pi]))
 
     return results
+'''
 
+# This scan_all_patterns consider the fd and file paths acroess the syscalls of the same pattern. 
+def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePattern, List[dict], List[int]]]:
+    """
+    Walk events once, tracking all patterns simultaneously.
+ 
+    Object correlation (fail-closed):
+      - capture_path/require_path: link open→read and open→write by file path
+      - capture_fd/require_fd: link connect→send and connect→recv by socket fd
+ 
+    When require_fd or require_path is set on a step:
+      - If captured value exists AND event has the value → must match exactly
+      - If captured value exists but event has NO value → reject (fail closed)
+      - If captured value is None (capture step hasn't fired) → reject (fail closed)
+    """
+    n_patterns = len(patterns)
+    step_ptrs = [0] * n_patterns
+    matched_evs = [[] for _ in range(n_patterns)]
+    matched_idxs = [[] for _ in range(n_patterns)]
+    completed = [False] * n_patterns
+    captured_fds = [{} for _ in range(n_patterns)]
+    captured_paths = [{} for _ in range(n_patterns)]
+    repeat_matches = [[] for _ in range(n_patterns)]
+ 
+    for event in events:
+        for pi in range(n_patterns):
+            if completed[pi]:
+                continue
+ 
+            pat = patterns[pi]
+            si = step_ptrs[pi]
+ 
+            while si < len(pat.steps):
+                step = pat.steps[si]
+ 
+                if step.matches(event):
+                    # --- Object correlation checks (fail-closed) ---
+ 
+                    # Check fd requirement
+                    if step.require_fd:
+                        required_fd = captured_fds[pi].get(step.require_fd)
+                        event_fd = _extract_fd(event)
+                        if required_fd is None or event_fd is None or event_fd != required_fd:
+                            break  # fail closed: missing or mismatched fd
+ 
+                    # Check path requirement
+                    if step.require_path:
+                        required_path = captured_paths[pi].get(step.require_path)
+                        event_path = _extract_path(event)
+                        if not required_path or not event_path or not _paths_match(required_path, event_path):
+                            break  # fail closed: missing or mismatched path
+ 
+                    # --- Capture values for future steps ---
+ 
+                    if step.capture_fd:
+                        fd_val = _extract_fd(event)
+                        if fd_val is not None:
+                            captured_fds[pi][step.capture_fd] = fd_val
+ 
+                    if step.capture_path:
+                        path_val = _extract_path(event)
+                        if path_val:
+                            captured_paths[pi][step.capture_path] = path_val
+ 
+                    # --- Record match ---
+                    matched_evs[pi].append(event)
+                    matched_idxs[pi].append(si)
+                    si += 1
+                    step_ptrs[pi] = si
+                    break
+                elif step.optional:
+                    si += 1
+                    step_ptrs[pi] = si
+                else:
+                    break
+ 
+            # Check completion
+            pattern_done = False
+            if step_ptrs[pi] >= len(pat.steps):
+                pattern_done = True
+            else:
+                all_remaining_optional = all(
+                    pat.steps[s].optional for s in range(step_ptrs[pi], len(pat.steps))
+                )
+                if all_remaining_optional and len(matched_evs[pi]) > 0:
+                    pattern_done = True
+ 
+            if pattern_done:
+                if pat.repeatable:
+                    repeat_matches[pi].append(
+                        (list(matched_evs[pi]), list(matched_idxs[pi]))
+                    )
+                    step_ptrs[pi] = 0
+                    matched_evs[pi] = []
+                    matched_idxs[pi] = []
+                    captured_fds[pi] = {}
+                    captured_paths[pi] = {}
+                else:
+                    completed[pi] = True
+ 
+    results = []
+    for pi in range(n_patterns):
+        pat = patterns[pi]
+        if pat.repeatable:
+            all_evs = []
+            all_idxs = []
+            for evs, idxs in repeat_matches[pi]:
+                all_evs.extend(evs)
+                all_idxs.extend(idxs)
+            if all_evs:
+                results.append((pat, all_evs, all_idxs))
+        else:
+            required_matched = sum(
+                1 for si in matched_idxs[pi] if not pat.steps[si].optional
+            )
+            if required_matched >= pat.required_count:
+                results.append((pat, matched_evs[pi], matched_idxs[pi]))
+ 
+    return results
 # ============================================================================
 # STEP 5: LOOP DETECTION (AB5 mining, AB7 ransomware)
 # ============================================================================
