@@ -2969,8 +2969,8 @@ def execute_model(model_info, requirements, structure, input_data):
               
                    
         
-             # If we loaded a model, try to run inference
-             if model is not None and results['execution_status'] in ['model_loaded']:
+           # If we loaded a model, try to run inference
+           if model is not None and results['execution_status'] in ['model_loaded']:
                 print("    Model loaded, attempting execution...")
         
                 execution_success = False
@@ -3192,8 +3192,8 @@ def execute_model(model_info, requirements, structure, input_data):
                 elif not execution_success:
                     results['output'] = "Model loaded but all execution attempts failed"
     
-             # Add summary of load attempts if relevant
-             if load_attempts and not model:
+           # Add summary of load attempts if relevant
+           if load_attempts and not model:
                 results['output'] = f"Load attempts: {' | '.join(load_attempts)}"
           
           
@@ -4447,13 +4447,15 @@ class ThreatEvent(ct.Structure):
         ("operation_id", ct.c_uint8),
         ("_pad1", ct.c_uint8 * 3),    
         ("data", DataUnion),
+        ("io_fd", ct.c_uint32),       
+        ("io_size", ct.c_uint32),    
+        ("io_offset", ct.c_uint64),   
         ("user_stack_id", ct.c_int),
         ("_pad", ct.c_uint32),  
         ("timestamp", ct.c_uint64),
         ("correlation_id", ct.c_char * 16),
         ("phase", ct.c_uint8),
     ]
-    
 print(f"Python ThreatEvent size: {ct.sizeof(ThreatEvent)}")    
     
 # ==============================================================================
@@ -4481,7 +4483,7 @@ class AspectMonitor:
       try:
         if not self.monitoring_active:
             fixed_ebpf_program=None
-            with open('ebpf_monitor.c', 'r') as f:
+            with open('enhanced_fixed_ebpf_program.c', 'r') as f:
                   fixed_ebpf_program = f.read()   
             
             self.bpf = BPF(text=fixed_ebpf_program)
@@ -5034,21 +5036,21 @@ class AspectMonitor:
         
         
         elif event.operation_id in [12, 15]:  # read/write
-          # Check if we have path info from fd_paths
-          if len(event.data.file.path) > 0 and event.data.file.path[0]:  # Has path info
+          # fd and size come from io_fd/io_size (outside union, never corrupted)
+          fd_val = event.io_fd
+          size_val = event.io_size
+          
+          # Check if we have path info from fd_paths (in the union)
+          if len(event.data.file.path) > 0 and event.data.file.path[0]:
              filename = self.safe_decode_path(event.data.file.path)
           else:
-            # Map common FDs
-            fd_val = event.data.generic.arg1
             fd_names = {0: "stdin", 1: "stdout", 2: "stderr"}
             filename = fd_names.get(fd_val, f"fd={fd_val}")
     
-          extra_details['fd'] = event.data.generic.arg1
-          extra_details['size'] = event.data.generic.arg2
+          extra_details['fd'] = fd_val
+          extra_details['size'] = size_val
     
-          # For write to stdout/stderr, add more context
           if event.operation_id == 15:  # write
-             fd_val = event.data.generic.arg1
              if fd_val == 1:
                extra_details['stream'] = 'stdout'
                filename = "stdout"
@@ -5060,20 +5062,31 @@ class AspectMonitor:
                filename = "stdin"
             
         elif event.operation_id in [13, 16]:  # pread64/pwrite64
-            # Get fd as a character for display (like 'i', 'j', 'k')
-            fd_val = event.data.generic.arg1
-            if 32 <= fd_val <= 126:  # Printable ASCII
-                filename = chr(fd_val)
+            fd_val = event.io_fd
+            size_val = event.io_size
+            offset_val = event.io_offset
+            
+            # Check if we have path info
+            if len(event.data.file.path) > 0 and event.data.file.path[0]:
+                filename = self.safe_decode_path(event.data.file.path)
             else:
                 filename = f"fd={fd_val}"
+            
             extra_details['fd'] = fd_val
-            extra_details['size'] = event.data.generic.arg2
-            extra_details['offset'] = event.data.generic.arg3
+            extra_details['size'] = size_val
+            extra_details['offset'] = offset_val
             
         elif event.operation_id in [14, 17]:  # readv/writev
-            filename = f"fd={event.data.generic.arg1}"
-            extra_details['fd'] = event.data.generic.arg1
-            extra_details['iovcnt'] = event.data.generic.arg2
+            fd_val = event.io_fd
+            
+            # Check if we have path info (writev does fd_paths lookup)
+            if len(event.data.file.path) > 0 and event.data.file.path[0]:
+                filename = self.safe_decode_path(event.data.file.path)
+            else:
+                filename = f"fd={fd_val}"
+            
+            extra_details['fd'] = fd_val
+            extra_details['iovcnt'] = event.io_size
             
         elif event.operation_id == 19:  # fstat
             filename = f"fd={event.data.generic.arg1}"
@@ -5207,12 +5220,12 @@ class AspectMonitor:
             extra_details['gid'] = event.data.proc.gid
         
         elif event.operation_id == 40:  # getdents64
-            # Check if we have a path stored
+            fd_val = event.io_fd
             if len(event.data.file.path) > 0 and event.data.file.path[0]:
                 filename = self.safe_decode_path(event.data.file.path)
             else:
-                filename = f"fd={event.data.generic.arg1}"
-            extra_details['fd'] = event.data.generic.arg1
+                filename = f"fd={fd_val}"
+            extra_details['fd'] = fd_val
             
         
         
@@ -5404,9 +5417,9 @@ class AspectMonitor:
                 extra_details['flags'] = f"{event.data.generic.arg2:#x}"
                 
         elif event.operation_id in [70, 72]:  # sendto/recvfrom
-             fd = event.data.generic.arg1
-             msg_len = event.data.generic.arg2
-             flags = event.data.generic.arg3
+             fd = event.io_fd
+             msg_len = event.io_size
+             flags = int(event.io_offset) & 0xFFFFFFFF  # flags stored in io_offset
     
              filename = f"fd={fd}"
              extra_details['fd'] = fd
@@ -5436,7 +5449,9 @@ class AspectMonitor:
              extra_details['operation'] = op_type
         
         elif event.operation_id in [71, 73]:  # sendmsg/recvmsg
-             fd = event.data.generic.arg1
+             fd = event.io_fd
+             msg_len = event.io_size
+             flags = int(event.io_offset) & 0xFFFFFFFF
     
              # Validate fd (should be small number, typically < 1024)
              if fd > 100000:
