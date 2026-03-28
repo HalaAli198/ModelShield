@@ -5,6 +5,9 @@ Simple and comprehensive approach
 """
 import subprocess
 import os
+import collections
+import collections.abc
+collections.MutableMapping = collections.abc.MutableMapping
 import json
 import torch
 import pickle
@@ -467,6 +470,12 @@ def detect_model_info(model_folder):
             info['framework'] = 'dlpack'
             info['model_files'].append(file)
         
+        # NumPy
+        elif file.endswith('.npy') or file.endswith('.npz'):
+            info['model_type'] = 'numpy'
+            info['framework'] = 'numpy'
+            info['model_files'].append(file)
+            
         # Archive files
         elif file.endswith('.zip') or file.endswith('.tar') or file.endswith('.tar.gz'):
             info['model_type'] = 'archive' if info['model_type'] == 'unknown' else info['model_type']
@@ -588,6 +597,10 @@ def determine_input_requirements(model_info):
             requirements['needs_input'] = False
             requirements['input_type'] = 'possibly_none'
             requirements['additional_info']['warning'] = 'Pickle files may execute code on load'
+        elif framework == 'numpy':
+            requirements['needs_input'] = False
+            requirements['input_type'] = 'possibly_none'
+            requirements['additional_info']['warning'] = 'NPY/NPZ files use pickle internally when allow_pickle=True'    
     
     # Folder name heuristics
     folder_name = os.path.basename(model_info['folder']).lower()
@@ -935,6 +948,8 @@ def execute_model(model_info, requirements, structure, input_data):
          file_type = 'pytorch_th'
     elif file.endswith(('.zip', '.tar', '.tar.gz')):
          file_type = 'archive'
+    elif file.endswith(('.npy', '.npz')):
+         file_type = 'numpy'
     else:
          file_type = model_info.get('model_type', 'unknown')
         
@@ -1001,6 +1016,89 @@ def execute_model(model_info, requirements, structure, input_data):
                     del tokenizer   
                 import gc
                 gc.collect()
+       elif file_type == 'numpy':
+            print(f"Loading NumPy file: {file}...")
+            results['loading_method'] = 'numpy'
+
+            import io as io_module
+            import contextlib
+            import numpy as np
+            stdout_capture = io_module.StringIO()
+            stderr_capture = io_module.StringIO()
+
+            try:
+                with contextlib.redirect_stdout(stdout_capture), contextlib.redirect_stderr(stderr_capture):
+                    if file.endswith('.npz'):
+                        data = np.load(file_path, allow_pickle=True)
+                        data = wrap_model_for_execution(data) if callable(data) else data
+                        keys = list(data.keys()) if hasattr(data, 'keys') else []
+                        results['output'] = f"NPZ loaded: {len(keys)} arrays, keys={keys[:10]}"
+                        for key in keys:
+                            try:
+                                arr = data[key]
+                                print(f"    Array '{key}': shape={arr.shape}, dtype={arr.dtype}")
+                            except Exception as arr_err:
+                                print(f"    Array '{key}' access error: {arr_err}")
+                                results['warnings'].append(f"Malicious payload in array '{key}'")
+                    else:
+                        data = np.load(file_path, allow_pickle=True)
+                        data = wrap_model_for_execution(data) if callable(data) else data
+                        if hasattr(data, 'shape'):
+                            results['output'] = f"NPY loaded: shape={data.shape}, dtype={data.dtype}"
+                        else:
+                            results['output'] = f"NPY loaded: type={type(data)}"
+
+                captured_output = stdout_capture.getvalue()
+                captured_errors = stderr_capture.getvalue()
+
+                if captured_output:
+                    print(f"    🚨 STDOUT: {captured_output[:200]}")
+                    results['warnings'].append(f"Code output: {captured_output}")
+                    results['execution_status'] = 'malicious_executed'
+                elif captured_errors:
+                    print(f"    🚨 STDERR: {captured_errors[:200]}")
+                    results['warnings'].append(f"Errors: {captured_errors}")
+                    results['execution_status'] = 'malicious_executed'
+                else:
+                    results['execution_status'] = 'success'
+
+                if callable(data) and input_data is not None:
+                    try:
+                        output = data(input_data)
+                        results['output'] += f" | Executed callable: {type(output)}"
+                    except Exception as exec_err:
+                        results['output'] += f" | Callable execution error: {str(exec_err)[:50]}"
+
+            except Exception as e:
+                error_msg = str(e)
+                print(f"    Error loading numpy file: {error_msg}")
+
+                try:
+                    captured_output = stdout_capture.getvalue()
+                    captured_errors = stderr_capture.getvalue()
+                    if captured_output:
+                        print(f"    🚨 STDOUT during error: {captured_output[:200]}")
+                    if captured_errors:
+                        print(f"    🚨 STDERR during error: {captured_errors[:200]}")
+                except:
+                    pass
+
+                if any(x in error_msg.lower() for x in ['exec', '__reduce__', 'eval', 'import', 'module']):
+                    results['execution_status'] = 'malicious_executed'
+                    results['output'] = f"Malicious code in numpy file: {error_msg[:100]}"
+                    results['warnings'].append("Malicious pickle payload detected in .npy/.npz")
+                elif "Network" in error_msg or "Connection" in error_msg:
+                    results['execution_status'] = 'malicious_executed'
+                    results['output'] = f"Network activity from numpy file: {error_msg[:100]}"
+                else:
+                    results['execution_status'] = 'failed'
+                    results['error'] = f"NumPy load failed: {error_msg}"
+
+            if 'data' in locals():
+                del data
+            import gc
+            gc.collect()
+       
        # ONNX
        elif file_type == 'onnx':
                 print("Loading ONNX model...")
@@ -5026,7 +5124,28 @@ class AspectMonitor:
         
         elif event.operation_id == 10:  # openat
              filename = self.safe_decode_path(event.data.file.path)
-             # openat doesn't store dirfd in our current eBPF code, would need to fix there
+             raw_flags = event.io_fd    # flags stored in io_fd
+             raw_mode = event.io_size   # mode stored in io_size
+    
+             # Parse open flags
+             flag_names = []
+             if raw_flags & 0x0001: flag_names.append("O_WRONLY")
+             if raw_flags & 0x0002: flag_names.append("O_RDWR")
+             if raw_flags & 0x0040: flag_names.append("O_CREAT")
+             if raw_flags & 0x0080: flag_names.append("O_EXCL")
+             if raw_flags & 0x0100: flag_names.append("O_NOCTTY")
+             if raw_flags & 0x0200: flag_names.append("O_TRUNC")
+             if raw_flags & 0x0400: flag_names.append("O_APPEND")
+             if raw_flags & 0x0800: flag_names.append("O_NONBLOCK")
+             if raw_flags & 0x10000: flag_names.append("O_DIRECTORY")
+             if raw_flags & 0x20000: flag_names.append("O_NOFOLLOW")
+             if raw_flags & 0x80000: flag_names.append("O_CLOEXEC")
+             if not flag_names:
+                flag_names.append("O_RDONLY")
+    
+             extra_details['flags'] = '|'.join(flag_names)
+             if raw_mode > 0:
+                extra_details['mode'] = f"{raw_mode:#o}"
             
         
         elif event.operation_id == 11:  # creat
@@ -5403,7 +5522,10 @@ class AspectMonitor:
                 except (ValueError, IndexError):
                     print(f"[Warning] Invalid address format in {operation}: {filename}")
         
-       
+          
+          sock_fd = event.io_fd
+          if sock_fd and sock_fd != 0:
+              extra_details['fd'] = sock_fd
        
        
         
@@ -6793,6 +6915,13 @@ def apply_mxnet_aspects():
         mx.sym.load = monitor.monitor_api(mx.sym.load, phase="LOADING")
     except ImportError:
         pass
+        
+def apply_numpy_aspects():
+    """Monitor NumPy load operations"""
+    try:
+        np.load = monitor.monitor_api(np.load, phase="LOADING")
+    except Exception:
+        pass        
 #---------------------------------------------------------------------------------------------- 
                
 def AOP_monitoring():
@@ -6813,6 +6942,7 @@ def AOP_monitoring():
     apply_coreml_aspects()
     apply_paddlepaddle_aspects()
     apply_mxnet_aspects()
+    apply_numpy_aspects()
     print("[AOP] Comprehensive model loading monitoring active")
     print("   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)")
     print("   PyTorch (torch.load, JIT, State Dict, Package)")
@@ -6825,6 +6955,7 @@ def AOP_monitoring():
     print("   CoreML")
     print("   PaddlePaddle")
     print("   MXNet")
+    print("   NumPy (.npy, .npz)")
     print("   Protocol-level (pickle, msgpack, protobuf)")
 
 
@@ -6869,7 +7000,9 @@ if __name__ == "__main__":
              # TensorRT
              '.engine', '.plan', '.trt',
              # ONNX
-             '.onnx'
+             '.onnx',
+             # NumPy
+             '.npy', '.npz'
              )) for f in contents
             )
             
