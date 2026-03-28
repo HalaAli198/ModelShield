@@ -60,6 +60,7 @@ class PatternStep:
     optional: bool = False
     capture_fd: str = ""      # name to store fd under (e.g., "file_fd", "sock_fd")
     require_fd: str = ""      # name of previously captured fd to require match
+    exclude_fd: str = "" 
     capture_path: str = ""    # name to store path under (e.g., "file_path")
     require_path: str = ""    # name of previously captured path to match
     
@@ -229,14 +230,14 @@ def _extract_fd(event: dict) -> Optional[int]:
         except (ValueError, TypeError):
             pass
     
-    # Filename encodes "fd=N" (e.g., "fd=320" or "fd=314")
+    # Filename encodes "fd=N" (e.g., "fd=320" or "fd=314" or "fd=320_SOL_TCP")
     filename = event.get("filename", "")
     if filename and filename.startswith("fd="):
-        try:
-            fd_str = filename.split("=")[1].split()[0].split("[")[0]
-            return int(fd_str)
-        except (ValueError, IndexError):
-            pass
+      try:
+         fd_str = filename.split("=")[1].split()[0].split("[")[0].split("_")[0]
+         return int(fd_str)
+      except (ValueError, IndexError):
+         pass
     
     return None
  
@@ -807,11 +808,13 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
                 sub_op="Network.connect",
                 flag_match=flag_inet_remote(),
                 description="Connect to suspicious remote server",
+                capture_fd="exfil_fd"
             ),
             PatternStep(
                sub_op={"Network.send", "File.sendfile", "File.write"},
                path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
                description="Send stolen data",
+               require_fd="exfil_fd",
             ),
         ],
     )
@@ -843,10 +846,12 @@ def _ab1_exfil_udp(pid, sub, paths, mitre_list):
                 sub_op="Network.socket",
                 flag_match=flag_family("AF_INET", "AF_INET6"),
                 description="Create UDP socket (AF_INET/AF_INET6)",
+                capture_fd="udp_fd",
             ),
             PatternStep(
                 sub_op="Network.send",
                 description="Send stolen data (UDP sendto)",
+                require_fd="udp_fd",
             ),
         ],
     )
@@ -912,10 +917,10 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="System fingerprint syscall"),
             PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Transmit fingerprint"),
+                        description="Transmit fingerprint", require_fd="exfil_fd"),
         ],
     ))
 
@@ -934,9 +939,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="System fingerprint syscall"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket (AF_INET/AF_INET6)"),
+                        description="Create UDP socket (AF_INET/AF_INET6)", capture_fd="udp_fd"),
             PatternStep(sub_op="Network.send",
-                        description="Send fingerprint (UDP sendto)"),
+                        description="Send fingerprint (UDP sendto)", require_fd="udp_fd"),
         ],
     ))
     # ------------------------------------------------------------------
@@ -956,10 +961,10 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="Network.send", description="Send RTM_GET* request"),
             PatternStep(sub_op="Network.recv", description="Receive netlink response"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server", capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network config"),
+                        description="Exfiltrate network config", require_fd="exfil_fd"),
         ],
     ))
 
@@ -981,8 +986,8 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="Network.recv", description="Receive netlink response"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)"),
+                        description="Create UDP socket",capture_fd="udp_fd"),
+            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
         ],
     ))
     
@@ -1001,10 +1006,10 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="ioctl SIOCGIF* network interface query"),
             PatternStep(sub_op="Network.socket", description="Create socket", optional=True),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network config"),
+                        description="Exfiltrate network config",require_fd="exfil_fd"),
         ],
     ))
 
@@ -1023,8 +1028,8 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="ioctl SIOCGIF* network interface query"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
-            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)"),
+                        description="Create UDP socket",capture_fd="udp_fd"),
+            PatternStep(sub_op="Network.send", description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
         ],
     ))
     
@@ -1041,12 +1046,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
         #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
-                        description="Query socket info (getsockname/getsockopt)"),
+                        description="Query socket info (getsockname/getsockopt)",capture_fd="discovery_fd"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd", exclude_fd="discovery_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate network info"),
+                        description="Exfiltrate network info", require_fd="exfil_fd"),
         ],
     ))
 
@@ -1062,12 +1067,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
         #same_tid=True,
         steps=[
             PatternStep(sub_op="Network.info",
-                        description="Query socket info (getsockname/getsockopt)"),
+                        description="Query socket info (getsockname/getsockopt)",capture_fd="discovery_fd"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
+                        description="Create UDP socket",capture_fd="udp_fd", exclude_fd="discovery_fd"),
             PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
+                        description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
         ],
     ))
     # ------------------------------------------------------------------
@@ -1085,8 +1090,8 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         path_match=path_contains("/home", "/etc", "/var", "/opt", "/usr"),
                         description="Enumerate sensitive directories"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate listing"),
+                        description="Connect to remote server", capture_fd="exfil_fd"),
+            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate listing",require_fd="exfil_fd"),
         ],
     ))
 
@@ -1103,9 +1108,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
         steps=[
             PatternStep(sub_op="File.getcwd", description="Get current working directory"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Send CWD info"),
+                        description="Send CWD info",require_fd="exfil_fd"),
         ],
     ))
 
@@ -1128,10 +1133,10 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="Open process info file", capture_path="file_path"),
             PatternStep(sub_op="File.read", description="Read process data", require_path="file_path"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate"),
+                        description="Exfiltrate",require_fd="exfil_fd"),
         ],
     ))
 
@@ -1155,9 +1160,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.read", description="Read process data",require_path="file_path"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
+                        description="Create UDP socket",capture_fd="udp_fd"),
             PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
+                        description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
         ],
     ))
     
@@ -1176,10 +1181,10 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="Permission.query",
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate user/group info"),
+                        description="Exfiltrate user/group info",require_fd="exfil_fd"),
         ],
     ))
 
@@ -1198,9 +1203,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         description="Query UID/GID (getuid/geteuid/getgid/getegid/getgroups)"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
-                        description="Create UDP socket"),
+                        description="Create UDP socket",capture_fd="udp_fd"),
             PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)"),
+                        description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
         ],
     ))
     # ------------------------------------------------------------------
@@ -1269,8 +1274,8 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         path_match=path_contains("tar", "gzip", "zip", "bzip2", "xz", "7z"),
                         description="Execute archive/compression tool"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
-            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate archive"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
+            PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"), description="Exfiltrate archive",require_fd="exfil_fd"),
         ],
     ))
     # ------------------------------------------------------------------
@@ -1307,9 +1312,9 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(sub_op="File.read",
                         description="Read input events",require_path="file_path"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
-                        description="Connect to remote server"),
+                        description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate keystrokes"),
+                        description="Exfiltrate keystrokes",require_fd="exfil_fd"),
         ],
     ))
     
@@ -1527,12 +1532,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(
                 sub_op="Network.connect",
                 flag_match=flag_inet_remote(),
-                description="Connect to remote server",
+                description="Connect to remote server", capture_fd="exfil_fd"
             ),
             PatternStep(
                 sub_op={"Network.send", "File.sendfile", "File.write"},
                 path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate stolen credentials",
+                description="Exfiltrate stolen credentials",require_fd="exfil_fd"
             ),
         ],
     ))
@@ -1570,12 +1575,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(
                 sub_op="Network.connect",
                 flag_match=flag_inet_remote(),
-                description="Connect to remote server",
+                description="Connect to remote server",capture_fd="exfil_fd"
             ),
             PatternStep(
                 sub_op={"Network.send", "File.sendfile", "File.write"},
                 path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate system info",
+                description="Exfiltrate system info", require_fd="exfil_fd"
             ),
         ],
     )) 
@@ -4038,7 +4043,13 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
                         event_fd = _extract_fd(event)
                         if required_fd is None or event_fd is None or event_fd != required_fd:
                             break  # fail closed: missing or mismatched fd
- 
+                    # Check fd exclusion (fail-open)  
+                    if step.exclude_fd:
+                       excluded_fd = captured_fds[pi].get(step.exclude_fd)
+                       event_fd = _extract_fd(event)
+                       if excluded_fd is not None and event_fd is not None and event_fd == excluded_fd:
+                          break
+                    
                     # Check path requirement
                     if step.require_path:
                         required_path = captured_paths[pi].get(step.require_path)
@@ -4112,6 +4123,7 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
             if required_matched >= pat.required_count:
                 results.append((pat, matched_evs[pi], matched_idxs[pi]))
  
+    
     return results
 # ============================================================================
 # STEP 5: LOOP DETECTION (AB5 mining, AB7 ransomware)
