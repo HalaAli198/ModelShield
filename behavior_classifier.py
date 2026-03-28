@@ -20,7 +20,7 @@ Usage:
     tagged = mapper.load_and_tag("/path/to/events/")
 
     classifier = AttackBehaviorClassifier()
-    verdict = classifier.classify(tagged.loading_events, tagged.execution_events,
+    verdict = classclearifier.classify(tagged.loading_events, tagged.execution_events,
                                   model_path="/path/to/model")
 
 """

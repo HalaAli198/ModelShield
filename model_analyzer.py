@@ -3762,6 +3762,7 @@ def analyze_and_execute_model(model_folder):
             os.chdir(original_cwd)
             monitor.monitoring_active = False
             model_name = os.path.basename(model_info['folder'])
+            
             events_dir = os.path.join(os.path.abspath(model_info['folder']), 'events')
             os.makedirs(events_dir, exist_ok=True)
             noise_ops = {'bpf', 'perf_event_open'}
@@ -3769,10 +3770,12 @@ def analyze_and_execute_model(model_folder):
                    if e.get('operation') not in noise_ops]
             all_execution = [e for e in (monitor.all_execution_events + monitor.execution_events)
                    if e.get('operation') not in noise_ops]
+            
             with open(os.path.join(events_dir, f"{model_name}_loading_events.json"), 'w') as f:
                 json.dump(all_loading, f, indent=2, default=str)
             with open(os.path.join(events_dir, f"{model_name}_execution_events.json"), 'w') as f:
                 json.dump(all_execution, f, indent=2, default=str)
+            print(f"[DEBUG-WRITE] model_name='{model_name}' folder='{model_info['folder']}' loading={len(all_loading)} execution={len(all_execution)}")
             import pwd
             hala_uid = pwd.getpwnam('hala').pw_uid
             hala_gid = pwd.getpwnam('hala').pw_gid
