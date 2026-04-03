@@ -319,7 +319,7 @@ def detect_model_info(model_folder):
             info['security_checks'][file]['embedded_executables'] = executables
         
         # PyTorch formats
-        pytorch_extensions = ['.bin', '.pt', '.pth', '.th', '.pt.tar']
+        pytorch_extensions = ['.bin', '.pt', '.pth', '.th', '.pt.tar', '.ckpt']
         if any(file.endswith(ext) for ext in pytorch_extensions):
             classification = _classify_pytorch_bin(file_path)
             info['bin_classification'][file] = classification
@@ -942,7 +942,7 @@ def execute_model(model_info, requirements, structure, input_data):
          file_type = 'paddle'
     elif file.endswith(('.engine', '.plan', '.trt')):
          file_type = 'tensorrt'
-    elif file.endswith(('.pt', '.pth')):
+    elif file.endswith(('.pt', '.pth', '.ckpt')):
          file_type = 'pytorch'
     elif file.endswith('.th'):
          file_type = 'pytorch_th'
@@ -3711,7 +3711,7 @@ def analyze_and_execute_model(model_folder):
         
         AOP_monitoring()
         monitor.start_ebpf_monitoring("child_init", phase="LOADING")
-        set_resource_limits() 
+        #set_resource_limits() 
         execution_results = execute_model(model_info, requirements, structure, input_data)
         
         # Flush remaining events
@@ -4584,7 +4584,7 @@ class AspectMonitor:
       try:
         if not self.monitoring_active:
             fixed_ebpf_program=None
-            with open('enhanced_fixed_ebpf_program.c', 'r') as f:
+            with open('/home/hala/9_OCtober/enhanced_fixed_ebpf_program.c', 'r') as f:
                   fixed_ebpf_program = f.read()   
             
             self.bpf = BPF(text=fixed_ebpf_program)
@@ -6982,7 +6982,7 @@ if __name__ == "__main__":
             has_model_files = any(
              f.endswith((
              # PyTorch and TorchScript
-             '.pt', '.pth', '.th',
+             '.pt', '.pth', '.th','.ckpt',
              # TensorFlow / Keras
              '.h5', '.keras', '.pb', '.tflite',
              # PyTorch serialization / checkpoints
