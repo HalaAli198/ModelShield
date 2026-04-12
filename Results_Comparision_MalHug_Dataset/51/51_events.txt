@@ -1,0 +1,571 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/51.neilalfred93-my_demo_1
+======================================================================
+
+[1] Detecting model type...
+    Type: torch_package
+    Framework: pytorch
+    Has config.json: False
+    Files: malware_mnist.pt...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: pytorch_zip_format
+    Is real model: False
+    ⚠️  Suspicious: malware_mnist.pt is suspiciously small (888 bytes), Contains data.pkl file
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143277, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143277
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140624490370880, Kernel: 143277
+[AOP Monitor] Context tracked: pthread_id=140624490370880, kernel_tid=143277, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 143277, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143277
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - malware_mnist.pt is suspiciously small (888 bytes)
+   - Contains data.pkl file
+   - This may not be a real model - likely just malicious code
+
+  Processing malware_mnist.pt as type: torch_package
+⚠️  Loading torch.package model (POTENTIALLY DANGEROUS!)...
+    Trying torch.load for torch.package file...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: a7f061fe
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143277, correlation 'a7f061fe', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a7f061fe', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143277
+[Context Update] Updated 1 threads to a7f061fe (LOADING)
+[Debug] Thread IDs - Python: 140624490370880, Kernel: 143277
+[AOP Monitor] Context tracked: pthread_id=140624490370880, kernel_tid=143277, ID=a7f061fe, Phase=LOADING
+[Debug] Setting eBPF context for TID 143277, correlation 'a7f061fe', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a7f061fe', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143277
+[AOP Monitor] eBPF monitoring active for LOADING: a7f061fe
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 7f7a96ac
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143277, correlation '7f7a96ac', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f7a96ac', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143277
+[Context Update] Updated 1 threads to 7f7a96ac (LOADING)
+[Debug] Thread IDs - Python: 140624490370880, Kernel: 143277
+[AOP Monitor] Context tracked: pthread_id=140624490370880, kernel_tid=143277, ID=7f7a96ac, Phase=LOADING
+[Debug] Setting eBPF context for TID 143277, correlation '7f7a96ac', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f7a96ac', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143277
+[AOP Monitor] eBPF monitoring active for LOADING: 7f7a96ac
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=306_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=307_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:143277 TID:143277 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143277 TID:143277 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143277 TID:143277 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143277 TID:143277 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143277 TID:143277 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143277 TID:143277 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143277 TID:143277 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143277 TID:143277 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 0 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 18, 1 -> stat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 10, 1 -> openat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143277 TID:143277 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=888, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143277 TID:143277 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 112, 1 -> bpf -> 
+PID:143277 TID:143277 -event.operation_id: 10, 1 -> openat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143277 TID:143277 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=866, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=846, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=790, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=504, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=338, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=214, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=127, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143277 TID:143277 -event.operation_id: 12, 1 -> read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt
+PID:143277 TID:143277 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143277 TID:143277 -event.operation_id: 80, 1 -> clone -> flags=0x4111 [flags=CLONE_VM]
+PID:143279 TID:143279 -event.operation_id: 101, 1 -> execve -> /usr/bin/touch
+PID:143279 TID:143279 -event.operation_id: 22, 1 -> access -> /etc/ld.so.preload [mode=R_OK|W_OK|X_OK]
+PID:143279 TID:143279 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:143279 TID:143279 -event.operation_id: 19, 1 -> fstat -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libc.so.6
+PID:143279 TID:143279 -event.operation_id: 12, 1 -> read -> /lib/x86_64-linux-gnu/libc.so.6
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:143279 TID:143279 -event.operation_id: 19, 1 -> fstat -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:143279 TID:143279 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=0x7fa058872000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=0x7fa0589ea000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=0x7fa058a38000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=0x7fa058a3e000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143279 TID:143279 -event.operation_id: 86, 1 -> mprotect -> addr=0x7fa058a38000, len=16384 [protection=PROT_READ]
+PID:143279 TID:143279 -event.operation_id: 86, 1 -> mprotect -> addr=0x5609f7203000, len=4096 [protection=PROT_READ]
+PID:143279 TID:143279 -event.operation_id: 86, 1 -> mprotect -> addr=0x7fa058a82000, len=4096 [protection=PROT_READ]
+PID:143279 TID:143279 -event.operation_id: 10, 1 -> openat -> /usr/lib/locale/locale-archive
+PID:143279 TID:143279 -event.operation_id: 19, 1 -> fstat -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 10, 1 -> openat -> malware.1
+PID:143279 TID:143279 -event.operation_id: 53, 1 -> dup2 -> dup_3->0
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=0 [fd=0]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=1 [fd=1]
+PID:143279 TID:143279 -event.operation_id: 57, 1 -> close -> fd=2 [fd=2]
+PID:143277 TID:143277 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143277 TID:143277 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8177, stream=stdout]
+PID:143277 TID:143277 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143277 TID:143277 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8137, stream=stdout]
+PID:143278 TID:143278 -event.operation_id: 22, 1 -> access -> /etc/ld.so.preload [mode=R_OK|W_OK|X_OK]
+PID:143278 TID:143278 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:143278 TID:143278 -event.operation_id: 19, 1 -> fstat -> fd=3 [fd=3]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143278 TID:143278 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143278 TID:143278 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libc.so.6
+PID:143278 TID:143278 -event.operation_id: 12, 1 -> read -> /lib/x86_64-linux-gnu/libc.so.6
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:143278 TID:143278 -event.operation_id: 19, 1 -> fstat -> fd=3 [fd=3]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:143278 TID:143278 -event.operation_id: 13, 1 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2b0e836000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2b0e9ae000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2b0e9fc000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:143278 TID:143278 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2b0ea02000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:143278 TID:143278 -event.operation_id: 57, 1 -> close -> fd=3 [fd=3]
+PID:143278 TID:143278 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2b0e9fc000, len=16384 [protection=PROT_READ]
+PID:143278 TID:143278 -event.operation_id: 86, 1 -> mprotect -> addr=0x55d10ec73000, len=8192 [protection=PROT_READ]
+PID:143278 TID:143278 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2b0ea46000, len=4096 [protection=PROT_READ]
+PID:143278 TID:143278 -event.operation_id: 88, 1 -> getuid -> getuid
+PID:143278 TID:143278 -event.operation_id: 90, 1 -> getgid -> getgid
+PID:143278 TID:143278 -event.operation_id: 89, 1 -> geteuid -> geteuid
+PID:143278 TID:143278 -event.operation_id: 55, 1 -> getcwd -> getcwd
+PID:143278 TID:143278 -event.operation_id: 89, 1 -> geteuid -> geteuid
+PID:143278 TID:143278 -event.operation_id: 91, 1 -> getegid -> getegid
+PID:143278 TID:143278 -event.operation_id: 18, 1 -> stat -> /usr/local/sbin/touch
+PID:143278 TID:143278 -event.operation_id: 18, 1 -> stat -> /usr/local/bin/touch
+PID:143278 TID:143278 -event.operation_id: 18, 1 -> stat -> /usr/sbin/touch
+PID:143278 TID:143278 -event.operation_id: 18, 1 -> stat -> /usr/bin/touch
+PID:143278 TID:143278 -event.operation_id: 80, 1 -> clone -> flags=0x1200011 [flags=CLONE_SYSVSEM|CLONE_CHILD_CLEARTID]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143277 -> Child PID: 143278
+  Correlation ID: 7f7a96ac
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167189.985337
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143277 -> Child PID: 143278
+  Correlation ID: 7f7a96ac
+  Phase: 1
+  Command: sh
+  Timestamp: 167189.985262
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143278 -> Child PID: 143279
+  Correlation ID: 7f7a96ac
+  Phase: 1
+  Command: sh
+  Timestamp: 167189.988907
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (7f7a96ac) - Total: 137
+======================================================================
+[1] PID:143277 TID:143277 - bpf ->  {}
+[2] PID:143277 TID:143277 - bpf ->  {}
+[3] PID:143277 TID:143277 - bpf ->  {}
+[4] PID:143277 TID:143277 - stat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {}
+[5] PID:143277 TID:143277 - openat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {}
+[6] PID:143277 TID:143277 - fstat -> fd=313 {'fd': 313}
+[7] PID:143277 TID:143277 - fstat -> fd=313 {'fd': 313}
+[8] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[9] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[10] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[11] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[12] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[13] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[14] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[15] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[16] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[17] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[18] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[19] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[20] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 888, 'whence': 'SEEK_SET'}
+[21] PID:143277 TID:143277 - close -> fd=313 {'fd': 313}
+[22] PID:143277 TID:143277 - getrandom -> getrandom_size=0 {}
+[23] PID:143277 TID:143277 - bpf ->  {}
+[24] PID:143277 TID:143277 - bpf ->  {}
+[25] PID:143277 TID:143277 - bpf ->  {}
+[26] PID:143277 TID:143277 - bpf ->  {}
+[27] PID:143277 TID:143277 - getrandom -> getrandom_size=0 {}
+[28] PID:143277 TID:143277 - bpf ->  {}
+[29] PID:143277 TID:143277 - bpf ->  {}
+[30] PID:143277 TID:143277 - bpf ->  {}
+[31] PID:143277 TID:143277 - bpf ->  {}
+[32] PID:143277 TID:143277 - openat -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {}
+[33] PID:143277 TID:143277 - fstat -> fd=313 {'fd': 313}
+[34] PID:143277 TID:143277 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[35] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[36] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[37] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[38] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[39] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[40] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[41] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[42] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[43] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[44] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[45] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 866, 'whence': 'SEEK_SET'}
+[46] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[47] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 846, 'whence': 'SEEK_SET'}
+[48] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[49] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 790, 'whence': 'SEEK_SET'}
+[50] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[51] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 504, 'whence': 'SEEK_SET'}
+[52] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[53] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 338, 'whence': 'SEEK_SET'}
+[54] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[55] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 214, 'whence': 'SEEK_SET'}
+[56] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[57] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 127, 'whence': 'SEEK_SET'}
+[58] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[59] PID:143277 TID:143277 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[60] PID:143277 TID:143277 - read -> ./Models_rest/51.neilalfred93-my_demo_1/malware_mnist.pt {'fd': 8317134093884927790, 'size': 3545792458822873695}
+[61] PID:143277 TID:143277 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[62] PID:143277 TID:143277 - clone -> flags=0x4111 {'flags': 'CLONE_VM'}
+[63] PID:143278 TID:143278 - access -> /etc/ld.so.preload {'mode': 'R_OK|W_OK|X_OK'}
+[64] PID:143278 TID:143278 - openat -> /etc/ld.so.cache {}
+[65] PID:143278 TID:143278 - fstat -> fd=3 {'fd': 3}
+[66] PID:143278 TID:143278 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[67] PID:143278 TID:143278 - close -> fd=3 {'fd': 3}
+[68] PID:143278 TID:143278 - openat -> /lib/x86_64-linux-gnu/libc.so.6 {}
+[69] PID:143278 TID:143278 - read -> /lib/x86_64-linux-gnu/libc.so.6 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[70] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[71] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[72] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[73] PID:143278 TID:143278 - fstat -> fd=3 {'fd': 3}
+[74] PID:143278 TID:143278 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[75] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[76] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[77] PID:143278 TID:143278 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[78] PID:143278 TID:143278 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[79] PID:143278 TID:143278 - mmap -> addr=0x7f2b0e836000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[80] PID:143278 TID:143278 - mmap -> addr=0x7f2b0e9ae000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[81] PID:143278 TID:143278 - mmap -> addr=0x7f2b0e9fc000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[82] PID:143278 TID:143278 - mmap -> addr=0x7f2b0ea02000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[83] PID:143278 TID:143278 - close -> fd=3 {'fd': 3}
+[84] PID:143278 TID:143278 - mprotect -> addr=0x7f2b0e9fc000, len=16384 {'protection': 'PROT_READ'}
+[85] PID:143278 TID:143278 - mprotect -> addr=0x55d10ec73000, len=8192 {'protection': 'PROT_READ'}
+[86] PID:143278 TID:143278 - mprotect -> addr=0x7f2b0ea46000, len=4096 {'protection': 'PROT_READ'}
+[87] PID:143278 TID:143278 - getuid -> getuid {}
+[88] PID:143278 TID:143278 - getgid -> getgid {}
+[89] PID:143278 TID:143278 - geteuid -> geteuid {}
+[90] PID:143278 TID:143278 - getcwd -> getcwd {}
+[91] PID:143278 TID:143278 - geteuid -> geteuid {}
+[92] PID:143278 TID:143278 - getegid -> getegid {}
+[93] PID:143278 TID:143278 - stat -> /usr/local/sbin/touch {}
+[94] PID:143278 TID:143278 - stat -> /usr/local/bin/touch {}
+[95] PID:143278 TID:143278 - stat -> /usr/sbin/touch {}
+[96] PID:143278 TID:143278 - stat -> /usr/bin/touch {}
+[97] PID:143278 TID:143278 - clone -> flags=0x1200011 {'flags': 'CLONE_SYSVSEM|CLONE_CHILD_CLEARTID'}
+[98] PID:143279 TID:143279 - execve -> /usr/bin/touch {}
+[99] PID:143279 TID:143279 - access -> /etc/ld.so.preload {'mode': 'R_OK|W_OK|X_OK'}
+[100] PID:143279 TID:143279 - openat -> /etc/ld.so.cache {}
+[101] PID:143279 TID:143279 - fstat -> fd=3 {'fd': 3}
+[102] PID:143279 TID:143279 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[103] PID:143279 TID:143279 - close -> fd=3 {'fd': 3}
+[104] PID:143279 TID:143279 - openat -> /lib/x86_64-linux-gnu/libc.so.6 {}
+[105] PID:143279 TID:143279 - read -> /lib/x86_64-linux-gnu/libc.so.6 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[106] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[107] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[108] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[109] PID:143279 TID:143279 - fstat -> fd=3 {'fd': 3}
+[110] PID:143279 TID:143279 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[111] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[112] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[113] PID:143279 TID:143279 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[114] PID:143279 TID:143279 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[115] PID:143279 TID:143279 - mmap -> addr=0x7fa058872000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[116] PID:143279 TID:143279 - mmap -> addr=0x7fa0589ea000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[117] PID:143279 TID:143279 - mmap -> addr=0x7fa058a38000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[118] PID:143279 TID:143279 - mmap -> addr=0x7fa058a3e000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[119] PID:143279 TID:143279 - close -> fd=3 {'fd': 3}
+[120] PID:143279 TID:143279 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[121] PID:143279 TID:143279 - mprotect -> addr=0x7fa058a38000, len=16384 {'protection': 'PROT_READ'}
+[122] PID:143279 TID:143279 - mprotect -> addr=0x5609f7203000, len=4096 {'protection': 'PROT_READ'}
+[123] PID:143279 TID:143279 - mprotect -> addr=0x7fa058a82000, len=4096 {'protection': 'PROT_READ'}
+[124] PID:143279 TID:143279 - openat -> /usr/lib/locale/locale-archive {}
+[125] PID:143279 TID:143279 - fstat -> fd=3 {'fd': 3}
+[126] PID:143279 TID:143279 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[127] PID:143279 TID:143279 - close -> fd=3 {'fd': 3}
+[128] PID:143279 TID:143279 - openat -> malware.1 {}
+[129] PID:143279 TID:143279 - dup2 -> dup_3->0 {}
+[130] PID:143279 TID:143279 - close -> fd=3 {'fd': 3}
+[131] PID:143279 TID:143279 - close -> fd=0 {'fd': 0}
+[132] PID:143279 TID:143279 - close -> fd=1 {'fd': 1}
+[133] PID:143279 TID:143279 - close -> fd=2 {'fd': 2}
+[134] PID:143277 TID:143277 - close -> fd=313 {'fd': 313}
+[135] PID:143277 TID:143277 - write -> stdout {'fd': 1, 'size': 8177, 'stream': 'stdout'}
+[136] PID:143277 TID:143277 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[137] PID:143277 TID:143277 - write -> stdout {'fd': 1, 'size': 8137, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1326 seconds
+PID:143277 TID:143277 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8150, stream=stdout]
+PID:143277 TID:143277 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8192, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (a7f061fe) - Total: 2
+======================================================================
+[1] PID:143277 TID:143277 - write -> stdout {'fd': 1, 'size': 8150, 'stream': 'stdout'}
+[2] PID:143277 TID:143277 - write -> stdout {'fd': 1, 'size': 8192, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2301 seconds
+    Saved 128 loading events to 51.neilalfred93-my_demo_1_loading_events.json
+    Saved 0 execution events to 51.neilalfred93-my_demo_1_execution_events.json
+    Files Processed: 1
+    Successful: 1, Malicious: 0, Failed: 0
+    - malware_mnist.pt: model_loaded - Loaded via torch.load: <class 'int'> | Attempts: P
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/51.neilalfred93-my_demo_1",
+  "model_info": {
+    "folder": "./Models_rest/51.neilalfred93-my_demo_1",
+    "files": [
+      "malware_mnist.pt",
+      ".git",
+      ".gitattributes"
+    ],
+    "has_config": false,
+    "model_type": "torch_package",
+    "framework": "pytorch",
+    "model_files": [
+      "malware_mnist.pt"
+    ],
+    "config_data": null,
+    "bin_classification": {
+      "malware_mnist.pt": {
+        "kind": "torch_package",
+        "is_zip": true,
+        "contents": [
+          "malware_mnist/data.pkl",
+          "malware_mnist/byteorder",
+          "malware_mnist/version",
+          "malware_mnist/.data/serialization_id"
+        ],
+        "safe_for_hf": false,
+        "has_custom_class": false,
+        "is_checkpoint": false,
+        "is_quantized": false,
+        "is_distributed": false,
+        "pickle_files": [
+          "malware_mnist/data.pkl"
+        ],
+        "module_pickles": {
+          "malware_mnist": [
+            "malware_mnist/data.pkl"
+          ]
+        }
+      }
+    },
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "pytorch_zip_format",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "malware_mnist.pt": "0.87 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "malware_mnist.pt is suspiciously small (888 bytes)",
+      "Contains data.pkl file"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "malware_mnist.pt",
+      "status": "model_loaded",
+      "output": "Loaded via torch.load: <class 'int'> | Attempts: PackageImporter: FAILED - PytorchStreamReader failed locating file .data/ext | torch.load: SUCCESS - <class 'int'>"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 1,
+    "malicious": 0,
+    "failed": 0
+  }
+}

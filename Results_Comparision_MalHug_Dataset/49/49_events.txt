@@ -1,0 +1,2643 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/49.mastersplinter-infected_test
+======================================================================
+
+[1] Detecting model type...
+    Type: tensorflow_saved
+    Framework: tensorflow
+    Has config.json: False
+    Files: saved_model.pb, keras_metadata.pb, fingerprint.pb...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: fingerprint.pb is suspiciously small (57 bytes)
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing saved_model.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: c5c8e350
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'c5c8e350', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c5c8e350', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Context Update] Updated 1 threads to c5c8e350 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=c5c8e350, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'c5c8e350', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c5c8e350', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: c5c8e350
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5c6ed2d9
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '5c6ed2d9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5c6ed2d9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Context Update] Updated 1 threads to 5c6ed2d9 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=5c6ed2d9, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '5c6ed2d9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5c6ed2d9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 5c6ed2d9
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=306_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=307_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:143222 TID:143222 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143222 TID:143222 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143222 TID:143222 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143222 TID:143222 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143222 TID:143222 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143222 TID:143222 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143222 TID:143222 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143222 TID:143222 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143222 TID:143222 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 0 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> ./Models_rest/49.mastersplinter-infected_test/variables
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /dev/urandom
+PID:143222 TID:143222 -event.operation_id: 12, 1 -> read -> /dev/urandom [size=1836016750]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:143222 TID:143222 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libcuda.so.1
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /lib/libcuda.so.1
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /usr/lib/libcuda.so.1
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> /proc/driver/nvidia/version [mode=R_OK|W_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a7c99b000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a7c19a000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a67800000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a66fff000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a667fe000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a65ffd000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 2, 1 -> sysinfo -> sysinfo
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 44, 1 -> readlink -> /proc/se [bufsiz=4095]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> /proc/self/cmdline
+PID:143222 TID:143222 -event.operation_id: 12, 1 -> read -> /proc/self/cmdline
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a657fc000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143222 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1487, offset=8]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1047081, offset=1495]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8166, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8150, stream=stdout]
+PID:143222 TID:143224 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143224 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a70000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143226 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143226 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a68000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143229 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143229 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a58000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143223 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143223 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a78000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143225 -event.operation_id: 85, 1 -> mmap -> addr=0x7f6a74000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143225 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a74000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143227 -event.operation_id: 85, 1 -> mmap -> addr=0x7f6a6c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143227 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a6c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143228 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143228 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a60000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143230 -event.operation_id: 85, 1 -> mmap -> addr=0x7f6a5c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143230 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a5c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143231 -event.operation_id: 10, 1 -> openat -> /sys/devices/system/cpu/online
+PID:143222 TID:143231 -event.operation_id: 12, 1 -> read -> /sys/devices/system/cpu/online
+PID:143222 TID:143231 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143222 TID:143231 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143231 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a50000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143232 -event.operation_id: 85, 1 -> mmap -> addr=0x7f6a54000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143232 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6a54000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143222 TID:143232 -event.operation_id: 144, 1 -> madvise -> madvise_0x7f6a657fb000_len=8368128 [behavior=MADV_DONTNEED]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143223
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.677269
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143224
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.712296
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143225
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.712588
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143226
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.712930
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143227
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.713266
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143228
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.713835
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143229
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.714145
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143230
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.714447
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143231
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167086.715019
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143222 -> Child PID: 143232
+  Correlation ID: 5c6ed2d9
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167087.287991
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8059, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (5c6ed2d9) - Total: 186
+======================================================================
+[1] PID:143222 TID:143222 - bpf ->  {}
+[2] PID:143222 TID:143222 - bpf ->  {}
+[3] PID:143222 TID:143222 - bpf ->  {}
+[4] PID:143222 TID:143222 - stat -> ./Models_rest/49.mastersplinter-infected_test/variables {}
+[5] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - bpf ->  {}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[16] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[17] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[18] PID:143222 TID:143222 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 0}
+[19] PID:143222 TID:143222 - pread64 -> fd=313 {'fd': 313, 'size': 499498, 'offset': 24790}
+[20] PID:143222 TID:143222 - close -> fd=313 {'fd': 313}
+[21] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[22] PID:143222 TID:143222 - openat -> /dev/urandom {}
+[23] PID:143222 TID:143222 - read -> /dev/urandom {'fd': 7021803615734293551, 'size': 1836016750}
+[24] PID:143222 TID:143222 - close -> fd=313 {'fd': 313}
+[25] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[26] PID:143222 TID:143223 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[27] PID:143222 TID:143223 - mprotect -> addr=0x7f6a78000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[28] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[29] PID:143222 TID:143222 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo {}
+[30] PID:143222 TID:143222 - openat -> /etc/ld.so.cache {}
+[31] PID:143222 TID:143222 - fstat -> fd=313 {'fd': 313}
+[32] PID:143222 TID:143222 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[33] PID:143222 TID:143222 - close -> fd=313 {'fd': 313}
+[34] PID:143222 TID:143222 - openat -> /lib/x86_64-linux-gnu/libcuda.so.1 {}
+[35] PID:143222 TID:143222 - openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 {}
+[36] PID:143222 TID:143222 - openat -> /lib/libcuda.so.1 {}
+[37] PID:143222 TID:143222 - openat -> /usr/lib/libcuda.so.1 {}
+[38] PID:143222 TID:143222 - access -> /proc/driver/nvidia/version {'mode': 'R_OK|W_OK|X_OK'}
+[39] PID:143222 TID:143222 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[40] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[41] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[42] PID:143222 TID:143224 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[43] PID:143222 TID:143224 - mprotect -> addr=0x7f6a70000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[44] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[45] PID:143222 TID:143222 - mprotect -> addr=0x7f6a7c99b000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[46] PID:143222 TID:143225 - mmap -> addr=0x7f6a74000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[47] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[48] PID:143222 TID:143225 - mprotect -> addr=0x7f6a74000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[49] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[50] PID:143222 TID:143222 - mprotect -> addr=0x7f6a7c19a000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[51] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[52] PID:143222 TID:143226 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[53] PID:143222 TID:143226 - mprotect -> addr=0x7f6a68000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[54] PID:143222 TID:143227 - mmap -> addr=0x7f6a6c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[55] PID:143222 TID:143227 - mprotect -> addr=0x7f6a6c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[56] PID:143222 TID:143222 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[57] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[58] PID:143222 TID:143222 - mprotect -> addr=0x7f6a67800000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[59] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[60] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[61] PID:143222 TID:143222 - mprotect -> addr=0x7f6a66fff000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[62] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[63] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[64] PID:143222 TID:143222 - mprotect -> addr=0x7f6a667fe000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[65] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[66] PID:143222 TID:143228 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[67] PID:143222 TID:143229 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[68] PID:143222 TID:143228 - mprotect -> addr=0x7f6a60000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[69] PID:143222 TID:143229 - mprotect -> addr=0x7f6a58000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[70] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[71] PID:143222 TID:143222 - mprotect -> addr=0x7f6a65ffd000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[72] PID:143222 TID:143230 - mmap -> addr=0x7f6a5c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[73] PID:143222 TID:143230 - mprotect -> addr=0x7f6a5c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[74] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[75] PID:143222 TID:143231 - openat -> /sys/devices/system/cpu/online {}
+[76] PID:143222 TID:143231 - read -> /sys/devices/system/cpu/online {'fd': 8531335224086852399, 'size': 8320808434180383593}
+[77] PID:143222 TID:143231 - close -> fd=313 {'fd': 313}
+[78] PID:143222 TID:143231 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[79] PID:143222 TID:143231 - mprotect -> addr=0x7f6a50000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - uname -> uname {}
+[96] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[97] PID:143222 TID:143222 - uname -> uname {}
+[98] PID:143222 TID:143222 - uname -> uname {}
+[99] PID:143222 TID:143222 - uname -> uname {}
+[100] PID:143222 TID:143222 - uname -> uname {}
+[101] PID:143222 TID:143222 - uname -> uname {}
+[102] PID:143222 TID:143222 - uname -> uname {}
+[103] PID:143222 TID:143222 - uname -> uname {}
+[104] PID:143222 TID:143222 - uname -> uname {}
+[105] PID:143222 TID:143222 - uname -> uname {}
+[106] PID:143222 TID:143222 - uname -> uname {}
+[107] PID:143222 TID:143222 - uname -> uname {}
+[108] PID:143222 TID:143222 - uname -> uname {}
+[109] PID:143222 TID:143222 - uname -> uname {}
+[110] PID:143222 TID:143222 - uname -> uname {}
+[111] PID:143222 TID:143222 - uname -> uname {}
+[112] PID:143222 TID:143222 - uname -> uname {}
+[113] PID:143222 TID:143222 - uname -> uname {}
+[114] PID:143222 TID:143222 - uname -> uname {}
+[115] PID:143222 TID:143222 - uname -> uname {}
+[116] PID:143222 TID:143222 - sysinfo -> sysinfo {}
+[117] PID:143222 TID:143222 - uname -> uname {}
+[118] PID:143222 TID:143222 - uname -> uname {}
+[119] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[120] PID:143222 TID:143222 - readlink -> /proc/se {'bufsiz': 4095}
+[121] PID:143222 TID:143222 - openat -> /proc/self/cmdline {}
+[122] PID:143222 TID:143222 - read -> /proc/self/cmdline {'fd': 7310238724270485551, 'size': 7596557092445447788}
+[123] PID:143222 TID:143222 - access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow {'mode': 'R_OK|X_OK'}
+[124] PID:143222 TID:143222 - openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels {}
+[125] PID:143222 TID:143222 - uname -> uname {}
+[126] PID:143222 TID:143222 - uname -> uname {}
+[127] PID:143222 TID:143222 - uname -> uname {}
+[128] PID:143222 TID:143222 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[129] PID:143222 TID:143222 - mprotect -> addr=0x7f6a657fc000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[130] PID:143222 TID:143222 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[131] PID:143222 TID:143232 - mmap -> addr=0x7f6a54000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[132] PID:143222 TID:143232 - mprotect -> addr=0x7f6a54000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[133] PID:143222 TID:143232 - madvise -> madvise_0x7f6a657fb000_len=8368128 {'behavior': 'MADV_DONTNEED'}
+[134] PID:143222 TID:143222 - uname -> uname {}
+[135] PID:143222 TID:143222 - uname -> uname {}
+[136] PID:143222 TID:143222 - uname -> uname {}
+[137] PID:143222 TID:143222 - uname -> uname {}
+[138] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[139] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[140] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[141] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 214}
+[142] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 194}
+[143] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[144] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[145] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[146] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[147] PID:143222 TID:143222 - pread64 -> fd=315 {'fd': 315, 'size': 1487, 'offset': 8}
+[148] PID:143222 TID:143222 - uname -> uname {}
+[149] PID:143222 TID:143222 - uname -> uname {}
+[150] PID:143222 TID:143222 - uname -> uname {}
+[151] PID:143222 TID:143222 - uname -> uname {}
+[152] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[153] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[154] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[155] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 214}
+[156] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 194}
+[157] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 181, 'offset': 0}
+[158] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[159] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[160] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1047081, 'offset': 1495}
+[161] PID:143222 TID:143222 - close -> fd=316 {'fd': 316}
+[162] PID:143222 TID:143222 - close -> fd=317 {'fd': 317}
+[163] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[164] PID:143222 TID:143222 - uname -> uname {}
+[165] PID:143222 TID:143222 - uname -> uname {}
+[166] PID:143222 TID:143222 - uname -> uname {}
+[167] PID:143222 TID:143222 - uname -> uname {}
+[168] PID:143222 TID:143222 - uname -> uname {}
+[169] PID:143222 TID:143222 - uname -> uname {}
+[170] PID:143222 TID:143222 - uname -> uname {}
+[171] PID:143222 TID:143222 - uname -> uname {}
+[172] PID:143222 TID:143222 - uname -> uname {}
+[173] PID:143222 TID:143222 - uname -> uname {}
+[174] PID:143222 TID:143222 - uname -> uname {}
+[175] PID:143222 TID:143222 - uname -> uname {}
+[176] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[177] PID:143222 TID:143222 - close -> fd=315 {'fd': 315}
+[178] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[179] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[180] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[181] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[182] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[183] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[184] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8166, 'stream': 'stdout'}
+[185] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8150, 'stream': 'stdout'}
+[186] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8059, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.8078 seconds
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8111, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8169, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (c5c8e350) - Total: 2
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8111, 'stream': 'stdout'}
+[2] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8169, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.9089 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 903755fa
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 903755fa (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=903755fa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '903755fa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='903755fa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 903755fa
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 34fd4144
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 34fd4144 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=34fd4144, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '34fd4144', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34fd4144', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 34fd4144
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8152, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8172, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (34fd4144) - Total: 104
+======================================================================
+[1] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[2] PID:143222 TID:143222 - bpf ->  {}
+[3] PID:143222 TID:143222 - bpf ->  {}
+[4] PID:143222 TID:143222 - bpf ->  {}
+[5] PID:143222 TID:143222 - bpf ->  {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - bpf ->  {}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - bpf ->  {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - bpf ->  {}
+[16] PID:143222 TID:143222 - bpf ->  {}
+[17] PID:143222 TID:143222 - bpf ->  {}
+[18] PID:143222 TID:143222 - bpf ->  {}
+[19] PID:143222 TID:143222 - bpf ->  {}
+[20] PID:143222 TID:143222 - bpf ->  {}
+[21] PID:143222 TID:143222 - bpf ->  {}
+[22] PID:143222 TID:143222 - bpf ->  {}
+[23] PID:143222 TID:143222 - bpf ->  {}
+[24] PID:143222 TID:143222 - bpf ->  {}
+[25] PID:143222 TID:143222 - bpf ->  {}
+[26] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[27] PID:143222 TID:143222 - bpf ->  {}
+[28] PID:143222 TID:143222 - bpf ->  {}
+[29] PID:143222 TID:143222 - bpf ->  {}
+[30] PID:143222 TID:143222 - bpf ->  {}
+[31] PID:143222 TID:143222 - bpf ->  {}
+[32] PID:143222 TID:143222 - bpf ->  {}
+[33] PID:143222 TID:143222 - bpf ->  {}
+[34] PID:143222 TID:143222 - bpf ->  {}
+[35] PID:143222 TID:143222 - bpf ->  {}
+[36] PID:143222 TID:143222 - bpf ->  {}
+[37] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8152, 'stream': 'stdout'}
+[38] PID:143222 TID:143222 - bpf ->  {}
+[39] PID:143222 TID:143222 - bpf ->  {}
+[40] PID:143222 TID:143222 - bpf ->  {}
+[41] PID:143222 TID:143222 - bpf ->  {}
+[42] PID:143222 TID:143222 - bpf ->  {}
+[43] PID:143222 TID:143222 - bpf ->  {}
+[44] PID:143222 TID:143222 - bpf ->  {}
+[45] PID:143222 TID:143222 - bpf ->  {}
+[46] PID:143222 TID:143222 - bpf ->  {}
+[47] PID:143222 TID:143222 - bpf ->  {}
+[48] PID:143222 TID:143222 - bpf ->  {}
+[49] PID:143222 TID:143222 - bpf ->  {}
+[50] PID:143222 TID:143222 - bpf ->  {}
+[51] PID:143222 TID:143222 - bpf ->  {}
+[52] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[54] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[55] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 499498, 'offset': 24790}
+[57] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[58] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[59] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[60] PID:143222 TID:143222 - uname -> uname {}
+[61] PID:143222 TID:143222 - uname -> uname {}
+[62] PID:143222 TID:143222 - uname -> uname {}
+[63] PID:143222 TID:143222 - uname -> uname {}
+[64] PID:143222 TID:143222 - uname -> uname {}
+[65] PID:143222 TID:143222 - uname -> uname {}
+[66] PID:143222 TID:143222 - uname -> uname {}
+[67] PID:143222 TID:143222 - uname -> uname {}
+[68] PID:143222 TID:143222 - uname -> uname {}
+[69] PID:143222 TID:143222 - uname -> uname {}
+[70] PID:143222 TID:143222 - uname -> uname {}
+[71] PID:143222 TID:143222 - uname -> uname {}
+[72] PID:143222 TID:143222 - uname -> uname {}
+[73] PID:143222 TID:143222 - uname -> uname {}
+[74] PID:143222 TID:143222 - uname -> uname {}
+[75] PID:143222 TID:143222 - uname -> uname {}
+[76] PID:143222 TID:143222 - uname -> uname {}
+[77] PID:143222 TID:143222 - uname -> uname {}
+[78] PID:143222 TID:143222 - uname -> uname {}
+[79] PID:143222 TID:143222 - uname -> uname {}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[96] PID:143222 TID:143222 - uname -> uname {}
+[97] PID:143222 TID:143222 - uname -> uname {}
+[98] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[99] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[100] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[101] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[102] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[103] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[104] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8172, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1514 seconds
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (903755fa) - Total: 1
+======================================================================
+[1] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2472 seconds
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing keras_metadata.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: a31a95ab
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to a31a95ab (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=a31a95ab, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'a31a95ab', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='a31a95ab', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: a31a95ab
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: aeb8681d
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to aeb8681d (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=aeb8681d, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'aeb8681d', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='aeb8681d', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: aeb8681d
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8150, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> ./Models_rest/49.mastersplinter-infected_test/variables
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1487, offset=8]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1047081, offset=1495]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8187, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8130, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (aeb8681d) - Total: 127
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8150, 'stream': 'stdout'}
+[2] PID:143222 TID:143222 - stat -> ./Models_rest/49.mastersplinter-infected_test/variables {}
+[3] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[4] PID:143222 TID:143222 - bpf ->  {}
+[5] PID:143222 TID:143222 - bpf ->  {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - bpf ->  {}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - bpf ->  {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - bpf ->  {}
+[16] PID:143222 TID:143222 - bpf ->  {}
+[17] PID:143222 TID:143222 - bpf ->  {}
+[18] PID:143222 TID:143222 - bpf ->  {}
+[19] PID:143222 TID:143222 - bpf ->  {}
+[20] PID:143222 TID:143222 - bpf ->  {}
+[21] PID:143222 TID:143222 - bpf ->  {}
+[22] PID:143222 TID:143222 - bpf ->  {}
+[23] PID:143222 TID:143222 - bpf ->  {}
+[24] PID:143222 TID:143222 - bpf ->  {}
+[25] PID:143222 TID:143222 - bpf ->  {}
+[26] PID:143222 TID:143222 - bpf ->  {}
+[27] PID:143222 TID:143222 - bpf ->  {}
+[28] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[29] PID:143222 TID:143222 - bpf ->  {}
+[30] PID:143222 TID:143222 - bpf ->  {}
+[31] PID:143222 TID:143222 - bpf ->  {}
+[32] PID:143222 TID:143222 - bpf ->  {}
+[33] PID:143222 TID:143222 - bpf ->  {}
+[34] PID:143222 TID:143222 - bpf ->  {}
+[35] PID:143222 TID:143222 - bpf ->  {}
+[36] PID:143222 TID:143222 - bpf ->  {}
+[37] PID:143222 TID:143222 - bpf ->  {}
+[38] PID:143222 TID:143222 - bpf ->  {}
+[39] PID:143222 TID:143222 - bpf ->  {}
+[40] PID:143222 TID:143222 - bpf ->  {}
+[41] PID:143222 TID:143222 - bpf ->  {}
+[42] PID:143222 TID:143222 - bpf ->  {}
+[43] PID:143222 TID:143222 - bpf ->  {}
+[44] PID:143222 TID:143222 - bpf ->  {}
+[45] PID:143222 TID:143222 - bpf ->  {}
+[46] PID:143222 TID:143222 - bpf ->  {}
+[47] PID:143222 TID:143222 - bpf ->  {}
+[48] PID:143222 TID:143222 - bpf ->  {}
+[49] PID:143222 TID:143222 - bpf ->  {}
+[50] PID:143222 TID:143222 - bpf ->  {}
+[51] PID:143222 TID:143222 - bpf ->  {}
+[52] PID:143222 TID:143222 - bpf ->  {}
+[53] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[54] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[55] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[56] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[57] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 499498, 'offset': 24790}
+[58] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[59] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[60] PID:143222 TID:143222 - uname -> uname {}
+[61] PID:143222 TID:143222 - uname -> uname {}
+[62] PID:143222 TID:143222 - uname -> uname {}
+[63] PID:143222 TID:143222 - uname -> uname {}
+[64] PID:143222 TID:143222 - uname -> uname {}
+[65] PID:143222 TID:143222 - uname -> uname {}
+[66] PID:143222 TID:143222 - uname -> uname {}
+[67] PID:143222 TID:143222 - uname -> uname {}
+[68] PID:143222 TID:143222 - uname -> uname {}
+[69] PID:143222 TID:143222 - uname -> uname {}
+[70] PID:143222 TID:143222 - uname -> uname {}
+[71] PID:143222 TID:143222 - uname -> uname {}
+[72] PID:143222 TID:143222 - uname -> uname {}
+[73] PID:143222 TID:143222 - uname -> uname {}
+[74] PID:143222 TID:143222 - uname -> uname {}
+[75] PID:143222 TID:143222 - uname -> uname {}
+[76] PID:143222 TID:143222 - uname -> uname {}
+[77] PID:143222 TID:143222 - uname -> uname {}
+[78] PID:143222 TID:143222 - uname -> uname {}
+[79] PID:143222 TID:143222 - uname -> uname {}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - uname -> uname {}
+[96] PID:143222 TID:143222 - uname -> uname {}
+[97] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[98] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[99] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[100] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 214}
+[101] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 194}
+[102] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[103] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[104] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[105] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[106] PID:143222 TID:143222 - pread64 -> fd=315 {'fd': 315, 'size': 1487, 'offset': 8}
+[107] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[108] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[109] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[110] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 214}
+[111] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 194}
+[112] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 181, 'offset': 0}
+[113] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[114] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[115] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1047081, 'offset': 1495}
+[116] PID:143222 TID:143222 - close -> fd=316 {'fd': 316}
+[117] PID:143222 TID:143222 - close -> fd=317 {'fd': 317}
+[118] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[119] PID:143222 TID:143222 - close -> fd=315 {'fd': 315}
+[120] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[121] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[122] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[123] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[124] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[125] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[126] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8187, 'stream': 'stdout'}
+[127] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8130, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1515 seconds
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8164, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (a31a95ab) - Total: 1
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8164, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2576 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 210b33a5
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 210b33a5 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=210b33a5, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '210b33a5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='210b33a5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 210b33a5
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: e79161d3
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to e79161d3 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=e79161d3, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'e79161d3', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='e79161d3', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: e79161d3
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8186, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (e79161d3) - Total: 101
+======================================================================
+[1] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[2] PID:143222 TID:143222 - bpf ->  {}
+[3] PID:143222 TID:143222 - bpf ->  {}
+[4] PID:143222 TID:143222 - bpf ->  {}
+[5] PID:143222 TID:143222 - bpf ->  {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - bpf ->  {}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - bpf ->  {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - bpf ->  {}
+[16] PID:143222 TID:143222 - bpf ->  {}
+[17] PID:143222 TID:143222 - bpf ->  {}
+[18] PID:143222 TID:143222 - bpf ->  {}
+[19] PID:143222 TID:143222 - bpf ->  {}
+[20] PID:143222 TID:143222 - bpf ->  {}
+[21] PID:143222 TID:143222 - bpf ->  {}
+[22] PID:143222 TID:143222 - bpf ->  {}
+[23] PID:143222 TID:143222 - bpf ->  {}
+[24] PID:143222 TID:143222 - bpf ->  {}
+[25] PID:143222 TID:143222 - bpf ->  {}
+[26] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[27] PID:143222 TID:143222 - bpf ->  {}
+[28] PID:143222 TID:143222 - bpf ->  {}
+[29] PID:143222 TID:143222 - bpf ->  {}
+[30] PID:143222 TID:143222 - bpf ->  {}
+[31] PID:143222 TID:143222 - bpf ->  {}
+[32] PID:143222 TID:143222 - bpf ->  {}
+[33] PID:143222 TID:143222 - bpf ->  {}
+[34] PID:143222 TID:143222 - bpf ->  {}
+[35] PID:143222 TID:143222 - bpf ->  {}
+[36] PID:143222 TID:143222 - bpf ->  {}
+[37] PID:143222 TID:143222 - bpf ->  {}
+[38] PID:143222 TID:143222 - bpf ->  {}
+[39] PID:143222 TID:143222 - bpf ->  {}
+[40] PID:143222 TID:143222 - bpf ->  {}
+[41] PID:143222 TID:143222 - bpf ->  {}
+[42] PID:143222 TID:143222 - bpf ->  {}
+[43] PID:143222 TID:143222 - bpf ->  {}
+[44] PID:143222 TID:143222 - bpf ->  {}
+[45] PID:143222 TID:143222 - bpf ->  {}
+[46] PID:143222 TID:143222 - bpf ->  {}
+[47] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8186, 'stream': 'stdout'}
+[48] PID:143222 TID:143222 - bpf ->  {}
+[49] PID:143222 TID:143222 - bpf ->  {}
+[50] PID:143222 TID:143222 - bpf ->  {}
+[51] PID:143222 TID:143222 - bpf ->  {}
+[52] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[54] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[55] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 499498, 'offset': 24790}
+[57] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[58] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[59] PID:143222 TID:143222 - uname -> uname {}
+[60] PID:143222 TID:143222 - uname -> uname {}
+[61] PID:143222 TID:143222 - uname -> uname {}
+[62] PID:143222 TID:143222 - uname -> uname {}
+[63] PID:143222 TID:143222 - uname -> uname {}
+[64] PID:143222 TID:143222 - uname -> uname {}
+[65] PID:143222 TID:143222 - uname -> uname {}
+[66] PID:143222 TID:143222 - uname -> uname {}
+[67] PID:143222 TID:143222 - uname -> uname {}
+[68] PID:143222 TID:143222 - uname -> uname {}
+[69] PID:143222 TID:143222 - uname -> uname {}
+[70] PID:143222 TID:143222 - uname -> uname {}
+[71] PID:143222 TID:143222 - uname -> uname {}
+[72] PID:143222 TID:143222 - uname -> uname {}
+[73] PID:143222 TID:143222 - uname -> uname {}
+[74] PID:143222 TID:143222 - uname -> uname {}
+[75] PID:143222 TID:143222 - uname -> uname {}
+[76] PID:143222 TID:143222 - uname -> uname {}
+[77] PID:143222 TID:143222 - uname -> uname {}
+[78] PID:143222 TID:143222 - uname -> uname {}
+[79] PID:143222 TID:143222 - uname -> uname {}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - uname -> uname {}
+[96] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[97] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[98] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[99] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[100] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[101] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1536 seconds
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8164, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (210b33a5) - Total: 1
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8164, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2515 seconds
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing fingerprint.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 025b2362
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 025b2362 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=025b2362, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '025b2362', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='025b2362', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 025b2362
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 859b6548
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 859b6548 (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=859b6548, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '859b6548', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='859b6548', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 859b6548
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> ./Models_rest/49.mastersplinter-infected_test/variables
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8192, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1487, offset=8]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/variables/variables [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=214]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=194]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=181, offset=0]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/variables/variables
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1047081, offset=1495]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8162, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (859b6548) - Total: 126
+======================================================================
+[1] PID:143222 TID:143222 - stat -> ./Models_rest/49.mastersplinter-infected_test/variables {}
+[2] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[3] PID:143222 TID:143222 - bpf ->  {}
+[4] PID:143222 TID:143222 - bpf ->  {}
+[5] PID:143222 TID:143222 - bpf ->  {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - bpf ->  {}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - bpf ->  {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - bpf ->  {}
+[16] PID:143222 TID:143222 - bpf ->  {}
+[17] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8192, 'stream': 'stdout'}
+[18] PID:143222 TID:143222 - bpf ->  {}
+[19] PID:143222 TID:143222 - bpf ->  {}
+[20] PID:143222 TID:143222 - bpf ->  {}
+[21] PID:143222 TID:143222 - bpf ->  {}
+[22] PID:143222 TID:143222 - bpf ->  {}
+[23] PID:143222 TID:143222 - bpf ->  {}
+[24] PID:143222 TID:143222 - bpf ->  {}
+[25] PID:143222 TID:143222 - bpf ->  {}
+[26] PID:143222 TID:143222 - bpf ->  {}
+[27] PID:143222 TID:143222 - bpf ->  {}
+[28] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[29] PID:143222 TID:143222 - bpf ->  {}
+[30] PID:143222 TID:143222 - bpf ->  {}
+[31] PID:143222 TID:143222 - bpf ->  {}
+[32] PID:143222 TID:143222 - bpf ->  {}
+[33] PID:143222 TID:143222 - bpf ->  {}
+[34] PID:143222 TID:143222 - bpf ->  {}
+[35] PID:143222 TID:143222 - bpf ->  {}
+[36] PID:143222 TID:143222 - bpf ->  {}
+[37] PID:143222 TID:143222 - bpf ->  {}
+[38] PID:143222 TID:143222 - bpf ->  {}
+[39] PID:143222 TID:143222 - bpf ->  {}
+[40] PID:143222 TID:143222 - bpf ->  {}
+[41] PID:143222 TID:143222 - bpf ->  {}
+[42] PID:143222 TID:143222 - bpf ->  {}
+[43] PID:143222 TID:143222 - bpf ->  {}
+[44] PID:143222 TID:143222 - bpf ->  {}
+[45] PID:143222 TID:143222 - bpf ->  {}
+[46] PID:143222 TID:143222 - bpf ->  {}
+[47] PID:143222 TID:143222 - bpf ->  {}
+[48] PID:143222 TID:143222 - bpf ->  {}
+[49] PID:143222 TID:143222 - bpf ->  {}
+[50] PID:143222 TID:143222 - bpf ->  {}
+[51] PID:143222 TID:143222 - bpf ->  {}
+[52] PID:143222 TID:143222 - bpf ->  {}
+[53] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[54] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[55] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[56] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[57] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 499498, 'offset': 24790}
+[58] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[59] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[60] PID:143222 TID:143222 - uname -> uname {}
+[61] PID:143222 TID:143222 - uname -> uname {}
+[62] PID:143222 TID:143222 - uname -> uname {}
+[63] PID:143222 TID:143222 - uname -> uname {}
+[64] PID:143222 TID:143222 - uname -> uname {}
+[65] PID:143222 TID:143222 - uname -> uname {}
+[66] PID:143222 TID:143222 - uname -> uname {}
+[67] PID:143222 TID:143222 - uname -> uname {}
+[68] PID:143222 TID:143222 - uname -> uname {}
+[69] PID:143222 TID:143222 - uname -> uname {}
+[70] PID:143222 TID:143222 - uname -> uname {}
+[71] PID:143222 TID:143222 - uname -> uname {}
+[72] PID:143222 TID:143222 - uname -> uname {}
+[73] PID:143222 TID:143222 - uname -> uname {}
+[74] PID:143222 TID:143222 - uname -> uname {}
+[75] PID:143222 TID:143222 - uname -> uname {}
+[76] PID:143222 TID:143222 - uname -> uname {}
+[77] PID:143222 TID:143222 - uname -> uname {}
+[78] PID:143222 TID:143222 - uname -> uname {}
+[79] PID:143222 TID:143222 - uname -> uname {}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - uname -> uname {}
+[96] PID:143222 TID:143222 - uname -> uname {}
+[97] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[98] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[99] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[100] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 214}
+[101] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 194}
+[102] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[103] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[104] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 181, 'offset': 0}
+[105] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[106] PID:143222 TID:143222 - pread64 -> fd=315 {'fd': 315, 'size': 1487, 'offset': 8}
+[107] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/variables/variables {'mode': 'R_OK|X_OK'}
+[108] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[109] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[110] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 214}
+[111] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 194}
+[112] PID:143222 TID:143222 - pread64 -> fd=316 {'fd': 316, 'size': 181, 'offset': 0}
+[113] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/variables/variables {}
+[114] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[115] PID:143222 TID:143222 - pread64 -> fd=317 {'fd': 317, 'size': 1047081, 'offset': 1495}
+[116] PID:143222 TID:143222 - close -> fd=316 {'fd': 316}
+[117] PID:143222 TID:143222 - close -> fd=317 {'fd': 317}
+[118] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[119] PID:143222 TID:143222 - close -> fd=315 {'fd': 315}
+[120] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[121] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[122] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[123] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[124] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[125] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[126] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8162, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1465 seconds
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8138, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (025b2362) - Total: 1
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8138, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2429 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 3490ad1e
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to 3490ad1e (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=3490ad1e, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation '3490ad1e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='3490ad1e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: 3490ad1e
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: cb90e85e
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143222
+[Debug] Setting eBPF context for TID 143223, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143223
+[Debug] Setting eBPF context for TID 143224, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143224
+[Debug] Setting eBPF context for TID 143225, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143225
+[Debug] Setting eBPF context for TID 143226, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143226
+[Debug] Setting eBPF context for TID 143227, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143227
+[Debug] Setting eBPF context for TID 143228, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143228
+[Debug] Setting eBPF context for TID 143229, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143229
+[Debug] Setting eBPF context for TID 143230, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143230
+[Debug] Setting eBPF context for TID 143231, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143231
+[Debug] Setting eBPF context for TID 143232, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143232
+[Context Update] Updated 11 threads to cb90e85e (LOADING)
+[Debug] Thread IDs - Python: 140097578387264, Kernel: 143222
+[AOP Monitor] Context tracked: pthread_id=140097578387264, kernel_tid=143222, ID=cb90e85e, Phase=LOADING
+[Debug] Setting eBPF context for TID 143222, correlation 'cb90e85e', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb90e85e', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143222
+[AOP Monitor] eBPF monitoring active for LOADING: cb90e85e
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8158, stream=stdout]
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 112, 1 -> bpf -> 
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 18, 1 -> stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=499498, offset=24790]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 1, 1 -> uname -> uname
+PID:143222 TID:143222 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143222 TID:143222 -event.operation_id: 22, 1 -> access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb [mode=R_OK|X_OK]
+PID:143222 TID:143222 -event.operation_id: 10, 1 -> openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143222 TID:143222 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143222 TID:143222 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8189, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (cb90e85e) - Total: 103
+======================================================================
+[1] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[2] PID:143222 TID:143222 - bpf ->  {}
+[3] PID:143222 TID:143222 - bpf ->  {}
+[4] PID:143222 TID:143222 - bpf ->  {}
+[5] PID:143222 TID:143222 - bpf ->  {}
+[6] PID:143222 TID:143222 - bpf ->  {}
+[7] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8158, 'stream': 'stdout'}
+[8] PID:143222 TID:143222 - bpf ->  {}
+[9] PID:143222 TID:143222 - bpf ->  {}
+[10] PID:143222 TID:143222 - bpf ->  {}
+[11] PID:143222 TID:143222 - bpf ->  {}
+[12] PID:143222 TID:143222 - bpf ->  {}
+[13] PID:143222 TID:143222 - bpf ->  {}
+[14] PID:143222 TID:143222 - bpf ->  {}
+[15] PID:143222 TID:143222 - bpf ->  {}
+[16] PID:143222 TID:143222 - bpf ->  {}
+[17] PID:143222 TID:143222 - bpf ->  {}
+[18] PID:143222 TID:143222 - bpf ->  {}
+[19] PID:143222 TID:143222 - bpf ->  {}
+[20] PID:143222 TID:143222 - bpf ->  {}
+[21] PID:143222 TID:143222 - bpf ->  {}
+[22] PID:143222 TID:143222 - bpf ->  {}
+[23] PID:143222 TID:143222 - bpf ->  {}
+[24] PID:143222 TID:143222 - bpf ->  {}
+[25] PID:143222 TID:143222 - bpf ->  {}
+[26] PID:143222 TID:143222 - bpf ->  {}
+[27] PID:143222 TID:143222 - getrandom -> getrandom_size=0 {}
+[28] PID:143222 TID:143222 - bpf ->  {}
+[29] PID:143222 TID:143222 - bpf ->  {}
+[30] PID:143222 TID:143222 - bpf ->  {}
+[31] PID:143222 TID:143222 - bpf ->  {}
+[32] PID:143222 TID:143222 - bpf ->  {}
+[33] PID:143222 TID:143222 - bpf ->  {}
+[34] PID:143222 TID:143222 - bpf ->  {}
+[35] PID:143222 TID:143222 - bpf ->  {}
+[36] PID:143222 TID:143222 - bpf ->  {}
+[37] PID:143222 TID:143222 - bpf ->  {}
+[38] PID:143222 TID:143222 - bpf ->  {}
+[39] PID:143222 TID:143222 - bpf ->  {}
+[40] PID:143222 TID:143222 - bpf ->  {}
+[41] PID:143222 TID:143222 - bpf ->  {}
+[42] PID:143222 TID:143222 - bpf ->  {}
+[43] PID:143222 TID:143222 - bpf ->  {}
+[44] PID:143222 TID:143222 - bpf ->  {}
+[45] PID:143222 TID:143222 - bpf ->  {}
+[46] PID:143222 TID:143222 - bpf ->  {}
+[47] PID:143222 TID:143222 - bpf ->  {}
+[48] PID:143222 TID:143222 - bpf ->  {}
+[49] PID:143222 TID:143222 - bpf ->  {}
+[50] PID:143222 TID:143222 - bpf ->  {}
+[51] PID:143222 TID:143222 - bpf ->  {}
+[52] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[54] PID:143222 TID:143222 - stat -> Models_rest/49.mastersplinter-infected_test/saved_model.pb {}
+[55] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 499498, 'offset': 24790}
+[57] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[58] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/debug/saved_model_d {'mode': 'R_OK|X_OK'}
+[59] PID:143222 TID:143222 - uname -> uname {}
+[60] PID:143222 TID:143222 - uname -> uname {}
+[61] PID:143222 TID:143222 - uname -> uname {}
+[62] PID:143222 TID:143222 - uname -> uname {}
+[63] PID:143222 TID:143222 - uname -> uname {}
+[64] PID:143222 TID:143222 - uname -> uname {}
+[65] PID:143222 TID:143222 - uname -> uname {}
+[66] PID:143222 TID:143222 - uname -> uname {}
+[67] PID:143222 TID:143222 - uname -> uname {}
+[68] PID:143222 TID:143222 - uname -> uname {}
+[69] PID:143222 TID:143222 - uname -> uname {}
+[70] PID:143222 TID:143222 - uname -> uname {}
+[71] PID:143222 TID:143222 - uname -> uname {}
+[72] PID:143222 TID:143222 - uname -> uname {}
+[73] PID:143222 TID:143222 - uname -> uname {}
+[74] PID:143222 TID:143222 - uname -> uname {}
+[75] PID:143222 TID:143222 - uname -> uname {}
+[76] PID:143222 TID:143222 - uname -> uname {}
+[77] PID:143222 TID:143222 - uname -> uname {}
+[78] PID:143222 TID:143222 - uname -> uname {}
+[79] PID:143222 TID:143222 - uname -> uname {}
+[80] PID:143222 TID:143222 - uname -> uname {}
+[81] PID:143222 TID:143222 - uname -> uname {}
+[82] PID:143222 TID:143222 - uname -> uname {}
+[83] PID:143222 TID:143222 - uname -> uname {}
+[84] PID:143222 TID:143222 - uname -> uname {}
+[85] PID:143222 TID:143222 - uname -> uname {}
+[86] PID:143222 TID:143222 - uname -> uname {}
+[87] PID:143222 TID:143222 - uname -> uname {}
+[88] PID:143222 TID:143222 - uname -> uname {}
+[89] PID:143222 TID:143222 - uname -> uname {}
+[90] PID:143222 TID:143222 - uname -> uname {}
+[91] PID:143222 TID:143222 - uname -> uname {}
+[92] PID:143222 TID:143222 - uname -> uname {}
+[93] PID:143222 TID:143222 - uname -> uname {}
+[94] PID:143222 TID:143222 - uname -> uname {}
+[95] PID:143222 TID:143222 - uname -> uname {}
+[96] PID:143222 TID:143222 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[97] PID:143222 TID:143222 - access -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[98] PID:143222 TID:143222 - openat -> Models_rest/49.mastersplinter-infected_test/fingerprint.pb {}
+[99] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[100] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[101] PID:143222 TID:143222 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[102] PID:143222 TID:143222 - close -> fd=314 {'fd': 314}
+[103] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8189, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1626 seconds
+PID:143222 TID:143222 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8184, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (3490ad1e) - Total: 1
+======================================================================
+[1] PID:143222 TID:143222 - write -> stdout {'fd': 1, 'size': 8184, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2660 seconds
+    Saved 503 loading events to 49.mastersplinter-infected_test_loading_events.json
+    Saved 0 execution events to 49.mastersplinter-infected_test_execution_events.json
+    Files Processed: 3
+    Successful: 0, Malicious: 0, Failed: 3
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/49.mastersplinter-infected_test",
+  "model_info": {
+    "folder": "./Models_rest/49.mastersplinter-infected_test",
+    "files": [
+      "README.md",
+      "saved_model.pb",
+      "handler.py",
+      "variables",
+      "keras_metadata.pb",
+      "model.png",
+      ".git",
+      "fingerprint.pb",
+      ".gitattributes"
+    ],
+    "has_config": false,
+    "model_type": "tensorflow_saved",
+    "framework": "tensorflow",
+    "model_files": [
+      "saved_model.pb",
+      "keras_metadata.pb",
+      "fingerprint.pb"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "saved_model.pb": "24.21 KB",
+      "keras_metadata.pb": "4.06 KB",
+      "fingerprint.pb": "0.06 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "fingerprint.pb is suspiciously small (57 bytes)"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "saved_model.pb",
+      "status": "failed",
+      "output": null
+    },
+    {
+      "file": "keras_metadata.pb",
+      "status": "failed",
+      "output": null
+    },
+    {
+      "file": "fingerprint.pb",
+      "status": "failed",
+      "output": null
+    }
+  ],
+  "execution_summary": {
+    "total_files": 3,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 3
+  }
+}

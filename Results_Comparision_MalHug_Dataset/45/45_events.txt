@@ -1,0 +1,796 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/45.ModelsForAll-First_Clean_Experiment
+======================================================================
+
+[1] Detecting model type...
+    Type: pickle
+    Framework: pickle
+    Has config.json: False
+    Files: not_so.pickle, Peter_Can.pickle, clean.pickle...
+    ⚠️  Security issues detected in 1 files
+
+[2] Determining input requirements...
+    Needs input: False
+    Input type: possibly_none
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: not_so.pickle is suspiciously small (281 bytes), Peter_Can.pickle is suspiciously small (98 bytes)
+    🔒 Security risks: clean.pickle contains executables: ['Windows EXE']
+
+[4] Creating input data...
+    Input created: <class 'NoneType'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - not_so.pickle is suspiciously small (281 bytes)
+   - Peter_Can.pickle is suspiciously small (98 bytes)
+🔒 SECURITY RISKS:
+   - clean.pickle contains executables: ['Windows EXE']
+   - This may not be a real model - likely just malicious code
+
+  Processing not_so.pickle as type: pickle
+  Loading not_so.pickle...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT:     CustomUnpickler failed: [Errno 2] No such file or directory: 'C:\\Users\\hala\\encrypt_test', trying standard pickle...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 622
+⚠️  WARNINGS:
+   - not_so.pickle is suspiciously small (281 bytes)
+   - Peter_Can.pickle is suspiciously small (98 bytes)
+   - clean.pickle contains executables: ['Windows EXE']
+   - Code output:     CustomUnpickler failed: [Errno 2] No such file or directory: 'C:\\Users\\hala\\encrypt_test', trying standard pickle...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 622ebeee
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145214, correlation '622ebeee', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='622ebeee', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to 622ebeee (LOADING)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=622ebeee, Phase=LOADING
+[Debug] Setting eBPF context for TID 145214, correlation '622ebeee', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='622ebeee', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for LOADING: 622ebeee
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: ca3e3084
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'ca3e3084', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ca3e3084', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to ca3e3084 (LOADING)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=ca3e3084, Phase=LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'ca3e3084', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ca3e3084', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for LOADING: ca3e3084
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:145214 TID:145214 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 64, 1 -> socket -> AF_UNIX/SOCK_STREAM/DEFAULT [family=AF_UNIX, type=SOCK_STREAM, protocol=DEFAULT]
+PID:145214 TID:145214 -event.operation_id: 69, 1 -> connect -> unix [family=AF_UNIX]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 64, 1 -> socket -> AF_UNIX/SOCK_STREAM/DEFAULT [family=AF_UNIX, type=SOCK_STREAM, protocol=DEFAULT]
+PID:145214 TID:145214 -event.operation_id: 69, 1 -> connect -> unix [family=AF_UNIX]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libnss_files.so.2
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /lib/x86_64-linux-gnu/libnss_files.so.2
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef1e000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef25000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef27000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef29000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f138ef27000, len=4096 [protection=PROT_READ]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/passwd
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/passwd [size=6584179]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 49, 1 -> chdir -> chdir_C:\Users\hala\encrypt_test
+PID:145214 TID:145214 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/passwd
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/passwd [size=6584179]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 49, 1 -> chdir -> chdir_C:\Users\hala\encrypt_test
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (ca3e3084) - Total: 62
+======================================================================
+[1] PID:145214 TID:145214 - bpf ->  {}
+[2] PID:145214 TID:145214 - bpf ->  {}
+[3] PID:145214 TID:145214 - bpf ->  {}
+[4] PID:145214 TID:145214 - openat -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic {}
+[5] PID:145214 TID:145214 - fstat -> fd=313 {'fd': 313}
+[6] PID:145214 TID:145214 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[7] PID:145214 TID:145214 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[8] PID:145214 TID:145214 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[9] PID:145214 TID:145214 - read -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic {'fd': 8317134093884927790, 'size': 3833741359997874783}
+[10] PID:145214 TID:145214 - openat -> /proc/self/loginuid {}
+[11] PID:145214 TID:145214 - read -> /proc/self/loginuid {'fd': 7310238724270485551, 'size': 7956003944980768364}
+[12] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[13] PID:145214 TID:145214 - socket -> AF_UNIX/SOCK_STREAM/DEFAULT {'family': 'AF_UNIX', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[14] PID:145214 TID:145214 - connect -> unix {'family': 'AF_UNIX'}
+[15] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[16] PID:145214 TID:145214 - socket -> AF_UNIX/SOCK_STREAM/DEFAULT {'family': 'AF_UNIX', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[17] PID:145214 TID:145214 - connect -> unix {'family': 'AF_UNIX'}
+[18] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[19] PID:145214 TID:145214 - openat -> /etc/nsswitch.conf {}
+[20] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[21] PID:145214 TID:145214 - read -> /etc/nsswitch.conf {'fd': 8319114086494528815, 'size': 8026309986784405879}
+[22] PID:145214 TID:145214 - read -> /etc/nsswitch.conf {'fd': 8319114086494528815, 'size': 8026309986784405879}
+[23] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[24] PID:145214 TID:145214 - openat -> /etc/ld.so.cache {}
+[25] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[26] PID:145214 TID:145214 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[27] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[28] PID:145214 TID:145214 - openat -> /lib/x86_64-linux-gnu/libnss_files.so.2 {}
+[29] PID:145214 TID:145214 - read -> /lib/x86_64-linux-gnu/libnss_files.so.2 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[30] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[31] PID:145214 TID:145214 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[32] PID:145214 TID:145214 - mmap -> addr=0x7f138ef1e000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[33] PID:145214 TID:145214 - mmap -> addr=0x7f138ef25000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[34] PID:145214 TID:145214 - mmap -> addr=0x7f138ef27000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[35] PID:145214 TID:145214 - mmap -> addr=0x7f138ef29000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[36] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[37] PID:145214 TID:145214 - mprotect -> addr=0x7f138ef27000, len=4096 {'protection': 'PROT_READ'}
+[38] PID:145214 TID:145214 - openat -> /etc/passwd {}
+[39] PID:145214 TID:145214 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[40] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[41] PID:145214 TID:145214 - read -> /etc/passwd {'fd': 8314049735936992559, 'size': 6584179}
+[42] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[43] PID:145214 TID:145214 - chdir -> chdir_C:\Users\hala\encrypt_test {}
+[44] PID:145214 TID:145214 - getrandom -> getrandom_size=0 {}
+[45] PID:145214 TID:145214 - bpf ->  {}
+[46] PID:145214 TID:145214 - bpf ->  {}
+[47] PID:145214 TID:145214 - bpf ->  {}
+[48] PID:145214 TID:145214 - bpf ->  {}
+[49] PID:145214 TID:145214 - getrandom -> getrandom_size=0 {}
+[50] PID:145214 TID:145214 - bpf ->  {}
+[51] PID:145214 TID:145214 - bpf ->  {}
+[52] PID:145214 TID:145214 - bpf ->  {}
+[53] PID:145214 TID:145214 - bpf ->  {}
+[54] PID:145214 TID:145214 - openat -> /proc/self/loginuid {}
+[55] PID:145214 TID:145214 - read -> /proc/self/loginuid {'fd': 7310238724270485551, 'size': 7956003944980768364}
+[56] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[57] PID:145214 TID:145214 - openat -> /etc/passwd {}
+[58] PID:145214 TID:145214 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[59] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[60] PID:145214 TID:145214 - read -> /etc/passwd {'fd': 8314049735936992559, 'size': 6584179}
+[61] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[62] PID:145214 TID:145214 - chdir -> chdir_C:\Users\hala\encrypt_test {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0993 seconds
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (622ebeee) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2057 seconds
+    Standard pickle also failed: [Errno 2] No such file or directory: 'C:\\Users\\hala\\encrypt_test'
+I can run any code I want here
+
+🔒 SECURITY RISKS:
+   - clean.pickle contains executables: ['Windows EXE']
+   - This may not be a real model - likely just malicious code
+
+  Processing Peter_Can.pickle as type: pickle
+  Loading Peter_Can.pickle...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:145214 TID:145214 -event.operation_id: 57, 2 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT: 
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 9a01476f
+[AOP Monitor] API Called: posix.system
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase E
+⚠️  WARNINGS:
+   - not_so.pickle is suspiciously small (281 bytes)
+   - Peter_Can.pickle is suspiciously small (98 bytes)
+   - clean.pickle contains executables: ['Windows EXE']
+   - Code output:     CustomUnpickler failed: [Errno 2] No such file or directory: 'C:\\Users\\hala\\encrypt_test', trying standard pickle...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 622ebeee
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145214, correlation '622ebeee', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='622ebeee', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to 622ebeee (LOADING)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=622ebeee, Phase=LOADING
+[Debug] Setting eBPF context for TID 145214, correlation '622ebeee', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='622ebeee', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for LOADING: 622ebeee
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: ca3e3084
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'ca3e3084', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ca3e3084', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to ca3e3084 (LOADING)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=ca3e3084, Phase=LOADING
+[Debug] Setting eBPF context for TID 145214, correlation 'ca3e3084', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ca3e3084', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for LOADING: ca3e3084
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145214 TID:145214 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145214 TID:145214 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145214 TID:145214 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 0 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:145214 TID:145214 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 64, 1 -> socket -> AF_UNIX/SOCK_STREAM/DEFAULT [family=AF_UNIX, type=SOCK_STREAM, protocol=DEFAULT]
+PID:145214 TID:145214 -event.operation_id: 69, 1 -> connect -> unix [family=AF_UNIX]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 64, 1 -> socket -> AF_UNIX/SOCK_STREAM/DEFAULT [family=AF_UNIX, type=SOCK_STREAM, protocol=DEFAULT]
+PID:145214 TID:145214 -event.operation_id: 69, 1 -> connect -> unix [family=AF_UNIX]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/nsswitch.conf
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libnss_files.so.2
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /lib/x86_64-linux-gnu/libnss_files.so.2
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef1e000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef25000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef27000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145214 TID:145214 -event.operation_id: 85, 1 -> mmap -> addr=0x7f138ef29000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f138ef27000, len=4096 [protection=PROT_READ]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/passwd
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/passwd [size=6584179]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 49, 1 -> chdir -> chdir_C:\Users\hala\encrypt_test
+PID:145214 TID:145214 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /proc/self/loginuid
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> /etc/passwd
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> /etc/passwd [size=6584179]
+PID:145214 TID:145214 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:145214 TID:145214 -event.operation_id: 49, 1 -> chdir -> chdir_C:\Users\hala\encrypt_test
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (ca3e3084) - Total: 62
+======================================================================
+[1] PID:145214 TID:145214 - bpf ->  {}
+[2] PID:145214 TID:145214 - bpf ->  {}
+[3] PID:145214 TID:145214 - bpf ->  {}
+[4] PID:145214 TID:145214 - openat -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic {}
+[5] PID:145214 TID:145214 - fstat -> fd=313 {'fd': 313}
+[6] PID:145214 TID:145214 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[7] PID:145214 TID:145214 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[8] PID:145214 TID:145214 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[9] PID:145214 TID:145214 - read -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/not_so.pic {'fd': 8317134093884927790, 'size': 3833741359997874783}
+[10] PID:145214 TID:145214 - openat -> /proc/self/loginuid {}
+[11] PID:145214 TID:145214 - read -> /proc/self/loginuid {'fd': 7310238724270485551, 'size': 7956003944980768364}
+[12] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[13] PID:145214 TID:145214 - socket -> AF_UNIX/SOCK_STREAM/DEFAULT {'family': 'AF_UNIX', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[14] PID:145214 TID:145214 - connect -> unix {'family': 'AF_UNIX'}
+[15] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[16] PID:145214 TID:145214 - socket -> AF_UNIX/SOCK_STREAM/DEFAULT {'family': 'AF_UNIX', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[17] PID:145214 TID:145214 - connect -> unix {'family': 'AF_UNIX'}
+[18] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[19] PID:145214 TID:145214 - openat -> /etc/nsswitch.conf {}
+[20] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[21] PID:145214 TID:145214 - read -> /etc/nsswitch.conf {'fd': 8319114086494528815, 'size': 8026309986784405879}
+[22] PID:145214 TID:145214 - read -> /etc/nsswitch.conf {'fd': 8319114086494528815, 'size': 8026309986784405879}
+[23] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[24] PID:145214 TID:145214 - openat -> /etc/ld.so.cache {}
+[25] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[26] PID:145214 TID:145214 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[27] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[28] PID:145214 TID:145214 - openat -> /lib/x86_64-linux-gnu/libnss_files.so.2 {}
+[29] PID:145214 TID:145214 - read -> /lib/x86_64-linux-gnu/libnss_files.so.2 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[30] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[31] PID:145214 TID:145214 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[32] PID:145214 TID:145214 - mmap -> addr=0x7f138ef1e000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[33] PID:145214 TID:145214 - mmap -> addr=0x7f138ef25000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[34] PID:145214 TID:145214 - mmap -> addr=0x7f138ef27000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[35] PID:145214 TID:145214 - mmap -> addr=0x7f138ef29000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[36] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[37] PID:145214 TID:145214 - mprotect -> addr=0x7f138ef27000, len=4096 {'protection': 'PROT_READ'}
+[38] PID:145214 TID:145214 - openat -> /etc/passwd {}
+[39] PID:145214 TID:145214 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[40] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[41] PID:145214 TID:145214 - read -> /etc/passwd {'fd': 8314049735936992559, 'size': 6584179}
+[42] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[43] PID:145214 TID:145214 - chdir -> chdir_C:\Users\hala\encrypt_test {}
+[44] PID:145214 TID:145214 - getrandom -> getrandom_size=0 {}
+[45] PID:145214 TID:145214 - bpf ->  {}
+[46] PID:145214 TID:145214 - bpf ->  {}
+[47] PID:145214 TID:145214 - bpf ->  {}
+[48] PID:145214 TID:145214 - bpf ->  {}
+[49] PID:145214 TID:145214 - getrandom -> getrandom_size=0 {}
+[50] PID:145214 TID:145214 - bpf ->  {}
+[51] PID:145214 TID:145214 - bpf ->  {}
+[52] PID:145214 TID:145214 - bpf ->  {}
+[53] PID:145214 TID:145214 - bpf ->  {}
+[54] PID:145214 TID:145214 - openat -> /proc/self/loginuid {}
+[55] PID:145214 TID:145214 - read -> /proc/self/loginuid {'fd': 7310238724270485551, 'size': 7956003944980768364}
+[56] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[57] PID:145214 TID:145214 - openat -> /etc/passwd {}
+[58] PID:145214 TID:145214 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[59] PID:145214 TID:145214 - fstat -> fd=314 {'fd': 314}
+[60] PID:145214 TID:145214 - read -> /etc/passwd {'fd': 8314049735936992559, 'size': 6584179}
+[61] PID:145214 TID:145214 - close -> fd=314 {'fd': 314}
+[62] PID:145214 TID:145214 - chdir -> chdir_C:\Users\hala\encrypt_test {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0993 seconds
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (622ebeee) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2057 seconds
+    Standard pickle also failed: [Errno 2] No such file or directory: 'C:\\Users\\hala\\encrypt_test'
+
+   - clean.pickle contains executables: ['Windows EXE']
+   - Code output: 
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 9a01476f
+[AOP Monitor] API Called: posix.system
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 145214, correlation '9a01476f', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9a01476f', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to 9a01476f (EXECUTION)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=9a01476f, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 145214, correlation '9a01476f', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9a01476f', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for EXECUTION: 9a01476f
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 0448138d
+[AOP Monitor] API Called: posix.system
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 145214, correlation '0448138d', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0448138d', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145214
+[Context Update] Updated 1 threads to 0448138d (EXECUTION)
+[Debug] Thread IDs - Python: 139724217325376, Kernel: 145214
+[AOP Monitor] Context tracked: pthread_id=139724217325376, kernel_tid=145214, ID=0448138d, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 145214, correlation '0448138d', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0448138d', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145214
+[AOP Monitor] eBPF monitoring active for EXECUTION: 0448138d
+PID:145215 TID:145215 -event.operation_id: 22, 2 -> access -> /etc/ld.so.preload [mode=R_OK|W_OK|X_OK]
+PID:145215 TID:145215 -event.operation_id: 10, 2 -> openat -> /etc/ld.so.cache
+PID:145215 TID:145215 -event.operation_id: 19, 2 -> fstat -> fd=3 [fd=3]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145215 TID:145215 -event.operation_id: 57, 2 -> close -> fd=3 [fd=3]
+PID:145215 TID:145215 -event.operation_id: 10, 2 -> openat -> /lib/x86_64-linux-gnu/libc.so.6
+PID:145215 TID:145215 -event.operation_id: 12, 2 -> read -> /lib/x86_64-linux-gnu/libc.so.6
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:145215 TID:145215 -event.operation_id: 19, 2 -> fstat -> fd=3 [fd=3]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:145215 TID:145215 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=0x7f8414cc2000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=0x7f8414e3a000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=0x7f8414e88000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:145215 TID:145215 -event.operation_id: 85, 2 -> mmap -> addr=0x7f8414e8e000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:145215 TID:145215 -event.operation_id: 57, 2 -> close -> fd=3 [fd=3]
+PID:145215 TID:145215 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f8414e88000, len=16384 [protection=PROT_READ]
+PID:145215 TID:145215 -event.operation_id: 86, 2 -> mprotect -> addr=0x558a70fe9000, len=8192 [protection=PROT_READ]
+PID:145215 TID:145215 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f8414ed2000, len=4096 [protection=PROT_READ]
+PID:145215 TID:145215 -event.operation_id: 88, 2 -> getuid -> getuid
+PID:145215 TID:145215 -event.operation_id: 90, 2 -> getgid -> getgid
+PID:145215 TID:145215 -event.operation_id: 89, 2 -> geteuid -> geteuid
+PID:145215 TID:145215 -event.operation_id: 55, 2 -> getcwd -> getcwd
+PID:145215 TID:145215 -event.operation_id: 89, 2 -> geteuid -> geteuid
+PID:145215 TID:145215 -event.operation_id: 91, 2 -> getegid -> getegid
+PID:145215 TID:145215 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=31, stream=stdout]
+PID:145214 TID:145214 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=2381, stream=stdout]
+PID:145214 TID:145214 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=15957, stream=stdout]
+PID:145214 TID:145214 -event.operation_id: 10, 1 -> openat -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/Peter_Can.
+PID:145214 TID:145214 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:145214 TID:145214 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:145214 TID:145214 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:145214 TID:145214 -event.operation_id: 12, 1 -> read -> ./Models_rest/45.ModelsForAll-First_Clean_Experiment/Peter_Can.
+PID:145214 TID:145214 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 1 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 112, 2 -> bpf -> 
+PID:145214 TID:145214 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=131106 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:145214 TID:145214 -event.operation_id: 80, 2 -> clone -> flags=0x4111 [flags=CLONE_VM]
+PID:145214 TID:145214 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 145214 -> Child PID: 145215
+  Correlation ID: 0448138d
+  Phase: 2
+  Command: sh
+  Timestamp: 179031.017751
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 145214 -> Child PID: 145215
+  Correlation ID: 0448138d
+  Phase: 2
+  Command: python3.9
+  Timestamp: 179031.017900
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+EXECUTION EVENTS (0448138d) - Total: 42
+======================================================================
+[1] PID:145214 TID:145214 - bpf ->  {}
+[2] PID:145214 TID:145214 - bpf ->  {}
+[3] PID:145214 TID:145214 - bpf ->  {}
+[4] PID:145214 TID:145214 - getrandom -> getrandom_size=0 {}
+[5] PID:145214 TID:145214 - bpf ->  {}
+[6] PID:145214 TID:145214 - bpf ->  {}
+[7] PID:145214 TID:145214 - bpf ->  {}
+[8] PID:145214 TID:145214 - bpf ->  {}
+[9] PID:145214 TID:145214 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[10] PID:145214 TID:145214 - clone -> flags=0x4111 {'flags': 'CLONE_VM'}
+[11] PID:145215 TID:145215 - access -> /etc/ld.so.preload {'mode': 'R_OK|W_OK|X_OK'}
+[12] PID:145215 TID:145215 - openat -> /etc/ld.so.cache {}
+[13] PID:145215 TID:145215 - fstat -> fd=3 {'fd': 3}
+[14] PID:145215 TID:145215 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[15] PID:145215 TID:145215 - close -> fd=3 {'fd': 3}
+[16] PID:145215 TID:145215 - openat -> /lib/x86_64-linux-gnu/libc.so.6 {}
+[17] PID:145215 TID:145215 - read -> /lib/x86_64-linux-gnu/libc.so.6 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[18] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[19] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[20] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[21] PID:145215 TID:145215 - fstat -> fd=3 {'fd': 3}
+[22] PID:145215 TID:145215 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[23] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[24] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[25] PID:145215 TID:145215 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[26] PID:145215 TID:145215 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[27] PID:145215 TID:145215 - mmap -> addr=0x7f8414cc2000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[28] PID:145215 TID:145215 - mmap -> addr=0x7f8414e3a000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[29] PID:145215 TID:145215 - mmap -> addr=0x7f8414e88000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[30] PID:145215 TID:145215 - mmap -> addr=0x7f8414e8e000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[31] PID:145215 TID:145215 - close -> fd=3 {'fd': 3}
+[32] PID:145215 TID:145215 - mprotect -> addr=0x7f8414e88000, len=16384 {'protection': 'PROT_READ'}
+[33] PID:145215 TID:145215 - mprotect -> addr=0x558a70fe9000, len=8192 {'protection': 'PROT_READ'}
+[34] PID:145215 TID:145215 - mprotect -> addr=0x7f8414ed2000, len=4096 {'protection': 'PROT_READ'}
+[35] PID:145215 TID:145215 - getuid -> getuid {}
+[36] PID:145215 TID:145215 - getgid -> getgid {}
+[37] PID:145215 TID:145215 - geteuid -> geteuid {}
+[38] PID:145215 TID:145215 - getcwd -> getcwd {}
+[39] PID:145215 TID:145215 - geteuid -> geteuid {}
+[40] PID:145215 TID:145215 - getegid -> getegid {}
+[41] PID:145215 TID:145215 - write -> stdout {'fd': 1, 'size': 31, 'stream': 'stdout'}
+[42] PID:145214 TID:145214 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.0923 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+EXECUTION EVENTS (9a01476f) - Total: 0
+======================================================================
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1962 seconds
+
+🔒 SECURITY RISKS:
+   - clean.pickle contains executables: ['Windows EXE']
+   - This may not be a real model - likely just malicious code
+
+  Processing clean.pickle as type: pickle
+  Loading clean.pickle...
+    Files Processed: 1
+    Successful: 0, Malicious: 0, Failed: 0
+    - unknown: timeout - Execution timed out after 180 seconds
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/45.ModelsForAll-First_Clean_Experiment",
+  "model_info": {
+    "folder": "./Models_rest/45.ModelsForAll-First_Clean_Experiment",
+    "files": [
+      "not_so.pickle",
+      "README.md",
+      "Peter_Can.pickle",
+      ".git",
+      "clean.pickle",
+      ".gitattributes"
+    ],
+    "has_config": false,
+    "model_type": "pickle",
+    "framework": "pickle",
+    "model_files": [
+      "not_so.pickle",
+      "Peter_Can.pickle",
+      "clean.pickle"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {
+      "clean.pickle": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      }
+    },
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": false,
+    "input_type": "possibly_none",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {
+      "warning": "Pickle files may execute code on load"
+    },
+    "modality": "unknown"
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "not_so.pickle": "0.27 KB",
+      "Peter_Can.pickle": "0.10 KB",
+      "clean.pickle": "13948.88 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "not_so.pickle is suspiciously small (281 bytes)",
+      "Peter_Can.pickle is suspiciously small (98 bytes)"
+    ],
+    "security_risks": [
+      "clean.pickle contains executables: ['Windows EXE']"
+    ]
+  },
+  "execution": [
+    {
+      "file": "unknown",
+      "status": "timeout",
+      "output": "Execution timed out after 180 seconds",
+      "execution_status": "timeout"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 0
+  }
+}
