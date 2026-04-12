@@ -1,0 +1,21 @@
+  Tagged 199 loading events from saved_model_loading_events.json
+  Tagged 53 execution events from saved_model_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: results/94.tf_code_injection
+Loading events: 199
+Execution events: 53
+Patterns defined: 194
+======================================================================
+
+  [EXECUTION] AB3-TMP-SCRIPT-STAGE-ATTEMPT: Temporary shell script staging for potential execution (write may have been blocked)
+    Step 0: openat -> /tmp/exploit.sh  (Attempt to stage script in temp directory)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB3: System Manipulation
+      - Temporary shell script staging for potential execution (write may have been blocked)
+      MITRE: T1059.004 (Unix Shell)
+======================================================================
