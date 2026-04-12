@@ -1,0 +1,24 @@
+  Tagged 395 loading events from 8.mkiani-gpt2-runpy_loading_events.json
+  Tagged 5748 execution events from 8.mkiani-gpt2-runpy_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: results/8
+Loading events: 395
+Execution events: 5748
+Patterns defined: 186
+======================================================================
+
+  [EXECUTION] AB4-BROWSER-DISCOVERY: Browser discovery scan (webbrowser.open fingerprint)
+    Step 0: stat -> /usr/local/sbin/xdg-open  (Stat browser binary in PATH)
+    Step 1: stat -> /usr/local/bin/xdg-open  (Verify browser accessibility)
+    MITRE: Execution / T1204 (User Execution)
+    MITRE: Discovery / T1083 (File and Directory Discovery)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB4: Malicious Code Execution
+      - Browser discovery scan (webbrowser.open fingerprint)
+      MITRE: T1204 (User Execution)
+      MITRE: T1083 (File and Directory Discovery)
+======================================================================
