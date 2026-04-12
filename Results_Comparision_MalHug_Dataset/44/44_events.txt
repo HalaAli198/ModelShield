@@ -1,0 +1,151 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/44.ModelsForAll-Cool-2-0-0-1
+======================================================================
+
+[1] Detecting model type...
+    Type: pickle
+    Framework: pickle
+    Has config.json: False
+    Files: Remote_Pickle2.pickle...
+
+[2] Determining input requirements...
+    Needs input: False
+    Input type: possibly_none
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: True
+
+[4] Creating input data...
+    Input created: <class 'NoneType'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 142998, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142998
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139769974429504, Kernel: 142998
+[AOP Monitor] Context tracked: pthread_id=139769974429504, kernel_tid=142998, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 142998, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142998
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+
+  Processing Remote_Pickle2.pickle as type: pickle
+  Loading Remote_Pickle2.pickle...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:142998 TID:142998 -event.operation_id: 57, 2 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT: 
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 6a06f3c2
+[AOP Monitor] API Called: subprocess.Popen
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for pha
+    Saved 9 loading events to 44.ModelsForAll-Cool-2-0-0-1_loading_events.json
+    Saved 621 execution events to 44.ModelsForAll-Cool-2-0-0-1_execution_events.json
+    Files Processed: 1
+    Successful: 0, Malicious: 1, Failed: 0
+    - Remote_Pickle2.pickle: malicious_executed - Remote_Pickle2.pickle: Loaded <class 'NoneType'>
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/44.ModelsForAll-Cool-2-0-0-1",
+  "model_info": {
+    "folder": "./Models_rest/44.ModelsForAll-Cool-2-0-0-1",
+    "files": [
+      "Remote_Pickle2.pickle",
+      "README.md",
+      ".git",
+      ".gitattributes"
+    ],
+    "has_config": false,
+    "model_type": "pickle",
+    "framework": "pickle",
+    "model_files": [
+      "Remote_Pickle2.pickle"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": false,
+    "input_type": "possibly_none",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {
+      "warning": "Pickle files may execute code on load"
+    },
+    "modality": "unknown"
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "Remote_Pickle2.pickle": "2.00 KB"
+    },
+    "is_real_model": true,
+    "suspicious_indicators": [],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "Remote_Pickle2.pickle",
+      "status": "malicious_executed",
+      "output": "Remote_Pickle2.pickle: Loaded <class 'NoneType'>"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 1,
+    "failed": 0
+  }
+}
