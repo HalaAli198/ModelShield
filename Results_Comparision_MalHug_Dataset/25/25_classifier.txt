@@ -1,0 +1,42 @@
+  Tagged 516 loading events from 25.jossefharush-gpt2-rs_loading_events.json
+  Tagged 0 execution events from 25.jossefharush-gpt2-rs_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: results/25
+Loading events: 516
+Execution events: 0
+Patterns defined: 190
+======================================================================
+
+  [LOADING] AB1-NET-PREP-SSL-DNS: SSL/DNS initialization (outbound HTTPS attempt)
+    Step 0: openat -> /usr/lib/ssl/openssl.cnf  (Open SSL/TLS configuration or certificates)
+    Step 1: read -> /usr/lib/ssl/openssl.cnf  (Read SSL/TLS config)
+    Step 2: openat -> /etc/nsswitch.conf  (Open DNS resolver configuration)
+    Step 3: read -> /etc/nsswitch.conf  (Read DNS resolver config)
+    MITRE: Command and Control / T1071.001 (Web Protocols)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [LOADING] AB1-NET-PREP-SSL-ONLY: SSL/TLS initialization during model loading
+    Step 0: openat -> /usr/lib/ssl/openssl.cnf  (Open SSL/TLS config (openssl.cnf or CA certs))
+    Step 1: read -> /usr/lib/ssl/openssl.cnf  (Read SSL config)
+    Step 2: openat -> /usr/lib/ssl/cert.pem  (Open CA certificate store)
+    Step 3: read -> /etc/nsswitch.conf  (Read CA certificates)
+    MITRE: Command and Control / T1071.001 (Web Protocols)
+
+  [LOADING] AB1-NET-PREP-DNS-NSCD: DNS resolution via nscd/systemd-resolved during model loading
+    Step 0: socket -> AF_UNIX/SOCK_STREAM/DEFAULT  (Create AF_UNIX socket (nscd/resolved connection))
+    Step 1: connect -> unix  (Connect to nscd/resolved)
+    Step 2: openat -> /etc/nsswitch.conf  (Open DNS resolver config)
+    Step 3: read -> /etc/nsswitch.conf  (Read DNS resolver config)
+    MITRE: Command and Control / T1071.001 (Web Protocols)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - SSL/TLS initialization during model loading
+      - SSL/DNS initialization (outbound HTTPS attempt)
+      - DNS resolution via nscd/systemd-resolved during model loading
+      MITRE: T1071.001 (Web Protocols)
+      MITRE: T1041 (Exfiltration Over C2 Channel)
+======================================================================
