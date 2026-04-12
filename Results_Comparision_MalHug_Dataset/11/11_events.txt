@@ -1,0 +1,505 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_done/11.matanby-unsafe-diffusion
+======================================================================
+
+[1] Detecting model type...
+    Type: pytorch
+    Framework: pytorch
+    Has config.json: True
+    Files: diffusion_pytorch_model.bin...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: text_to_image
+    Modality: multimodal
+    Input shape: text prompt
+
+[3] Analyzing model structure...
+    Architecture: ['unknown']
+    Is real model: False
+    ⚠️  Suspicious: diffusion_pytorch_model.bin is suspiciously small (751 bytes), Contains data.pkl file
+
+[4] Creating input data...
+    Input created: <class 'str'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141040, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141040
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140570344445760, Kernel: 141040
+[AOP Monitor] Context tracked: pthread_id=140570344445760, kernel_tid=141040, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 141040, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141040
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - diffusion_pytorch_model.bin is suspiciously small (751 bytes)
+   - Contains data.pkl file
+   - This may not be a real model - likely just malicious code
+
+  Processing diffusion_pytorch_model.bin as type: pytorch/transformers
+Loading as HuggingFace transformers model...
+
+======================================================================
+🔍 DEEP INSPECTION OF MODEL FILE
+======================================================================
+
+📋 File header (first 100 bytes):
+   Hex: 504b03040000080800000000000000000000000000000000000010001200617263686976652f646174612e706b6c46420e00
+   ASCII: b'PK\x03\x04\x00\x00\x08\x08\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x10\x00\x12\x00archive/data.pklFB\x0e\x00'
+
+📦 File is a ZIP archive
+   Total files in archive: 2
+   Files:
+      - archive/data.pkl (352 bytes)
+      - archive/version (2 bytes)
+
+🥒 Pickle files found: ['archive/data.pkl']
+
+   Analyzing: archive/data.pkl
+   Size: 352 bytes
+
+   🔬 PICKLE OPCODES DISASSEMBLY:
+   ------------------------------------------------------------
+    0: \x80 PROTO      2 Protocol version indicator.
+    2: c    GLOBAL     '__builtin__ exec' Push a global object (module.attr) on the stack.
+   20: q    BINPUT     0                  Store the stack top into the memo.  The stack is not popped.
+   22: X    BINUNICODE "\nprint(\nr'''_______________________________\n< OH NO! you have been owned! >\n-------------------------------\n         \\   ^__^ \n          \\  (oo)\\_______\n             (__)\\       )\\/\\\n                 ||----w |\n                 ||     ||\n\n* not really, but seriously, don't load untrusted pickle files. '''\n);\nexit()\n" Push a Python Unicode string object.
+  343: q    BINPUT     1 Store the stack top into the memo.  The stack is not popped.
+  345: \x85 TUPLE1       Build a one-tuple out of the topmost item on the stack.
+  346: q    BINPUT     2 Store the stack top into the memo.  The stack is not popped.
+  348: R    REDUCE       Push an object built from a callable and an argument tuple.
+  349: q    BINPUT     3 Store the stack top into the memo.  The stack is not popped.
+  351: .    STOP         Stop the unpickling machine.
+highest protocol among opcodes = 2
+   ------------------------------------------------------------
+
+   🚨 SECURITY ANALYSIS:
+   Suspicious patterns detected:
+      ⚠️  exec() execution: 'exec' found
+======================================================================
+🔍 INSPECTION COMPLETE
+======================================================================
+
+    Inspecting pytorch_model.bin contents...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 0b52e668
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141040, correlation '0b52e668', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0b52e668', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141040
+[Context Update] Updated 1 threads to 0b52e668 (LOADING)
+[Debug] Thread IDs - Python: 140570344445760, Kernel: 141040
+[AOP Monitor] Context tracked: pthread_id=140570344445760, kernel_tid=141040, ID=0b52e668, Phase=LOADING
+[Debug] Setting eBPF context for TID 141040, correlation '0b52e668', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0b52e668', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141040
+[AOP Monitor] eBPF monitoring active for LOADING: 0b52e668
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5975bf56
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141040, correlation '5975bf56', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5975bf56', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141040
+[Context Update] Updated 1 threads to 5975bf56 (LOADING)
+[Debug] Thread IDs - Python: 140570344445760, Kernel: 141040
+[AOP Monitor] Context tracked: pthread_id=140570344445760, kernel_tid=141040, ID=5975bf56, Phase=LOADING
+[Debug] Setting eBPF context for TID 141040, correlation '5975bf56', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5975bf56', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141040
+[AOP Monitor] eBPF monitoring active for LOADING: 5975bf56
+_______________________________
+< OH NO! you have been owned! >
+-------------------------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+* not really, but seriously, don't load untrusted pickle files. 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=306_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=307_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:141040 TID:141040 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:141040 TID:141040 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:141040 TID:141040 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:141040 TID:141040 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:141040 TID:141040 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:141040 TID:141040 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:141040 TID:141040 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141040 TID:141040 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 0 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 10, 1 -> openat -> ./Models_done/11.matanby-unsafe-diffusion
+PID:141040 TID:141040 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 40, 1 -> getdents64 -> ./Models_done/11.matanby-unsafe-diffusion
+PID:141040 TID:141040 -event.operation_id: 40, 1 -> getdents64 -> ./Models_done/11.matanby-unsafe-diffusion
+PID:141040 TID:141040 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 10, 1 -> openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 10, 1 -> openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=530, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 112, 1 -> bpf -> 
+PID:141040 TID:141040 -event.operation_id: 10, 1 -> openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=729, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=709, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=653, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=530, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=432, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:141040 TID:141040 -event.operation_id: 12, 1 -> read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod
+PID:141040 TID:141040 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141040 TID:141040 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8113, stream=stdout]
+PID:141040 TID:141040 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141040 TID:141040 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8144, stream=stdout]
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (5975bf56) - Total: 78
+======================================================================
+[1] PID:141040 TID:141040 - bpf ->  {}
+[2] PID:141040 TID:141040 - bpf ->  {}
+[3] PID:141040 TID:141040 - bpf ->  {}
+[4] PID:141040 TID:141040 - openat -> ./Models_done/11.matanby-unsafe-diffusion {}
+[5] PID:141040 TID:141040 - fstat -> fd=313 {'fd': 313}
+[6] PID:141040 TID:141040 - getdents64 -> ./Models_done/11.matanby-unsafe-diffusion {'fd': 8317134093884927790}
+[7] PID:141040 TID:141040 - getdents64 -> ./Models_done/11.matanby-unsafe-diffusion {'fd': 8317134093884927790}
+[8] PID:141040 TID:141040 - close -> fd=313 {'fd': 313}
+[9] PID:141040 TID:141040 - openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {}
+[10] PID:141040 TID:141040 - fstat -> fd=313 {'fd': 313}
+[11] PID:141040 TID:141040 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[12] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[13] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[14] PID:141040 TID:141040 - close -> fd=313 {'fd': 313}
+[15] PID:141040 TID:141040 - openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {}
+[16] PID:141040 TID:141040 - fstat -> fd=313 {'fd': 313}
+[17] PID:141040 TID:141040 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[18] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[19] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[20] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[21] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 18446744073709551594, 'whence': 'SEEK_END'}
+[22] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[23] PID:141040 TID:141040 - fstat -> fd=313 {'fd': 313}
+[24] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[25] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[26] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 18446744073709551574, 'whence': 'SEEK_END'}
+[27] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[28] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 18446744073709551518, 'whence': 'SEEK_END'}
+[29] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[30] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 530, 'whence': 'SEEK_SET'}
+[31] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[32] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[33] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[34] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[35] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[36] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[37] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[38] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[39] PID:141040 TID:141040 - close -> fd=313 {'fd': 313}
+[40] PID:141040 TID:141040 - getrandom -> getrandom_size=0 {}
+[41] PID:141040 TID:141040 - bpf ->  {}
+[42] PID:141040 TID:141040 - bpf ->  {}
+[43] PID:141040 TID:141040 - bpf ->  {}
+[44] PID:141040 TID:141040 - bpf ->  {}
+[45] PID:141040 TID:141040 - getrandom -> getrandom_size=0 {}
+[46] PID:141040 TID:141040 - bpf ->  {}
+[47] PID:141040 TID:141040 - bpf ->  {}
+[48] PID:141040 TID:141040 - bpf ->  {}
+[49] PID:141040 TID:141040 - bpf ->  {}
+[50] PID:141040 TID:141040 - openat -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {}
+[51] PID:141040 TID:141040 - fstat -> fd=313 {'fd': 313}
+[52] PID:141040 TID:141040 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[53] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[54] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[55] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[56] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[57] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[58] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[59] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[60] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[61] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[62] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[63] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 729, 'whence': 'SEEK_SET'}
+[64] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[65] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 709, 'whence': 'SEEK_SET'}
+[66] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[67] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 653, 'whence': 'SEEK_SET'}
+[68] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[69] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 530, 'whence': 'SEEK_SET'}
+[70] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[71] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 432, 'whence': 'SEEK_SET'}
+[72] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[73] PID:141040 TID:141040 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[74] PID:141040 TID:141040 - read -> ./Models_done/11.matanby-unsafe-diffusion/diffusion_pytorch_mod {'fd': 8317134093884927790, 'size': 3544666494408287327}
+[75] PID:141040 TID:141040 - close -> fd=313 {'fd': 313}
+[76] PID:141040 TID:141040 - write -> stdout {'fd': 1, 'size': 8113, 'stream': 'stdout'}
+[77] PID:141040 TID:141040 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[78] PID:141040 TID:141040 - write -> stdout {'fd': 1, 'size': 8144, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0944 seconds
+PID:141040 TID:141040 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8150, stream=stdout]
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (0b52e668) - Total: 1
+======================================================================
+[1] PID:141040 TID:141040 - write -> stdout {'fd': 1, 'size': 8150, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1884 seconds
+    🚨 MALICIOUS: Pickle called exit(None)!
+[Emergency Polling] Malicious exit detected, polling events...
+[Emergency Polling] Events captured: 0
+    ⚠️  MALICIOUS: Contains <class 'NoneType'> object instead of state_dict!
+    Attempting to run malicious model with tensor input...
+    Saved 68 loading events to 11.matanby-unsafe-diffusion_loading_events.json
+    Saved 0 execution events to 11.matanby-unsafe-diffusion_execution_events.json
+    Files Processed: 1
+    Successful: 0, Malicious: 1, Failed: 0
+    - diffusion_pytorch_model.bin: malicious_model_loaded - Malicious model loaded directly: <class 'NoneType'
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_done/11.matanby-unsafe-diffusion",
+  "model_info": {
+    "folder": "./Models_done/11.matanby-unsafe-diffusion",
+    "files": [
+      "model_index.json",
+      "diffusion_pytorch_model.bin",
+      "README.md",
+      "config.json",
+      ".git",
+      ".gitattributes"
+    ],
+    "has_config": true,
+    "model_type": "pytorch",
+    "framework": "pytorch",
+    "model_files": [
+      "diffusion_pytorch_model.bin"
+    ],
+    "config_data": {
+      "_class_name": "AutoencoderKL",
+      "_diffusers_version": "0.10.2",
+      "act_fn": "silu",
+      "block_out_channels": [
+        128,
+        256,
+        512,
+        512
+      ],
+      "down_block_types": [
+        "DownEncoderBlock2D",
+        "DownEncoderBlock2D",
+        "DownEncoderBlock2D",
+        "DownEncoderBlock2D"
+      ],
+      "in_channels": 3,
+      "latent_channels": 4,
+      "layers_per_block": 2,
+      "norm_num_groups": 32,
+      "out_channels": 3,
+      "sample_size": 256,
+      "up_block_types": [
+        "UpDecoderBlock2D",
+        "UpDecoderBlock2D",
+        "UpDecoderBlock2D",
+        "UpDecoderBlock2D"
+      ]
+    },
+    "bin_classification": {
+      "diffusion_pytorch_model.bin": {
+        "kind": "pytorch_standard",
+        "is_zip": true,
+        "contents": [
+          "archive/data.pkl",
+          "archive/version"
+        ],
+        "safe_for_hf": true,
+        "has_custom_class": false,
+        "is_checkpoint": false,
+        "is_quantized": false,
+        "is_distributed": false,
+        "pickle_files": [
+          "archive/data.pkl"
+        ],
+        "main_pickle": "archive/data.pkl"
+      }
+    },
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "text_to_image",
+    "input_shape": "text prompt",
+    "sample_input": "A beautiful landscape painting",
+    "additional_info": {},
+    "modality": "multimodal"
+  },
+  "structure": {
+    "architecture": [
+      "unknown"
+    ],
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "diffusion_pytorch_model.bin": "0.73 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "diffusion_pytorch_model.bin is suspiciously small (751 bytes)",
+      "Contains data.pkl file"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "diffusion_pytorch_model.bin",
+      "status": "malicious_model_loaded",
+      "output": "Malicious model loaded directly: <class 'NoneType'> | Tensor execution failed: 'NoneType' object is not callable"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 1,
+    "failed": 0
+  }
+}
