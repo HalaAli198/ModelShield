@@ -1,0 +1,22 @@
+  Tagged 712 loading events from 66.bricksbricks919-threemodelz_loading_events.json
+  Tagged 0 execution events from 66.bricksbricks919-threemodelz_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: results/66
+Loading events: 712
+Execution events: 0
+Patterns defined: 190
+======================================================================
+
+  [LOADING] AB6-SCAN: Remote system discovery / network scanning
+    Step 0: socket -> AF_INET/SOCK_STREAM/DEFAULT  (Create socket)
+    Step 1: connect -> 136.243.156.104:24829  (Probe remote host)
+    MITRE: Discovery / T1018 (Remote System Discovery)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB6: Remote Control
+      - Remote system discovery / network scanning
+      MITRE: T1018 (Remote System Discovery)
+======================================================================
