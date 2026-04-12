@@ -1,0 +1,594 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/36.paclove-pytorchTest
+======================================================================
+
+[1] Detecting model type...
+    Type: torch_package
+    Framework: pytorch
+    Has config.json: True
+    Files: pytorch_model.bin...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: text
+    Modality: text
+    Input shape: text string
+
+[3] Analyzing model structure...
+    Architecture: ['test']
+    Is real model: False
+    ⚠️  Suspicious: pytorch_model.bin is suspiciously small (908 bytes), Contains data.pkl file
+
+[4] Creating input data...
+    Input created: <class 'str'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 142825, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142825
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139923679217472, Kernel: 142825
+[AOP Monitor] Context tracked: pthread_id=139923679217472, kernel_tid=142825, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 142825, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142825
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - pytorch_model.bin is suspiciously small (908 bytes)
+   - Contains data.pkl file
+   - This may not be a real model - likely just malicious code
+
+  Processing pytorch_model.bin as type: torch_package
+⚠️  Loading torch.package model (POTENTIALLY DANGEROUS!)...
+    Trying torch.load for torch.package file...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: ae30679c
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 142825, correlation 'ae30679c', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ae30679c', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142825
+[Context Update] Updated 1 threads to ae30679c (LOADING)
+[Debug] Thread IDs - Python: 139923679217472, Kernel: 142825
+[AOP Monitor] Context tracked: pthread_id=139923679217472, kernel_tid=142825, ID=ae30679c, Phase=LOADING
+[Debug] Setting eBPF context for TID 142825, correlation 'ae30679c', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ae30679c', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142825
+[AOP Monitor] eBPF monitoring active for LOADING: ae30679c
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 8369f980
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 142825, correlation '8369f980', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='8369f980', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142825
+[Context Update] Updated 1 threads to 8369f980 (LOADING)
+[Debug] Thread IDs - Python: 139923679217472, Kernel: 142825
+[AOP Monitor] Context tracked: pthread_id=139923679217472, kernel_tid=142825, ID=8369f980, Phase=LOADING
+[Debug] Setting eBPF context for TID 142825, correlation '8369f980', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='8369f980', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142825
+[AOP Monitor] eBPF monitoring active for LOADING: 8369f980
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: ac0b7ef7
+[AOP Monitor] API Called: posix.system
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 142825, correlation 'ac0b7ef7', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ac0b7ef7', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142825
+[Context Update] Updated 1 threads to ac0b7ef7 (EXECUTION)
+[Debug] Thread IDs - Python: 139923679217472, Kernel: 142825
+[AOP Monitor] Context tracked: pthread_id=139923679217472, kernel_tid=142825, ID=ac0b7ef7, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 142825, correlation 'ac0b7ef7', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='ac0b7ef7', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142825
+[AOP Monitor] eBPF monitoring active for EXECUTION: ac0b7ef7
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: f171c693
+[AOP Monitor] API Called: posix.system
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 142825, correlation 'f171c693', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='f171c693', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 142825
+[Context Update] Updated 1 threads to f171c693 (EXECUTION)
+[Debug] Thread IDs - Python: 139923679217472, Kernel: 142825
+[AOP Monitor] Context tracked: pthread_id=139923679217472, kernel_tid=142825, ID=f171c693, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 142825, correlation 'f171c693', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='f171c693', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 142825
+[AOP Monitor] eBPF monitoring active for EXECUTION: f171c693
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=306_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=307_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:142825 TID:142825 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:142825 TID:142825 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:142825 TID:142825 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:142825 TID:142825 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:142825 TID:142825 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:142825 TID:142825 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:142825 TID:142825 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:142825 TID:142825 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 0 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 18, 1 -> stat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 10, 1 -> openat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:142825 TID:142825 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=908, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:142825 TID:142825 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 10, 1 -> openat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:142825 TID:142825 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=886, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=866, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=810, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=568, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=402, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=278, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=175, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:142825 TID:142825 -event.operation_id: 12, 1 -> read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin
+PID:142825 TID:142825 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:142825 TID:142825 -event.operation_id: 112, 1 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 112, 2 -> bpf -> 
+PID:142825 TID:142825 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=131106 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:142825 TID:142825 -event.operation_id: 80, 2 -> clone -> flags=0x4111 [flags=CLONE_VM]
+PID:142825 TID:142825 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8167, stream=stdout]
+PID:142825 TID:142825 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:142826 TID:142826 -event.operation_id: 22, 2 -> access -> /etc/ld.so.preload [mode=R_OK|W_OK|X_OK]
+PID:142826 TID:142826 -event.operation_id: 10, 2 -> openat -> /etc/ld.so.cache
+PID:142826 TID:142826 -event.operation_id: 19, 2 -> fstat -> fd=3 [fd=3]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:142826 TID:142826 -event.operation_id: 57, 2 -> close -> fd=3 [fd=3]
+PID:142826 TID:142826 -event.operation_id: 10, 2 -> openat -> /lib/x86_64-linux-gnu/libc.so.6
+PID:142826 TID:142826 -event.operation_id: 12, 2 -> read -> /lib/x86_64-linux-gnu/libc.so.6
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:142826 TID:142826 -event.operation_id: 19, 2 -> fstat -> fd=3 [fd=3]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=784, offset=64]
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=32, offset=848]
+PID:142826 TID:142826 -event.operation_id: 13, 2 -> pread64 -> fd=3 [fd=3, size=68, offset=880]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=2050 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=0x7f0c6d3cc000, len=2066 [protection=PROT_READ|PROT_EXEC, flags=MAP_PRIVATE|MAP_FIXED]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=0x7f0c6d544000, len=2066 [protection=PROT_READ, flags=MAP_PRIVATE|MAP_FIXED]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=0x7f0c6d592000, len=2066 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED]
+PID:142826 TID:142826 -event.operation_id: 85, 2 -> mmap -> addr=0x7f0c6d598000, len=50 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS]
+PID:142826 TID:142826 -event.operation_id: 57, 2 -> close -> fd=3 [fd=3]
+PID:142826 TID:142826 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f0c6d592000, len=16384 [protection=PROT_READ]
+PID:142826 TID:142826 -event.operation_id: 86, 2 -> mprotect -> addr=0x564d3006b000, len=8192 [protection=PROT_READ]
+PID:142826 TID:142826 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f0c6d5dc000, len=4096 [protection=PROT_READ]
+PID:142826 TID:142826 -event.operation_id: 88, 2 -> getuid -> getuid
+PID:142826 TID:142826 -event.operation_id: 90, 2 -> getgid -> getgid
+PID:142826 TID:142826 -event.operation_id: 89, 2 -> geteuid -> geteuid
+PID:142826 TID:142826 -event.operation_id: 55, 2 -> getcwd -> getcwd
+PID:142826 TID:142826 -event.operation_id: 89, 2 -> geteuid -> geteuid
+PID:142826 TID:142826 -event.operation_id: 91, 2 -> getegid -> getegid
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /usr/local/sbin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /usr/local/bin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /usr/sbin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /usr/bin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /sbin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /bin/open
+PID:142826 TID:142826 -event.operation_id: 18, 2 -> stat -> /snap/bin/open
+PID:142826 TID:142826 -event.operation_id: 15, 2 -> write -> stderr [fd=2, size=7, stream=stderr]
+PID:142826 TID:142826 -event.operation_id: 15, 2 -> write -> stderr [fd=2, size=15, stream=stderr]
+PID:142826 TID:142826 -event.operation_id: 15, 2 -> write -> stderr [fd=2, size=1, stream=stderr]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 142825 -> Child PID: 142826
+  Correlation ID: f171c693
+  Phase: 2
+  Command: python3.9
+  Timestamp: 164316.433461
+PID:142825 TID:142825 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8168, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+EXECUTION EVENTS (f171c693) - Total: 53
+======================================================================
+[1] PID:142825 TID:142825 - bpf ->  {}
+[2] PID:142825 TID:142825 - bpf ->  {}
+[3] PID:142825 TID:142825 - bpf ->  {}
+[4] PID:142825 TID:142825 - getrandom -> getrandom_size=0 {}
+[5] PID:142825 TID:142825 - bpf ->  {}
+[6] PID:142825 TID:142825 - bpf ->  {}
+[7] PID:142825 TID:142825 - bpf ->  {}
+[8] PID:142825 TID:142825 - bpf ->  {}
+[9] PID:142825 TID:142825 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[10] PID:142825 TID:142825 - clone -> flags=0x4111 {'flags': 'CLONE_VM'}
+[11] PID:142826 TID:142826 - access -> /etc/ld.so.preload {'mode': 'R_OK|W_OK|X_OK'}
+[12] PID:142826 TID:142826 - openat -> /etc/ld.so.cache {}
+[13] PID:142826 TID:142826 - fstat -> fd=3 {'fd': 3}
+[14] PID:142826 TID:142826 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[15] PID:142826 TID:142826 - close -> fd=3 {'fd': 3}
+[16] PID:142826 TID:142826 - openat -> /lib/x86_64-linux-gnu/libc.so.6 {}
+[17] PID:142826 TID:142826 - read -> /lib/x86_64-linux-gnu/libc.so.6 {'fd': 3907004821653777455, 'size': 8461816663211521631}
+[18] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[19] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[20] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[21] PID:142826 TID:142826 - fstat -> fd=3 {'fd': 3}
+[22] PID:142826 TID:142826 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[23] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 784, 'offset': 64}
+[24] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 32, 'offset': 848}
+[25] PID:142826 TID:142826 - pread64 -> fd=3 {'fd': 3, 'size': 68, 'offset': 880}
+[26] PID:142826 TID:142826 - mmap -> addr=NULL, len=2050 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[27] PID:142826 TID:142826 - mmap -> addr=0x7f0c6d3cc000, len=2066 {'protection': 'PROT_READ|PROT_EXEC', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[28] PID:142826 TID:142826 - mmap -> addr=0x7f0c6d544000, len=2066 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[29] PID:142826 TID:142826 - mmap -> addr=0x7f0c6d592000, len=2066 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED'}
+[30] PID:142826 TID:142826 - mmap -> addr=0x7f0c6d598000, len=50 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS'}
+[31] PID:142826 TID:142826 - close -> fd=3 {'fd': 3}
+[32] PID:142826 TID:142826 - mprotect -> addr=0x7f0c6d592000, len=16384 {'protection': 'PROT_READ'}
+[33] PID:142826 TID:142826 - mprotect -> addr=0x564d3006b000, len=8192 {'protection': 'PROT_READ'}
+[34] PID:142826 TID:142826 - mprotect -> addr=0x7f0c6d5dc000, len=4096 {'protection': 'PROT_READ'}
+[35] PID:142826 TID:142826 - getuid -> getuid {}
+[36] PID:142826 TID:142826 - getgid -> getgid {}
+[37] PID:142826 TID:142826 - geteuid -> geteuid {}
+[38] PID:142826 TID:142826 - getcwd -> getcwd {}
+[39] PID:142826 TID:142826 - geteuid -> geteuid {}
+[40] PID:142826 TID:142826 - getegid -> getegid {}
+[41] PID:142826 TID:142826 - stat -> /usr/local/sbin/open {}
+[42] PID:142826 TID:142826 - stat -> /usr/local/bin/open {}
+[43] PID:142826 TID:142826 - stat -> /usr/sbin/open {}
+[44] PID:142826 TID:142826 - stat -> /usr/bin/open {}
+[45] PID:142826 TID:142826 - stat -> /sbin/open {}
+[46] PID:142826 TID:142826 - stat -> /bin/open {}
+[47] PID:142826 TID:142826 - stat -> /snap/bin/open {}
+[48] PID:142826 TID:142826 - write -> stderr {'fd': 2, 'size': 7, 'stream': 'stderr'}
+[49] PID:142826 TID:142826 - write -> stderr {'fd': 2, 'size': 15, 'stream': 'stderr'}
+[50] PID:142826 TID:142826 - write -> stderr {'fd': 2, 'size': 1, 'stream': 'stderr'}
+[51] PID:142825 TID:142825 - write -> stdout {'fd': 1, 'size': 8167, 'stream': 'stdout'}
+[52] PID:142825 TID:142825 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[53] PID:142825 TID:142825 - write -> stdout {'fd': 1, 'size': 8168, 'stream': 'stdout'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1128 seconds
+PID:142825 TID:142825 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8176, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+EXECUTION EVENTS (ac0b7ef7) - Total: 1
+======================================================================
+[1] PID:142825 TID:142825 - write -> stdout {'fd': 1, 'size': 8176, 'stream': 'stdout'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.2102 seconds
+PID:142825 TID:142825 -event.operation_id: 57, 2 -> close -> fd=313 [fd=313]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (8369f980) - Total: 62
+======================================================================
+[1] PID:142825 TID:142825 - bpf ->  {}
+[2] PID:142825 TID:142825 - bpf ->  {}
+[3] PID:142825 TID:142825 - bpf ->  {}
+[4] PID:142825 TID:142825 - stat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {}
+[5] PID:142825 TID:142825 - openat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {}
+[6] PID:142825 TID:142825 - fstat -> fd=313 {'fd': 313}
+[7] PID:142825 TID:142825 - fstat -> fd=313 {'fd': 313}
+[8] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[9] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[10] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[11] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[12] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[13] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[14] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[15] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[16] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[17] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[18] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[19] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[20] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 908, 'whence': 'SEEK_SET'}
+[21] PID:142825 TID:142825 - close -> fd=313 {'fd': 313}
+[22] PID:142825 TID:142825 - getrandom -> getrandom_size=0 {}
+[23] PID:142825 TID:142825 - bpf ->  {}
+[24] PID:142825 TID:142825 - bpf ->  {}
+[25] PID:142825 TID:142825 - bpf ->  {}
+[26] PID:142825 TID:142825 - bpf ->  {}
+[27] PID:142825 TID:142825 - getrandom -> getrandom_size=0 {}
+[28] PID:142825 TID:142825 - bpf ->  {}
+[29] PID:142825 TID:142825 - bpf ->  {}
+[30] PID:142825 TID:142825 - bpf ->  {}
+[31] PID:142825 TID:142825 - bpf ->  {}
+[32] PID:142825 TID:142825 - openat -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {}
+[33] PID:142825 TID:142825 - fstat -> fd=313 {'fd': 313}
+[34] PID:142825 TID:142825 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[35] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[36] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[37] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[38] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[39] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[40] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[41] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[42] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[43] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[44] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[45] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 886, 'whence': 'SEEK_SET'}
+[46] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[47] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 866, 'whence': 'SEEK_SET'}
+[48] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[49] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 810, 'whence': 'SEEK_SET'}
+[50] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[51] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 568, 'whence': 'SEEK_SET'}
+[52] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[53] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 402, 'whence': 'SEEK_SET'}
+[54] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[55] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 278, 'whence': 'SEEK_SET'}
+[56] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[57] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 175, 'whence': 'SEEK_SET'}
+[58] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[59] PID:142825 TID:142825 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[60] PID:142825 TID:142825 - read -> ./Models_rest/36.paclove-pytorchTest/pytorch_model.bin {'fd': 8317134093884927790, 'size': 3905517479059092063}
+[61] PID:142825 TID:142825 - getrandom -> getrandom_size=0 {}
+[62] PID:142825 TID:142825 - bpf ->  {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.3113 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (ae30679c) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.4178 seconds
+    Saved 50 loading events to 36.paclove-pytorchTest_loading_events.json
+    Saved 48 execution events to 36.paclove-pytorchTest_execution_events.json
+    Files Processed: 1
+    Successful: 1, Malicious: 0, Failed: 0
+    - pytorch_model.bin: model_loaded - Loaded via torch.load: <class 'int'> | Attempts: P
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/36.paclove-pytorchTest",
+  "model_info": {
+    "folder": "./Models_rest/36.paclove-pytorchTest",
+    "files": [
+      "pytorch_model.bin",
+      "config.json",
+      "test.py",
+      ".git",
+      ".gitattributes"
+    ],
+    "has_config": true,
+    "model_type": "torch_package",
+    "framework": "pytorch",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "config_data": {
+      "architectures": [
+        "test"
+      ],
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 768,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "pad_token_id": 0,
+      "position_embedding_type": "absolute",
+      "torch_dtype": "float32",
+      "transformers_version": "4.12.5",
+      "type_vocab_size": 2,
+      "use_cache": true,
+      "vocab_size": 30522
+    },
+    "bin_classification": {
+      "pytorch_model.bin": {
+        "kind": "torch_package",
+        "is_zip": true,
+        "contents": [
+          "12/data.pkl",
+          "12/byteorder",
+          "12/version",
+          "12/.data/serialization_id"
+        ],
+        "safe_for_hf": false,
+        "has_custom_class": false,
+        "is_checkpoint": false,
+        "is_quantized": false,
+        "is_distributed": false,
+        "pickle_files": [
+          "12/data.pkl"
+        ],
+        "module_pickles": {
+          "12": [
+            "12/data.pkl"
+          ]
+        }
+      }
+    },
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "text",
+    "input_shape": "text string",
+    "sample_input": "This is a test sentence for the model",
+    "additional_info": {
+      "max_length": 512,
+      "vocab_size": 30522
+    },
+    "modality": "text"
+  },
+  "structure": {
+    "architecture": [
+      "test"
+    ],
+    "layers": [
+      "12 hidden layers",
+      "Hidden size: 768"
+    ],
+    "parameters": 0,
+    "file_sizes": {
+      "pytorch_model.bin": "0.89 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "pytorch_model.bin is suspiciously small (908 bytes)",
+      "Contains data.pkl file"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "pytorch_model.bin",
+      "status": "model_loaded",
+      "output": "Loaded via torch.load: <class 'int'> | Attempts: PackageImporter: FAILED - PytorchStreamReader failed locating file .data/ext | torch.load: SUCCESS - <class 'int'>"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 1,
+    "malicious": 0,
+    "failed": 0
+  }
+}
