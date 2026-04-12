@@ -1,0 +1,34 @@
+  Tagged 90 loading events from 2.Shayo-pickle_test_loading_events.json
+  Tagged 79 execution events from 2.Shayo-pickle_test_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: 2
+Loading events: 90
+Execution events: 79
+Patterns defined: 182
+======================================================================
+
+  [EXECUTION] AB1-EXEC-CRED-ACCESS: Command-based credential file access
+    Step 0: execve -> /usr/bin/cat  (Execute file-reading command (cat/head/grep/etc.))
+    Step 1: openat -> /etc/passwd  (Open credential/sensitive file)
+    Step 2: read -> /etc/passwd  (Read credential data)
+    MITRE: Credential Access / T1003.008 (/etc/passwd and /etc/shadow)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+  [EXECUTION] AB1-EXEC-SYSINFO-ACCESS: Command-based system info access
+    Step 0: execve -> /usr/bin/cat  (Execute file-reading command)
+    Step 1: openat -> /etc/passwd  (Open system info file)
+    Step 2: read -> /etc/passwd  (Read system info)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - Command-based system info access
+      - Command-based credential file access
+      MITRE: T1003.008 (/etc/passwd and /etc/shadow)
+      MITRE: T1059.004 (Unix Shell)
+      MITRE: T1082 (System Information Discovery)
+======================================================================
