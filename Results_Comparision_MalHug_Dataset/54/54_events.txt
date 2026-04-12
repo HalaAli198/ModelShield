@@ -1,0 +1,161 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/54.MustEr-rager_legacy
+======================================================================
+
+[1] Detecting model type...
+    Type: pickle
+    Framework: pickle
+    Has config.json: False
+    Files: psgs_w100.tsv.pkl...
+    ⚠️  Security issues detected in 1 files
+
+[2] Determining input requirements...
+    Needs input: False
+    Input type: possibly_none
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: True
+    🔒 Security risks: psgs_w100.tsv.pkl contains executables: ['Windows EXE']
+
+[4] Creating input data...
+    Input created: <class 'NoneType'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 148694, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 148694
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140136916674368, Kernel: 148694
+[AOP Monitor] Context tracked: pthread_id=140136916674368, kernel_tid=148694, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 148694, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 148694
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+🔒 SECURITY RISKS:
+   - psgs_w100.tsv.pkl contains executables: ['Windows EXE']
+
+  Processing psgs_w100.tsv.pkl as type: pickle
+  Loading psgs_w100.tsv.pkl...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:148694 TID:148694 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT:     CustomUnpickler failed: persistent IDs in protocol 0 must be ASCII strings, trying standard pickle...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 0663d7a0
+[AOP Monitor
+    Files Processed: 1
+    Successful: 0, Malicious: 1, Failed: 0
+    - psgs_w100.tsv.pkl: malicious_executed - psgs_w100.tsv.pkl: Loaded <class 'NoneType'>
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/54.MustEr-rager_legacy",
+  "model_info": {
+    "folder": "./Models_rest/54.MustEr-rager_legacy",
+    "files": [
+      "events",
+      "psgs_w100.tsv.pkl",
+      "README.md",
+      ".git",
+      ".gitattributes"
+    ],
+    "has_config": false,
+    "model_type": "pickle",
+    "framework": "pickle",
+    "model_files": [
+      "psgs_w100.tsv.pkl"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {
+      "psgs_w100.tsv.pkl": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      }
+    },
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": false,
+    "input_type": "possibly_none",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {
+      "warning": "Pickle files may execute code on load"
+    },
+    "modality": "unknown"
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "psgs_w100.tsv.pkl": "535294.13 KB"
+    },
+    "is_real_model": true,
+    "suspicious_indicators": [],
+    "security_risks": [
+      "psgs_w100.tsv.pkl contains executables: ['Windows EXE']"
+    ]
+  },
+  "execution": [
+    {
+      "file": "psgs_w100.tsv.pkl",
+      "status": "malicious_executed",
+      "output": "psgs_w100.tsv.pkl: Loaded <class 'NoneType'>"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 1,
+    "failed": 0
+  }
+}

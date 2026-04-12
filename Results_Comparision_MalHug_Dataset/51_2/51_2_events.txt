@@ -1,0 +1,2665 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/51.neilalfred93-my_demo_2
+======================================================================
+
+[1] Detecting model type...
+    Type: tensorflow_saved
+    Framework: tensorflow
+    Has config.json: False
+    Files: saved_model.pb, keras_metadata.pb, fingerprint.pb...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: fingerprint.pb is suspiciously small (57 bytes)
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing saved_model.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: fdac1673
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'fdac1673', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='fdac1673', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Context Update] Updated 1 threads to fdac1673 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=fdac1673, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'fdac1673', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='fdac1673', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: fdac1673
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 0827d3e0
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '0827d3e0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0827d3e0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Context Update] Updated 1 threads to 0827d3e0 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=0827d3e0, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '0827d3e0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='0827d3e0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 0827d3e0
+PID:143297 TID:143299 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143299 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b38000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143301 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143301 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b30000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143303 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143303 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b20000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143307 -event.operation_id: 85, 1 -> mmap -> addr=0x7f0b1c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143307 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b1c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143307 -event.operation_id: 144, 1 -> madvise -> madvise_0x7f0b34ffa000_len=8368128 [behavior=MADV_DONTNEED]
+PID:143297 TID:143298 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143298 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b40000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143305 -event.operation_id: 85, 1 -> mmap -> addr=0x7f0b24000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143305 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b24000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143297 TID:143297 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:143297 TID:143297 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143297 TID:143297 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143297 TID:143297 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143297 TID:143297 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143297 TID:143297 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143297 TID:143297 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143297 TID:143297 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:143297 TID:143297 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:143297 TID:143297 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143297 TID:143297 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143297 TID:143297 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143297 TID:143297 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143297 TID:143297 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 0 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /dev/urandom
+PID:143297 TID:143297 -event.operation_id: 12, 1 -> read -> /dev/urandom [size=1836016750]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:143297 TID:143297 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libcuda.so.1
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /lib/libcuda.so.1
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /usr/lib/libcuda.so.1
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> /proc/driver/nvidia/version [mode=R_OK|W_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b443e6000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b37800000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b36fff000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b367fe000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b35ffd000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b357fc000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 2, 1 -> sysinfo -> sysinfo
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 44, 1 -> readlink -> /proc/se [bufsiz=4095]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> /proc/self/cmdline
+PID:143297 TID:143297 -event.operation_id: 12, 1 -> read -> /proc/self/cmdline
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b34ffb000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143297 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1777, offset=20]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1046779, offset=1797]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8116, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8172, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8108, stream=stdout]
+PID:143297 TID:143300 -event.operation_id: 85, 1 -> mmap -> addr=0x7f0b3c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143300 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b3c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143302 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143302 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b28000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143304 -event.operation_id: 85, 1 -> mmap -> addr=0x7f0b2c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143304 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b2c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:143297 TID:143306 -event.operation_id: 10, 1 -> openat -> /sys/devices/system/cpu/online
+PID:143297 TID:143306 -event.operation_id: 12, 1 -> read -> /sys/devices/system/cpu/online
+PID:143297 TID:143306 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143297 TID:143306 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143306 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f0b18000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143298
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.361130
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143299
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.392148
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143300
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.392374
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143301
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.392663
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143302
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.392951
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143303
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.393450
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143304
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.393738
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143305
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.394034
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143306
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167224.394333
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143297 -> Child PID: 143307
+  Correlation ID: 0827d3e0
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167225.124474
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (0827d3e0) - Total: 203
+======================================================================
+[1] PID:143297 TID:143297 - bpf ->  {}
+[2] PID:143297 TID:143297 - bpf ->  {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables {}
+[5] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - bpf ->  {}
+[10] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[16] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[17] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[18] PID:143297 TID:143297 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 0}
+[19] PID:143297 TID:143297 - pread64 -> fd=313 {'fd': 313, 'size': 495515, 'offset': 28773}
+[20] PID:143297 TID:143297 - close -> fd=313 {'fd': 313}
+[21] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[22] PID:143297 TID:143297 - openat -> /dev/urandom {}
+[23] PID:143297 TID:143297 - read -> /dev/urandom {'fd': 7021803615734293551, 'size': 1836016750}
+[24] PID:143297 TID:143297 - close -> fd=313 {'fd': 313}
+[25] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[26] PID:143297 TID:143298 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[27] PID:143297 TID:143298 - mprotect -> addr=0x7f0b40000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[28] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[29] PID:143297 TID:143297 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo {}
+[30] PID:143297 TID:143297 - openat -> /etc/ld.so.cache {}
+[31] PID:143297 TID:143297 - fstat -> fd=313 {'fd': 313}
+[32] PID:143297 TID:143297 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[33] PID:143297 TID:143297 - close -> fd=313 {'fd': 313}
+[34] PID:143297 TID:143297 - openat -> /lib/x86_64-linux-gnu/libcuda.so.1 {}
+[35] PID:143297 TID:143297 - openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 {}
+[36] PID:143297 TID:143297 - openat -> /lib/libcuda.so.1 {}
+[37] PID:143297 TID:143297 - openat -> /usr/lib/libcuda.so.1 {}
+[38] PID:143297 TID:143297 - access -> /proc/driver/nvidia/version {'mode': 'R_OK|W_OK|X_OK'}
+[39] PID:143297 TID:143297 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[40] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[41] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[42] PID:143297 TID:143299 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[43] PID:143297 TID:143299 - mprotect -> addr=0x7f0b38000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[44] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[45] PID:143297 TID:143297 - mprotect -> addr=0x7f0b443e6000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[46] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[47] PID:143297 TID:143300 - mmap -> addr=0x7f0b3c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[48] PID:143297 TID:143300 - mprotect -> addr=0x7f0b3c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[49] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[50] PID:143297 TID:143297 - mprotect -> addr=0x7f0b37800000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[51] PID:143297 TID:143301 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[52] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[53] PID:143297 TID:143301 - mprotect -> addr=0x7f0b30000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[54] PID:143297 TID:143302 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[55] PID:143297 TID:143297 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[56] PID:143297 TID:143302 - mprotect -> addr=0x7f0b28000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[57] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[58] PID:143297 TID:143297 - mprotect -> addr=0x7f0b36fff000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[59] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[60] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[61] PID:143297 TID:143297 - mprotect -> addr=0x7f0b367fe000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[62] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[63] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[64] PID:143297 TID:143297 - mprotect -> addr=0x7f0b35ffd000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[65] PID:143297 TID:143304 - mmap -> addr=0x7f0b2c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[66] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[67] PID:143297 TID:143304 - mprotect -> addr=0x7f0b2c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[68] PID:143297 TID:143303 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[69] PID:143297 TID:143303 - mprotect -> addr=0x7f0b20000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[70] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[71] PID:143297 TID:143297 - mprotect -> addr=0x7f0b357fc000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[72] PID:143297 TID:143305 - mmap -> addr=0x7f0b24000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[73] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[74] PID:143297 TID:143305 - mprotect -> addr=0x7f0b24000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[75] PID:143297 TID:143306 - openat -> /sys/devices/system/cpu/online {}
+[76] PID:143297 TID:143306 - read -> /sys/devices/system/cpu/online {'fd': 8531335224086852399, 'size': 8320808434180383593}
+[77] PID:143297 TID:143306 - close -> fd=313 {'fd': 313}
+[78] PID:143297 TID:143306 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[79] PID:143297 TID:143306 - mprotect -> addr=0x7f0b18000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - uname -> uname {}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[96] PID:143297 TID:143297 - uname -> uname {}
+[97] PID:143297 TID:143297 - uname -> uname {}
+[98] PID:143297 TID:143297 - uname -> uname {}
+[99] PID:143297 TID:143297 - uname -> uname {}
+[100] PID:143297 TID:143297 - uname -> uname {}
+[101] PID:143297 TID:143297 - uname -> uname {}
+[102] PID:143297 TID:143297 - uname -> uname {}
+[103] PID:143297 TID:143297 - uname -> uname {}
+[104] PID:143297 TID:143297 - uname -> uname {}
+[105] PID:143297 TID:143297 - uname -> uname {}
+[106] PID:143297 TID:143297 - uname -> uname {}
+[107] PID:143297 TID:143297 - uname -> uname {}
+[108] PID:143297 TID:143297 - uname -> uname {}
+[109] PID:143297 TID:143297 - uname -> uname {}
+[110] PID:143297 TID:143297 - uname -> uname {}
+[111] PID:143297 TID:143297 - uname -> uname {}
+[112] PID:143297 TID:143297 - uname -> uname {}
+[113] PID:143297 TID:143297 - uname -> uname {}
+[114] PID:143297 TID:143297 - sysinfo -> sysinfo {}
+[115] PID:143297 TID:143297 - uname -> uname {}
+[116] PID:143297 TID:143297 - uname -> uname {}
+[117] PID:143297 TID:143297 - uname -> uname {}
+[118] PID:143297 TID:143297 - uname -> uname {}
+[119] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[120] PID:143297 TID:143297 - readlink -> /proc/se {'bufsiz': 4095}
+[121] PID:143297 TID:143297 - openat -> /proc/self/cmdline {}
+[122] PID:143297 TID:143297 - read -> /proc/self/cmdline {'fd': 7310238724270485551, 'size': 7596557092445447788}
+[123] PID:143297 TID:143297 - access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow {'mode': 'R_OK|X_OK'}
+[124] PID:143297 TID:143297 - openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels {}
+[125] PID:143297 TID:143297 - uname -> uname {}
+[126] PID:143297 TID:143297 - uname -> uname {}
+[127] PID:143297 TID:143297 - uname -> uname {}
+[128] PID:143297 TID:143297 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[129] PID:143297 TID:143297 - mprotect -> addr=0x7f0b34ffb000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[130] PID:143297 TID:143297 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[131] PID:143297 TID:143297 - uname -> uname {}
+[132] PID:143297 TID:143307 - mmap -> addr=0x7f0b1c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[133] PID:143297 TID:143307 - mprotect -> addr=0x7f0b1c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[134] PID:143297 TID:143307 - madvise -> madvise_0x7f0b34ffa000_len=8368128 {'behavior': 'MADV_DONTNEED'}
+[135] PID:143297 TID:143297 - uname -> uname {}
+[136] PID:143297 TID:143297 - uname -> uname {}
+[137] PID:143297 TID:143297 - uname -> uname {}
+[138] PID:143297 TID:143297 - uname -> uname {}
+[139] PID:143297 TID:143297 - uname -> uname {}
+[140] PID:143297 TID:143297 - uname -> uname {}
+[141] PID:143297 TID:143297 - uname -> uname {}
+[142] PID:143297 TID:143297 - uname -> uname {}
+[143] PID:143297 TID:143297 - uname -> uname {}
+[144] PID:143297 TID:143297 - uname -> uname {}
+[145] PID:143297 TID:143297 - uname -> uname {}
+[146] PID:143297 TID:143297 - uname -> uname {}
+[147] PID:143297 TID:143297 - uname -> uname {}
+[148] PID:143297 TID:143297 - uname -> uname {}
+[149] PID:143297 TID:143297 - uname -> uname {}
+[150] PID:143297 TID:143297 - uname -> uname {}
+[151] PID:143297 TID:143297 - uname -> uname {}
+[152] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[153] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[154] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[155] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 334}
+[156] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 314}
+[157] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[158] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[159] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[160] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[161] PID:143297 TID:143297 - pread64 -> fd=315 {'fd': 315, 'size': 1777, 'offset': 20}
+[162] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[163] PID:143297 TID:143297 - uname -> uname {}
+[164] PID:143297 TID:143297 - uname -> uname {}
+[165] PID:143297 TID:143297 - uname -> uname {}
+[166] PID:143297 TID:143297 - uname -> uname {}
+[167] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[168] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[169] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[170] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 334}
+[171] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 314}
+[172] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 301, 'offset': 0}
+[173] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[174] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[175] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1046779, 'offset': 1797}
+[176] PID:143297 TID:143297 - close -> fd=316 {'fd': 316}
+[177] PID:143297 TID:143297 - close -> fd=317 {'fd': 317}
+[178] PID:143297 TID:143297 - uname -> uname {}
+[179] PID:143297 TID:143297 - uname -> uname {}
+[180] PID:143297 TID:143297 - uname -> uname {}
+[181] PID:143297 TID:143297 - uname -> uname {}
+[182] PID:143297 TID:143297 - uname -> uname {}
+[183] PID:143297 TID:143297 - uname -> uname {}
+[184] PID:143297 TID:143297 - uname -> uname {}
+[185] PID:143297 TID:143297 - uname -> uname {}
+[186] PID:143297 TID:143297 - uname -> uname {}
+[187] PID:143297 TID:143297 - uname -> uname {}
+[188] PID:143297 TID:143297 - uname -> uname {}
+[189] PID:143297 TID:143297 - uname -> uname {}
+[190] PID:143297 TID:143297 - uname -> uname {}
+[191] PID:143297 TID:143297 - uname -> uname {}
+[192] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[193] PID:143297 TID:143297 - close -> fd=315 {'fd': 315}
+[194] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[195] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[196] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[197] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[198] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[199] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[200] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8116, 'stream': 'stdout'}
+[201] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8172, 'stream': 'stdout'}
+[202] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[203] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8108, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.9696 seconds
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8118, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8129, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (fdac1673) - Total: 2
+======================================================================
+[1] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8118, 'stream': 'stdout'}
+[2] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8129, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 1.0678 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bce464aa
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to bce464aa (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=bce464aa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'bce464aa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bce464aa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: bce464aa
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 9bb788f0
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 9bb788f0 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=9bb788f0, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '9bb788f0', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='9bb788f0', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 9bb788f0
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8175, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8152, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (9bb788f0) - Total: 104
+======================================================================
+[1] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[2] PID:143297 TID:143297 - bpf ->  {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - bpf ->  {}
+[5] PID:143297 TID:143297 - bpf ->  {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - bpf ->  {}
+[10] PID:143297 TID:143297 - bpf ->  {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - bpf ->  {}
+[16] PID:143297 TID:143297 - bpf ->  {}
+[17] PID:143297 TID:143297 - bpf ->  {}
+[18] PID:143297 TID:143297 - bpf ->  {}
+[19] PID:143297 TID:143297 - bpf ->  {}
+[20] PID:143297 TID:143297 - bpf ->  {}
+[21] PID:143297 TID:143297 - bpf ->  {}
+[22] PID:143297 TID:143297 - bpf ->  {}
+[23] PID:143297 TID:143297 - bpf ->  {}
+[24] PID:143297 TID:143297 - bpf ->  {}
+[25] PID:143297 TID:143297 - bpf ->  {}
+[26] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[27] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8175, 'stream': 'stdout'}
+[28] PID:143297 TID:143297 - bpf ->  {}
+[29] PID:143297 TID:143297 - bpf ->  {}
+[30] PID:143297 TID:143297 - bpf ->  {}
+[31] PID:143297 TID:143297 - bpf ->  {}
+[32] PID:143297 TID:143297 - bpf ->  {}
+[33] PID:143297 TID:143297 - bpf ->  {}
+[34] PID:143297 TID:143297 - bpf ->  {}
+[35] PID:143297 TID:143297 - bpf ->  {}
+[36] PID:143297 TID:143297 - bpf ->  {}
+[37] PID:143297 TID:143297 - bpf ->  {}
+[38] PID:143297 TID:143297 - bpf ->  {}
+[39] PID:143297 TID:143297 - bpf ->  {}
+[40] PID:143297 TID:143297 - bpf ->  {}
+[41] PID:143297 TID:143297 - bpf ->  {}
+[42] PID:143297 TID:143297 - bpf ->  {}
+[43] PID:143297 TID:143297 - bpf ->  {}
+[44] PID:143297 TID:143297 - bpf ->  {}
+[45] PID:143297 TID:143297 - bpf ->  {}
+[46] PID:143297 TID:143297 - bpf ->  {}
+[47] PID:143297 TID:143297 - bpf ->  {}
+[48] PID:143297 TID:143297 - bpf ->  {}
+[49] PID:143297 TID:143297 - bpf ->  {}
+[50] PID:143297 TID:143297 - bpf ->  {}
+[51] PID:143297 TID:143297 - bpf ->  {}
+[52] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[54] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[55] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 495515, 'offset': 28773}
+[57] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[58] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[59] PID:143297 TID:143297 - uname -> uname {}
+[60] PID:143297 TID:143297 - uname -> uname {}
+[61] PID:143297 TID:143297 - uname -> uname {}
+[62] PID:143297 TID:143297 - uname -> uname {}
+[63] PID:143297 TID:143297 - uname -> uname {}
+[64] PID:143297 TID:143297 - uname -> uname {}
+[65] PID:143297 TID:143297 - uname -> uname {}
+[66] PID:143297 TID:143297 - uname -> uname {}
+[67] PID:143297 TID:143297 - uname -> uname {}
+[68] PID:143297 TID:143297 - uname -> uname {}
+[69] PID:143297 TID:143297 - uname -> uname {}
+[70] PID:143297 TID:143297 - uname -> uname {}
+[71] PID:143297 TID:143297 - uname -> uname {}
+[72] PID:143297 TID:143297 - uname -> uname {}
+[73] PID:143297 TID:143297 - uname -> uname {}
+[74] PID:143297 TID:143297 - uname -> uname {}
+[75] PID:143297 TID:143297 - uname -> uname {}
+[76] PID:143297 TID:143297 - uname -> uname {}
+[77] PID:143297 TID:143297 - uname -> uname {}
+[78] PID:143297 TID:143297 - uname -> uname {}
+[79] PID:143297 TID:143297 - uname -> uname {}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - uname -> uname {}
+[96] PID:143297 TID:143297 - uname -> uname {}
+[97] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[98] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[99] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[100] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[101] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[102] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[103] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[104] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8152, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1504 seconds
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8190, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (bce464aa) - Total: 1
+======================================================================
+[1] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2534 seconds
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing keras_metadata.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 97a6abff
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 97a6abff (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=97a6abff, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '97a6abff', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='97a6abff', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 97a6abff
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 7f54252f
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 7f54252f (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=7f54252f, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '7f54252f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7f54252f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 7f54252f
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8190, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1777, offset=20]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1046779, offset=1797]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8157, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (7f54252f) - Total: 126
+======================================================================
+[1] PID:143297 TID:143297 - stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables {}
+[2] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - bpf ->  {}
+[5] PID:143297 TID:143297 - bpf ->  {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - bpf ->  {}
+[10] PID:143297 TID:143297 - bpf ->  {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - bpf ->  {}
+[16] PID:143297 TID:143297 - bpf ->  {}
+[17] PID:143297 TID:143297 - bpf ->  {}
+[18] PID:143297 TID:143297 - bpf ->  {}
+[19] PID:143297 TID:143297 - bpf ->  {}
+[20] PID:143297 TID:143297 - bpf ->  {}
+[21] PID:143297 TID:143297 - bpf ->  {}
+[22] PID:143297 TID:143297 - bpf ->  {}
+[23] PID:143297 TID:143297 - bpf ->  {}
+[24] PID:143297 TID:143297 - bpf ->  {}
+[25] PID:143297 TID:143297 - bpf ->  {}
+[26] PID:143297 TID:143297 - bpf ->  {}
+[27] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[28] PID:143297 TID:143297 - bpf ->  {}
+[29] PID:143297 TID:143297 - bpf ->  {}
+[30] PID:143297 TID:143297 - bpf ->  {}
+[31] PID:143297 TID:143297 - bpf ->  {}
+[32] PID:143297 TID:143297 - bpf ->  {}
+[33] PID:143297 TID:143297 - bpf ->  {}
+[34] PID:143297 TID:143297 - bpf ->  {}
+[35] PID:143297 TID:143297 - bpf ->  {}
+[36] PID:143297 TID:143297 - bpf ->  {}
+[37] PID:143297 TID:143297 - bpf ->  {}
+[38] PID:143297 TID:143297 - bpf ->  {}
+[39] PID:143297 TID:143297 - bpf ->  {}
+[40] PID:143297 TID:143297 - bpf ->  {}
+[41] PID:143297 TID:143297 - bpf ->  {}
+[42] PID:143297 TID:143297 - bpf ->  {}
+[43] PID:143297 TID:143297 - bpf ->  {}
+[44] PID:143297 TID:143297 - bpf ->  {}
+[45] PID:143297 TID:143297 - bpf ->  {}
+[46] PID:143297 TID:143297 - bpf ->  {}
+[47] PID:143297 TID:143297 - bpf ->  {}
+[48] PID:143297 TID:143297 - bpf ->  {}
+[49] PID:143297 TID:143297 - bpf ->  {}
+[50] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[51] PID:143297 TID:143297 - bpf ->  {}
+[52] PID:143297 TID:143297 - bpf ->  {}
+[53] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[54] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[55] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[56] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[57] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 495515, 'offset': 28773}
+[58] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[59] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[60] PID:143297 TID:143297 - uname -> uname {}
+[61] PID:143297 TID:143297 - uname -> uname {}
+[62] PID:143297 TID:143297 - uname -> uname {}
+[63] PID:143297 TID:143297 - uname -> uname {}
+[64] PID:143297 TID:143297 - uname -> uname {}
+[65] PID:143297 TID:143297 - uname -> uname {}
+[66] PID:143297 TID:143297 - uname -> uname {}
+[67] PID:143297 TID:143297 - uname -> uname {}
+[68] PID:143297 TID:143297 - uname -> uname {}
+[69] PID:143297 TID:143297 - uname -> uname {}
+[70] PID:143297 TID:143297 - uname -> uname {}
+[71] PID:143297 TID:143297 - uname -> uname {}
+[72] PID:143297 TID:143297 - uname -> uname {}
+[73] PID:143297 TID:143297 - uname -> uname {}
+[74] PID:143297 TID:143297 - uname -> uname {}
+[75] PID:143297 TID:143297 - uname -> uname {}
+[76] PID:143297 TID:143297 - uname -> uname {}
+[77] PID:143297 TID:143297 - uname -> uname {}
+[78] PID:143297 TID:143297 - uname -> uname {}
+[79] PID:143297 TID:143297 - uname -> uname {}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - uname -> uname {}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - uname -> uname {}
+[96] PID:143297 TID:143297 - uname -> uname {}
+[97] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[98] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[99] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[100] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 334}
+[101] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 314}
+[102] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[103] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[104] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[105] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[106] PID:143297 TID:143297 - pread64 -> fd=315 {'fd': 315, 'size': 1777, 'offset': 20}
+[107] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[108] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[109] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[110] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 334}
+[111] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 314}
+[112] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 301, 'offset': 0}
+[113] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[114] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[115] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1046779, 'offset': 1797}
+[116] PID:143297 TID:143297 - close -> fd=316 {'fd': 316}
+[117] PID:143297 TID:143297 - close -> fd=317 {'fd': 317}
+[118] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[119] PID:143297 TID:143297 - close -> fd=315 {'fd': 315}
+[120] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[121] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[122] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[123] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[124] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[125] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[126] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8157, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1556 seconds
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8127, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (97a6abff) - Total: 1
+======================================================================
+[1] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8127, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2581 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: c399bcc8
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to c399bcc8 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=c399bcc8, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'c399bcc8', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c399bcc8', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: c399bcc8
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: d0d56296
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to d0d56296 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=d0d56296, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'd0d56296', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d0d56296', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: d0d56296
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8170, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8159, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (d0d56296) - Total: 103
+======================================================================
+[1] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[2] PID:143297 TID:143297 - bpf ->  {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - bpf ->  {}
+[5] PID:143297 TID:143297 - bpf ->  {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - bpf ->  {}
+[10] PID:143297 TID:143297 - bpf ->  {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - bpf ->  {}
+[16] PID:143297 TID:143297 - bpf ->  {}
+[17] PID:143297 TID:143297 - bpf ->  {}
+[18] PID:143297 TID:143297 - bpf ->  {}
+[19] PID:143297 TID:143297 - bpf ->  {}
+[20] PID:143297 TID:143297 - bpf ->  {}
+[21] PID:143297 TID:143297 - bpf ->  {}
+[22] PID:143297 TID:143297 - bpf ->  {}
+[23] PID:143297 TID:143297 - bpf ->  {}
+[24] PID:143297 TID:143297 - bpf ->  {}
+[25] PID:143297 TID:143297 - bpf ->  {}
+[26] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[27] PID:143297 TID:143297 - bpf ->  {}
+[28] PID:143297 TID:143297 - bpf ->  {}
+[29] PID:143297 TID:143297 - bpf ->  {}
+[30] PID:143297 TID:143297 - bpf ->  {}
+[31] PID:143297 TID:143297 - bpf ->  {}
+[32] PID:143297 TID:143297 - bpf ->  {}
+[33] PID:143297 TID:143297 - bpf ->  {}
+[34] PID:143297 TID:143297 - bpf ->  {}
+[35] PID:143297 TID:143297 - bpf ->  {}
+[36] PID:143297 TID:143297 - bpf ->  {}
+[37] PID:143297 TID:143297 - bpf ->  {}
+[38] PID:143297 TID:143297 - bpf ->  {}
+[39] PID:143297 TID:143297 - bpf ->  {}
+[40] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8170, 'stream': 'stdout'}
+[41] PID:143297 TID:143297 - bpf ->  {}
+[42] PID:143297 TID:143297 - bpf ->  {}
+[43] PID:143297 TID:143297 - bpf ->  {}
+[44] PID:143297 TID:143297 - bpf ->  {}
+[45] PID:143297 TID:143297 - bpf ->  {}
+[46] PID:143297 TID:143297 - bpf ->  {}
+[47] PID:143297 TID:143297 - bpf ->  {}
+[48] PID:143297 TID:143297 - bpf ->  {}
+[49] PID:143297 TID:143297 - bpf ->  {}
+[50] PID:143297 TID:143297 - bpf ->  {}
+[51] PID:143297 TID:143297 - bpf ->  {}
+[52] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[54] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[55] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 495515, 'offset': 28773}
+[57] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[58] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[59] PID:143297 TID:143297 - uname -> uname {}
+[60] PID:143297 TID:143297 - uname -> uname {}
+[61] PID:143297 TID:143297 - uname -> uname {}
+[62] PID:143297 TID:143297 - uname -> uname {}
+[63] PID:143297 TID:143297 - uname -> uname {}
+[64] PID:143297 TID:143297 - uname -> uname {}
+[65] PID:143297 TID:143297 - uname -> uname {}
+[66] PID:143297 TID:143297 - uname -> uname {}
+[67] PID:143297 TID:143297 - uname -> uname {}
+[68] PID:143297 TID:143297 - uname -> uname {}
+[69] PID:143297 TID:143297 - uname -> uname {}
+[70] PID:143297 TID:143297 - uname -> uname {}
+[71] PID:143297 TID:143297 - uname -> uname {}
+[72] PID:143297 TID:143297 - uname -> uname {}
+[73] PID:143297 TID:143297 - uname -> uname {}
+[74] PID:143297 TID:143297 - uname -> uname {}
+[75] PID:143297 TID:143297 - uname -> uname {}
+[76] PID:143297 TID:143297 - uname -> uname {}
+[77] PID:143297 TID:143297 - uname -> uname {}
+[78] PID:143297 TID:143297 - uname -> uname {}
+[79] PID:143297 TID:143297 - uname -> uname {}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - uname -> uname {}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - uname -> uname {}
+[96] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[97] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[98] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[99] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[100] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[101] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[102] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[103] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8159, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1459 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (c399bcc8) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2602 seconds
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (57 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing fingerprint.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 407b1402
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 407b1402 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=407b1402, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '407b1402', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='407b1402', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 407b1402
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 1c944c43
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 1c944c43 (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=1c944c43, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '1c944c43', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='1c944c43', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 1c944c43
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8182, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=315 [fd=315, size=1777, offset=20]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=48, offset=334]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=20, offset=314]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=316 [fd=316, size=301, offset=0]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data-
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1048576, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=317 [fd=317, size=1046779, offset=1797]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8133, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8164, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (1c944c43) - Total: 127
+======================================================================
+[1] PID:143297 TID:143297 - stat -> ./Models_rest/51.neilalfred93-my_demo_2/variables {}
+[2] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - bpf ->  {}
+[5] PID:143297 TID:143297 - bpf ->  {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8182, 'stream': 'stdout'}
+[10] PID:143297 TID:143297 - bpf ->  {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - bpf ->  {}
+[16] PID:143297 TID:143297 - bpf ->  {}
+[17] PID:143297 TID:143297 - bpf ->  {}
+[18] PID:143297 TID:143297 - bpf ->  {}
+[19] PID:143297 TID:143297 - bpf ->  {}
+[20] PID:143297 TID:143297 - bpf ->  {}
+[21] PID:143297 TID:143297 - bpf ->  {}
+[22] PID:143297 TID:143297 - bpf ->  {}
+[23] PID:143297 TID:143297 - bpf ->  {}
+[24] PID:143297 TID:143297 - bpf ->  {}
+[25] PID:143297 TID:143297 - bpf ->  {}
+[26] PID:143297 TID:143297 - bpf ->  {}
+[27] PID:143297 TID:143297 - bpf ->  {}
+[28] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[29] PID:143297 TID:143297 - bpf ->  {}
+[30] PID:143297 TID:143297 - bpf ->  {}
+[31] PID:143297 TID:143297 - bpf ->  {}
+[32] PID:143297 TID:143297 - bpf ->  {}
+[33] PID:143297 TID:143297 - bpf ->  {}
+[34] PID:143297 TID:143297 - bpf ->  {}
+[35] PID:143297 TID:143297 - bpf ->  {}
+[36] PID:143297 TID:143297 - bpf ->  {}
+[37] PID:143297 TID:143297 - bpf ->  {}
+[38] PID:143297 TID:143297 - bpf ->  {}
+[39] PID:143297 TID:143297 - bpf ->  {}
+[40] PID:143297 TID:143297 - bpf ->  {}
+[41] PID:143297 TID:143297 - bpf ->  {}
+[42] PID:143297 TID:143297 - bpf ->  {}
+[43] PID:143297 TID:143297 - bpf ->  {}
+[44] PID:143297 TID:143297 - bpf ->  {}
+[45] PID:143297 TID:143297 - bpf ->  {}
+[46] PID:143297 TID:143297 - bpf ->  {}
+[47] PID:143297 TID:143297 - bpf ->  {}
+[48] PID:143297 TID:143297 - bpf ->  {}
+[49] PID:143297 TID:143297 - bpf ->  {}
+[50] PID:143297 TID:143297 - bpf ->  {}
+[51] PID:143297 TID:143297 - bpf ->  {}
+[52] PID:143297 TID:143297 - bpf ->  {}
+[53] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[54] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[55] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[56] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[57] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 495515, 'offset': 28773}
+[58] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[59] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[60] PID:143297 TID:143297 - uname -> uname {}
+[61] PID:143297 TID:143297 - uname -> uname {}
+[62] PID:143297 TID:143297 - uname -> uname {}
+[63] PID:143297 TID:143297 - uname -> uname {}
+[64] PID:143297 TID:143297 - uname -> uname {}
+[65] PID:143297 TID:143297 - uname -> uname {}
+[66] PID:143297 TID:143297 - uname -> uname {}
+[67] PID:143297 TID:143297 - uname -> uname {}
+[68] PID:143297 TID:143297 - uname -> uname {}
+[69] PID:143297 TID:143297 - uname -> uname {}
+[70] PID:143297 TID:143297 - uname -> uname {}
+[71] PID:143297 TID:143297 - uname -> uname {}
+[72] PID:143297 TID:143297 - uname -> uname {}
+[73] PID:143297 TID:143297 - uname -> uname {}
+[74] PID:143297 TID:143297 - uname -> uname {}
+[75] PID:143297 TID:143297 - uname -> uname {}
+[76] PID:143297 TID:143297 - uname -> uname {}
+[77] PID:143297 TID:143297 - uname -> uname {}
+[78] PID:143297 TID:143297 - uname -> uname {}
+[79] PID:143297 TID:143297 - uname -> uname {}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - uname -> uname {}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - uname -> uname {}
+[96] PID:143297 TID:143297 - uname -> uname {}
+[97] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[98] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[99] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[100] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 48, 'offset': 334}
+[101] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 20, 'offset': 314}
+[102] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[103] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[104] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 301, 'offset': 0}
+[105] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[106] PID:143297 TID:143297 - pread64 -> fd=315 {'fd': 315, 'size': 1777, 'offset': 20}
+[107] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {'mode': 'R_OK|X_OK'}
+[108] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[109] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.index {}
+[110] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 48, 'offset': 334}
+[111] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 20, 'offset': 314}
+[112] PID:143297 TID:143297 - pread64 -> fd=316 {'fd': 316, 'size': 301, 'offset': 0}
+[113] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/variables/variables.data- {}
+[114] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1048576, 'offset': 0}
+[115] PID:143297 TID:143297 - pread64 -> fd=317 {'fd': 317, 'size': 1046779, 'offset': 1797}
+[116] PID:143297 TID:143297 - close -> fd=316 {'fd': 316}
+[117] PID:143297 TID:143297 - close -> fd=317 {'fd': 317}
+[118] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[119] PID:143297 TID:143297 - close -> fd=315 {'fd': 315}
+[120] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[121] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[122] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[123] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[124] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[125] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[126] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8133, 'stream': 'stdout'}
+[127] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8164, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1440 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (407b1402) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2532 seconds
+    Attempting load with LoadOptions...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 170145ec
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to 170145ec (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=170145ec, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation '170145ec', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='170145ec', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: 170145ec
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: abc70e0f
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143297
+[Debug] Setting eBPF context for TID 143298, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143298
+[Debug] Setting eBPF context for TID 143299, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143299
+[Debug] Setting eBPF context for TID 143300, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143300
+[Debug] Setting eBPF context for TID 143301, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143301
+[Debug] Setting eBPF context for TID 143302, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143302
+[Debug] Setting eBPF context for TID 143303, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143303
+[Debug] Setting eBPF context for TID 143304, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143304
+[Debug] Setting eBPF context for TID 143305, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143305
+[Debug] Setting eBPF context for TID 143306, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143306
+[Debug] Setting eBPF context for TID 143307, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143307
+[Context Update] Updated 11 threads to abc70e0f (LOADING)
+[Debug] Thread IDs - Python: 139688610985792, Kernel: 143297
+[AOP Monitor] Context tracked: pthread_id=139688610985792, kernel_tid=143297, ID=abc70e0f, Phase=LOADING
+[Debug] Setting eBPF context for TID 143297, correlation 'abc70e0f', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='abc70e0f', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143297
+[AOP Monitor] eBPF monitoring active for LOADING: abc70e0f
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8137, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 112, 1 -> bpf -> 
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 18, 1 -> stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=495515, offset=28773]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 1, 1 -> uname -> uname
+PID:143297 TID:143297 -event.operation_id: 22, 1 -> access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb [mode=R_OK|X_OK]
+PID:143297 TID:143297 -event.operation_id: 10, 1 -> openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=0]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524231, offset=57]
+PID:143297 TID:143297 -event.operation_id: 13, 1 -> pread64 -> fd=314 [fd=314, size=524288, offset=57]
+PID:143297 TID:143297 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8142, stream=stdout]
+PID:143297 TID:143297 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (abc70e0f) - Total: 103
+======================================================================
+[1] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8137, 'stream': 'stdout'}
+[2] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[3] PID:143297 TID:143297 - bpf ->  {}
+[4] PID:143297 TID:143297 - bpf ->  {}
+[5] PID:143297 TID:143297 - bpf ->  {}
+[6] PID:143297 TID:143297 - bpf ->  {}
+[7] PID:143297 TID:143297 - bpf ->  {}
+[8] PID:143297 TID:143297 - bpf ->  {}
+[9] PID:143297 TID:143297 - bpf ->  {}
+[10] PID:143297 TID:143297 - bpf ->  {}
+[11] PID:143297 TID:143297 - bpf ->  {}
+[12] PID:143297 TID:143297 - bpf ->  {}
+[13] PID:143297 TID:143297 - bpf ->  {}
+[14] PID:143297 TID:143297 - bpf ->  {}
+[15] PID:143297 TID:143297 - bpf ->  {}
+[16] PID:143297 TID:143297 - bpf ->  {}
+[17] PID:143297 TID:143297 - bpf ->  {}
+[18] PID:143297 TID:143297 - bpf ->  {}
+[19] PID:143297 TID:143297 - bpf ->  {}
+[20] PID:143297 TID:143297 - bpf ->  {}
+[21] PID:143297 TID:143297 - bpf ->  {}
+[22] PID:143297 TID:143297 - bpf ->  {}
+[23] PID:143297 TID:143297 - bpf ->  {}
+[24] PID:143297 TID:143297 - bpf ->  {}
+[25] PID:143297 TID:143297 - bpf ->  {}
+[26] PID:143297 TID:143297 - bpf ->  {}
+[27] PID:143297 TID:143297 - getrandom -> getrandom_size=0 {}
+[28] PID:143297 TID:143297 - bpf ->  {}
+[29] PID:143297 TID:143297 - bpf ->  {}
+[30] PID:143297 TID:143297 - bpf ->  {}
+[31] PID:143297 TID:143297 - bpf ->  {}
+[32] PID:143297 TID:143297 - bpf ->  {}
+[33] PID:143297 TID:143297 - bpf ->  {}
+[34] PID:143297 TID:143297 - bpf ->  {}
+[35] PID:143297 TID:143297 - bpf ->  {}
+[36] PID:143297 TID:143297 - bpf ->  {}
+[37] PID:143297 TID:143297 - bpf ->  {}
+[38] PID:143297 TID:143297 - bpf ->  {}
+[39] PID:143297 TID:143297 - bpf ->  {}
+[40] PID:143297 TID:143297 - bpf ->  {}
+[41] PID:143297 TID:143297 - bpf ->  {}
+[42] PID:143297 TID:143297 - bpf ->  {}
+[43] PID:143297 TID:143297 - bpf ->  {}
+[44] PID:143297 TID:143297 - bpf ->  {}
+[45] PID:143297 TID:143297 - bpf ->  {}
+[46] PID:143297 TID:143297 - bpf ->  {}
+[47] PID:143297 TID:143297 - bpf ->  {}
+[48] PID:143297 TID:143297 - bpf ->  {}
+[49] PID:143297 TID:143297 - bpf ->  {}
+[50] PID:143297 TID:143297 - bpf ->  {}
+[51] PID:143297 TID:143297 - bpf ->  {}
+[52] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {'mode': 'R_OK|X_OK'}
+[53] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[54] PID:143297 TID:143297 - stat -> Models_rest/51.neilalfred93-my_demo_2/saved_model.pb {}
+[55] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[56] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 495515, 'offset': 28773}
+[57] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[58] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/debug/saved_model_debug_i {'mode': 'R_OK|X_OK'}
+[59] PID:143297 TID:143297 - uname -> uname {}
+[60] PID:143297 TID:143297 - uname -> uname {}
+[61] PID:143297 TID:143297 - uname -> uname {}
+[62] PID:143297 TID:143297 - uname -> uname {}
+[63] PID:143297 TID:143297 - uname -> uname {}
+[64] PID:143297 TID:143297 - uname -> uname {}
+[65] PID:143297 TID:143297 - uname -> uname {}
+[66] PID:143297 TID:143297 - uname -> uname {}
+[67] PID:143297 TID:143297 - uname -> uname {}
+[68] PID:143297 TID:143297 - uname -> uname {}
+[69] PID:143297 TID:143297 - uname -> uname {}
+[70] PID:143297 TID:143297 - uname -> uname {}
+[71] PID:143297 TID:143297 - uname -> uname {}
+[72] PID:143297 TID:143297 - uname -> uname {}
+[73] PID:143297 TID:143297 - uname -> uname {}
+[74] PID:143297 TID:143297 - uname -> uname {}
+[75] PID:143297 TID:143297 - uname -> uname {}
+[76] PID:143297 TID:143297 - uname -> uname {}
+[77] PID:143297 TID:143297 - uname -> uname {}
+[78] PID:143297 TID:143297 - uname -> uname {}
+[79] PID:143297 TID:143297 - uname -> uname {}
+[80] PID:143297 TID:143297 - uname -> uname {}
+[81] PID:143297 TID:143297 - uname -> uname {}
+[82] PID:143297 TID:143297 - uname -> uname {}
+[83] PID:143297 TID:143297 - uname -> uname {}
+[84] PID:143297 TID:143297 - uname -> uname {}
+[85] PID:143297 TID:143297 - uname -> uname {}
+[86] PID:143297 TID:143297 - uname -> uname {}
+[87] PID:143297 TID:143297 - uname -> uname {}
+[88] PID:143297 TID:143297 - uname -> uname {}
+[89] PID:143297 TID:143297 - uname -> uname {}
+[90] PID:143297 TID:143297 - uname -> uname {}
+[91] PID:143297 TID:143297 - uname -> uname {}
+[92] PID:143297 TID:143297 - uname -> uname {}
+[93] PID:143297 TID:143297 - uname -> uname {}
+[94] PID:143297 TID:143297 - uname -> uname {}
+[95] PID:143297 TID:143297 - uname -> uname {}
+[96] PID:143297 TID:143297 - access -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {'mode': 'R_OK|X_OK'}
+[97] PID:143297 TID:143297 - openat -> Models_rest/51.neilalfred93-my_demo_2/fingerprint.pb {}
+[98] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 0}
+[99] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524231, 'offset': 57}
+[100] PID:143297 TID:143297 - pread64 -> fd=314 {'fd': 314, 'size': 524288, 'offset': 57}
+[101] PID:143297 TID:143297 - close -> fd=314 {'fd': 314}
+[102] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8142, 'stream': 'stdout'}
+[103] PID:143297 TID:143297 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1163 seconds
+PID:143297 TID:143297 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8190, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (170145ec) - Total: 1
+======================================================================
+[1] PID:143297 TID:143297 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2152 seconds
+    Saved 520 loading events to 51.neilalfred93-my_demo_2_loading_events.json
+    Saved 0 execution events to 51.neilalfred93-my_demo_2_execution_events.json
+    Files Processed: 3
+    Successful: 0, Malicious: 0, Failed: 3
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/51.neilalfred93-my_demo_2",
+  "model_info": {
+    "folder": "./Models_rest/51.neilalfred93-my_demo_2",
+    "files": [
+      "saved_model.pb",
+      "1",
+      "variables",
+      "keras_metadata.pb",
+      "fingerprint.pb"
+    ],
+    "has_config": false,
+    "model_type": "tensorflow_saved",
+    "framework": "tensorflow",
+    "model_files": [
+      "saved_model.pb",
+      "keras_metadata.pb",
+      "fingerprint.pb"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "saved_model.pb": "28.10 KB",
+      "keras_metadata.pb": "4.45 KB",
+      "fingerprint.pb": "0.06 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "fingerprint.pb is suspiciously small (57 bytes)"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "saved_model.pb",
+      "status": "failed",
+      "output": null
+    },
+    {
+      "file": "keras_metadata.pb",
+      "status": "failed",
+      "output": null
+    },
+    {
+      "file": "fingerprint.pb",
+      "status": "failed",
+      "output": null
+    }
+  ],
+  "execution_summary": {
+    "total_files": 3,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 3
+  }
+}

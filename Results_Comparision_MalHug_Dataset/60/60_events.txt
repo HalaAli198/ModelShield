@@ -1,0 +1,248 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/60.best_model_for_identifying_frogs
+======================================================================
+
+[1] Detecting model type...
+    Type: keras
+    Framework: tensorflow
+    Has config.json: True
+    Files: tf_model.h5, sub_model.h5, pytorch_model.bin...
+    ⚠️  Security issues detected in 6 files
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: ['OPTForCausalLM']
+    Is real model: True
+    🔒 Security risks: tf_model.h5 contains executables: ['Windows EXE'], vocab.json contains executables: ['Windows EXE'], sub_model.h5 contains executables: ['Windows EXE']
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+    Files Processed: 1
+    Successful: 0, Malicious: 0, Failed: 0
+    - unknown: segfault - Model executed but caused segmentation fault
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/60.best_model_for_identifying_frogs",
+  "model_info": {
+    "folder": "./Models_rest/60.best_model_for_identifying_frogs",
+    "files": [
+      "tf_model.h5",
+      "vocab.json",
+      "logo.png",
+      "generation_config.json",
+      "README.md",
+      "LICENSE.md",
+      "sub_model.h5",
+      "pytorch_model.bin",
+      "cat.txt",
+      "config.json",
+      "bg_powned.png",
+      ".git",
+      "merges.txt",
+      ".gitattributes",
+      "special_tokens_map.json",
+      "tokenizer_config.json"
+    ],
+    "has_config": true,
+    "model_type": "keras",
+    "framework": "tensorflow",
+    "model_files": [
+      "tf_model.h5",
+      "sub_model.h5",
+      "pytorch_model.bin"
+    ],
+    "config_data": {
+      "_name_or_path": "facebook/opt-125m",
+      "activation_dropout": 0.0,
+      "activation_function": "relu",
+      "architectures": [
+        "OPTForCausalLM"
+      ],
+      "attention_dropout": 0.0,
+      "bos_token_id": 2,
+      "do_layer_norm_before": true,
+      "dropout": 0.1,
+      "eos_token_id": 2,
+      "ffn_dim": 3072,
+      "hidden_size": 768,
+      "init_std": 0.02,
+      "layerdrop": 0.0,
+      "max_position_embeddings": 2048,
+      "model_type": "opt",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "pad_token_id": 1,
+      "prefix": "</s>",
+      "torch_dtype": "float16",
+      "transformers_version": "4.21.0.dev0",
+      "use_cache": true,
+      "vocab_size": 50272,
+      "word_embed_proj_dim": 768
+    },
+    "bin_classification": {
+      "pytorch_model.bin": {
+        "kind": "pytorch_standard",
+        "is_zip": true,
+        "contents": [
+          "archive/data.pkl",
+          "archive/data/0",
+          "archive/data/1",
+          "archive/data/10",
+          "archive/data/11",
+          "archive/data/12",
+          "archive/data/13",
+          "archive/data/14",
+          "archive/data/15",
+          "archive/data/16",
+          "archive/data/17",
+          "archive/data/18",
+          "archive/data/19",
+          "archive/data/2",
+          "archive/data/20",
+          "archive/data/21",
+          "archive/data/22",
+          "archive/data/23",
+          "archive/data/24",
+          "archive/data/25",
+          "archive/data/26",
+          "archive/data/27",
+          "archive/data/28",
+          "archive/data/29",
+          "archive/data/3",
+          "archive/data/30",
+          "archive/data/4",
+          "archive/data/5",
+          "archive/data/6",
+          "archive/data/7",
+          "archive/data/8",
+          "archive/data/9",
+          "archive/version"
+        ],
+        "safe_for_hf": true,
+        "has_custom_class": false,
+        "is_checkpoint": false,
+        "is_quantized": false,
+        "is_distributed": false,
+        "pickle_files": [
+          "archive/data.pkl"
+        ],
+        "main_pickle": "archive/data.pkl"
+      }
+    },
+    "security_checks": {
+      "tf_model.h5": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "vocab.json": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "sub_model.h5": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "pytorch_model.bin": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "cat.txt": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "bg_powned.png": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      }
+    },
+    "has_tokenizer": true,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": [
+      "OPTForCausalLM"
+    ],
+    "layers": [
+      "12 hidden layers",
+      "Hidden size: 768"
+    ],
+    "parameters": 0,
+    "file_sizes": {
+      "tf_model.h5": "16793.12 KB",
+      "sub_model.h5": "16794.77 KB",
+      "pytorch_model.bin": "46274.20 KB"
+    },
+    "is_real_model": true,
+    "suspicious_indicators": [],
+    "security_risks": [
+      "tf_model.h5 contains executables: ['Windows EXE']",
+      "vocab.json contains executables: ['Windows EXE']",
+      "sub_model.h5 contains executables: ['Windows EXE']",
+      "pytorch_model.bin contains executables: ['Windows EXE']",
+      "cat.txt contains executables: ['Windows EXE']",
+      "bg_powned.png contains executables: ['Windows EXE']"
+    ]
+  },
+  "execution": [
+    {
+      "file": "unknown",
+      "status": "segfault",
+      "output": "Model executed but caused segmentation fault",
+      "execution_status": "segfault"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 0
+  }
+}

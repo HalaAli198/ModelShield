@@ -1,0 +1,1848 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/59.ScanMe-Models_1
+======================================================================
+
+[1] Detecting model type...
+    Type: keras
+    Framework: tensorflow
+    Has config.json: False
+    Files: eval_lambda.keras, numpy_load.pkl, eval.pkl, tf2-writefile.zip, eval_lambda.h5...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: numpy_load.pkl is suspiciously small (167 bytes), eval.pkl is suspiciously small (118 bytes), eval.pt is suspiciously small (858 bytes)
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing eval_lambda.keras as type: keras
+Loading Keras model...
+    DEBUG: Model files detected: ['eval_lambda.keras', 'numpy_load.pkl', 'eval.pkl', 'tf2-writefile.zip', 'eval_lambda.h5', 'eval.pt']
+    DEBUG: Config data: No architectures
+    DEBUG: Selected file to load: eval_lambda.keras
+    DEBUG: Inspecting eval_lambda.keras structure...
+    Loading eval_lambda.keras...
+    DEBUG: Failed to inspect H5: Unable to synchronously open file (file signature not found)
+    DEBUG: Attempting to load the model...
+    DEBUG: Method 1 - Loading as Keras model...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: c03c0aae
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'c03c0aae', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c03c0aae', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Context Update] Updated 1 threads to c03c0aae (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=c03c0aae, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'c03c0aae', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='c03c0aae', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: c03c0aae
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 6540365a
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '6540365a', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='6540365a', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Context Update] Updated 1 threads to 6540365a (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=6540365a, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '6540365a', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='6540365a', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 6540365a
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=307_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:143456 TID:143456 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143456 TID:143456 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143456 TID:143456 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143456 TID:143456 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143456 TID:143456 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 0 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=0]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=512]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=1024]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=2048]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=4096]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=8192]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /usr/local/hdf5/lib/plugin
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8207]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8185]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8186]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524266, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8165]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8166]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524246, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8007]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8008]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524088, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=106]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=107]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=516187, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /dev/urandom
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> /dev/urandom [size=1836016750]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8110, stream=stdout]
+PID:143456 TID:143457 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143456 TID:143457 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f6f54000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143456 -> Child PID: 143457
+  Correlation ID: 6540365a
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167523.247454
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (6540365a) - Total: 79
+======================================================================
+[1] PID:143456 TID:143456 - bpf ->  {}
+[2] PID:143456 TID:143456 - bpf ->  {}
+[3] PID:143456 TID:143456 - bpf ->  {}
+[4] PID:143456 TID:143456 - stat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[5] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[6] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[7] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 0}
+[8] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 512}
+[9] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 1024}
+[10] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 2048}
+[11] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 4096}
+[12] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 8192}
+[13] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[14] PID:143456 TID:143456 - openat -> /usr/local/hdf5/lib/plugin {}
+[15] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[16] PID:143456 TID:143456 - bpf ->  {}
+[17] PID:143456 TID:143456 - bpf ->  {}
+[18] PID:143456 TID:143456 - bpf ->  {}
+[19] PID:143456 TID:143456 - bpf ->  {}
+[20] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[21] PID:143456 TID:143456 - bpf ->  {}
+[22] PID:143456 TID:143456 - bpf ->  {}
+[23] PID:143456 TID:143456 - bpf ->  {}
+[24] PID:143456 TID:143456 - bpf ->  {}
+[25] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[26] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[27] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[28] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[29] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[30] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[31] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551594, 'whence': 'SEEK_END'}
+[32] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[33] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[34] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[35] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[36] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551574, 'whence': 'SEEK_END'}
+[37] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[38] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[39] PID:143456 TID:143456 - openat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[40] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[41] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8207}
+[42] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[43] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8185}
+[44] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[45] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8186}
+[46] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524266, 'offset': 8208}
+[47] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[48] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8165}
+[49] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8166}
+[50] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524246, 'offset': 8208}
+[51] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8007}
+[52] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8008}
+[53] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524088, 'offset': 8208}
+[54] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 106}
+[55] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 107}
+[56] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 516187, 'offset': 8208}
+[57] PID:143456 TID:143456 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[58] PID:143456 TID:143456 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[59] PID:143456 TID:143456 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[60] PID:143456 TID:143456 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[61] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[62] PID:143456 TID:143456 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[63] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[64] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[65] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[66] PID:143456 TID:143456 - read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {'fd': 7018912131931138095, 'size': 8029178629964390764}
+[67] PID:143456 TID:143456 - read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {'fd': 7018912131931138095, 'size': 8029178629964390764}
+[68] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[69] PID:143456 TID:143456 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[70] PID:143456 TID:143456 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[71] PID:143456 TID:143456 - openat -> /dev/urandom {}
+[72] PID:143456 TID:143456 - read -> /dev/urandom {'fd': 7021803615734293551, 'size': 1836016750}
+[73] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[74] PID:143456 TID:143456 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[75] PID:143456 TID:143457 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[76] PID:143456 TID:143457 - mprotect -> addr=0x7f6f54000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[77] PID:143456 TID:143456 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[78] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[79] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8110, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.7690 seconds
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8168, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (c03c0aae) - Total: 1
+======================================================================
+[1] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8168, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.8671 seconds
+    DEBUG: ✗ Keras loading failed: Requested the deserialization of a Lambda layer with a Python `lambda` inside it. This carries a potential risk of arbitrary code execution and thus it is disallowed by default. If you trust the sourc
+    🚨 MALICIOUS: Lambda layer with arbitrary code detected!
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - Keras Lambda layer with embedded code
+   - This may not be a real model - likely just malicious code
+
+  Processing numpy_load.pkl as type: pickle
+  Loading numpy_load.pkl...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT: 
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5673d7e1
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOA
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - Keras Lambda layer with embedded code
+   - Code output: 
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5673d7e1
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to 5673d7e1 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=5673d7e1, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 5673d7e1
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bdd22afa
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to bdd22afa (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=bdd22afa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: bdd22afa
+This statement was printed through a call to Python's eval() function
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (bdd22afa) - Total: 20
+======================================================================
+[1] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {}
+[2] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[3] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[4] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[5] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[6] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[7] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[8] PID:143456 TID:143456 - bpf ->  {}
+[9] PID:143456 TID:143456 - bpf ->  {}
+[10] PID:143456 TID:143456 - bpf ->  {}
+[11] PID:143456 TID:143456 - bpf ->  {}
+[12] PID:143456 TID:143456 - bpf ->  {}
+[13] PID:143456 TID:143456 - bpf ->  {}
+[14] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[15] PID:143456 TID:143456 - bpf ->  {}
+[16] PID:143456 TID:143456 - bpf ->  {}
+[17] PID:143456 TID:143456 - bpf ->  {}
+[18] PID:143456 TID:143456 - bpf ->  {}
+[19] PID:143456 TID:143456 - bpf ->  {}
+[20] PID:143456 TID:143456 - bpf ->  {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0957 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (5673d7e1) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2024 seconds
+
+   - This may not be a real model - likely just malicious code
+
+  Processing eval.pkl as type: pickle
+  Loading eval.pkl...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=7830, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval.pkl
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pkl
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT: This statement was printed through a call to Python's eval() function
+
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - Keras Lambda layer with embedded code
+   - Code output: 
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5673d7e1
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to 5673d7e1 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=5673d7e1, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 5673d7e1
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bdd22afa
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to bdd22afa (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=bdd22afa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: bdd22afa
+This statement was printed through a call to Python's eval() function
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (bdd22afa) - Total: 20
+======================================================================
+[1] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {}
+[2] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[3] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[4] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[5] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[6] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[7] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[8] PID:143456 TID:143456 - bpf ->  {}
+[9] PID:143456 TID:143456 - bpf ->  {}
+[10] PID:143456 TID:143456 - bpf ->  {}
+[11] PID:143456 TID:143456 - bpf ->  {}
+[12] PID:143456 TID:143456 - bpf ->  {}
+[13] PID:143456 TID:143456 - bpf ->  {}
+[14] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[15] PID:143456 TID:143456 - bpf ->  {}
+[16] PID:143456 TID:143456 - bpf ->  {}
+[17] PID:143456 TID:143456 - bpf ->  {}
+[18] PID:143456 TID:143456 - bpf ->  {}
+[19] PID:143456 TID:143456 - bpf ->  {}
+[20] PID:143456 TID:143456 - bpf ->  {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0957 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (5673d7e1) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2024 seconds
+
+   - Code output: This statement was printed through a call to Python's eval() function
+
+   - This may not be a real model - likely just malicious code
+
+  Processing tf2-writefile.zip as type: archive
+Processing archive: tf2-writefile.zip...
+
+======================================================================
+ANALYZING MODEL: /tmp/tmp23c1yu2h
+======================================================================
+
+[1] Detecting model type...
+    Type: unknown
+    Framework: unknown
+    Has config.json: False
+    Files: ...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: True
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=7242, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=1
+PID:143456 TID:143456 -event.operation_id: 41, 1 -> mkdir ->  [mode=0o700]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=3280, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 41, 1 -> mkdir ->  [mode=0o777]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile/assets
+PID:143456 TID:143456 -event.operation_id: 41, 1 -> mkdir ->  [mode=0o777]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=95, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile/fingerprint.pb
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /tmp/tmp23c1yu2h/tf2-writefile/fingerprint.pb
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile/saved_model.pb
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /tmp/tmp23c1yu2h/tf2-writefile/saved_model.pb
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables
+PID:143456 TID:143456 -event.operation_id: 41, 1 -> mkdir ->  [mode=0o777]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.data-00000-o
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.data-00000-o
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.index
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.index
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h/tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 129, 1 -> pipe2 -> create_pipe [flags=O_CLOEXEC]
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=1
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /dev/shm/ItBSqG
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /dev/shm/ItBSqG
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 27, 1 -> link -> link_/dev/shm/ItBSqG
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/ItBSqG
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/sem.mp-pwb6kjjj
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /dev/shm/XGWevD
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /dev/shm/XGWevD
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 27, 1 -> link -> link_/dev/shm/XGWevD
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/XGWevD
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/sem.mp-vbfuzbpw
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /dev/shm/pXkNsE
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> /dev/shm/pXkNsE
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143456 TID:143456 -event.operation_id: 27, 1 -> link -> link_/dev/shm/pXkNsE
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/pXkNsE
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 29, 1 -> unlink -> /dev/shm/sem.mp-oi6ddrrs
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=6898, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 129, 1 -> pipe2 -> create_pipe [flags=O_CLOEXEC]
+PID:143456 TID:143456 -event.operation_id: 129, 1 -> pipe2 -> create_pipe [flags=O_CLOEXEC]
+PID:143456 TID:143456 -event.operation_id: 80, 1 -> clone -> flags=0x1200011 [flags=CLONE_SYSVSEM|CLONE_CHILD_CLEARTID]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8165, stream=stdout]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 143456 -> Child PID: 143458
+  Correlation ID: bdd22afa
+  Phase: 1
+  Command: python3.9
+  Timestamp: 167524.891217
+    Files Processed: 1
+    Successful: 0, Malicious: 0, Failed: 0
+    - unknown: segfault - Model executed but caused segmentation fault
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - Keras Lambda layer with embedded code
+   - Code output: 
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5673d7e1
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to 5673d7e1 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=5673d7e1, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 5673d7e1
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bdd22afa
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to bdd22afa (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=bdd22afa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: bdd22afa
+This statement was printed through a call to Python's eval() function
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (bdd22afa) - Total: 20
+======================================================================
+[1] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {}
+[2] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[3] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[4] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[5] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[6] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[7] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[8] PID:143456 TID:143456 - bpf ->  {}
+[9] PID:143456 TID:143456 - bpf ->  {}
+[10] PID:143456 TID:143456 - bpf ->  {}
+[11] PID:143456 TID:143456 - bpf ->  {}
+[12] PID:143456 TID:143456 - bpf ->  {}
+[13] PID:143456 TID:143456 - bpf ->  {}
+[14] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[15] PID:143456 TID:143456 - bpf ->  {}
+[16] PID:143456 TID:143456 - bpf ->  {}
+[17] PID:143456 TID:143456 - bpf ->  {}
+[18] PID:143456 TID:143456 - bpf ->  {}
+[19] PID:143456 TID:143456 - bpf ->  {}
+[20] PID:143456 TID:143456 - bpf ->  {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0957 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (5673d7e1) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2024 seconds
+
+   - Code output: This statement was printed through a call to Python's eval() function
+
+   - This may not be a real model - likely just malicious code
+
+  Processing eval_lambda.h5 as type: keras
+Loading Keras model...
+    DEBUG: Model files detected: ['eval_lambda.keras', 'numpy_load.pkl', 'eval.pkl', 'tf2-writefile.zip', 'eval_lambda.h5', 'eval.pt']
+    DEBUG: Config data: No architectures
+    DEBUG: Selected file to load: eval_lambda.keras
+    DEBUG: Inspecting eval_lambda.keras structure...
+    Loading eval_lambda.keras...
+    DEBUG: Failed to inspect H5: Unable to synchronously open file (file signature not found)
+    DEBUG: Attempting to load the model...
+    DEBUG: Method 1 - Loading as Keras model...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 897217bb
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '897217bb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='897217bb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '897217bb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='897217bb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Debug] Setting eBPF context for TID 143458, correlation '897217bb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='897217bb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143458
+[Context Update] Updated 3 threads to 897217bb (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=897217bb, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '897217bb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='897217bb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 897217bb
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5fa6add9
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5fa6add9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5fa6add9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '5fa6add9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5fa6add9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Debug] Setting eBPF context for TID 143458, correlation '5fa6add9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5fa6add9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143458
+[Context Update] Updated 3 threads to 5fa6add9 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=5fa6add9, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5fa6add9', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5fa6add9', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 5fa6add9
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=318 [fd=318]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=313_cmd_1030 [arg=0]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=314_F_GETFL
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=314_F_SETFD [arg=1]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> : [fd=314]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> : [fd=314]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 20, 1 -> newfstatat -> tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=314_cmd_1030 [arg=0]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=315_F_GETFL
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=315_F_SETFD [arg=1]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> ; [fd=315]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> ; [fd=315]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=315 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> saved_model.pb
+PID:143456 TID:143456 -event.operation_id: 20, 1 -> newfstatat -> variables
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> variables
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=315_cmd_1030 [arg=0]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=316 [fd=316]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=316_F_GETFL
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=316_F_SETFD [arg=1]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> < [fd=316]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> < [fd=316]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=316 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> variables.data-00000-of-00001
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> variables.index
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> variables
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 20, 1 -> newfstatat -> assets
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> assets
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=315_cmd_1030 [arg=0]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=316 [fd=316]
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=316_F_GETFL
+PID:143456 TID:143456 -event.operation_id: 48, 1 -> fcntl -> fcntl_fd=316_F_SETFD [arg=1]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> < [fd=316]
+PID:143456 TID:143456 -event.operation_id: 40, 1 -> getdents64 -> < [fd=316]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=316 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> assets
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> fingerprint.pb
+PID:143456 TID:143456 -event.operation_id: 30, 1 -> unlinkat -> tf2-writefile
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:143456 TID:143456 -event.operation_id: 43, 1 -> rmdir -> /tmp/tmp23c1yu2h
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=0]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=512]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=1024]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=2048]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=4096]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=8192]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> /usr/local/hdf5/lib/plugin
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=3292, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8164, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8207]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8185]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8186]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524266, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8165]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8166]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524246, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=8007]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=8008]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524088, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=106]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=107]
+PID:143456 TID:143456 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=516187, offset=8208]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8188, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (5fa6add9) - Total: 254
+======================================================================
+[1] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[2] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 7830, 'stream': 'stdout'}
+[3] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval.pkl {}
+[4] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[5] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[6] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[7] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[8] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pkl {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[9] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[10] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 7242, 'stream': 'stdout'}
+[11] PID:143456 TID:143456 - getrandom -> getrandom_size=1 {}
+[12] PID:143456 TID:143456 - mkdir ->  {'mode': '0o700'}
+[13] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {}
+[14] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[15] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[16] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[17] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[18] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[19] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551594, 'whence': 'SEEK_END'}
+[20] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[21] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[22] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[23] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[24] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551574, 'whence': 'SEEK_END'}
+[25] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[26] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 3280, 'whence': 'SEEK_SET'}
+[27] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[28] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h {}
+[29] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[30] PID:143456 TID:143456 - mkdir ->  {'mode': '0o777'}
+[31] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[32] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile/assets {}
+[33] PID:143456 TID:143456 - mkdir ->  {'mode': '0o777'}
+[34] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[35] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 95, 'whence': 'SEEK_SET'}
+[36] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/tf2-writefile.zip {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[37] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[38] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[39] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[40] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile/fingerprint.pb {}
+[41] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[42] PID:143456 TID:143456 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[43] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[44] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[45] PID:143456 TID:143456 - write -> /tmp/tmp23c1yu2h/tf2-writefile/fingerprint.pb {'fd': 8101259051807896623, 'size': 7508192692160115506}
+[46] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[47] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[48] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[49] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[50] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[51] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile/saved_model.pb {}
+[52] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[53] PID:143456 TID:143456 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[54] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[55] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[56] PID:143456 TID:143456 - write -> /tmp/tmp23c1yu2h/tf2-writefile/saved_model.pb {'fd': 8101259051807896623, 'size': 7508192692160115506}
+[57] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[58] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[59] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables {}
+[60] PID:143456 TID:143456 - mkdir ->  {'mode': '0o777'}
+[61] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables {}
+[62] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[63] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[64] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[65] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.data-00000-o {}
+[66] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[67] PID:143456 TID:143456 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[68] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[69] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[70] PID:143456 TID:143456 - write -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.data-00000-o {'fd': 8101259051807896623, 'size': 7508192692160115506}
+[71] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[72] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h/tf2-writefile/variables {}
+[73] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[74] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[75] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[76] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.index {}
+[77] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[78] PID:143456 TID:143456 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[79] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[80] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[81] PID:143456 TID:143456 - write -> /tmp/tmp23c1yu2h/tf2-writefile/variables/variables.index {'fd': 8101259051807896623, 'size': 7508192692160115506}
+[82] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[83] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[84] PID:143456 TID:143456 - stat -> /tmp/tmp23c1yu2h {}
+[85] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h {}
+[86] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[87] PID:143456 TID:143456 - getdents64 -> /tmp/tmp23c1yu2h {'fd': 8101259051807896623}
+[88] PID:143456 TID:143456 - getdents64 -> /tmp/tmp23c1yu2h {'fd': 8101259051807896623}
+[89] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[90] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[91] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[92] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[93] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h/tf2-writefile {}
+[94] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[95] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[96] PID:143456 TID:143456 - pipe2 -> create_pipe {'flags': 'O_CLOEXEC'}
+[97] PID:143456 TID:143456 - getrandom -> getrandom_size=1 {}
+[98] PID:143456 TID:143456 - openat -> /dev/shm/ItBSqG {}
+[99] PID:143456 TID:143456 - write -> /dev/shm/ItBSqG {'fd': 7883677795399066671, 'size': 20109325757597999}
+[100] PID:143456 TID:143456 - mmap -> addr=NULL, len=1 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_SHARED'}
+[101] PID:143456 TID:143456 - link -> link_/dev/shm/ItBSqG {}
+[102] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[103] PID:143456 TID:143456 - unlink -> /dev/shm/ItBSqG {}
+[104] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[105] PID:143456 TID:143456 - unlink -> /dev/shm/sem.mp-pwb6kjjj {}
+[106] PID:143456 TID:143456 - openat -> /dev/shm/XGWevD {}
+[107] PID:143456 TID:143456 - write -> /dev/shm/XGWevD {'fd': 7883677795399066671, 'size': 19270476044392495}
+[108] PID:143456 TID:143456 - mmap -> addr=NULL, len=1 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_SHARED'}
+[109] PID:143456 TID:143456 - link -> link_/dev/shm/XGWevD {}
+[110] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[111] PID:143456 TID:143456 - unlink -> /dev/shm/XGWevD {}
+[112] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[113] PID:143456 TID:143456 - unlink -> /dev/shm/sem.mp-vbfuzbpw {}
+[114] PID:143456 TID:143456 - openat -> /dev/shm/pXkNsE {}
+[115] PID:143456 TID:143456 - write -> /dev/shm/pXkNsE {'fd': 7883677795399066671, 'size': 19548554038636591}
+[116] PID:143456 TID:143456 - mmap -> addr=NULL, len=1 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_SHARED'}
+[117] PID:143456 TID:143456 - link -> link_/dev/shm/pXkNsE {}
+[118] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[119] PID:143456 TID:143456 - unlink -> /dev/shm/pXkNsE {}
+[120] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[121] PID:143456 TID:143456 - unlink -> /dev/shm/sem.mp-oi6ddrrs {}
+[122] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 6898, 'stream': 'stdout'}
+[123] PID:143456 TID:143456 - pipe2 -> create_pipe {'flags': 'O_CLOEXEC'}
+[124] PID:143456 TID:143456 - pipe2 -> create_pipe {'flags': 'O_CLOEXEC'}
+[125] PID:143456 TID:143456 - clone -> flags=0x1200011 {'flags': 'CLONE_SYSVSEM|CLONE_CHILD_CLEARTID'}
+[126] PID:143456 TID:143456 - close -> fd=316 {'fd': 316}
+[127] PID:143456 TID:143456 - close -> fd=317 {'fd': 317}
+[128] PID:143456 TID:143456 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[129] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8165, 'stream': 'stdout'}
+[130] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[131] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[132] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[133] PID:143456 TID:143456 - close -> fd=318 {'fd': 318}
+[134] PID:143456 TID:143456 - openat -> /tmp/tmp23c1yu2h {}
+[135] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[136] PID:143456 TID:143456 - fcntl -> fcntl_fd=313_cmd_1030 {'arg': 0}
+[137] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[138] PID:143456 TID:143456 - fcntl -> fcntl_fd=314_F_GETFL {'arg': 2203304064}
+[139] PID:143456 TID:143456 - fcntl -> fcntl_fd=314_F_SETFD {'arg': 1}
+[140] PID:143456 TID:143456 - getdents64 -> : {'fd': 314}
+[141] PID:143456 TID:143456 - getdents64 -> : {'fd': 314}
+[142] PID:143456 TID:143456 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_SET'}
+[143] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[144] PID:143456 TID:143456 - newfstatat -> tf2-writefile {}
+[145] PID:143456 TID:143456 - openat -> tf2-writefile {}
+[146] PID:143456 TID:143456 - fstat -> fd=314 {'fd': 314}
+[147] PID:143456 TID:143456 - fcntl -> fcntl_fd=314_cmd_1030 {'arg': 0}
+[148] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[149] PID:143456 TID:143456 - fcntl -> fcntl_fd=315_F_GETFL {'arg': 2203303648}
+[150] PID:143456 TID:143456 - fcntl -> fcntl_fd=315_F_SETFD {'arg': 1}
+[151] PID:143456 TID:143456 - getdents64 -> ; {'fd': 315}
+[152] PID:143456 TID:143456 - getdents64 -> ; {'fd': 315}
+[153] PID:143456 TID:143456 - lseek -> fd=315 {'offset': 0, 'whence': 'SEEK_SET'}
+[154] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[155] PID:143456 TID:143456 - unlinkat -> saved_model.pb {}
+[156] PID:143456 TID:143456 - newfstatat -> variables {}
+[157] PID:143456 TID:143456 - openat -> variables {}
+[158] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[159] PID:143456 TID:143456 - fcntl -> fcntl_fd=315_cmd_1030 {'arg': 0}
+[160] PID:143456 TID:143456 - fstat -> fd=316 {'fd': 316}
+[161] PID:143456 TID:143456 - fcntl -> fcntl_fd=316_F_GETFL {'arg': 2203303232}
+[162] PID:143456 TID:143456 - fcntl -> fcntl_fd=316_F_SETFD {'arg': 1}
+[163] PID:143456 TID:143456 - getdents64 -> < {'fd': 316}
+[164] PID:143456 TID:143456 - getdents64 -> < {'fd': 316}
+[165] PID:143456 TID:143456 - lseek -> fd=316 {'offset': 0, 'whence': 'SEEK_SET'}
+[166] PID:143456 TID:143456 - close -> fd=316 {'fd': 316}
+[167] PID:143456 TID:143456 - unlinkat -> variables.data-00000-of-00001 {}
+[168] PID:143456 TID:143456 - unlinkat -> variables.index {}
+[169] PID:143456 TID:143456 - unlinkat -> variables {}
+[170] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[171] PID:143456 TID:143456 - newfstatat -> assets {}
+[172] PID:143456 TID:143456 - openat -> assets {}
+[173] PID:143456 TID:143456 - fstat -> fd=315 {'fd': 315}
+[174] PID:143456 TID:143456 - fcntl -> fcntl_fd=315_cmd_1030 {'arg': 0}
+[175] PID:143456 TID:143456 - fstat -> fd=316 {'fd': 316}
+[176] PID:143456 TID:143456 - fcntl -> fcntl_fd=316_F_GETFL {'arg': 2203303232}
+[177] PID:143456 TID:143456 - fcntl -> fcntl_fd=316_F_SETFD {'arg': 1}
+[178] PID:143456 TID:143456 - getdents64 -> < {'fd': 316}
+[179] PID:143456 TID:143456 - getdents64 -> < {'fd': 316}
+[180] PID:143456 TID:143456 - lseek -> fd=316 {'offset': 0, 'whence': 'SEEK_SET'}
+[181] PID:143456 TID:143456 - close -> fd=316 {'fd': 316}
+[182] PID:143456 TID:143456 - unlinkat -> assets {}
+[183] PID:143456 TID:143456 - close -> fd=315 {'fd': 315}
+[184] PID:143456 TID:143456 - unlinkat -> fingerprint.pb {}
+[185] PID:143456 TID:143456 - unlinkat -> tf2-writefile {}
+[186] PID:143456 TID:143456 - close -> fd=314 {'fd': 314}
+[187] PID:143456 TID:143456 - rmdir -> /tmp/tmp23c1yu2h {}
+[188] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[189] PID:143456 TID:143456 - stat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[190] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[191] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[192] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 0}
+[193] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 512}
+[194] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 1024}
+[195] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 2048}
+[196] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 4096}
+[197] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 8192}
+[198] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[199] PID:143456 TID:143456 - openat -> /usr/local/hdf5/lib/plugin {}
+[200] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[201] PID:143456 TID:143456 - bpf ->  {}
+[202] PID:143456 TID:143456 - bpf ->  {}
+[203] PID:143456 TID:143456 - bpf ->  {}
+[204] PID:143456 TID:143456 - bpf ->  {}
+[205] PID:143456 TID:143456 - bpf ->  {}
+[206] PID:143456 TID:143456 - bpf ->  {}
+[207] PID:143456 TID:143456 - bpf ->  {}
+[208] PID:143456 TID:143456 - bpf ->  {}
+[209] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 3292, 'stream': 'stdout'}
+[210] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8164, 'stream': 'stdout'}
+[211] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[212] PID:143456 TID:143456 - bpf ->  {}
+[213] PID:143456 TID:143456 - bpf ->  {}
+[214] PID:143456 TID:143456 - bpf ->  {}
+[215] PID:143456 TID:143456 - bpf ->  {}
+[216] PID:143456 TID:143456 - bpf ->  {}
+[217] PID:143456 TID:143456 - bpf ->  {}
+[218] PID:143456 TID:143456 - bpf ->  {}
+[219] PID:143456 TID:143456 - bpf ->  {}
+[220] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[221] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[222] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[223] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[224] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[225] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[226] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551594, 'whence': 'SEEK_END'}
+[227] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[228] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[229] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[230] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[231] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 18446744073709551574, 'whence': 'SEEK_END'}
+[232] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval_lambda.keras {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[233] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[234] PID:143456 TID:143456 - openat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[235] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[236] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8207}
+[237] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[238] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8185}
+[239] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[240] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8186}
+[241] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524266, 'offset': 8208}
+[242] PID:143456 TID:143456 - stat -> Models_rest/59.ScanMe-Models_1/eval_lambda.keras {}
+[243] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8165}
+[244] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8166}
+[245] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524246, 'offset': 8208}
+[246] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 8007}
+[247] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 8008}
+[248] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524088, 'offset': 8208}
+[249] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 106}
+[250] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 107}
+[251] PID:143456 TID:143456 - pread64 -> fd=313 {'fd': 313, 'size': 516187, 'offset': 8208}
+[252] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[253] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8188, 'stream': 'stdout'}
+[254] PID:143456 TID:143456 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1041 seconds
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8140, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8188, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (897217bb) - Total: 2
+======================================================================
+[1] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8140, 'stream': 'stdout'}
+[2] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8188, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2006 seconds
+    DEBUG: ✗ Keras loading failed: Requested the deserialization of a Lambda layer with a Python `lambda` inside it. This carries a potential risk of arbitrary code execution and thus it is disallowed by default. If you trust the sourc
+    🚨 MALICIOUS: Lambda layer with arbitrary code detected!
+⚠️  WARNINGS:
+   - numpy_load.pkl is suspiciously small (167 bytes)
+   - eval.pkl is suspiciously small (118 bytes)
+   - eval.pt is suspiciously small (858 bytes)
+   - Keras Lambda layer with embedded code
+   - Code output: 
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5673d7e1
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to 5673d7e1 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=5673d7e1, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '5673d7e1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5673d7e1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 5673d7e1
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bdd22afa
+[AOP Monitor] API Called: _pickle.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Context Update] Updated 2 threads to bdd22afa (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=bdd22afa, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'bdd22afa', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bdd22afa', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: bdd22afa
+This statement was printed through a call to Python's eval() function
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (bdd22afa) - Total: 20
+======================================================================
+[1] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {}
+[2] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[3] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[4] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[5] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[6] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/numpy_load.pkl {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[7] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[8] PID:143456 TID:143456 - bpf ->  {}
+[9] PID:143456 TID:143456 - bpf ->  {}
+[10] PID:143456 TID:143456 - bpf ->  {}
+[11] PID:143456 TID:143456 - bpf ->  {}
+[12] PID:143456 TID:143456 - bpf ->  {}
+[13] PID:143456 TID:143456 - bpf ->  {}
+[14] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[15] PID:143456 TID:143456 - bpf ->  {}
+[16] PID:143456 TID:143456 - bpf ->  {}
+[17] PID:143456 TID:143456 - bpf ->  {}
+[18] PID:143456 TID:143456 - bpf ->  {}
+[19] PID:143456 TID:143456 - bpf ->  {}
+[20] PID:143456 TID:143456 - bpf ->  {}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.0957 seconds
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 1
+
+======================================================================
+LOADING EVENTS (5673d7e1) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2024 seconds
+
+   - Code output: This statement was printed through a call to Python's eval() function
+
+   - Keras Lambda layer with embedded code
+   - This may not be a real model - likely just malicious code
+
+  Processing eval.pt as type: torch_package
+⚠️  Loading torch.package model (POTENTIALLY DANGEROUS!)...
+    Trying torch.load for torch.package file...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 896e6475
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '896e6475', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='896e6475', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation '896e6475', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='896e6475', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Debug] Setting eBPF context for TID 143458, correlation '896e6475', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='896e6475', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143458
+[Context Update] Updated 3 threads to 896e6475 (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=896e6475, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation '896e6475', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='896e6475', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: 896e6475
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: cb09f4fb
+[AOP Monitor] API Called: torch.serialization.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'cb09f4fb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb09f4fb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143456
+[Debug] Setting eBPF context for TID 143457, correlation 'cb09f4fb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb09f4fb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143457
+[Debug] Setting eBPF context for TID 143458, correlation 'cb09f4fb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb09f4fb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 143458
+[Context Update] Updated 3 threads to cb09f4fb (LOADING)
+[Debug] Thread IDs - Python: 140118475044672, Kernel: 143456
+[AOP Monitor] Context tracked: pthread_id=140118475044672, kernel_tid=143456, ID=cb09f4fb, Phase=LOADING
+[Debug] Setting eBPF context for TID 143456, correlation 'cb09f4fb', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cb09f4fb', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143456
+[AOP Monitor] eBPF monitoring active for LOADING: cb09f4fb
+This statement was printed through a call to Python's eval() function
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8033, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 18, 1 -> stat -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=858, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8190, stream=stdout]
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 112, 1 -> bpf -> 
+PID:143456 TID:143456 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143456 TID:143456 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_END]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=836, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=816, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=538, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=388, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=280, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=187, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:143456 TID:143456 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_1/eval.pt
+PID:143456 TID:143456 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (cb09f4fb) - Total: 65
+======================================================================
+[1] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8033, 'stream': 'stdout'}
+[2] PID:143456 TID:143456 - stat -> ./Models_rest/59.ScanMe-Models_1/eval.pt {}
+[3] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval.pt {}
+[4] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[5] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[6] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[7] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[8] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[9] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[10] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[11] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[12] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[13] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[14] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[15] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[16] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[17] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 858, 'whence': 'SEEK_SET'}
+[18] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[19] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[20] PID:143456 TID:143456 - bpf ->  {}
+[21] PID:143456 TID:143456 - bpf ->  {}
+[22] PID:143456 TID:143456 - bpf ->  {}
+[23] PID:143456 TID:143456 - bpf ->  {}
+[24] PID:143456 TID:143456 - bpf ->  {}
+[25] PID:143456 TID:143456 - bpf ->  {}
+[26] PID:143456 TID:143456 - bpf ->  {}
+[27] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[28] PID:143456 TID:143456 - bpf ->  {}
+[29] PID:143456 TID:143456 - getrandom -> getrandom_size=0 {}
+[30] PID:143456 TID:143456 - bpf ->  {}
+[31] PID:143456 TID:143456 - bpf ->  {}
+[32] PID:143456 TID:143456 - bpf ->  {}
+[33] PID:143456 TID:143456 - bpf ->  {}
+[34] PID:143456 TID:143456 - bpf ->  {}
+[35] PID:143456 TID:143456 - bpf ->  {}
+[36] PID:143456 TID:143456 - bpf ->  {}
+[37] PID:143456 TID:143456 - bpf ->  {}
+[38] PID:143456 TID:143456 - openat -> ./Models_rest/59.ScanMe-Models_1/eval.pt {}
+[39] PID:143456 TID:143456 - fstat -> fd=313 {'fd': 313}
+[40] PID:143456 TID:143456 - ioctl -> ioctl_fd=313_cmd=0x5401 {}
+[41] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[42] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[43] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[44] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[45] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[46] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_END'}
+[47] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_CUR'}
+[48] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[49] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[50] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[51] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 836, 'whence': 'SEEK_SET'}
+[52] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[53] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 816, 'whence': 'SEEK_SET'}
+[54] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[55] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 538, 'whence': 'SEEK_SET'}
+[56] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[57] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 388, 'whence': 'SEEK_SET'}
+[58] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[59] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 280, 'whence': 'SEEK_SET'}
+[60] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[61] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 187, 'whence': 'SEEK_SET'}
+[62] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[63] PID:143456 TID:143456 - lseek -> fd=313 {'offset': 0, 'whence': 'SEEK_SET'}
+[64] PID:143456 TID:143456 - read -> ./Models_rest/59.ScanMe-Models_1/eval.pt {'fd': 8317134093884927790, 'size': 4122253211126297183}
+[65] PID:143456 TID:143456 - close -> fd=313 {'fd': 313}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1034 seconds
+PID:143456 TID:143456 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8170, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 2
+
+======================================================================
+LOADING EVENTS (896e6475) - Total: 1
+======================================================================
+[1] PID:143456 TID:143456 - write -> stdout {'fd': 1, 'size': 8170, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2003 seconds
+    Saved 367 loading events to 59.ScanMe-Models_1_loading_events.json
+    Saved 0 execution events to 59.ScanMe-Models_1_execution_events.json
+    Files Processed: 6
+    Successful: 1, Malicious: 4, Failed: 0
+    - eval_lambda.keras: malicious_lambda - Malicious Lambda layer - execution blocked by Kera
+    - numpy_load.pkl: malicious_executed - numpy_load.pkl: Loaded <class 'NoneType'>
+    - eval.pkl: malicious_executed - eval.pkl: Loaded <class 'NoneType'>
+    - tf2-writefile.zip: archive_analyzed - Archive analyzed: {'model_folder': '/tmp/tmp23c1yu
+    - eval_lambda.h5: malicious_lambda - Malicious Lambda layer - execution blocked by Kera
+    - eval.pt: model_loaded - Loaded via torch.load: <class 'NoneType'> | Attemp
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/59.ScanMe-Models_1",
+  "model_info": {
+    "folder": "./Models_rest/59.ScanMe-Models_1",
+    "files": [
+      "eval_lambda.keras",
+      "numpy_load.pkl",
+      "eval.pkl",
+      "tf2-writefile.zip",
+      ".git",
+      "eval_lambda.h5",
+      ".gitattributes",
+      "eval.pt"
+    ],
+    "has_config": false,
+    "model_type": "keras",
+    "framework": "tensorflow",
+    "model_files": [
+      "eval_lambda.keras",
+      "numpy_load.pkl",
+      "eval.pkl",
+      "tf2-writefile.zip",
+      "eval_lambda.h5",
+      "eval.pt"
+    ],
+    "config_data": null,
+    "bin_classification": {
+      "eval.pt": {
+        "kind": "torch_package",
+        "is_zip": true,
+        "contents": [
+          "eval_model/data.pkl",
+          "eval_model/byteorder",
+          "eval_model/version",
+          "eval_model/.data/serialization_id"
+        ],
+        "safe_for_hf": false,
+        "has_custom_class": false,
+        "is_checkpoint": false,
+        "is_quantized": false,
+        "is_distributed": false,
+        "pickle_files": [
+          "eval_model/data.pkl"
+        ],
+        "module_pickles": {
+          "eval_model": [
+            "eval_model/data.pkl"
+          ]
+        }
+      }
+    },
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "eval_lambda.keras": "8.02 KB",
+      "numpy_load.pkl": "0.16 KB",
+      "eval.pkl": "0.12 KB",
+      "tf2-writefile.zip": "3.74 KB",
+      "eval_lambda.h5": "9.11 KB",
+      "eval.pt": "0.84 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "numpy_load.pkl is suspiciously small (167 bytes)",
+      "eval.pkl is suspiciously small (118 bytes)",
+      "eval.pt is suspiciously small (858 bytes)"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "eval_lambda.keras",
+      "status": "malicious_lambda",
+      "output": "Malicious Lambda layer - execution blocked by Keras"
+    },
+    {
+      "file": "numpy_load.pkl",
+      "status": "malicious_executed",
+      "output": "numpy_load.pkl: Loaded <class 'NoneType'>"
+    },
+    {
+      "file": "eval.pkl",
+      "status": "malicious_executed",
+      "output": "eval.pkl: Loaded <class 'NoneType'>"
+    },
+    {
+      "file": "tf2-writefile.zip",
+      "status": "archive_analyzed",
+      "output": "Archive analyzed: {'model_folder': '/tmp/tmp23c1yu2h', 'model_info': {'folder': '/tmp/tmp23c1yu2h', 'files': ['tf2-writefile'], 'has_config': False, 'model_type': 'unknown', 'framework': 'unknown', 'model_files': [], 'config_data': None, 'bin_classification': {}, 'security_checks': {}, 'has_tokenizer': False, 'has_processor': False}, 'requirements': {'needs_input': True, 'input_type': 'unknown_try_common', 'input_shape': None, 'sample_input': None, 'additional_info': {}, 'modality': 'unknown', 'common_options': {'text': \"Try with text: 'Sample text'\", 'image': 'Try with image: torch.randn(1, 3, 224, 224)', 'audio': 'Try with audio: torch.randn(1, 16000)', 'tabular': 'Try with tabular: numpy.random.randn(1, 100)', 'vector': 'Try with vector: torch.randn(1, 100)', 'none': 'Try loading without input (for pickle exploits)'}}, 'structure': {'architecture': 'unknown', 'layers': [], 'parameters': 0, 'file_sizes': {}, 'is_real_model': True, 'suspicious_indicators': [], 'security_risks': []}, 'execution': [{'file': 'unknown', 'status': 'segfault', 'output': 'Model executed but caused segmentation fault', 'execution_status': 'segfault'}], 'execution_summary': {'total_files': 1, 'successful': 0, 'malicious': 0, 'failed': 0}}"
+    },
+    {
+      "file": "eval_lambda.h5",
+      "status": "malicious_lambda",
+      "output": "Malicious Lambda layer - execution blocked by Keras"
+    },
+    {
+      "file": "eval.pt",
+      "status": "model_loaded",
+      "output": "Loaded via torch.load: <class 'NoneType'> | Attempts: PackageImporter: FAILED - PytorchStreamReader failed locating file .data/ext | torch.load: SUCCESS - <class 'NoneType'>"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 6,
+    "successful": 1,
+    "malicious": 4,
+    "failed": 0
+  }
+}

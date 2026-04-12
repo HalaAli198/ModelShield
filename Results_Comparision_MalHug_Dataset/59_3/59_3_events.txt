@@ -1,0 +1,433 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/59.ScanMe-Models_3
+======================================================================
+
+[1] Detecting model type...
+    Type: keras
+    Framework: tensorflow
+    Has config.json: True
+    Files: model.weights.h5...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: ['unknown']
+    Is real model: True
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143485, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143485
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140014133827392, Kernel: 143485
+[AOP Monitor] Context tracked: pthread_id=140014133827392, kernel_tid=143485, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 143485, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143485
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+
+  Processing model.weights.h5 as type: keras
+Loading Keras model...
+    DEBUG: Model files detected: ['model.weights.h5']
+    DEBUG: Config data: No architectures
+    DEBUG: Selected file to load: model.weights.h5
+    DEBUG: Inspecting model.weights.h5 structure...
+    Loading model.weights.h5...
+    DEBUG: Root HDF5 keys: ['layers', 'vars']
+    DEBUG: 'layers' contains subkeys: ['input_layer', 'lambda']
+    DEBUG: 'vars' contains subkeys: []
+    DEBUG: ⚠️ Unknown H5 structure. Keys: ['layers', 'vars']
+    DEBUG: Attempting to load the model...
+    DEBUG: Method 1 - Loading as Keras model...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: fb600fbe
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143485, correlation 'fb600fbe', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='fb600fbe', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143485
+[Context Update] Updated 1 threads to fb600fbe (LOADING)
+[Debug] Thread IDs - Python: 140014133827392, Kernel: 143485
+[AOP Monitor] Context tracked: pthread_id=140014133827392, kernel_tid=143485, ID=fb600fbe, Phase=LOADING
+[Debug] Setting eBPF context for TID 143485, correlation 'fb600fbe', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='fb600fbe', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143485
+[AOP Monitor] eBPF monitoring active for LOADING: fb600fbe
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 4ed7687c
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 143485, correlation '4ed7687c', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='4ed7687c', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 143485
+[Context Update] Updated 1 threads to 4ed7687c (LOADING)
+[Debug] Thread IDs - Python: 140014133827392, Kernel: 143485
+[AOP Monitor] Context tracked: pthread_id=140014133827392, kernel_tid=143485, ID=4ed7687c, Phase=LOADING
+[Debug] Setting eBPF context for TID 143485, correlation '4ed7687c', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='4ed7687c', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 143485
+[AOP Monitor] eBPF monitoring active for LOADING: 4ed7687c
+PID:143485 TID:143485 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143485 TID:143485 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:143485 TID:143485 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143485 TID:143485 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:143485 TID:143485 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:143485 TID:143485 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:143485 TID:143485 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143485 TID:143485 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:143485 TID:143485 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:143485 TID:143485 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:143485 TID:143485 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:143485 TID:143485 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:143485 TID:143485 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:143485 TID:143485 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:143485 TID:143485 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 0 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> ./Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=0]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=48, offset=0]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=48, offset=48]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=96]
+PID:143485 TID:143485 -event.operation_id: 55, 1 -> getcwd -> getcwd
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=544, offset=136]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=1504]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=680]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=1832]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=544, offset=1872]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=3240]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=2416]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=800]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=544, offset=840]
+PID:143485 TID:143485 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:143485 TID:143485 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 112, 1 -> bpf -> 
+PID:143485 TID:143485 -event.operation_id: 22, 1 -> access -> Models_rest/59.ScanMe-Models_3/model.weights.h5 [mode=R_OK|X_OK]
+PID:143485 TID:143485 -event.operation_id: 22, 1 -> access -> Models_rest/59.ScanMe-Models_3/model.weights.h5 [mode=R_OK|X_OK]
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 10, 1 -> openat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=6335]
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=0]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=517952, offset=6336]
+PID:143485 TID:143485 -event.operation_id: 18, 1 -> stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=95]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=96]
+PID:143485 TID:143485 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=518048, offset=6336]
+PID:143485 TID:143485 -event.operation_id: 55, 1 -> getcwd -> getcwd
+PID:143485 TID:143485 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8099, stream=stdout]
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (4ed7687c) - Total: 47
+======================================================================
+[1] PID:143485 TID:143485 - bpf ->  {}
+[2] PID:143485 TID:143485 - bpf ->  {}
+[3] PID:143485 TID:143485 - bpf ->  {}
+[4] PID:143485 TID:143485 - stat -> ./Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[5] PID:143485 TID:143485 - openat -> ./Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[6] PID:143485 TID:143485 - fstat -> fd=313 {'fd': 313}
+[7] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 0}
+[8] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 48, 'offset': 0}
+[9] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 48, 'offset': 48}
+[10] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 96}
+[11] PID:143485 TID:143485 - getcwd -> getcwd {}
+[12] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 544, 'offset': 136}
+[13] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 1504}
+[14] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 680}
+[15] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 1832}
+[16] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 544, 'offset': 1872}
+[17] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 3240}
+[18] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 2416}
+[19] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 800}
+[20] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 544, 'offset': 840}
+[21] PID:143485 TID:143485 - close -> fd=313 {'fd': 313}
+[22] PID:143485 TID:143485 - getrandom -> getrandom_size=0 {}
+[23] PID:143485 TID:143485 - bpf ->  {}
+[24] PID:143485 TID:143485 - bpf ->  {}
+[25] PID:143485 TID:143485 - bpf ->  {}
+[26] PID:143485 TID:143485 - bpf ->  {}
+[27] PID:143485 TID:143485 - getrandom -> getrandom_size=0 {}
+[28] PID:143485 TID:143485 - bpf ->  {}
+[29] PID:143485 TID:143485 - bpf ->  {}
+[30] PID:143485 TID:143485 - bpf ->  {}
+[31] PID:143485 TID:143485 - bpf ->  {}
+[32] PID:143485 TID:143485 - access -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {'mode': 'R_OK|X_OK'}
+[33] PID:143485 TID:143485 - access -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {'mode': 'R_OK|X_OK'}
+[34] PID:143485 TID:143485 - stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[35] PID:143485 TID:143485 - openat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[36] PID:143485 TID:143485 - stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[37] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 6335}
+[38] PID:143485 TID:143485 - stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[39] PID:143485 TID:143485 - stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[40] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 0}
+[41] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 517952, 'offset': 6336}
+[42] PID:143485 TID:143485 - stat -> Models_rest/59.ScanMe-Models_3/model.weights.h5 {}
+[43] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 95}
+[44] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 96}
+[45] PID:143485 TID:143485 - pread64 -> fd=313 {'fd': 313, 'size': 518048, 'offset': 6336}
+[46] PID:143485 TID:143485 - getcwd -> getcwd {}
+[47] PID:143485 TID:143485 - write -> stdout {'fd': 1, 'size': 8099, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1231 seconds
+[Thread] No thread creation detected
+
+======================================================================
+LOADING EVENTS (fb600fbe) - Total: 0
+======================================================================
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2310 seconds
+    DEBUG: ✗ Keras loading failed: No model config found in the file at <tensorflow.python.platform.gfile.GFile object at 0x7f570f82b430>.
+PID:143485 TID:143485 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    Saved 37 loading events to 59.ScanMe-Models_3_loading_events.json
+    Saved 0 execution events to 59.ScanMe-Models_3_execution_events.json
+    Files Processed: 1
+    Successful: 0, Malicious: 0, Failed: 0
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/59.ScanMe-Models_3",
+  "model_info": {
+    "folder": "./Models_rest/59.ScanMe-Models_3",
+    "files": [
+      "metadata.json",
+      "model.weights.h5",
+      "config.json"
+    ],
+    "has_config": true,
+    "model_type": "keras",
+    "framework": "tensorflow",
+    "model_files": [
+      "model.weights.h5"
+    ],
+    "config_data": {
+      "module": "keras.src.engine.functional",
+      "class_name": "Functional",
+      "config": {
+        "name": "model",
+        "trainable": true,
+        "layers": [
+          {
+            "module": "keras.layers",
+            "class_name": "InputLayer",
+            "config": {
+              "batch_input_shape": [
+                null,
+                5
+              ],
+              "dtype": "float32",
+              "sparse": false,
+              "ragged": false,
+              "name": "input_1"
+            },
+            "registered_name": null,
+            "name": "input_1",
+            "inbound_nodes": []
+          },
+          {
+            "module": "keras.layers",
+            "class_name": "Lambda",
+            "config": {
+              "name": "lambda",
+              "trainable": true,
+              "dtype": "float32",
+              "function": [
+                "4wEAAAAAAAAAAAAAAAEAAAACAAAAQwAAAHMMAAAAdABkAYMBcAV8AFMAKQJO+lsKcHJpbnQoIlRo\naXMgc3RhdGVtZW50IHdhcyBwcmludGVkIGJ5IGEgTGFtYmRhIGxheWVyIHRoYXQgY2FsbHMgUHl0\naG9uJ3MgZXZhbCgpIGZ1bmN0aW9uIikKKQHaBGV2YWwpAdoBeKkAcgQAAAD6NS9Vc2Vycy9ydHJh\nY2V5L0Rlc2t0b3AvVGVzdGluZy9zY3JpcHRzL2dlbmVyYXRlX2g1LnB52gg8bGFtYmRhPgQAAABz\nBAAAAAgABAI=\n",
+                null,
+                null
+              ],
+              "function_type": "lambda",
+              "module": "__main__",
+              "output_shape": null,
+              "output_shape_type": "raw",
+              "output_shape_module": null,
+              "arguments": {}
+            },
+            "registered_name": null,
+            "build_config": {
+              "input_shape": [
+                null,
+                5
+              ]
+            },
+            "name": "lambda",
+            "inbound_nodes": [
+              [
+                [
+                  "input_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          }
+        ],
+        "input_layers": [
+          [
+            "input_1",
+            0,
+            0
+          ]
+        ],
+        "output_layers": [
+          [
+            "lambda",
+            0,
+            0
+          ]
+        ]
+      },
+      "registered_name": "Functional",
+      "build_config": {
+        "input_shape": [
+          null,
+          5
+        ]
+      },
+      "compile_config": {
+        "optimizer": "adam",
+        "loss": "mean_squared_error",
+        "metrics": null,
+        "loss_weights": null,
+        "weighted_metrics": null,
+        "run_eagerly": null,
+        "steps_per_execution": null,
+        "jit_compile": null
+      }
+    },
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": [
+      "unknown"
+    ],
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "model.weights.h5": "6.19 KB"
+    },
+    "is_real_model": true,
+    "suspicious_indicators": [],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "model.weights.h5",
+      "status": "not_attempted",
+      "output": null
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 0
+  }
+}

@@ -1,0 +1,145 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+Found 1 model folders to analyze
+======================================================================
+====================================================================================================
+
+[1/1] Processing: eval_model
+====================================================================================================
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/59.ScanMe-Models_2/eval_model
+======================================================================
+
+[1] Detecting model type...
+    Type: pickle
+    Framework: pickle
+    Has config.json: False
+    Files: data.pkl...
+
+[2] Determining input requirements...
+    Needs input: False
+    Input type: possibly_none
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: data.pkl is suspiciously small (118 bytes)
+
+[4] Creating input data...
+    Input created: <class 'NoneType'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 145543, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 145543
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 140092070975296, Kernel: 145543
+[AOP Monitor] Context tracked: pthread_id=140092070975296, kernel_tid=145543, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 145543, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 145543
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - data.pkl is suspiciously small (118 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing data.pkl as type: pickle
+  Loading data.pkl...
+
+🔍 DEBUG CHECK (AFTER pickle.load):
+   Monitoring active: True
+PID:145543 TID:145543 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145543 TID:145543 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=308_cmd=0x2400
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:145543 TID:145543 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145543 TID:145543 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:145543 TID:145543 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:145543 TID:145543 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:145543 TID:145543 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145543 TID:145543 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:145543 TID:145543 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:145543 TID:145543 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:145543 TID:145543 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:145543 TID:145543 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:145543 TID:145543 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:145543 TID:145543 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:145543 TID:145543 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 112, 0 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 112, 1 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 112, 1 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 112, 1 -> bpf -> 
+PID:145543 TID:145543 -event.operation_id: 10, 1 -> openat -> ./Models_rest/59.ScanMe-Models_2/eval_model/data.pkl
+PID:145543 TID:145543 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:145543 TID:145543 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=313_cmd=0x5401
+PID:145543 TID:145543 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_CUR]
+PID:145543 TID:145543 -event.operation_id: 56, 1 -> lseek -> fd=313 [offset=0, whence=SEEK_SET]
+PID:145543 TID:145543 -event.operation_id: 12, 1 -> read -> ./Models_rest/59.ScanMe-Models_2/eval_model/data.pkl
+PID:145543 TID:145543 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+    ✅ Polled eBPF buffer
+    🚨 STDOUT: This statement was printed through a call to Python's eval() function
+
+    Files Processed: 1
+    Successful: 0, Malicious: 1, Failed: 0
+    - data.pkl: malicious_executed - data.pkl: Loaded <class 'NoneType'>
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================
+Total models: 1
+Successfully executed: 0
+Loaded but not executed: 0
+Failed: 0
+Malicious: 1

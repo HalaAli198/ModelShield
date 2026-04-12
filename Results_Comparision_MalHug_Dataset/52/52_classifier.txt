@@ -1,0 +1,40 @@
+  Tagged 151 loading events from 52.avio-MobileNetV4_loading_events.json
+  Tagged 135 execution events from 52.avio-MobileNetV4_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: results/52
+Loading events: 151
+Execution events: 135
+Patterns defined: 190
+======================================================================
+
+  [EXECUTION] AB1-EXEC-CRED-ACCESS: Command-based credential file access
+    Step 0: execve -> /usr/bin/cat  (Execute file-reading command (cat/head/grep/etc.))
+    Step 1: openat -> /etc/shadow  (Open credential/sensitive file)
+    Step 2: read -> /etc/shadow  (Read credential data)
+    MITRE: Credential Access / T1003.008 (/etc/passwd and /etc/shadow)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+  [EXECUTION] AB1-EXEC-SYSINFO-ACCESS: Command-based system info access
+    Step 0: execve -> /usr/bin/cat  (Execute file-reading command)
+    Step 1: openat -> /etc/shadow  (Open system info file)
+    Step 2: read -> /etc/shadow  (Read system info)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+  [EXECUTION] AB1-CRED-SHADOW-LOCAL: Shadow/auth log access during model execution
+    Step 0: openat -> /etc/shadow  (Open shadow/auth file)
+    Step 1: read -> /etc/shadow  (Read credential data)
+    MITRE: Credential Access / T1003.008 (/etc/passwd and /etc/shadow)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - Shadow/auth log access during model execution
+      - Command-based credential file access
+      - Command-based system info access
+      MITRE: T1003.008 (/etc/passwd and /etc/shadow)
+      MITRE: T1059.004 (Unix Shell)
+      MITRE: T1082 (System Information Discovery)
+======================================================================
