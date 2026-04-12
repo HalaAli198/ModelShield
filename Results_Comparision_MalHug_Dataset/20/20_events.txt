@@ -1,0 +1,1140 @@
+Python ThreatEvent size: 136
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: ./Models_rest/20.vgg_official
+======================================================================
+
+[1] Detecting model type...
+    Type: keras
+    Framework: tensorflow
+    Has config.json: True
+    Files: tf_model.h5...
+    ⚠️  Security issues detected in 2 files
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: text
+    Modality: text
+    Input shape: text string
+
+[3] Analyzing model structure...
+    Architecture: ['GPT2LMHeadModel']
+    Is real model: True
+    🔒 Security risks: tf_model.h5 contains executables: ['Windows EXE'], vocab.json contains executables: ['Windows EXE']
+
+[4] Creating input data...
+    Input created: <class 'str'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141476, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141476
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139813761025856, Kernel: 141476
+[AOP Monitor] Context tracked: pthread_id=139813761025856, kernel_tid=141476, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 141476, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141476
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+🔒 SECURITY RISKS:
+   - tf_model.h5 contains executables: ['Windows EXE']
+   - vocab.json contains executables: ['Windows EXE']
+
+  Processing tf_model.h5 as type: keras
+Loading Keras model...
+    DEBUG: Model files detected: ['tf_model.h5']
+    DEBUG: Config data: ['GPT2LMHeadModel']
+    DEBUG: Selected file to load: tf_model.h5
+    DEBUG: Inspecting tf_model.h5 structure...
+    Loading tf_model.h5...
+    DEBUG: Root HDF5 keys: ['model_weights']
+    DEBUG: 'model_weights' contains subkeys: ['block1_conv1', 'block1_conv2', 'block1_pool', 'block2_conv1', 'block2_conv2']
+    DEBUG: ✓ This is a standard Keras model
+    DEBUG: Attempting to load the model...
+    DEBUG: Method 1 - Loading as Keras model...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 47707ae5
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141476, correlation '47707ae5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='47707ae5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141476
+[Context Update] Updated 1 threads to 47707ae5 (LOADING)
+[Debug] Thread IDs - Python: 139813761025856, Kernel: 141476
+[AOP Monitor] Context tracked: pthread_id=139813761025856, kernel_tid=141476, ID=47707ae5, Phase=LOADING
+[Debug] Setting eBPF context for TID 141476, correlation '47707ae5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='47707ae5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141476
+[AOP Monitor] eBPF monitoring active for LOADING: 47707ae5
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: af8fd073
+[AOP Monitor] API Called: keras.src.saving.saving_api.load_model
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 141476, correlation 'af8fd073', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af8fd073', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 141476
+[Context Update] Updated 1 threads to af8fd073 (LOADING)
+[Debug] Thread IDs - Python: 139813761025856, Kernel: 141476
+[AOP Monitor] Context tracked: pthread_id=139813761025856, kernel_tid=141476, ID=af8fd073, Phase=LOADING
+[Debug] Setting eBPF context for TID 141476, correlation 'af8fd073', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af8fd073', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 141476
+[AOP Monitor] eBPF monitoring active for LOADING: af8fd073
+PID:141476 TID:141478 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141478 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f285c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141480 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141480 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2850000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141481 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2854000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141481 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2854000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141482 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141482 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2848000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141483 -event.operation_id: 85, 1 -> mmap -> addr=0x7f284c000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141483 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f284c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141486 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141486 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141486 -event.operation_id: 144, 1 -> madvise -> madvise_0x7f28607f9000_len=8368128 [behavior=MADV_DONTNEED]
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /etc/localtime
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stderr [fd=2, size=148, stream=stderr]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /etc/localtime
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stderr [fd=2, size=148, stream=stderr]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /etc/localtime
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stderr [fd=2, size=148, stream=stderr]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /etc/localtime
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stderr [fd=2, size=272, stream=stderr]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8141, stream=stdout]
+PID:141476 TID:141477 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141477 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2864000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141485 -event.operation_id: 10, 1 -> openat -> /sys/devices/system/cpu/online
+PID:141476 TID:141485 -event.operation_id: 12, 1 -> read -> /sys/devices/system/cpu/online
+PID:141476 TID:141485 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:141476 TID:141485 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2844000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141485 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2844000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=6984968]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=1640]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=704, offset=553502064]
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141476 TID:141476 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 22, 1 -> access -> Models_rest/20.vgg_official/tf_model.h5 [mode=R_OK|X_OK]
+PID:141476 TID:141476 -event.operation_id: 22, 1 -> access -> Models_rest/20.vgg_official/tf_model.h5 [mode=R_OK|X_OK]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=553507135]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=0]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=553507135]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=1, offset=95]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=524288, offset=96]
+PID:141476 TID:141476 -event.operation_id: 55, 1 -> getcwd -> getcwd
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:141476 TID:141476 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141479 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2860000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2858000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141484 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141484 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2840000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:141476 TID:141476 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:141476 TID:141476 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:141476 TID:141476 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:141476 TID:141476 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:141476 TID:141476 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online
+PID:141476 TID:141476 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:141476 TID:141476 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:141476 TID:141476 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:141476 TID:141476 -event.operation_id: 112, 0 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:141476 TID:141476 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:141476 TID:141476 -event.operation_id: 112, 0 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:141476 TID:141476 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:141476 TID:141476 -event.operation_id: 112, 0 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:141476 TID:141476 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:141476 TID:141476 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:141476 TID:141476 -event.operation_id: 112, 0 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 0 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 112, 1 -> bpf -> 
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> ./Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> ./Models_rest/20.vgg_official/tf_model.h5
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=8, offset=0]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=48, offset=0]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=48, offset=48]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=96]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=256, offset=800]
+PID:141476 TID:141476 -event.operation_id: 55, 1 -> getcwd -> getcwd
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=544, offset=136]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=16240]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=680]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=512, offset=1056]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=640, offset=16568]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=544, offset=1096]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=17752]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=4622808]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=21151232]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=49480768]
+PID:141476 TID:141476 -event.operation_id: 13, 1 -> pread64 -> fd=313 [fd=313, size=328, offset=537096168]
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /dev/urandom
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /dev/urandom [size=1836016750]
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /usr/lib/python3.9/encodings
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /usr/lib/python3.9/encodings/base64_codec.py
+PID:141476 TID:141476 -event.operation_id: 18, 1 -> stat -> /usr/lib/python3.9/encodings/base64_codec.py
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 4, 1 -> ioctl -> ioctl_fd=314_cmd=0x5401
+PID:141476 TID:141476 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 56, 1 -> lseek -> fd=314 [offset=0, whence=SEEK_CUR]
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:141476 TID:141476 -event.operation_id: 19, 1 -> fstat -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libcuda.so.1
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /lib/libcuda.so.1
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /usr/lib/libcuda.so.1
+PID:141476 TID:141476 -event.operation_id: 22, 1 -> access -> /proc/driver/nvidia/version [mode=R_OK|W_OK|X_OK]
+PID:141476 TID:141476 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2863800000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2862fff000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f28627fe000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2861ffd000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f28617fc000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2860ffb000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 2, 1 -> sysinfo -> sysinfo
+PID:141476 TID:141476 -event.operation_id: 44, 1 -> readlink -> /proc/se [bufsiz=4095]
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> /proc/self/cmdline
+PID:141476 TID:141476 -event.operation_id: 12, 1 -> read -> /proc/self/cmdline
+PID:141476 TID:141476 -event.operation_id: 22, 1 -> access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow [mode=R_OK|X_OK]
+PID:141476 TID:141476 -event.operation_id: 10, 1 -> openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f28607fa000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+PID:141476 TID:141476 -event.operation_id: 1, 1 -> uname -> uname
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141477
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.270513
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141478
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.334271
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141479
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.334587
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141480
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.334965
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141481
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.335328
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141482
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.335997
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141483
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.336549
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141484
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.336657
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141485
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.336766
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 141476 -> Child PID: 141486
+  Correlation ID: af8fd073
+  Phase: 1
+  Command: python3.9
+  Timestamp: 157587.367496
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838021000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838022000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838023000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838024000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8158, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838026000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838027000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838028000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838029000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802a000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802c000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802d000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802e000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283802f000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838030000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838031000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838032000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838033000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838034000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8082, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838036000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838037000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838038000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838039000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803a000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803c000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803d000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803e000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283803f000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838040000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838041000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838042000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838043000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838044000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838045000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838046000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838047000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838048000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838049000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804a000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804c000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804d000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804e000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283804f000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8128, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838051000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838052000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838053000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838054000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838055000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838056000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838057000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838058000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838059000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805a000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805c000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805d000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805e000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283805f000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838060000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838061000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838062000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8190, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838064000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838065000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838066000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838067000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838068000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2838069000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283806a000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283806b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283806c000, len=4096 [protection=PROT_READ|PROT_WRITE]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (af8fd073) - Total: 385
+======================================================================
+[1] PID:141476 TID:141476 - bpf ->  {}
+[2] PID:141476 TID:141476 - bpf ->  {}
+[3] PID:141476 TID:141476 - bpf ->  {}
+[4] PID:141476 TID:141476 - stat -> ./Models_rest/20.vgg_official/tf_model.h5 {}
+[5] PID:141476 TID:141476 - openat -> ./Models_rest/20.vgg_official/tf_model.h5 {}
+[6] PID:141476 TID:141476 - fstat -> fd=313 {'fd': 313}
+[7] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 8, 'offset': 0}
+[8] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 48, 'offset': 0}
+[9] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 48, 'offset': 48}
+[10] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 96}
+[11] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 256, 'offset': 800}
+[12] PID:141476 TID:141476 - getcwd -> getcwd {}
+[13] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 544, 'offset': 136}
+[14] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 16240}
+[15] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 680}
+[16] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 1056}
+[17] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 640, 'offset': 16568}
+[18] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 544, 'offset': 1096}
+[19] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 17752}
+[20] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 4622808}
+[21] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 21151232}
+[22] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 49480768}
+[23] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 537096168}
+[24] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 328, 'offset': 6984968}
+[25] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 512, 'offset': 1640}
+[26] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 704, 'offset': 553502064}
+[27] PID:141476 TID:141476 - close -> fd=313 {'fd': 313}
+[28] PID:141476 TID:141476 - getrandom -> getrandom_size=0 {}
+[29] PID:141476 TID:141476 - bpf ->  {}
+[30] PID:141476 TID:141476 - bpf ->  {}
+[31] PID:141476 TID:141476 - bpf ->  {}
+[32] PID:141476 TID:141476 - bpf ->  {}
+[33] PID:141476 TID:141476 - getrandom -> getrandom_size=0 {}
+[34] PID:141476 TID:141476 - bpf ->  {}
+[35] PID:141476 TID:141476 - bpf ->  {}
+[36] PID:141476 TID:141476 - bpf ->  {}
+[37] PID:141476 TID:141476 - bpf ->  {}
+[38] PID:141476 TID:141476 - access -> Models_rest/20.vgg_official/tf_model.h5 {'mode': 'R_OK|X_OK'}
+[39] PID:141476 TID:141476 - access -> Models_rest/20.vgg_official/tf_model.h5 {'mode': 'R_OK|X_OK'}
+[40] PID:141476 TID:141476 - stat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[41] PID:141476 TID:141476 - openat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[42] PID:141476 TID:141476 - stat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[43] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 553507135}
+[44] PID:141476 TID:141476 - stat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[45] PID:141476 TID:141476 - stat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[46] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 0}
+[47] PID:141476 TID:141476 - stat -> Models_rest/20.vgg_official/tf_model.h5 {}
+[48] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 553507135}
+[49] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 1, 'offset': 95}
+[50] PID:141476 TID:141476 - pread64 -> fd=313 {'fd': 313, 'size': 524288, 'offset': 96}
+[51] PID:141476 TID:141476 - getcwd -> getcwd {}
+[52] PID:141476 TID:141476 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[53] PID:141476 TID:141476 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[54] PID:141476 TID:141476 - stat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[55] PID:141476 TID:141476 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {}
+[56] PID:141476 TID:141476 - fstat -> fd=314 {'fd': 314}
+[57] PID:141476 TID:141476 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[58] PID:141476 TID:141476 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[59] PID:141476 TID:141476 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[60] PID:141476 TID:141476 - fstat -> fd=314 {'fd': 314}
+[61] PID:141476 TID:141476 - read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {'fd': 7018912131931138095, 'size': 8029178629964390764}
+[62] PID:141476 TID:141476 - read -> /home/hala/ml_models_venv/lib/python3.9/site-packages/keras/src {'fd': 7018912131931138095, 'size': 8029178629964390764}
+[63] PID:141476 TID:141476 - close -> fd=314 {'fd': 314}
+[64] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[65] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[66] PID:141476 TID:141476 - openat -> /dev/urandom {}
+[67] PID:141476 TID:141476 - read -> /dev/urandom {'fd': 7021803615734293551, 'size': 1836016750}
+[68] PID:141476 TID:141476 - close -> fd=314 {'fd': 314}
+[69] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[70] PID:141476 TID:141477 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[71] PID:141476 TID:141477 - mprotect -> addr=0x7f2864000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[72] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[73] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[74] PID:141476 TID:141476 - stat -> /usr/lib/python3.9/encodings {}
+[75] PID:141476 TID:141476 - stat -> /usr/lib/python3.9/encodings/base64_codec.py {}
+[76] PID:141476 TID:141476 - stat -> /usr/lib/python3.9/encodings/base64_codec.py {}
+[77] PID:141476 TID:141476 - openat -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3 {}
+[78] PID:141476 TID:141476 - fstat -> fd=314 {'fd': 314}
+[79] PID:141476 TID:141476 - ioctl -> ioctl_fd=314_cmd=0x5401 {}
+[80] PID:141476 TID:141476 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[81] PID:141476 TID:141476 - lseek -> fd=314 {'offset': 0, 'whence': 'SEEK_CUR'}
+[82] PID:141476 TID:141476 - fstat -> fd=314 {'fd': 314}
+[83] PID:141476 TID:141476 - read -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3 {'fd': 7091318039310988591, 'size': 3706022037793894447}
+[84] PID:141476 TID:141476 - read -> /usr/lib/python3.9/encodings/__pycache__/base64_codec.cpython-3 {'fd': 7091318039310988591, 'size': 3706022037793894447}
+[85] PID:141476 TID:141476 - close -> fd=314 {'fd': 314}
+[86] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[87] PID:141476 TID:141476 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo {}
+[88] PID:141476 TID:141476 - openat -> /etc/ld.so.cache {}
+[89] PID:141476 TID:141476 - fstat -> fd=314 {'fd': 314}
+[90] PID:141476 TID:141476 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[91] PID:141476 TID:141476 - close -> fd=314 {'fd': 314}
+[92] PID:141476 TID:141476 - openat -> /lib/x86_64-linux-gnu/libcuda.so.1 {}
+[93] PID:141476 TID:141476 - openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 {}
+[94] PID:141476 TID:141476 - openat -> /lib/libcuda.so.1 {}
+[95] PID:141476 TID:141476 - openat -> /usr/lib/libcuda.so.1 {}
+[96] PID:141476 TID:141476 - access -> /proc/driver/nvidia/version {'mode': 'R_OK|W_OK|X_OK'}
+[97] PID:141476 TID:141476 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[98] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[99] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[100] PID:141476 TID:141478 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[101] PID:141476 TID:141478 - mprotect -> addr=0x7f285c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[102] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[103] PID:141476 TID:141479 - mmap -> addr=0x7f2860000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[104] PID:141476 TID:141479 - mprotect -> addr=0x7f2858000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[105] PID:141476 TID:141476 - mprotect -> addr=0x7f2863800000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[106] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[107] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[108] PID:141476 TID:141476 - mprotect -> addr=0x7f2862fff000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[109] PID:141476 TID:141480 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[110] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[111] PID:141476 TID:141480 - mprotect -> addr=0x7f2850000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[112] PID:141476 TID:141481 - mmap -> addr=0x7f2854000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[113] PID:141476 TID:141481 - mprotect -> addr=0x7f2854000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[114] PID:141476 TID:141476 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[115] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[116] PID:141476 TID:141476 - mprotect -> addr=0x7f28627fe000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[117] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[118] PID:141476 TID:141482 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[119] PID:141476 TID:141482 - mprotect -> addr=0x7f2848000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[120] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[121] PID:141476 TID:141476 - mprotect -> addr=0x7f2861ffd000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[122] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[123] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[124] PID:141476 TID:141476 - mprotect -> addr=0x7f28617fc000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[125] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[126] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[127] PID:141476 TID:141483 - mmap -> addr=0x7f284c000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[128] PID:141476 TID:141476 - mprotect -> addr=0x7f2860ffb000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[129] PID:141476 TID:141483 - mprotect -> addr=0x7f284c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[130] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[131] PID:141476 TID:141484 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[132] PID:141476 TID:141485 - openat -> /sys/devices/system/cpu/online {}
+[133] PID:141476 TID:141484 - mprotect -> addr=0x7f2840000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[134] PID:141476 TID:141485 - read -> /sys/devices/system/cpu/online {'fd': 8531335224086852399, 'size': 8320808434180383593}
+[135] PID:141476 TID:141485 - close -> fd=314 {'fd': 314}
+[136] PID:141476 TID:141485 - mmap -> addr=0x7f2844000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[137] PID:141476 TID:141485 - mprotect -> addr=0x7f2844000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[138] PID:141476 TID:141476 - sysinfo -> sysinfo {}
+[139] PID:141476 TID:141476 - readlink -> /proc/se {'bufsiz': 4095}
+[140] PID:141476 TID:141476 - openat -> /proc/self/cmdline {}
+[141] PID:141476 TID:141476 - read -> /proc/self/cmdline {'fd': 7310238724270485551, 'size': 7596557092445447788}
+[142] PID:141476 TID:141476 - access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow {'mode': 'R_OK|X_OK'}
+[143] PID:141476 TID:141476 - openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels {}
+[144] PID:141476 TID:141476 - uname -> uname {}
+[145] PID:141476 TID:141476 - uname -> uname {}
+[146] PID:141476 TID:141476 - uname -> uname {}
+[147] PID:141476 TID:141476 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[148] PID:141476 TID:141476 - mprotect -> addr=0x7f28607fa000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[149] PID:141476 TID:141476 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[150] PID:141476 TID:141476 - uname -> uname {}
+[151] PID:141476 TID:141486 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[152] PID:141476 TID:141486 - mprotect -> addr=0x7f2838000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[153] PID:141476 TID:141486 - madvise -> madvise_0x7f28607f9000_len=8368128 {'behavior': 'MADV_DONTNEED'}
+[154] PID:141476 TID:141476 - uname -> uname {}
+[155] PID:141476 TID:141476 - uname -> uname {}
+[156] PID:141476 TID:141476 - uname -> uname {}
+[157] PID:141476 TID:141476 - uname -> uname {}
+[158] PID:141476 TID:141476 - uname -> uname {}
+[159] PID:141476 TID:141476 - uname -> uname {}
+[160] PID:141476 TID:141476 - uname -> uname {}
+[161] PID:141476 TID:141476 - uname -> uname {}
+[162] PID:141476 TID:141476 - uname -> uname {}
+[163] PID:141476 TID:141476 - uname -> uname {}
+[164] PID:141476 TID:141476 - uname -> uname {}
+[165] PID:141476 TID:141476 - uname -> uname {}
+[166] PID:141476 TID:141476 - uname -> uname {}
+[167] PID:141476 TID:141476 - uname -> uname {}
+[168] PID:141476 TID:141476 - uname -> uname {}
+[169] PID:141476 TID:141476 - uname -> uname {}
+[170] PID:141476 TID:141476 - uname -> uname {}
+[171] PID:141476 TID:141476 - uname -> uname {}
+[172] PID:141476 TID:141476 - uname -> uname {}
+[173] PID:141476 TID:141476 - uname -> uname {}
+[174] PID:141476 TID:141476 - uname -> uname {}
+[175] PID:141476 TID:141476 - uname -> uname {}
+[176] PID:141476 TID:141476 - uname -> uname {}
+[177] PID:141476 TID:141476 - uname -> uname {}
+[178] PID:141476 TID:141476 - uname -> uname {}
+[179] PID:141476 TID:141476 - uname -> uname {}
+[180] PID:141476 TID:141476 - uname -> uname {}
+[181] PID:141476 TID:141476 - uname -> uname {}
+[182] PID:141476 TID:141476 - uname -> uname {}
+[183] PID:141476 TID:141476 - uname -> uname {}
+[184] PID:141476 TID:141476 - uname -> uname {}
+[185] PID:141476 TID:141476 - uname -> uname {}
+[186] PID:141476 TID:141476 - uname -> uname {}
+[187] PID:141476 TID:141476 - uname -> uname {}
+[188] PID:141476 TID:141476 - uname -> uname {}
+[189] PID:141476 TID:141476 - uname -> uname {}
+[190] PID:141476 TID:141476 - uname -> uname {}
+[191] PID:141476 TID:141476 - uname -> uname {}
+[192] PID:141476 TID:141476 - uname -> uname {}
+[193] PID:141476 TID:141476 - uname -> uname {}
+[194] PID:141476 TID:141476 - uname -> uname {}
+[195] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[196] PID:141476 TID:141476 - uname -> uname {}
+[197] PID:141476 TID:141476 - uname -> uname {}
+[198] PID:141476 TID:141476 - uname -> uname {}
+[199] PID:141476 TID:141476 - uname -> uname {}
+[200] PID:141476 TID:141476 - uname -> uname {}
+[201] PID:141476 TID:141476 - uname -> uname {}
+[202] PID:141476 TID:141476 - uname -> uname {}
+[203] PID:141476 TID:141476 - uname -> uname {}
+[204] PID:141476 TID:141476 - uname -> uname {}
+[205] PID:141476 TID:141476 - uname -> uname {}
+[206] PID:141476 TID:141476 - uname -> uname {}
+[207] PID:141476 TID:141476 - uname -> uname {}
+[208] PID:141476 TID:141476 - uname -> uname {}
+[209] PID:141476 TID:141476 - uname -> uname {}
+[210] PID:141476 TID:141476 - uname -> uname {}
+[211] PID:141476 TID:141476 - uname -> uname {}
+[212] PID:141476 TID:141476 - uname -> uname {}
+[213] PID:141476 TID:141476 - uname -> uname {}
+[214] PID:141476 TID:141476 - uname -> uname {}
+[215] PID:141476 TID:141476 - uname -> uname {}
+[216] PID:141476 TID:141476 - uname -> uname {}
+[217] PID:141476 TID:141476 - uname -> uname {}
+[218] PID:141476 TID:141476 - uname -> uname {}
+[219] PID:141476 TID:141476 - uname -> uname {}
+[220] PID:141476 TID:141476 - uname -> uname {}
+[221] PID:141476 TID:141476 - uname -> uname {}
+[222] PID:141476 TID:141476 - uname -> uname {}
+[223] PID:141476 TID:141476 - uname -> uname {}
+[224] PID:141476 TID:141476 - uname -> uname {}
+[225] PID:141476 TID:141476 - uname -> uname {}
+[226] PID:141476 TID:141476 - uname -> uname {}
+[227] PID:141476 TID:141476 - uname -> uname {}
+[228] PID:141476 TID:141476 - uname -> uname {}
+[229] PID:141476 TID:141476 - uname -> uname {}
+[230] PID:141476 TID:141476 - uname -> uname {}
+[231] PID:141476 TID:141476 - uname -> uname {}
+[232] PID:141476 TID:141476 - uname -> uname {}
+[233] PID:141476 TID:141476 - uname -> uname {}
+[234] PID:141476 TID:141476 - uname -> uname {}
+[235] PID:141476 TID:141476 - uname -> uname {}
+[236] PID:141476 TID:141476 - uname -> uname {}
+[237] PID:141476 TID:141476 - uname -> uname {}
+[238] PID:141476 TID:141476 - uname -> uname {}
+[239] PID:141476 TID:141476 - uname -> uname {}
+[240] PID:141476 TID:141476 - uname -> uname {}
+[241] PID:141476 TID:141476 - uname -> uname {}
+[242] PID:141476 TID:141476 - uname -> uname {}
+[243] PID:141476 TID:141476 - uname -> uname {}
+[244] PID:141476 TID:141476 - uname -> uname {}
+[245] PID:141476 TID:141476 - uname -> uname {}
+[246] PID:141476 TID:141476 - uname -> uname {}
+[247] PID:141476 TID:141476 - uname -> uname {}
+[248] PID:141476 TID:141476 - uname -> uname {}
+[249] PID:141476 TID:141476 - uname -> uname {}
+[250] PID:141476 TID:141476 - uname -> uname {}
+[251] PID:141476 TID:141476 - uname -> uname {}
+[252] PID:141476 TID:141476 - uname -> uname {}
+[253] PID:141476 TID:141476 - uname -> uname {}
+[254] PID:141476 TID:141476 - uname -> uname {}
+[255] PID:141476 TID:141476 - uname -> uname {}
+[256] PID:141476 TID:141476 - uname -> uname {}
+[257] PID:141476 TID:141476 - uname -> uname {}
+[258] PID:141476 TID:141476 - uname -> uname {}
+[259] PID:141476 TID:141476 - uname -> uname {}
+[260] PID:141476 TID:141476 - uname -> uname {}
+[261] PID:141476 TID:141476 - uname -> uname {}
+[262] PID:141476 TID:141476 - uname -> uname {}
+[263] PID:141476 TID:141476 - uname -> uname {}
+[264] PID:141476 TID:141476 - uname -> uname {}
+[265] PID:141476 TID:141476 - uname -> uname {}
+[266] PID:141476 TID:141476 - uname -> uname {}
+[267] PID:141476 TID:141476 - uname -> uname {}
+[268] PID:141476 TID:141476 - uname -> uname {}
+[269] PID:141476 TID:141476 - uname -> uname {}
+[270] PID:141476 TID:141476 - uname -> uname {}
+[271] PID:141476 TID:141476 - uname -> uname {}
+[272] PID:141476 TID:141476 - uname -> uname {}
+[273] PID:141476 TID:141476 - uname -> uname {}
+[274] PID:141476 TID:141476 - uname -> uname {}
+[275] PID:141476 TID:141476 - uname -> uname {}
+[276] PID:141476 TID:141476 - uname -> uname {}
+[277] PID:141476 TID:141476 - uname -> uname {}
+[278] PID:141476 TID:141476 - uname -> uname {}
+[279] PID:141476 TID:141476 - uname -> uname {}
+[280] PID:141476 TID:141476 - uname -> uname {}
+[281] PID:141476 TID:141476 - uname -> uname {}
+[282] PID:141476 TID:141476 - uname -> uname {}
+[283] PID:141476 TID:141476 - uname -> uname {}
+[284] PID:141476 TID:141476 - uname -> uname {}
+[285] PID:141476 TID:141476 - uname -> uname {}
+[286] PID:141476 TID:141476 - uname -> uname {}
+[287] PID:141476 TID:141476 - uname -> uname {}
+[288] PID:141476 TID:141476 - uname -> uname {}
+[289] PID:141476 TID:141476 - uname -> uname {}
+[290] PID:141476 TID:141476 - uname -> uname {}
+[291] PID:141476 TID:141476 - uname -> uname {}
+[292] PID:141476 TID:141476 - uname -> uname {}
+[293] PID:141476 TID:141476 - uname -> uname {}
+[294] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[295] PID:141476 TID:141476 - stat -> /etc/localtime {}
+[296] PID:141476 TID:141476 - write -> stderr {'fd': 2, 'size': 148, 'stream': 'stderr'}
+[297] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[298] PID:141476 TID:141476 - stat -> /etc/localtime {}
+[299] PID:141476 TID:141476 - write -> stderr {'fd': 2, 'size': 148, 'stream': 'stderr'}
+[300] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[301] PID:141476 TID:141476 - stat -> /etc/localtime {}
+[302] PID:141476 TID:141476 - write -> stderr {'fd': 2, 'size': 148, 'stream': 'stderr'}
+[303] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[304] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[305] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[306] PID:141476 TID:141476 - stat -> /etc/localtime {}
+[307] PID:141476 TID:141476 - write -> stderr {'fd': 2, 'size': 272, 'stream': 'stderr'}
+[308] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8141, 'stream': 'stdout'}
+[309] PID:141476 TID:141476 - mprotect -> addr=0x7f2838021000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[310] PID:141476 TID:141476 - mprotect -> addr=0x7f2838022000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[311] PID:141476 TID:141476 - mprotect -> addr=0x7f2838023000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[312] PID:141476 TID:141476 - mprotect -> addr=0x7f2838024000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[313] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8158, 'stream': 'stdout'}
+[314] PID:141476 TID:141476 - mprotect -> addr=0x7f2838026000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[315] PID:141476 TID:141476 - mprotect -> addr=0x7f2838027000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[316] PID:141476 TID:141476 - mprotect -> addr=0x7f2838028000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[317] PID:141476 TID:141476 - mprotect -> addr=0x7f2838029000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[318] PID:141476 TID:141476 - mprotect -> addr=0x7f283802a000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[319] PID:141476 TID:141476 - mprotect -> addr=0x7f283802b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[320] PID:141476 TID:141476 - mprotect -> addr=0x7f283802c000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[321] PID:141476 TID:141476 - mprotect -> addr=0x7f283802d000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[322] PID:141476 TID:141476 - mprotect -> addr=0x7f283802e000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[323] PID:141476 TID:141476 - mprotect -> addr=0x7f283802f000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[324] PID:141476 TID:141476 - mprotect -> addr=0x7f2838030000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[325] PID:141476 TID:141476 - mprotect -> addr=0x7f2838031000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[326] PID:141476 TID:141476 - mprotect -> addr=0x7f2838032000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[327] PID:141476 TID:141476 - mprotect -> addr=0x7f2838033000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[328] PID:141476 TID:141476 - mprotect -> addr=0x7f2838034000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[329] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8082, 'stream': 'stdout'}
+[330] PID:141476 TID:141476 - mprotect -> addr=0x7f2838036000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[331] PID:141476 TID:141476 - mprotect -> addr=0x7f2838037000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[332] PID:141476 TID:141476 - mprotect -> addr=0x7f2838038000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[333] PID:141476 TID:141476 - mprotect -> addr=0x7f2838039000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[334] PID:141476 TID:141476 - mprotect -> addr=0x7f283803a000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[335] PID:141476 TID:141476 - mprotect -> addr=0x7f283803b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[336] PID:141476 TID:141476 - mprotect -> addr=0x7f283803c000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[337] PID:141476 TID:141476 - mprotect -> addr=0x7f283803d000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[338] PID:141476 TID:141476 - mprotect -> addr=0x7f283803e000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[339] PID:141476 TID:141476 - mprotect -> addr=0x7f283803f000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[340] PID:141476 TID:141476 - mprotect -> addr=0x7f2838040000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[341] PID:141476 TID:141476 - mprotect -> addr=0x7f2838041000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[342] PID:141476 TID:141476 - mprotect -> addr=0x7f2838042000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[343] PID:141476 TID:141476 - mprotect -> addr=0x7f2838043000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[344] PID:141476 TID:141476 - mprotect -> addr=0x7f2838044000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[345] PID:141476 TID:141476 - mprotect -> addr=0x7f2838045000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[346] PID:141476 TID:141476 - mprotect -> addr=0x7f2838046000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[347] PID:141476 TID:141476 - mprotect -> addr=0x7f2838047000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[348] PID:141476 TID:141476 - mprotect -> addr=0x7f2838048000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[349] PID:141476 TID:141476 - mprotect -> addr=0x7f2838049000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[350] PID:141476 TID:141476 - mprotect -> addr=0x7f283804a000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[351] PID:141476 TID:141476 - mprotect -> addr=0x7f283804b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[352] PID:141476 TID:141476 - mprotect -> addr=0x7f283804c000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[353] PID:141476 TID:141476 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[354] PID:141476 TID:141476 - mprotect -> addr=0x7f283804d000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[355] PID:141476 TID:141476 - mprotect -> addr=0x7f283804e000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[356] PID:141476 TID:141476 - mprotect -> addr=0x7f283804f000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[357] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8128, 'stream': 'stdout'}
+[358] PID:141476 TID:141476 - mprotect -> addr=0x7f2838051000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[359] PID:141476 TID:141476 - mprotect -> addr=0x7f2838052000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[360] PID:141476 TID:141476 - mprotect -> addr=0x7f2838053000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[361] PID:141476 TID:141476 - mprotect -> addr=0x7f2838054000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[362] PID:141476 TID:141476 - mprotect -> addr=0x7f2838055000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[363] PID:141476 TID:141476 - mprotect -> addr=0x7f2838056000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[364] PID:141476 TID:141476 - mprotect -> addr=0x7f2838057000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[365] PID:141476 TID:141476 - mprotect -> addr=0x7f2838058000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[366] PID:141476 TID:141476 - mprotect -> addr=0x7f2838059000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[367] PID:141476 TID:141476 - mprotect -> addr=0x7f283805a000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[368] PID:141476 TID:141476 - mprotect -> addr=0x7f283805b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[369] PID:141476 TID:141476 - mprotect -> addr=0x7f283805c000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[370] PID:141476 TID:141476 - mprotect -> addr=0x7f283805d000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[371] PID:141476 TID:141476 - mprotect -> addr=0x7f283805e000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[372] PID:141476 TID:141476 - mprotect -> addr=0x7f283805f000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[373] PID:141476 TID:141476 - mprotect -> addr=0x7f2838060000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[374] PID:141476 TID:141476 - mprotect -> addr=0x7f2838061000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[375] PID:141476 TID:141476 - mprotect -> addr=0x7f2838062000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[376] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[377] PID:141476 TID:141476 - mprotect -> addr=0x7f2838064000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[378] PID:141476 TID:141476 - mprotect -> addr=0x7f2838065000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[379] PID:141476 TID:141476 - mprotect -> addr=0x7f2838066000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[380] PID:141476 TID:141476 - mprotect -> addr=0x7f2838067000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[381] PID:141476 TID:141476 - mprotect -> addr=0x7f2838068000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[382] PID:141476 TID:141476 - mprotect -> addr=0x7f2838069000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[383] PID:141476 TID:141476 - mprotect -> addr=0x7f283806a000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[384] PID:141476 TID:141476 - mprotect -> addr=0x7f283806b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[385] PID:141476 TID:141476 - mprotect -> addr=0x7f283806c000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 2.4508 seconds
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283806d000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8184, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8136, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8159, stream=stdout]
+PID:141476 TID:141476 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8167, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (47707ae5) - Total: 5
+======================================================================
+[1] PID:141476 TID:141476 - mprotect -> addr=0x7f283806d000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[2] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8184, 'stream': 'stdout'}
+[3] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8136, 'stream': 'stdout'}
+[4] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8159, 'stream': 'stdout'}
+[5] PID:141476 TID:141476 - write -> stdout {'fd': 1, 'size': 8167, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 2.5460 seconds
+    DEBUG: ✗ Keras loading failed: {{function_node __wrapped__AddV2_device_/job:localhost/replica:0/task:0/device:CPU:0}} OOM when allocating tensor with shape[25088,4096] and type float on /job:localhost/replica:0/task:0/device:CPU:0 
+PID:141476 TID:141476 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:141476 TID:141476 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f283806f000, len=4096 [protection=PROT_READ|PROT_WRITE]
+    Saved 381 loading events to 20.vgg_official_loading_events.json
+    Saved 0 execution events to 20.vgg_official_execution_events.json
+    Files Processed: 1
+    Successful: 0, Malicious: 0, Failed: 0
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "./Models_rest/20.vgg_official",
+  "model_info": {
+    "folder": "./Models_rest/20.vgg_official",
+    "files": [
+      "tf_model.h5",
+      "vocab.json",
+      "README.md",
+      "config.json",
+      ".git",
+      "merges.txt",
+      ".gitattributes",
+      "special_tokens_map.json",
+      "tokenizer_config.json"
+    ],
+    "has_config": true,
+    "model_type": "keras",
+    "framework": "tensorflow",
+    "model_files": [
+      "tf_model.h5"
+    ],
+    "config_data": {
+      "activation_function": "gelu_new",
+      "architectures": [
+        "GPT2LMHeadModel"
+      ],
+      "attn_pdrop": 0.1,
+      "bos_token_id": 50256,
+      "embd_pdrop": 0.1,
+      "eos_token_id": 50256,
+      "initializer_range": 0.02,
+      "layer_norm_epsilon": 1e-05,
+      "model_type": "gpt2",
+      "n_ctx": 1024,
+      "n_embd": 768,
+      "n_head": 12,
+      "n_inner": null,
+      "n_layer": 12,
+      "n_positions": 1024,
+      "reorder_and_upcast_attn": false,
+      "resid_pdrop": 0.1,
+      "scale_attn_by_inverse_layer_idx": false,
+      "scale_attn_weights": true,
+      "summary_activation": null,
+      "summary_first_dropout": 0.1,
+      "summary_proj_to_labels": true,
+      "summary_type": "cls_index",
+      "summary_use_proj": true,
+      "task_specific_params": {
+        "text-generation": {
+          "do_sample": true,
+          "max_length": 50
+        }
+      },
+      "transformers_version": "4.31.0",
+      "use_cache": true,
+      "vocab_size": 50257
+    },
+    "bin_classification": {},
+    "security_checks": {
+      "tf_model.h5": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      },
+      "vocab.json": {
+        "embedded_executables": [
+          "Windows EXE"
+        ]
+      }
+    },
+    "has_tokenizer": true,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "text",
+    "input_shape": "text string",
+    "sample_input": "This is a test sentence for the model",
+    "additional_info": {
+      "max_length": 512,
+      "vocab_size": 50257
+    },
+    "modality": "text"
+  },
+  "structure": {
+    "architecture": [
+      "GPT2LMHeadModel"
+    ],
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "tf_model.h5": "540534.31 KB"
+    },
+    "is_real_model": true,
+    "suspicious_indicators": [],
+    "security_risks": [
+      "tf_model.h5 contains executables: ['Windows EXE']",
+      "vocab.json contains executables: ['Windows EXE']"
+    ]
+  },
+  "execution": [
+    {
+      "file": "tf_model.h5",
+      "status": "not_attempted",
+      "output": null
+    }
+  ],
+  "execution_summary": {
+    "total_files": 1,
+    "successful": 0,
+    "malicious": 0,
+    "failed": 0
+  }
+}
