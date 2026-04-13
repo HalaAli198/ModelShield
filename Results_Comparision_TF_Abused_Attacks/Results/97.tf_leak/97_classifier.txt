@@ -1,0 +1,62 @@
+  Tagged 199 loading events from 00004_hala_leak_loading_events.json
+  Tagged 1056 execution events from 00004_hala_leak_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: Results/97.tf_leak/
+Loading events: 199
+Execution events: 1056
+Patterns defined: 194
+======================================================================
+
+  [LOADING] Pre-filtered: removed 1 O_DIRECTORY events
+
+  [EXECUTION] Pre-filtered: removed 1 O_DIRECTORY events
+
+  [EXECUTION] AB1-HW-EXFIL: Hardware info theft + exfiltration
+    Step 0: openat -> /proc/cpuinfo  (Open sensitive file (Hardware info theft + exfiltration))
+    Step 1: read -> /proc/cpuinfo  (Read file contents)
+    Step 3: connect -> 127.0.0.1:1234  (Connect to suspicious remote server)
+    Step 4: sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x]  (Send stolen data)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [EXECUTION] AB1-UNAME-EXFIL: System fingerprint via syscall + exfiltration
+    Step 0: uname -> uname  (System fingerprint syscall)
+    Step 2: connect -> 127.0.0.1:1234  (Connect to remote server)
+    Step 3: sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x]  (Transmit fingerprint)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [EXECUTION] AB1-CRED-SSH-EXFIL: SSH key theft + exfiltration
+    Step 0: openat -> /home/hala/.ssh/id_rsa  (Open sensitive file (SSH key theft + exfiltration))
+    Step 1: pread64 -> /home/hala/.ssh/id_rsa  (Read file contents)
+    Step 3: connect -> 127.0.0.1:1234  (Connect to suspicious remote server)
+    Step 4: sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x]  (Send stolen data)
+    MITRE: Credential Access / T1552.004 (Private Keys)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [EXECUTION] AB1-CRED-SSH-LOCAL: SSH key access during model execution
+    Step 0: openat -> /home/hala/.ssh/id_rsa  (Open credential file (SSH key access during model execution))
+    Step 1: pread64 -> /home/hala/.ssh/id_rsa  (Read credential data)
+    MITRE: Credential Access / T1552.004 (Private Keys)
+
+  [EXECUTION] AB6-SCAN: Remote system discovery / network scanning
+    Step 0: socket -> AF_INET6/SOCK_STREAM/DEFAULT  (Create socket)
+    Step 1: connect -> 127.0.0.1:1234  (Probe remote host)
+    MITRE: Discovery / T1018 (Remote System Discovery)
+
+======================================================================
+  VERDICT: MALICIOUS — 2 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - Hardware info theft + exfiltration
+      - System fingerprint via syscall + exfiltration
+      - SSH key theft + exfiltration
+      - SSH key access during model execution
+      MITRE: T1082 (System Information Discovery)
+      MITRE: T1041 (Exfiltration Over C2 Channel)
+      MITRE: T1552.004 (Private Keys)
+    AB6: Remote Control
+      - Remote system discovery / network scanning
+      MITRE: T1018 (Remote System Discovery)
+======================================================================
