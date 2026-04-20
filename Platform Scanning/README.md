@@ -125,4 +125,4 @@ python3.9 kaggle_evaluation.py --num-models 10000"
 
 ## Isolation
 
-The scripts run the model loader as a subprocess under the routed sandbox interpreter, but the sandbox is a *reproducibility* layer, not a security boundary — payloads have full user-level access to the host. Run on a disposable VM with no credentials, SSH keys, or cloud tokens on disk.
+The scripts run the model loader as a subprocess under the routed sandbox interpreter, but the sandbox is a *reproducibility* layer, not a security boundary.  Payloads have full user-level access to the host. Run on a disposable VM with no credentials, SSH keys, or cloud tokens on disk.
