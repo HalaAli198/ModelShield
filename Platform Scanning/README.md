@@ -15,13 +15,13 @@ All three share the same pipeline and the same output layout. They differ only i
 
 For every discovered model, each script runs the same five stages:
 
-1. **Discovery.** Query the platform's listing API for recently uploaded models, filter by age (10 days), extract the set of model files per repository, and record metadata observations (bare pickle, missing README, typosquat name, etc.). Discovery is resumable — progress is persisted to `discovery_progress.json` every 200 checks and on rate-limit pauses.
+1. **Discovery.** Query the platform's listing API for recently uploaded models, filter by age (10 days), extract the set of model files per repository, and record metadata observations (bare pickle, missing README, typosquat name, etc.). Discovery is resumable - progress is persisted to `discovery_progress.json` every 200 checks and on rate-limit pauses.
 
-2. **Download.** Pull the model files and auxiliary config/tokenizer files into a per-run temp directory. Files larger than 5 GB are skipped before download.
+2. **Download.** Pull the model files and auxiliary config/tokenizer files into a per-run temp directory.
 
-3. **Environment selection.** Route the model to one of the five sandbox environments (`torch_current`, `torch_legacy`, `tf2`, `sklearn`, `onnx`) based on its platform metadata, `library_name` field, and file extension. See `../Sandbox_Design/` for the pool itself.
+3. **Environment selection.** Assign the model to one of the sandbox environments in the pool. See [`../Sandbox_Design/`](../Sandbox_Design/) for how the selection works and the set of supported frameworks.
 
-4. **Inspection.** Invoke ModelShield's eBPF inspector inside the selected environment. The inspector loads and executes the model while capturing syscalls during both the loading and execution phases.
+4. **Inspection.** Call ModelShield's inspector inside the selected environment. The inspector runs the model under ModelShield's dual-layer monitoring (application-level AOP interception of framework loading and inference APIs, plus kernel-level eBPF syscall tracing) and captures the attributed syscall stream across the loading and execution phases.
 
 5. **Classification.** Invoke ModelShield's attack-behavior classifier on the captured event stream. It returns a verdict (`BENIGN`, `MALICIOUS`, `TIMEOUT`, or `ERROR`), the matched behavior IDs, and the matched pattern IDs.
 
@@ -56,7 +56,7 @@ WORK_DIR/
 
 The `malicious/` subdirectory is a duplicate of the trace data for malicious models, kept under `WORK_DIR` so reports don't depend on `TRACES_DIR` being mounted.
 
-### `TRACES_DIR` — full corpus for offline analysis
+### `TRACES_DIR`: full corpus for offline analysis
 
 Every scanned model, benign or malicious, has its events archived here:
 
