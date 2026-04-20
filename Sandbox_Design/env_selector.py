@@ -9,8 +9,8 @@ the explicit library_name field, and the model file extension.
 import os
 
 
-#Root of the pre-built venv pool. Must match ENVS_ROOT in build_env_matrix.sh.
-ENVS_ROOT = '/home'
+# Root of the pre-built venv pool. Must match ENVS_ROOT in build_env_matrix.sh.
+ENVS_ROOT = os.environ.get('ENVS_ROOT', '/path/to/env_matrix')
 
 # Map env name -> absolute path to its python3.9 interpreter.
 MATRIX = {
@@ -49,7 +49,7 @@ TAG_TO_ENV = {
 }
 
 
-def route(model_entry):
+def select(model_entry):
     """
     Return (env_name, python_path) for this model.
     model_entry is the dict produced by pipeline._build_model_entry().
