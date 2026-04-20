@@ -18,7 +18,7 @@ The pool contains **5 Python 3.9 virtual environments**, each pinned to a `(fram
 
 | File                  | Purpose                                                    |
 |-----------------------|------------------------------------------------------------|
-| `build_env_matrix.sh` | Builds the five virtual environments.                      |
+| `build_env_pool.sh` | Builds the five virtual environments.                      |
 | `env_selector.py`       | Selects an environment for each model from its metadata.   |
 
 The `ENVS_ROOT` variable at the top of both files specifies the directory
