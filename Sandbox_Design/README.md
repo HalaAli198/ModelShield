@@ -40,3 +40,50 @@ export ENVS_ROOT=$HOME/modelshield/env_pool
 If none of the factors resolves to a specific environment, PyTorch (current) is used as the default.
 
 `env_selector.validate_matrix()` verifies that the Python interpreter exists for every environment in the pool and is called  once before processing any models.
+
+
+## Setup
+
+Tested on Ubuntu 20.04 LTS with Linux kernel 5.15.
+
+1. Install Python 3.9:
+```bash
+sudo apt install -y python3.9 python3.9-venv python3.9-dev build-essential
+```
+
+2. Clone the repository and change into this directory:
+```bash
+git clone https://github.com//ModelShield.git
+cd ModelShield/Sandbox_Design
+```
+
+3. Choose where the pool will live and export it for the current shell:
+```bash
+export ENVS_ROOT=$HOME/modelshield/env_pool
+```
+
+4. Build the pool:
+```bash
+chmod +x build_env_pool.sh
+./build_env_pool.sh
+```
+
+## Verification
+
+Confirm each environment loads its core packages:
+
+```bash
+"$ENVS_ROOT/torch_current/bin/python3.9" -c "import torch, transformers; print('torch_current:', torch.__version__, transformers.__version__)"
+"$ENVS_ROOT/torch_legacy/bin/python3.9"  -c "import torch, transformers; print('torch_legacy:', torch.__version__, transformers.__version__)"
+"$ENVS_ROOT/tf2/bin/python3.9"           -c "import tensorflow as tf; print('tf2:', tf.__version__)"
+"$ENVS_ROOT/sklearn/bin/python3.9"       -c "import sklearn, joblib, xgboost, lightgbm, catboost; print('sklearn ok')"
+"$ENVS_ROOT/onnx/bin/python3.9"          -c "import onnxruntime, onnx; print('onnx:', onnxruntime.__version__, onnx.__version__)"
+```
+
+Validate the pool from Python:
+
+```bash
+python3.9 -c "from env_selector import validate_matrix; validate_matrix(); print('pool ok')"
+```
+
+`validate_matrix()` raises `RuntimeError` and lists any missing environments if the build is incomplete.
