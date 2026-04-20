@@ -1,13 +1,13 @@
 
 # Platform Scanning
 
-This directory contains the end-to-end scanning pipelines that run ModelShield against the three public model platforms evaluated in the paper:
+This directory contains the end-to-end scanning pipelines that run ModelShield against the three public model platforms:
 
 | Script                      | Platform         |
 |-----------------------------|------------------|
-| `hf_evaluation.py`          | Hugging Face     |
-| `modelscope_evaluation.py`  | ModelScope       |
-| `kaggle_evaluation.py`      | Kaggle           |
+| `hf_scan.py`          | Hugging Face     |
+| `modelscope_scan.py`  | ModelScope       |
+| `kaggle_scan.py`      | Kaggle           |
 
 All three share the same pipeline and the same output layout. They differ only in the client library used to talk to each platform's API.
 
@@ -39,7 +39,7 @@ WORK_DIR/
 ├── discovery_progress.json       resumable discovery state
 ├── results.json                  one record per scanned model
 ├── summary.json                  verdict counts and timing
-├── evaluation_log.txt            human-readable run log
+├── scan_log.txt                  human-readable run log
 ├── temp_model/                   per-model scratch (wiped between models)
 └── hf_results/                   (or ms_results / kaggle_results)
     ├── {model_id}_verdict.json   raw classifier output per model
@@ -101,15 +101,15 @@ The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or 
 ```bash
 # Hugging Face
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 hf_evaluation.py --num-models 30000"
+python3.9 hf_scan.py --num-models 30000"
 
 # ModelScope
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 modelscope_evaluation.py --num-models 30000"
+python3.9 modelscope_scan.py --num-models 30000"
 
 # Kaggle
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 kaggle_evaluation.py --num-models 10000"
+python3.9 kaggle_scan.py --num-models 10000"
 ```
 
 `ulimit -u` lets the inspector spawn framework worker threads; `ulimit -l` lets eBPF lock its maps into memory. Without both raised, the inspector fails.
