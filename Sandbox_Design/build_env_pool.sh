@@ -3,7 +3,7 @@
 
 set -e
 # Override by exporting ENVS_ROOT before running. Must match env_selector.py.
-ENVS_ROOT="${ENVS_ROOT:-/path/to/env_matrix}"
+ENVS_ROOT="${ENVS_ROOT:-/path/to/env_pool}"
 mkdir -p "$ENVS_ROOT"
 
 make_venv() {
