@@ -96,7 +96,7 @@ Replace the placeholders before running. Each script expects its own platform cr
 
 ## Running
 
-The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or `validate_matrix()` will abort the run.
+The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or `validate_pool()` will abort the run.
 
 ```bash
 # Hugging Face
