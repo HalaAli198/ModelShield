@@ -112,16 +112,14 @@ The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or 
 
 ```bash
 # Hugging Face
-sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-\"$SCANNER_ENV/bin/python3.9\" hf_scan.py --num-models 30000"
+sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && $SCANNER_ENV/bin/python3.9 hf_scan.py --num-models 30000"
 
 # ModelScope
-sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-\"$SCANNER_ENV/bin/python3.9\" modelscope_scan.py --num-models 30000"
+sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && $SCANNER_ENV/bin/python3.9 modelscope_scan.py --num-models 30000"
 
 # Kaggle
-sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-\"$SCANNER_ENV/bin/python3.9\" kaggle_scan.py --num-models 10000"
+sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && $SCANNER_ENV/bin/python3.9 kaggle_scan.py --num-models 10000"
+
 ```
 
 `ulimit -u` lets the inspector spawn framework worker threads; `ulimit -l` lets eBPF lock its maps into memory. Without both raised, the inspector fails.
