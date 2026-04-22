@@ -58,7 +58,7 @@ MODEL_EXTENSIONS = [
 ]
 
 # Extensions that deserialize arbitrary Python objects on load.
-HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.bin', '.pt', '.pth',
+HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
                         '.th', '.npy', '.npz']
 
 # Per-file size limits. Files outside this range are skipped during discovery.
