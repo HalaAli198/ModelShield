@@ -52,7 +52,7 @@ MODEL_EXTENSIONS = [
     '.onnx',
     '.msgpack',
     '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
-    '.npy', '.npz',
+    '.npy', '.npz', '.dill',
     '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams',
@@ -61,7 +61,7 @@ MODEL_EXTENSIONS = [
 
 # Subset of the above that can execute arbitrary code on load.
 HIGH_RISK_EXTENSIONS = [
-    '.pkl', '.pickle', '.joblib',
+    '.pkl', '.pickle', '.joblib','.dill',
     '.bin', '.pt', '.pth', '.th',
     '.npy', '.npz',
 ]
