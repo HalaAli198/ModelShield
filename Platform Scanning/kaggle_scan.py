@@ -21,18 +21,20 @@ import shutil
 import subprocess
 import argparse
 from datetime import datetime
-
+from env_selector import select, validate_pool, POOL
+import re
 # =============================================================================
 # Configuration
 # =============================================================================
-SCAN_DIR       = '/path/to/kaggle_scan'
+SCAN_DIR       =  '/path/to/kaggle_scan'
 RESULTS_DIR    = os.path.join(SCAN_DIR, 'scan_results')
 LOG_FILE       = os.path.join(SCAN_DIR, 'scan_log.txt')
 MODEL_TEMP_DIR = os.path.join(SCAN_DIR, 'temp_model')
 DISCOVERY_FILE = os.path.join(SCAN_DIR, 'discovery_progress.json')
 
-INSPECTOR_PATH  = '/path/to/model_inspector_runner.py'
+INSPECTOR_PATH = '/path/to/model_inspector.py'
 CLASSIFIER_PATH = '/path/to/attack_behavior_classifier.py'
+TRACES_DIR = '/path/to/captured_events'
 
 # Every extension the pipeline will download and inspect.
 MODEL_EXTENSIONS = [
@@ -63,7 +65,7 @@ MIN_MODEL_SIZE    = 100
 
 # Subprocess timeouts, in seconds.
 INSPECTOR_TIMEOUT  = 300
-CLASSIFIER_TIMEOUT = 60
+CLASSIFIER_TIMEOUT = 300
 
 # Upper bound on files inspected per repo.
 MAX_FILES_PER_MODEL = 10
@@ -73,8 +75,8 @@ MAX_FILES_PER_MODEL = 10
 # process can OOM the host and kill the scan.
 DOWNLOAD_MEMORY_LIMIT_BYTES = 4 * 1024 * 1024 * 1024
 DOWNLOAD_TIMEOUT            = 600
-
-
+# Monotonic counter used to prefix archived trace folders.
+_trace_counter = 0
 def log(msg):
     ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     line = f"[{ts}] {msg}"
@@ -86,6 +88,30 @@ def log(msg):
         pass
 
 
+def _init_trace_counter():
+    """
+    Set _trace_counter to the highest existing prefix in TRACES_DIR.
+    Called once at startup so a resumed scan doesn't overwrite folders
+    from the interrupted run.
+    """
+    global _trace_counter
+    max_n = 0
+    prefix_re = re.compile(r'^(\d{5})_')
+
+    for subdir in ('benign', 'malicious'):
+        path = os.path.join(TRACES_DIR, subdir)
+        if not os.path.isdir(path):
+            continue
+        for name in os.listdir(path):
+            m = prefix_re.match(name)
+            if m:
+                n = int(m.group(1))
+                if n > max_n:
+                    max_n = n
+
+    _trace_counter = max_n
+    log(f"[trace_counter] Initialized to {_trace_counter} "
+        f"(next folder will be {_trace_counter + 1:05d})")
 # =============================================================================
 # Kaggle API
 # =============================================================================
@@ -312,7 +338,7 @@ def discover_models(api, num_models):
                     parts = ref.split('/')
 
                     # Prefix the ID with the platform name so Kaggle, HF, and
-                    # ModelScope results can be pooled into a single corpus
+                    # Kaggle results can be pooled into a single corpus
                     # without collisions.
                     entry = {
                         'model_id': f'kaggle_{ref}',
@@ -475,7 +501,7 @@ api.model_instance_version_download(
 )
 '''
         result = subprocess.run(
-            ['python3.9', '-c', download_script],
+            [sys.executable, '-c', download_script],
             capture_output=True, text=True,
             timeout=DOWNLOAD_TIMEOUT,
             env={**os.environ},
@@ -500,15 +526,19 @@ api.model_instance_version_download(
 # =============================================================================
 # Inspect and classify
 # =============================================================================
-def run_inspector(model_dir):
-    """Run the inspector on the downloaded model directory."""
-    # ulimit -u / -l raised so the inspector can lock eBPF maps into
-    # memory and spawn framework worker threads without hitting kernel
-    # limits.
+def run_inspector(model_dir, model_entry=None):
+    """Run the inspector in the environment selected for this model."""
+    if model_entry is None:
+        env_name, py_bin = 'torch_current', POOL['torch_current']
+    else:
+        env_name, py_bin = select(model_entry)
+
+    log(f"    Selected env: {env_name}")
+
     try:
         cmd = (
             f"ulimit -u unlimited && ulimit -l unlimited && "
-            f"python3.9 {INSPECTOR_PATH} {model_dir}"
+            f"{py_bin} {INSPECTOR_PATH} {model_dir}"
         )
         result = subprocess.run(
             ['bash', '-c', cmd],
@@ -519,13 +549,13 @@ def run_inspector(model_dir):
             log(f"    Inspector returncode={result.returncode}")
             if result.stderr:
                 log(f"    Inspector stderr: {result.stderr[:300]}")
-        return result.returncode == 0
+        return result.returncode == 0, env_name
     except subprocess.TimeoutExpired:
         log(f"    Inspector timed out ({INSPECTOR_TIMEOUT}s)")
-        return False
+        return False, env_name
     except Exception as e:
         log(f"    Inspector error: {e}")
-        return False
+        return False, env_name
 
 
 def run_classifier(events_dir, output_json):
@@ -650,7 +680,8 @@ def evaluate_model(entry, index, total):
     # Step 2: inspect (loading + execution phases)
     log(f"  Running inspector (loading + execution)...")
     inspector_start = time.time()
-    inspector_ok = run_inspector(MODEL_TEMP_DIR)
+    inspector_ok, env_name = run_inspector(MODEL_TEMP_DIR, entry)
+    result['routed_env'] = env_name
     inspector_time = time.time() - inspector_start
     log(f"  Inspector finished in {inspector_time:.1f}s")
 
@@ -678,28 +709,62 @@ def evaluate_model(entry, index, total):
     log(f"  Running classifier...")
     safe_name = model_id.replace('/', '_').replace('\\', '_')
     classifier_json = os.path.join(RESULTS_DIR, f'{safe_name}_verdict.json')
-    cr = run_classifier(events_dir, classifier_json)
+    classifier_result = run_classifier(events_dir, classifier_json)
 
     result['status'] = 'completed'
-    result['verdict'] = cr['verdict']
-    result['behavior_ids'] = cr['behavior_ids']
-    result['pattern_ids'] = cr['pattern_ids']
-    result['behavior_count'] = cr.get('behavior_count', 0)
-    result['loading_events'] = cr.get('loading_events', 0)
-    result['execution_events'] = cr.get('execution_events', 0)
+    result['verdict'] = classifier_result['verdict']
+    result['behavior_ids'] = classifier_result['behavior_ids']
+    result['pattern_ids'] = classifier_result['pattern_ids']
+    result['behavior_count'] = classifier_result.get('behavior_count', 0)
+    result['loading_events'] = classifier_result.get('loading_events', 0)
+    result['execution_events'] = classifier_result.get('execution_events', 0)
     result['inspector_time'] = inspector_time
     result['total_time'] = time.time() - start_time
+    # Archive traces for every model (benign and malicious) so the full
+    # corpus is available for offline pattern discovery.
+    try:
+        global _trace_counter
+        _trace_counter += 1
+        padded = f"{_trace_counter:05d}"
+        folder_name = f"{padded}_{safe_name}"
 
+        subdir = 'malicious' if classifier_result['verdict'] == 'MALICIOUS' else 'benign'
+        trace_subdir = os.path.join(TRACES_DIR, subdir, folder_name)
+        os.makedirs(trace_subdir, exist_ok=True)
+
+        if os.path.exists(events_dir):
+           model_prefix = f"{padded}_{safe_name}"
+           for event_file in os.listdir(events_dir):
+               if not event_file.endswith('.json'):
+                  continue
+               src = os.path.join(events_dir, event_file)
+               if '__' in event_file:
+                  tail = event_file.split('__', 1)[1]
+                  dst_name = f"{model_prefix}__{tail}"
+               else:
+                  dst_name = f"{model_prefix}_{event_file}"
+               shutil.copy2(src, os.path.join(trace_subdir, dst_name))
+
+        if classifier_result.get('raw_verdict'):
+            verdict_path = os.path.join(trace_subdir,
+                                        f"{padded}_{safe_name}_verdict.json")
+            with open(verdict_path, 'w') as f:
+                json.dump(classifier_result['raw_verdict'], f,
+                          indent=2, default=str)
+
+        log(f"  Saved traces to {trace_subdir}")
+    except Exception as e:
+        log(f"  WARNING: Failed to save traces: {e}")
     # Copy evidence for malicious verdicts to a dedicated folder.
-    if cr['verdict'] == 'MALICIOUS':
+    if classifier_result['verdict'] == 'MALICIOUS':
         malicious_dir = os.path.join(RESULTS_DIR, 'malicious')
         os.makedirs(malicious_dir, exist_ok=True)
 
-        if cr.get('raw_verdict'):
+        if classifier_result.get('raw_verdict'):
             verdict_path = os.path.join(
                 malicious_dir, f'{safe_name}_verdict.json')
             with open(verdict_path, 'w') as f:
-                json.dump(cr['raw_verdict'], f, indent=2, default=str)
+                json.dump(classifier_result['raw_verdict'], f, indent=2, default=str)
 
         if os.path.exists(events_dir):
             events_save = os.path.join(
@@ -708,16 +773,13 @@ def evaluate_model(entry, index, total):
 
         log(f"  MALICIOUS — saved evidence to {malicious_dir}")
 
-    # Benign verdict files are redundant with the combined results.json
-    # and the trace archive. Keep only malicious ones as standalone evidence.
-    if cr['verdict'] != 'MALICIOUS' and os.path.exists(classifier_json):
-        os.remove(classifier_json)
+   
 
-    log(f"  Verdict: {cr['verdict']}")
-    if cr['behavior_ids']:
-        log(f"  Behaviors: {', '.join(cr['behavior_ids'])}")
-    if cr['pattern_ids']:
-        log(f"  Patterns: {', '.join(cr['pattern_ids'][:10])}")
+    log(f"  Verdict: {classifier_result['verdict']}")
+    if classifier_result['behavior_ids']:
+        log(f"  Behaviors: {', '.join(classifier_result['behavior_ids'])}")
+    if classifier_result['pattern_ids']:
+        log(f"  Patterns: {', '.join(classifier_result['pattern_ids'][:10])}")
 
     cleanup()
     return result
@@ -790,7 +852,8 @@ def main():
 
     os.makedirs(SCAN_DIR, exist_ok=True)
     os.makedirs(RESULTS_DIR, exist_ok=True)
-
+    os.makedirs(TRACES_DIR, exist_ok=True) 
+    _init_trace_counter()  
     if args.reset_discovery and os.path.exists(DISCOVERY_FILE):
         os.remove(DISCOVERY_FILE)
         log("Discovery progress reset.")
@@ -835,14 +898,11 @@ def main():
         try:
             result = evaluate_model(entry, i, total)
             all_results.append(result)
-
-            # Save after every model. Writes are cheap (atomic rename of
-            # a small JSON) and this way a crash loses at most the current
-            # model.
-            save_progress(all_results)
-            save_summary(all_results)
-
+           
+            # Checkpoint every 5 models.
             if len(all_results) % 5 == 0:
+                save_progress(all_results)
+                save_summary(all_results)
                 benign = sum(1 for r in all_results if r.get('verdict') == 'BENIGN')
                 malicious = sum(1 for r in all_results if r.get('verdict') == 'MALICIOUS')
                 errors = len(all_results) - benign - malicious
