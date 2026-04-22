@@ -22,8 +22,8 @@ import shutil
 import argparse
 import subprocess
 from datetime import datetime, timezone
-
-from env_selector import select, validate_matrix, MATRIX
+import re
+from env_selector import select, validate_pool, POOL
 from huggingface_hub import HfApi, hf_hub_download, list_models, hf_hub_url, get_hf_file_metadata
 
 # Get a token at https://huggingface.co/settings/tokens
@@ -32,13 +32,13 @@ HF_TOKEN = "hf_your_token_here"
 # =============================================================================
 # Configuration
 # =============================================================================
-WORK_DIR = '/path/to/hf_scan'
-RESULTS_DIR = os.path.join(WORK_DIR, 'hf_results')
-LOG_FILE = os.path.join(WORK_DIR, 'scan_log.txt')
-MODEL_TEMP_DIR = os.path.join(WORK_DIR, 'temp_model')
-DISCOVERY_FILE = os.path.join(WORK_DIR, 'discovery_progress.json')
+SCAN_DIR =  '/path/to/hf_scan'
+RESULTS_DIR = os.path.join(SCAN_DIR, 'hf_results')
+LOG_FILE = os.path.join(SCAN_DIR, 'scan_log.txt')
+MODEL_TEMP_DIR = os.path.join(SCAN_DIR, 'temp_model')
+DISCOVERY_FILE = os.path.join(SCAN_DIR, 'discovery_progress.json')
 
-INSPECTOR_PATH = '/path/to/model_inspector_runner.py'
+INSPECTOR_PATH = '/path/to/model_inspector.py'
 CLASSIFIER_PATH = '/path/to/attack_behavior_classifier.py'
 TRACES_DIR = '/path/to/captured_events'
 
@@ -62,7 +62,7 @@ HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.bin', '.pt', '.pth',
                         '.th', '.npy', '.npz']
 
 # Per-file size limits. Files outside this range are skipped during discovery.
-MAX_MODEL_SIZE = 5 * 1024 * 1024 * 1024
+MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
 MIN_MODEL_SIZE = 100
 
 # Subprocess timeouts, in seconds.
@@ -76,6 +76,9 @@ MAX_FILES_PER_MODEL = 10
 # Only scan models uploaded within this many days. Tracks the "recently
 # uploaded" scope of the scan.
 MAX_AGE_DAYS = 10
+
+# Monotonic counter used to prefix archived trace folders.
+_trace_counter = 0
 
 # Orgs treated as known-legitimate when computing metadata reasons.
 # Recorded for reporting; does not affect scan decisions.
@@ -104,8 +107,32 @@ def log(msg):
         f.write(line + '\n')
 
 
+def _init_trace_counter():
+    """
+    Set _trace_counter to the highest existing prefix in TRACES_DIR.
+    Called once at startup so a resumed scan doesn't overwrite folders
+    from the interrupted run.
+    """
+    global _trace_counter
+    max_n = 0
+    prefix_re = re.compile(r'^(\d{5})_')
+
+    for subdir in ('benign', 'malicious'):
+        path = os.path.join(TRACES_DIR, subdir)
+        if not os.path.isdir(path):
+            continue
+        for name in os.listdir(path):
+            m = prefix_re.match(name)
+            if m:
+                n = int(m.group(1))
+                if n > max_n:
+                    max_n = n
+
+    _trace_counter = max_n
+    log(f"[trace_counter] Initialized to {_trace_counter} "
+        f"(next folder will be {_trace_counter + 1:05d})")
 # Monotonic counter used to prefix archived trace folders.
-_trace_counter = 0
+
 
 
 # =============================================================================
@@ -121,7 +148,8 @@ def _extract_model_files(siblings):
             if size is not None:
                 if size < MIN_MODEL_SIZE or size > MAX_MODEL_SIZE:
                     continue
-            model_files.append({'filename': fname, 'size': size})
+            ext = os.path.splitext(fname)[1].lower()          
+            model_files.append({'filename': fname, 'size': size, 'extension': ext})
 
     # Repos with many checkpoints: keep the files most likely to exercise
     # code paths we care about (pickle first, pytorch second, etc.).
@@ -283,17 +311,24 @@ def discover_models(num_models):
     api = HfApi(token=HF_TOKEN)
     checked_count = 0
     api_errors = 0
-    models = list_models(sort="lastModified", direction=-1, limit=num_models)
+    # No limit — let the generator paginate until we've kept enough models.
+    # Safety cap: if filters reject too much, stop walking instead of going forever.
+    models = list_models(sort="lastModified", direction=-1)
+    MAX_CHECKS = num_models * 10
 
     for model_summary in models:
         if len(found_models) >= num_models:
             break
-
+        if checked_count >= MAX_CHECKS:
+           log(f"[discover] Hit safety cap ({MAX_CHECKS} checks), stopping")
+           break
         model_id = model_summary.id
         if model_id in checked_ids:
             continue
 
         checked_count += 1
+
+
         if checked_count % 200 == 0:
             log(f"  Checked {checked_count}, found {len(found_models)}...")
             _save_discovery_progress(found_models, checked_ids, False)
@@ -411,7 +446,7 @@ def download_model(model_id, model_files):
 def run_inspector(model_dir, model_entry=None):
     """Run the inspector under the environment selected for this model."""
     if model_entry is None:
-        env_name, py_bin = 'torch_current', MATRIX['torch_current']
+        env_name, py_bin = 'torch_current', POOL['torch_current']
     else:
         env_name, py_bin = select(model_entry)
 
@@ -611,16 +646,17 @@ def evaluate_model(model_info, index, total):
         os.makedirs(trace_subdir, exist_ok=True)
 
         if os.path.exists(events_dir):
-            for event_file in os.listdir(events_dir):
-                if event_file.endswith('.json'):
-                    src = os.path.join(events_dir, event_file)
-                    if 'loading' in event_file.lower():
-                        dst_name = f"{padded}_{safe_name}_loading_events.json"
-                    elif 'execution' in event_file.lower():
-                        dst_name = f"{padded}_{safe_name}_execution_events.json"
-                    else:
-                        dst_name = f"{padded}_{safe_name}_{event_file}"
-                    shutil.copy2(src, os.path.join(trace_subdir, dst_name))
+           model_prefix = f"{padded}_{safe_name}"
+           for event_file in os.listdir(events_dir):
+               if not event_file.endswith('.json'):
+                  continue
+               src = os.path.join(events_dir, event_file)
+               if '__' in event_file:
+                  tail = event_file.split('__', 1)[1]
+                  dst_name = f"{model_prefix}__{tail}"
+               else:
+                  dst_name = f"{model_prefix}_{event_file}"
+               shutil.copy2(src, os.path.join(trace_subdir, dst_name))
 
         if classifier_result.get('raw_verdict'):
             verdict_path = os.path.join(trace_subdir,
@@ -633,7 +669,7 @@ def evaluate_model(model_info, index, total):
     except Exception as e:
         log(f"  WARNING: Failed to save traces: {e}")
 
-    # Second copy of evidence for malicious verdicts, under WORK_DIR, so
+    # Second copy of evidence for malicious verdicts, under SCAN_DIR, so
     # reports don't depend on TRACES_DIR being mounted.
     if classifier_result['verdict'] == 'MALICIOUS':
         malicious_dir = os.path.join(RESULTS_DIR, 'malicious')
@@ -664,12 +700,47 @@ def evaluate_model(model_info, index, total):
 # =============================================================================
 # Scan runner
 # =============================================================================
-def save_progress(all_results, summary):
-    """Write per-run results and summary to WORK_DIR."""
-    with open(os.path.join(WORK_DIR, 'results.json'), 'w') as f:
+def save_progress(all_results):
+    """Write per-run results to SCAN_DIR."""
+    path = os.path.join(SCAN_DIR, 'results.json')
+    tmp = path + '.tmp'
+    with open(tmp, 'w') as f:
         json.dump(all_results, f, indent=2, default=str)
-    with open(os.path.join(WORK_DIR, 'summary.json'), 'w') as f:
+    os.replace(tmp, path)
+
+
+def save_summary(all_results):
+    """Write a small aggregate summary alongside the full results file."""
+    benign = sum(1 for r in all_results if r.get('verdict') == 'BENIGN')
+    malicious = sum(1 for r in all_results if r.get('verdict') == 'MALICIOUS')
+    errors = len(all_results) - benign - malicious
+
+    status_counts = {}
+    for r in all_results:
+        s = r.get('status', 'unknown')
+        status_counts[s] = status_counts.get(s, 0) + 1
+
+    type_counts = {}
+    for r in all_results:
+        for ft in r.get('file_types', []):
+            type_counts[ft] = type_counts.get(ft, 0) + 1
+
+    summary = {
+        'platform': 'huggingface',
+        'total_models': len(all_results),
+        'benign': benign,
+        'malicious': malicious,
+        'errors': errors,
+        'status_breakdown': status_counts,
+        'file_types_tested': type_counts,
+        'last_updated': datetime.now().isoformat(),
+    }
+
+    path = os.path.join(SCAN_DIR, 'summary.json')
+    tmp = path + '.tmp'
+    with open(tmp, 'w') as f:
         json.dump(summary, f, indent=2, default=str)
+    os.replace(tmp, path)
 
 
 def run_scan(models, resume=False):
@@ -681,7 +752,7 @@ def run_scan(models, resume=False):
 
     log(f"\n{'='*70}\nEvaluating {total} models\n{'='*70}")
 
-    with open(os.path.join(WORK_DIR, 'model_list.json'), 'w') as f:
+    with open(os.path.join(SCAN_DIR, 'model_list.json'), 'w') as f:
         json.dump(models, f, indent=2, default=str)
 
     all_results = []
@@ -690,27 +761,12 @@ def run_scan(models, resume=False):
     # On --resume, reload prior results and skip models whose model_id
     # already has an entry.
     if resume:
-        results_path = os.path.join(WORK_DIR, 'results.json')
+        results_path = os.path.join(SCAN_DIR, 'results.json')
         if os.path.exists(results_path):
             with open(results_path) as f:
                 all_results = json.load(f)
             completed_ids = {r['model_id'] for r in all_results}
             log(f"  Resuming: {len(completed_ids)} already completed")
-
-    summary = {
-        'total_models': total,
-        'completed': len(completed_ids),
-        'benign': 0, 'malicious': 0, 'errors': 0,
-        'start_time': datetime.now().isoformat(),
-    }
-    for r in all_results:
-        v = r.get('verdict', '')
-        if v == 'BENIGN':
-            summary['benign'] += 1
-        elif v == 'MALICIOUS':
-            summary['malicious'] += 1
-        else:
-            summary['errors'] += 1
 
     for i, model_info in enumerate(models, 1):
         if model_info['model_id'] in completed_ids:
@@ -719,27 +775,22 @@ def run_scan(models, resume=False):
         try:
             result = evaluate_model(model_info, i, total)
             all_results.append(result)
-            summary['completed'] = len(all_results)
-
-            v = result.get('verdict', '')
-            if v == 'BENIGN':
-                summary['benign'] += 1
-            elif v == 'MALICIOUS':
-                summary['malicious'] += 1
-            else:
-                summary['errors'] += 1
 
             # Checkpoint every 5 models so an interrupted run loses little.
             if len(all_results) % 5 == 0:
-                save_progress(all_results, summary)
-                log(f"\n  --- Progress: {summary['completed']}/{total} | "
-                    f"Benign: {summary['benign']} | "
-                    f"Malicious: {summary['malicious']} | "
-                    f"Errors: {summary['errors']} ---\n")
+                save_progress(all_results)
+                save_summary(all_results)
+                benign = sum(1 for r in all_results if r.get('verdict') == 'BENIGN')
+                malicious = sum(1 for r in all_results if r.get('verdict') == 'MALICIOUS')
+                errors = len(all_results) - benign - malicious
+                log(f"\n  --- Progress: {len(all_results)}/{total} | "
+                    f"Benign: {benign} | Malicious: {malicious} | "
+                    f"Errors: {errors} ---\n")
 
         except KeyboardInterrupt:
             log(f"\n\nInterrupted. Saving progress...")
-            save_progress(all_results, summary)
+            save_progress(all_results)
+            save_summary(all_results)
             cleanup_model()
             break
         except Exception as e:
@@ -748,11 +799,10 @@ def run_scan(models, resume=False):
                 'model_id': model_info['model_id'],
                 'status': 'error', 'error': str(e),
             })
-            summary['errors'] += 1
             cleanup_model()
 
-    summary['end_time'] = datetime.now().isoformat()
-    save_progress(all_results, summary)
+    save_progress(all_results)
+    save_summary(all_results)
     return all_results
 
 
@@ -787,7 +837,7 @@ def print_summary(results):
                     f"types={r.get('file_types', [])}, patterns: {patterns}"
                     f"{f', metadata: {metadata}' if metadata else ''}")
 
-    log(f"\nResults saved to: {WORK_DIR}")
+    log(f"\nResults saved to: {SCAN_DIR}")
     log(f"Malicious evidence: {RESULTS_DIR}/malicious/")
 
 
@@ -798,7 +848,7 @@ def main():
     # Sandbox pool must be built before any scanning happens; without it
     # the routed interpreter path won't exist.
     try:
-        validate_matrix()
+        validate_pool()
     except RuntimeError as e:
         log(f"FATAL: {e}")
         log("Run the sandbox builder (build_env_pool.sh) first.")
@@ -816,9 +866,10 @@ def main():
                         help='Use existing model_list.json, skip discovery')
     args = parser.parse_args()
 
-    os.makedirs(WORK_DIR, exist_ok=True)
+    os.makedirs(SCAN_DIR, exist_ok=True)
     os.makedirs(RESULTS_DIR, exist_ok=True)
-
+    os.makedirs(TRACES_DIR, exist_ok=True) 
+    _init_trace_counter() 
     if args.reset_discovery and os.path.exists(DISCOVERY_FILE):
         os.remove(DISCOVERY_FILE)
         log("Discovery progress reset.")
@@ -827,13 +878,13 @@ def main():
     log(f"HuggingFace Model Scan Pipeline")
     log(f"Target:     {args.num_models} models")
     log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
-    log(f"Work dir:   {WORK_DIR}")
+    log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
     log(f"Traces:     {TRACES_DIR}")
     log(f"{'='*70}")
 
-    list_path = os.path.join(WORK_DIR, 'model_list.json')
+    list_path = os.path.join(SCAN_DIR, 'model_list.json')
     if args.skip_discovery and os.path.exists(list_path):
         with open(list_path) as f:
             models = json.load(f)
