@@ -63,5 +63,21 @@ if make_venv "onnx"; then
         huggingface_hub numpy safetensors
     touch "$ENVS_ROOT/onnx/.done"
 fi
+# Link system bcc (eBPF bindings) into each venv. bcc is installed via apt
+# (python3-bpfcc) and lives outside the venvs, which are created without
+# --system-site-packages.
+BCC_SYS_PATH="/usr/lib/python3/dist-packages/bcc"
+if [ ! -d "$BCC_SYS_PATH" ]; then
+    echo "ERROR: $BCC_SYS_PATH not found."
+    echo "Install with: sudo apt install -y bpfcc-tools python3-bpfcc linux-headers-\$(uname -r)"
+    exit 1
+fi
 
+for env in torch_current torch_legacy tf2 sklearn onnx; do
+    target="$ENVS_ROOT/$env/lib/python3.9/site-packages/bcc"
+    if [ ! -e "$target" ]; then
+        ln -s "$BCC_SYS_PATH" "$target"
+        echo "[link] bcc -> $env"
+    fi
+done
 echo "All environments built at $ENVS_ROOT"
