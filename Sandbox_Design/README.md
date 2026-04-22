@@ -51,18 +51,23 @@ Tested on Ubuntu 20.04 LTS with Linux kernel 5.15.
 sudo apt install -y python3.9 python3.9-venv python3.9-dev build-essential
 ```
 
-2. Clone the repository and change into this directory:
+2. Install eBPF tools (required by the inspector):
+```bash
+sudo apt install -y bpfcc-tools python3-bpfcc linux-headers-$(uname -r)
+```
+
+3. Clone the repository and change into this directory:
 ```bash
 git clone https://github.com//ModelShield.git
 cd ModelShield/Sandbox_Design
 ```
 
-3. Choose where the pool will live and export it for the current shell:
+4. Choose where the pool will live and export it for the current shell:
 ```bash
 export ENVS_ROOT=$HOME/modelshield/env_pool
 ```
 
-4. Build the pool:
+5. Build the pool:
 ```bash
 chmod +x build_env_pool.sh
 ./build_env_pool.sh
