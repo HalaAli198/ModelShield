@@ -94,6 +94,18 @@ Replace the placeholders before running. Each script expects its own platform cr
 - ModelScope: SDK token from <https://modelscope.cn/my/myaccesstoken>
 - Kaggle: `~/.kaggle/kaggle.json` created via account settings on <https://www.kaggle.com/>
 
+## Scanner Environment
+
+The scan scripts need a separate venv with the platform API clients.
+
+Create the venv and install the platform clients:
+
+```bash
+export SCANNER_ENV=$HOME/modelshield/scanner_env
+python3.9 -m venv "$SCANNER_ENV"
+"$SCANNER_ENV/bin/pip" install huggingface_hub modelscope kaggle requests
+```
+
 ## Running
 
 The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or `validate_pool()` will abort the run.
@@ -101,15 +113,15 @@ The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or 
 ```bash
 # Hugging Face
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 hf_scan.py --num-models 30000"
+\"$SCANNER_ENV/bin/python3.9\" hf_scan.py --num-models 30000"
 
 # ModelScope
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 modelscope_scan.py --num-models 30000"
+\"$SCANNER_ENV/bin/python3.9\" modelscope_scan.py --num-models 30000"
 
 # Kaggle
 sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \
-python3.9 kaggle_scan.py --num-models 10000"
+\"$SCANNER_ENV/bin/python3.9\" kaggle_scan.py --num-models 10000"
 ```
 
 `ulimit -u` lets the inspector spawn framework worker threads; `ulimit -l` lets eBPF lock its maps into memory. Without both raised, the inspector fails.
