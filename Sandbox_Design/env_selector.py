@@ -27,7 +27,7 @@ EXT_TO_ENV = {
     '.bin': 'torch_current', '.th': 'torch_current',
     '.safetensors': 'torch_current',
     '.h5': 'tf2', '.keras': 'tf2', '.pb': 'tf2', '.tflite': 'tf2',
-    '.onnx': 'onnx',
+    '.onnx': 'onnx', '.npy': 'sklearn', '.npz': 'sklearn',
     '.joblib': 'sklearn', '.pkl': 'sklearn', '.pickle': 'sklearn',
     '.xgb': 'sklearn', '.bst': 'sklearn', '.ubj': 'sklearn',
     '.lgb': 'sklearn', '.cbm': 'sklearn',
