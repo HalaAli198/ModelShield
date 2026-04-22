@@ -39,7 +39,7 @@ export ENVS_ROOT=$HOME/modelshield/env_pool
 
 If none of the factors resolves to a specific environment, PyTorch (current) is used as the default.
 
-`env_selector.validate_matrix()` verifies that the Python interpreter exists for every environment in the pool and is called  once before processing any models.
+`env_selector.validate_pool()` verifies that the Python interpreter exists for every environment in the pool and is called  once before processing any models.
 
 
 ## Setup
@@ -83,7 +83,7 @@ Confirm each environment loads its core packages:
 Validate the pool from Python:
 
 ```bash
-python3.9 -c "from env_selector import validate_matrix; validate_matrix(); print('pool ok')"
+python3.9 -c "from env_selector import validate_pool; validate_pool(); print('pool ok')"
 ```
 
-`validate_matrix()` raises `RuntimeError` and lists any missing environments if the build is incomplete.
+`validate_pool()` raises `RuntimeError` and lists any missing environments if the build is incomplete.
