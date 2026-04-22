@@ -67,20 +67,7 @@ export ENVS_ROOT=$HOME/modelshield/env_pool
 chmod +x build_env_pool.sh
 ./build_env_pool.sh
 ```
-5. Set up the scanner environment:
-```bash
-export SCANNER_ENV=$HOME/modelshield/scanner_env
-python3.9 -m venv "$SCANNER_ENV"
-"$SCANNER_ENV/bin/pip" install huggingface_hub modelscope kaggle requests
-```
 
-Scans are run using the scanner venv's Python:
-
-```bash
-sudo "$SCANNER_ENV/bin/python3.9" modelscope_scan.py --num-models 1
-```
-
-`sudo` is required for eBPF instrumentation.
 ## Verification
 
 Confirm each environment loads its core packages:
