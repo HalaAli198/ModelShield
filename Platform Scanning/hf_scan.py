@@ -51,7 +51,7 @@ MODEL_EXTENSIONS = [
     '.onnx',
     '.msgpack',
     '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
-    '.npy', '.npz',
+    '.npy', '.npz', '.dill',
     '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams',
