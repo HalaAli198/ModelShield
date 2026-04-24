@@ -55,7 +55,7 @@ if make_venv "sklearn"; then
     "$ENVS_ROOT/sklearn/bin/pip" install \
         scikit-learn==1.5.1 joblib==1.4.2 \
         xgboost==2.1.1 lightgbm==4.5.0 catboost==1.2.7 \
-        pypmml==1.5.8 py4j \
+         pandas sympy pypmml==1.5.8 py4j \
         huggingface_hub numpy safetensors
     touch "$ENVS_ROOT/sklearn/.done"
 fi
