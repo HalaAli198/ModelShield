@@ -55,7 +55,7 @@ MODEL_EXTENSIONS = [
     '.npy', '.npz', '.dill',
     '.mlmodel',
     '.params',
-    '.pdmodel', '.pdiparams',
+    '.pdmodel', '.pdiparams', '.pmml',
     '.gguf',
 ]
 
