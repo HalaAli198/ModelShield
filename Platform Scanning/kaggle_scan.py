@@ -39,7 +39,7 @@ TRACES_DIR = '/path/to/captured_events'
 # Every extension the pipeline will download and inspect.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pth', '.th', '.ckpt',
+    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
     '.safetensors', '.sft',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
