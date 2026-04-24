@@ -46,7 +46,7 @@ MS_DOWNLOAD_BASE = 'https://modelscope.cn/models'
 # Every extension the pipeline will download and inspect.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pth', '.th',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors', '.sft',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
