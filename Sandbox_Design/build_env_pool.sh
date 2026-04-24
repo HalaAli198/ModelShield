@@ -48,10 +48,14 @@ if make_venv "tf2"; then
 fi
 
 # Env 4: Classical ML
+# PMML support requires Java JDK + Ant because pypmml depends on JPype/pmml4s.
+# Install before building the pool:
+#   sudo apt install -y openjdk-11-jdk ant
 if make_venv "sklearn"; then
     "$ENVS_ROOT/sklearn/bin/pip" install \
         scikit-learn==1.5.1 joblib==1.4.2 \
         xgboost==2.1.1 lightgbm==4.5.0 catboost==1.2.7 \
+        pypmml==1.5.8 py4j \
         huggingface_hub numpy safetensors
     touch "$ENVS_ROOT/sklearn/.done"
 fi
