@@ -8,10 +8,10 @@ The pool contains **5 Python 3.9 virtual environments**, each pinned to a `(fram
 
 | Environment         | Packages                                                                                                        | Target Formats                                          |
 |---------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
-| PyTorch (current)   | `torch` 2.4.0, `transformers` 4.44.0, `tokenizers`, `sentencepiece`, `dill`, `cloudpickle`, `safetensors`       | `.pt`, `.pth`, `.bin`, `.th`, `.safetensors`            |
-| PyTorch (legacy)    | `torch` 1.13.1, `transformers` 4.30.0, `dill`, `cloudpickle`, `safetensors`                                     | `.pt`, `.bin` (pre-2.0)                                 |
+| PyTorch (current)   | `torch` 2.4.0, `transformers` 4.44.0, `tokenizers`, `sentencepiece`, `dill`, `cloudpickle`, `safetensors`       | `.pt`, `.pt2`,`.pth`, `.bin`, `.th`, `.safetensors`            |
+| PyTorch (legacy)    | `torch` 1.13.1, `transformers` 4.30.0, `dill`, `cloudpickle`, `safetensors`                                     | `.pt`,  `.bin` (pre-2.0)                                 |
 | TensorFlow / Keras  | `tensorflow` 2.17.0, `keras` 3.5.0, `safetensors`                                                               | `.h5`, `.keras`, `.pb`, `.tflite`                       |
-| Classical ML        | `scikit-learn` 1.5.1, `joblib` 1.4.2, `xgboost` 2.1.1, `lightgbm` 4.5.0, `catboost` 1.2.7, `pandas`, `sympy`    | `.joblib`, `.pkl`, `.xgb`, `.bst`, `.lgb`, `.cbm`       |
+| Classical ML        | `scikit-learn` 1.5.1, `joblib` 1.4.2, `xgboost` 2.1.1, `lightgbm` 4.5.0, `catboost` 1.2.7, `pandas`, `sympy`, `pypmml` 1.5.8| `.joblib`, `.pkl`, `.xgb`, `.bst`, `.lgb`, `.cbm` `.pmml`      |
 | ONNX Runtime        | `onnxruntime` 1.18.1, `onnx` 1.16.2, `safetensors`                                                              | `.onnx`                                                 |
 
 ## Files
@@ -50,24 +50,27 @@ Tested on Ubuntu 20.04 LTS with Linux kernel 5.15.
 ```bash
 sudo apt install -y python3.9 python3.9-venv python3.9-dev build-essential
 ```
-
-2. Install eBPF tools (required by the inspector):
+2. Install Java dependencies for PMML support:
+```bash
+sudo apt install -y openjdk-11-jdk ant
+```
+3. Install eBPF tools (required by the inspector):
 ```bash
 sudo apt install -y bpfcc-tools python3-bpfcc linux-headers-$(uname -r)
 ```
 
-3. Clone the repository and change into this directory:
+4. Clone the repository and change into this directory:
 ```bash
 git clone https://github.com//ModelShield.git
 cd ModelShield/Sandbox_Design
 ```
 
-4. Choose where the pool will live and export it for the current shell:
+5. Choose where the pool will live and export it for the current shell:
 ```bash
 export ENVS_ROOT=$HOME/modelshield/env_pool
 ```
 
-5. Build the pool:
+6. Build the pool:
 ```bash
 chmod +x build_env_pool.sh
 ./build_env_pool.sh
@@ -81,7 +84,7 @@ Confirm each environment loads its core packages:
 "$ENVS_ROOT/torch_current/bin/python3.9" -c "import torch, transformers; print('torch_current:', torch.__version__, transformers.__version__)"
 "$ENVS_ROOT/torch_legacy/bin/python3.9"  -c "import torch, transformers; print('torch_legacy:', torch.__version__, transformers.__version__)"
 "$ENVS_ROOT/tf2/bin/python3.9"           -c "import tensorflow as tf; print('tf2:', tf.__version__)"
-"$ENVS_ROOT/sklearn/bin/python3.9"       -c "import sklearn, joblib, xgboost, lightgbm, catboost; print('sklearn ok')"
+"$ENVS_ROOT/sklearn/bin/python3.9"       -c "import sklearn, joblib, xgboost, lightgbm, catboost, pypmml; print('sklearn ok')"
 "$ENVS_ROOT/onnx/bin/python3.9"          -c "import onnxruntime, onnx; print('onnx:', onnxruntime.__version__, onnx.__version__)"
 ```
 
@@ -92,3 +95,6 @@ python3.9 -c "from env_selector import validate_pool; validate_pool(); print('po
 ```
 
 `validate_pool()` raises `RuntimeError` and lists any missing environments if the build is incomplete.
+
+## Note
+The sandbox is designed for broad, reproducible coverage rather than exhaustive version emulation. Some artifacts, especially version-specific or experimental serialization formats such as `torch.export` `.pt2` archives, may fail if their archive layout does not match the pinned framework version. These cases are reported as loader failures or unsupported-version cases rather than treated as evidence of benign behavior.
