@@ -45,7 +45,7 @@ TRACES_DIR = '/path/to/captured_events'
 # File extensions the pipeline inspects. 
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pth', '.th',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
