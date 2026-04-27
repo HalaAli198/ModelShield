@@ -2,7 +2,7 @@
 
 ModelShield is a runtime behavioral detection system for malicious machine learning models. Instead of relying only on static inspection of serialized model contents, it analyzes what a model does during loading and inference. ModelShield combines application-level interception of framework loading and inference APIs with kernel-level eBPF syscall tracing, then classifies the attributed syscall stream into attack behaviors such as command execution, credential access, exfiltration, persistence, reverse shells, and system manipulation.
 
-This repository contains the reference implementation, supporting artifacts, and evaluation materials for the ModelShield paper, *I Don’t Care How You Hide It, I Care What You Do: Behavioral Detection of Malicious ML Models*.
+This repository contains the reference implementation, supporting artifacts, and evaluation materials for the ModelShield paper, *I Don’t Care How You Hide It, I Care What You Do: Runtime Detection of Malicious ML Models*.
 
 ## Key Features
 
@@ -225,7 +225,7 @@ It also includes:
 This repository contains the  implementation and supporting artifacts for the following paper:
 
 **Hala Ali and Andrew Case**  
-*I Don’t Care How You Hide It, I Care What You Do: Behavioral Detection of Malicious ML Models.*
+*I Don’t Care How You Hide It, I Care What You Do: Runtime Detection of Malicious ML Models.*
 
 ## Responsible Use and Safety Disclaimer
 
