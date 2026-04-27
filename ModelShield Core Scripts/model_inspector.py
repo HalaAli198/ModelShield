@@ -5647,53 +5647,18 @@ class AspectMonitor:
         99:"setgroups",
         100: "capset",         
         101: "execve",         
-        102: "execveat",       
-        103:"fexecve",
-        104: "process_vm_readv",   
-        105: "process_vm_writev", 
-        106: "kill",            
-        107: "tkill",          
-        108: "tgkill",        
+        102: "execveat",     
         109: "init_module",   
         110: "finit_module",    
-        111: "delete_module",  
-        112: "bpf",            
-        113: "mount",          
-        114: "umount2",        
-        115: "pivot_root",      
-        116: "chroot",         
-        117:"prctl",
-        118: "seccomp",        
+        111: "delete_module",     
         119: "setns",           
-        120: "unshare",         
-        121: "keyctl",
-        122: "ioprio_set",      
-        123: "mincore",         
-        124: "mknod",          
-        125: "mknodat",        
-        126: "fallocate",       
-        127: "copy_file_range", 
+        120: "unshare",
         128: "pipe",           
-        129: "pipe2",          
-        130: "splice",         
-        131: "tee",            
-        132: "vmsplice",       
-        133: "sysfs",
-        134:"getrlimit",
-        135:"prlimit64",
-        136: "wait4",           
-        137: "waitid",         
-        138: "rt_sigaction",    
-        139: "rt_sigprocmask", 
-        140: "shmget",         
-        141: "shmat",           
-        142: "perf_event_open", 
-        143: "personality",    
-        144: "madvise",         
-        145: "userfaultfd",     
-        146: "reboot",         
-        147: "iopl",            
-        148: "ioperm",          
+        129: "pipe2", 
+        149: "inotify_init",
+        150: "inotify_init1",
+        151: "inotify_add_watch",
+        152: "inotify_rm_watch",         
         }
         operation = operation_map.get(event.operation_id, "unknown")
         
@@ -6402,56 +6367,7 @@ class AspectMonitor:
              filename = "capset"
              extra_details['operation'] = 'SET_CAPABILITIES'
      
-        
 
-        
-        elif event.operation_id == 104:  # process_vm_readv
-             target_pid = event.data.generic.arg1
-             local_iovcnt = event.data.generic.arg2
-             remote_iovcnt = event.data.generic.arg3
-    
-             filename = f"read from pid={target_pid}"
-             extra_details['local_iovcnt'] = local_iovcnt
-             extra_details['remote_iovcnt'] = remote_iovcnt
-    
-        elif event.operation_id == 105:  # process_vm_writev
-             target_pid = event.data.generic.arg1
-             local_iovcnt = event.data.generic.arg2
-             remote_iovcnt = event.data.generic.arg3
-    
-             filename = f"write to pid={target_pid}"
-             extra_details['local_iovcnt'] = local_iovcnt
-             extra_details['remote_iovcnt'] = remote_iovcnt
-    
-        elif event.operation_id in [106, 107, 108]:  # kill, tkill, tgkill
-             signal_names = {
-             1: "SIGHUP", 2: "SIGINT", 3: "SIGQUIT", 9: "SIGKILL",
-             15: "SIGTERM", 17: "SIGCHLD", 18: "SIGCONT", 19: "SIGSTOP"
-             }
-    
-             if event.operation_id == 106:  # kill
-                target_pid = event.data.generic.arg1
-                sig = event.data.generic.arg2
-                sig_name = signal_names.get(sig, f"signal_{sig}")
-                filename = f"pid={target_pid}, sig={sig_name}"
-        
-             elif event.operation_id == 107:  # tkill
-                target_tid = event.data.generic.arg1
-                sig = event.data.generic.arg2
-                sig_name = signal_names.get(sig, f"signal_{sig}")
-                filename = f"tid={target_tid}, sig={sig_name}"
-        
-             else:  # tgkill
-                tgid = event.data.generic.arg1
-                target_tid = event.data.generic.arg2
-                sig = event.data.generic.arg3
-                sig_name = signal_names.get(sig, f"signal_{sig}")
-                filename = f"tgid={tgid}, tid={target_tid}, sig={sig_name}"
-    
-             extra_details['signal'] = sig_name
-        
-        
-        
         elif event.operation_id in [109, 110, 111]:  # Module operations
              if event.operation_id == 109:  # init_module
                 filename = "load_module"
@@ -6464,48 +6380,6 @@ class AspectMonitor:
                 filename = f"unload_{module_name}"
                 extra_details['flags'] = event.data.generic.arg1
 
-        
-
-        elif event.operation_id in [113, 114]:  # mount/umount
-           path = self.safe_decode_path(event.data.file.path)
-           if event.operation_id == 113:
-              filename = f"mount_{path}"
-              extra_details['flags'] = f"{event.data.proc.flags:#x}"
-           else:
-              filename = f"umount_{path}"
-              extra_details['flags'] = f"{event.data.generic.arg1:#x}"
-
-        elif event.operation_id in [115, 116]:  # pivot_root, chroot
-             path = self.safe_decode_path(event.data.file.path)
-             if event.operation_id == 115:
-                filename = f"pivot_root_{path}"
-             else:
-                filename = f"chroot_{path}"
-       
-        elif event.operation_id == 117:  # prctl
-          prctl_options = {
-          1: "PR_SET_PDEATHSIG", 15: "PR_SET_NAME",
-          22: "PR_SET_SECCOMP", 38: "PR_SET_NO_NEW_PRIVS"
-          }
-          option = event.data.generic.arg1
-          opt_name = prctl_options.get(option, f"option_{option}")
-          filename = f"prctl_{opt_name}"
-          extra_details['arg2'] = event.data.generic.arg2
-        
-        
-        elif event.operation_id == 118:  # seccomp
-             seccomp_ops = {
-             0: "SECCOMP_SET_MODE_STRICT",
-             1: "SECCOMP_SET_MODE_FILTER",
-             2: "SECCOMP_GET_ACTION_AVAIL"
-             }
-             op = event.data.generic.arg1
-             op_name = seccomp_ops.get(op, f"op_{op}")
-             filename = f"seccomp_{op_name}"
-             extra_details['flags'] = event.data.generic.arg2
-
-        
-        
         elif event.operation_id == 119:  # setns
          ns_types = {
          0x00020000: "CLONE_NEWNS",
@@ -6524,70 +6398,7 @@ class AspectMonitor:
           if flags & 0x40000000: unshare_flags.append("NEWNET")
           if flags & 0x20000000: unshare_flags.append("NEWPID")
           filename = f"unshare_{','.join(unshare_flags) if unshare_flags else f'flags={flags:#x}'}"
-        
-        
 
-        
-        elif event.operation_id == 121:  # keyctl
-            operation = event.data.generic.arg1
-            keyctl_ops = {
-            0: "GET_KEYRING_ID", 1: "JOIN_SESSION_KEYRING",
-            2: "UPDATE", 3: "REVOKE", 5: "CLEAR"
-            }
-            op_name = keyctl_ops.get(operation, f"op_{operation}")
-            filename = f"keyctl_{op_name}"
-        
-
-        elif event.operation_id in [124, 125]:  # mknod, mknodat
-             path = self.safe_decode_path(event.data.file.path)
-             mode = event.data.generic.arg1
-             dev = event.data.generic.arg2
-    
-             # Decode file type from mode
-             file_types = {
-             0o140000: "SOCK", 0o120000: "LNK", 0o100000: "REG",
-             0o060000: "BLK", 0o040000: "DIR", 0o020000: "CHR",
-             0o010000: "FIFO"
-             }
-             file_type = file_types.get(mode & 0o170000, "UNKNOWN")
-    
-             filename = f"mknod_{path}_{file_type}"
-             extra_details['mode'] = f"{mode:#o}"
-             extra_details['dev'] = f"{dev:#x}"
-    
-             if event.operation_id == 125:  # mknodat
-                extra_details['dfd'] = event.data.generic.arg1
-
-            
-        elif event.operation_id == 126:  # fallocate
-            fd = event.data.generic.arg1
-            mode = event.data.generic.arg2
-            length = event.data.generic.arg3  # truncated to 32 bits in eBPF
-            
-            # Parse fallocate modes
-            mode_flags = []
-            if mode == 0: 
-                mode_flags.append("DEFAULT")
-            else:
-                if mode & 0x01: mode_flags.append("KEEP_SIZE")
-                if mode & 0x02: mode_flags.append("PUNCH_HOLE")
-                if mode & 0x04: mode_flags.append("NO_HIDE_STALE")
-                if mode & 0x08: mode_flags.append("COLLAPSE_RANGE")
-                if mode & 0x10: mode_flags.append("ZERO_RANGE")
-                if mode & 0x20: mode_flags.append("INSERT_RANGE")
-            
-            filename = f"fd={fd}"
-            extra_details['fd'] = fd
-            extra_details['mode'] = '|'.join(mode_flags) if mode_flags else f"{mode:#x}"
-            extra_details['length'] = length
-        
-        
-        elif event.operation_id == 127:  # copy_file_range
-             fd_in = event.data.generic.arg1
-             fd_out = event.data.generic.arg2
-             length = event.data.generic.arg3
-             filename = f"copy_{fd_in}->{fd_out}"
-             extra_details['len'] = length    
 
         elif event.operation_id in [128, 129]:  # pipe/pipe2
              filename = "create_pipe"
@@ -6599,173 +6410,39 @@ class AspectMonitor:
                 extra_details['flags'] = '|'.join(pipe_flags) if pipe_flags else f"{flags:#x}"    
              else:
                 filename = ""
-        elif event.operation_id == 130:  # splice
-             fd_in = event.data.generic.arg1
-             fd_out = event.data.generic.arg2
-             length = event.data.generic.arg3
-             filename = f"splice_{fd_in}->{fd_out}"
-             extra_details['len'] = length
-
-        
-      
-        elif event.operation_id == 131:  # tee
-             fd_in = event.data.generic.arg1
-             fd_out = event.data.generic.arg2
-             length = event.data.generic.arg3
-             filename = f"tee_{fd_in}->{fd_out}"
-             extra_details['len'] = length
-    
-        elif event.operation_id == 132:  # vmsplice
-             fd = event.data.generic.arg1
-             iovcnt = event.data.generic.arg2
-             flags = event.data.generic.arg3
-             filename = f"vmsplice_fd={fd}"
-             extra_details['iovcnt'] = iovcnt
-             extra_details['flags'] = f"{flags:#x}"
-
-
-        elif event.operation_id == 133:  # sysfs
-             option = event.data.generic.arg1
-             filename = f"sysfs_option={option}"
-    
-        elif event.operation_id == 134:  # getrlimit
-             resource = event.data.generic.arg1
-             resource_names = {
-             0: "RLIMIT_CPU", 1: "RLIMIT_FSIZE", 2: "RLIMIT_DATA",
-             3: "RLIMIT_STACK", 4: "RLIMIT_CORE", 7: "RLIMIT_NOFILE"
-             }
-             res_name = resource_names.get(resource, f"resource_{resource}")
-             filename = f"getrlimit_{res_name}"
-    
-        elif event.operation_id == 135:  # prlimit64
-             pid = event.data.generic.arg1
-             resource = event.data.generic.arg2
-             resource_names = {
-             0: "RLIMIT_CPU", 1: "RLIMIT_FSIZE", 2: "RLIMIT_DATA",
-             3: "RLIMIT_STACK", 4: "RLIMIT_CORE", 7: "RLIMIT_NOFILE"
-             }
-             res_name = resource_names.get(resource, f"resource_{resource}")
-             filename = f"prlimit64_pid={pid}_{res_name}"
-
- 
-        elif event.operation_id == 136:  # wait4
-             pid = event.data.generic.arg1
-             options = event.data.generic.arg3
-             filename = f"wait4_pid={pid}"
-             extra_details['options'] = f"{options:#x}"
-    
-        elif event.operation_id == 137:  # waitid
-             idtype = event.data.generic.arg1
-             id_val = event.data.generic.arg2
-             options = event.data.generic.arg3
-             idtype_names = {0: "P_ALL", 1: "P_PID", 2: "P_PGID"}
-             idtype_str = idtype_names.get(idtype, f"type_{idtype}")
-             filename = f"waitid_{idtype_str}_{id_val}"
-             extra_details['options'] = f"{options:#x}"
-    
-        elif event.operation_id == 138:  # rt_sigaction
-             signum = event.data.generic.arg1
-             filename = f"rt_sigaction_sig={signum}"
-             extra_details['signum'] = signum
-    
-        elif event.operation_id == 139:  # rt_sigprocmask
-             how = event.data.generic.arg1
-             how_names = {0: "SIG_BLOCK", 1: "SIG_UNBLOCK", 2: "SIG_SETMASK"}
-             how_str = how_names.get(how, f"how_{how}")
-             filename = f"rt_sigprocmask_{how_str}"
        
-        
-        elif event.operation_id == 140:  # shmget
-             key = event.data.generic.arg1
-             size = event.data.generic.arg2
-             flags = event.data.generic.arg3
-    
-             filename = f"shmget_key={key:#x}_size={size}"
-             shmflg = []
-             if flags & 0x200: shmflg.append("IPC_CREAT")
-             if flags & 0x400: shmflg.append("IPC_EXCL")
-             extra_details['flags'] = '|'.join(shmflg) if shmflg else f"{flags:#x}"
+        elif event.operation_id == 149:  # inotify_init
+             filename = "inotify_init"
 
-        elif event.operation_id == 141:  # shmat
-             shmid = event.data.generic.arg1
-             addr = event.data.generic.arg2
-             flags = event.data.generic.arg3
-    
-             addr_str = f"{addr:#x}" if addr else "NULL"
-             filename = f"shmat_id={shmid}_addr={addr_str}"
-    
-             shmflg = []
-             if flags & 0x1000: shmflg.append("SHM_RDONLY")
-             if flags & 0x2000: shmflg.append("SHM_RND")
-             extra_details['flags'] = '|'.join(shmflg) if shmflg else f"{flags:#x}"
-
-        elif event.operation_id == 142:  # perf_event_open
-             target_pid = event.data.generic.arg1
-             cpu = event.data.generic.arg2
-             group_fd = event.data.generic.arg3
-    
-             filename = f"perf_event_pid={target_pid}_cpu={cpu}"
-             extra_details['group_fd'] = group_fd
-
-        elif event.operation_id == 143:  # personality
-             persona = event.data.generic.arg1
-    
-             persona_names = {0x0000: "PER_LINUX", 0x0800000: "PER_LINUX_32BIT",0x0008: "PER_BSD", 0x000c: "PER_SVR4"}
-             p_name = persona_names.get(persona & 0xffffff, f"persona_{persona:#x}")
-    
-             filename = f"personality_{p_name}"
-
-        elif event.operation_id == 144:  # madvise
-             start = event.data.generic.arg1
-             length = event.data.generic.arg2
-             behavior = event.data.generic.arg3
-             behaviors = {
-             0: "MADV_NORMAL", 1: "MADV_RANDOM", 2: "MADV_SEQUENTIAL",
-             3: "MADV_WILLNEED", 4: "MADV_DONTNEED", 8: "MADV_FREE",
-             9: "MADV_REMOVE", 10: "MADV_DONTFORK", 11: "MADV_DOFORK"
-             }
-             behav_name = behaviors.get(behavior, f"behavior_{behavior}")
-    
-             start_str = f"{start:#x}" if start else "NULL"
-             filename = f"madvise_{start_str}_len={length}"
-             extra_details['behavior'] = behav_name
-
-        elif event.operation_id == 145:  # userfaultfd
+        elif event.operation_id == 150:  # inotify_init1
+             filename = "inotify_init1"
              flags = event.data.generic.arg1
-    
-             filename = "userfaultfd"
-             ufd_flags = []
-             if flags & 0x80000: ufd_flags.append("O_CLOEXEC")
-             if flags & 0x800: ufd_flags.append("O_NONBLOCK")
-             extra_details['flags'] = '|'.join(ufd_flags) if ufd_flags else f"{flags:#x}"
+             flag_names = []
+             if flags & 0x80000: flag_names.append("IN_CLOEXEC")
+             if flags & 0x800: flag_names.append("IN_NONBLOCK")
+             extra_details['flags'] = '|'.join(flag_names) if flag_names else f"{flags:#x}"
 
-        elif event.operation_id == 146:  # reboot
-             magic1 = event.data.generic.arg1
-             magic2 = event.data.generic.arg2
-             cmd = event.data.generic.arg3
-    
-             reboot_cmds = {
-             0x1234567: "LINUX_REBOOT_CMD_RESTART",
-             0x89ABCDEF: "LINUX_REBOOT_CMD_HALT",
-             0xCDEF0123: "LINUX_REBOOT_CMD_CAD_ON",
-             0x4321FEDC: "LINUX_REBOOT_CMD_POWER_OFF"
-             }
-             cmd_name = reboot_cmds.get(cmd, f"cmd_{cmd:#x}")
-    
-             filename = f"reboot_{cmd_name}"
-    
-        elif event.operation_id == 147:  # iopl
-              level = event.data.generic.arg1
-              filename = f"iopl_level={level}"
+        elif event.operation_id == 151:  # inotify_add_watch
+             filename = self.safe_decode_path(event.data.file.path)
+             extra_details['fd'] = event.io_fd
+             mask = event.io_size
+             mask_names = []
+             if mask & 0x00000001: mask_names.append("IN_ACCESS")
+             if mask & 0x00000002: mask_names.append("IN_MODIFY")
+             if mask & 0x00000004: mask_names.append("IN_ATTRIB")
+             if mask & 0x00000008: mask_names.append("IN_CLOSE_WRITE")
+             if mask & 0x00000020: mask_names.append("IN_OPEN")
+             if mask & 0x00000040: mask_names.append("IN_MOVED_FROM")
+             if mask & 0x00000080: mask_names.append("IN_MOVED_TO")
+             if mask & 0x00000100: mask_names.append("IN_CREATE")
+             if mask & 0x00000200: mask_names.append("IN_DELETE")
+             extra_details['mask'] = '|'.join(mask_names) if mask_names else f"{mask:#x}"
 
-        elif event.operation_id == 148:  # ioperm
-              from_port = event.data.generic.arg1
-              num_ports = event.data.generic.arg2
-              turn_on = event.data.generic.arg3
-    
-              action = "enable" if turn_on else "disable"
-              filename = f"ioperm_{action}_ports={from_port}-{from_port+num_ports}"
-
+        elif event.operation_id == 152:  # inotify_rm_watch
+            filename = f"fd={event.io_fd}"
+            extra_details['fd'] = event.io_fd
+            extra_details['wd'] = event.data.generic.arg1
+        
         else:
             filename = ""
         
