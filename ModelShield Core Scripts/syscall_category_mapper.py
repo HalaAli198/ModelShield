@@ -43,25 +43,21 @@ SYSCALL_MAP = {
     "sched_getaffinity":  ("System", "System.info"),
     "ioctl":              ("System", "System.ioctl"),
     "getrandom":          ("System", "System.random"),
-    "gethostname":        ("System", "System.identity"),
     "sethostname":        ("System", "System.identity_set"),
     "setdomainname":      ("System", "System.identity_set"),
 
     # ── File: open / create ───────────────────────────────────────────────
     "open":               ("File", "File.open"),
     "openat":             ("File", "File.open"),
-    "openat2":             ("File", "File.open"),
     "creat":              ("File", "File.open"),
 
     # ── File: read ────────────────────────────────────────────────────────
     "read":               ("File", "File.read"),
-    "pread":            ("File", "File.read"),
     "pread64":            ("File", "File.read"),
     "readv":              ("File", "File.read"),
 
     # ── File: write ───────────────────────────────────────────────────────
     "write":              ("File", "File.write"),
-    "pwrite":           ("File", "File.write"),
     "pwrite64":           ("File", "File.write"),
     "writev":             ("File", "File.write"),
 
@@ -154,10 +150,8 @@ SYSCALL_MAP = {
     "accept":             ("Network", "Network.accept"),
     "accept4":            ("Network", "Network.accept"),
     "connect":            ("Network", "Network.connect"),
-    "send":               ("Network", "Network.send"),
     "sendto":             ("Network", "Network.send"),
     "sendmsg":            ("Network", "Network.send"),
-    "recv":               ("Network", "Network.recv"),
     "recvfrom":           ("Network", "Network.recv"),
     "recvmsg":            ("Network", "Network.recv"),
     "getsockname":        ("Network", "Network.info"),
@@ -206,7 +200,6 @@ SYSCALL_MAP = {
     # ── Code Execution ────────────────────────────────────────────────────
     "execve":             ("CodeExec", "CodeExec.exec"),
     "execveat":           ("CodeExec", "CodeExec.exec"),
-    "fexecve":            ("CodeExec", "CodeExec.exec"),
 }
 
 
