@@ -235,7 +235,3 @@ Do not run the included malicious model artifacts on a personal workstation, pro
 
 The authors do not endorse misuse of these materials and are not responsible for damage resulting from unsafe or unauthorized use.
 
-
-## License
-
-This repository is released under the AGPL-3.0 license.
