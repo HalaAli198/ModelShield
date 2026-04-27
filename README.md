@@ -96,7 +96,7 @@ Kernel-side eBPF probe program attached to syscall tracepoints. It captures comp
 Semantic decoding stage that normalizes raw syscall names into analysis-friendly categories and sub-operations for classification.
 
 ### `attack_behavior_classifier.py`
-Pattern-based classifier that analyzes the attributed syscall stream and labels malicious behavior classes such as credential access, code execution, reverse shells, persistence, and system manipulation.
+Pattern-based classifier that analyzes the attributed syscall stream and labels malicious behavior classes, such as credential access, code execution, reverse shells, persistence, and system manipulation.
 
 ## Supported Platforms
 
@@ -211,7 +211,7 @@ For full configuration details, output layout, and scanner flags, see `Platform 
 
 This repository includes evaluation results for:
 
-- **MalHug** comparison
+- **Malicious models from MalHug** 
 - **TensorFlow API abuse**
 - **Pickle loading-path evasion**
 - **Pickle gadget-substitution**
@@ -227,6 +227,13 @@ This repository contains the  implementation and supporting artifacts for the fo
 **Hala Ali and Andrew Case**  
 *I Don’t Care How You Hide It, I Care What You Do: Behavioral Detection of Malicious ML Models.*
 
+## Responsible Use and Safety Disclaimer
+
+This repository is provided for security research, education, and defensive analysis. It contains malicious model samples, proof-of-concept artifacts, and related materials released only to support reproducibility, detection research, and evaluation.
+
+Do not run the included malicious model artifacts on a personal workstation, production system, or any machine containing credentials, SSH keys, cloud tokens, browser data, private datasets, or other sensitive files. ModelShield and all associated dynamic analysis should be used only inside an isolated, disposable virtual machine.
+
+The authors do not endorse misuse of these materials and are not responsible for damage resulting from unsafe or unauthorized use.
 
 
 ## License
