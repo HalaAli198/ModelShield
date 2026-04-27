@@ -1,0 +1,47 @@
+ Tagged 198 loading events from 00003_hala_ip_loading_events.json
+  Tagged 97 execution events from 00003_hala_ip_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: /home/hala/96.tf_ip/
+Loading events: 198
+Execution events: 97
+Patterns defined: 193
+======================================================================
+
+  [LOADING] Pre-filtered: removed 1 O_DIRECTORY events
+
+  [EXECUTION] Pre-filtered: removed 1 O_DIRECTORY events
+
+  [EXECUTION] AB1-HW-EXFIL: Hardware info theft + exfiltration
+    Step 0: openat -> /proc/cpuinfo  (Open sensitive file (Hardware info theft + exfiltration))
+    Step 1: read -> /proc/cpuinfo  (Read file contents)
+    Step 3: connect -> 12  (Connect to suspicious remote server)
+    Step 4: sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x]  (Send stolen data)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [EXECUTION] AB1-UNAME-EXFIL: System fingerprint via syscall + exfiltration
+    Step 0: uname -> uname  (System fingerprint syscall)
+    Step 2: connect -> 12  (Connect to remote server)
+    Step 3: sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x]  (Transmit fingerprint)
+    MITRE: Discovery / T1082 (System Information Discovery)
+    MITRE: Exfiltration / T1041 (Exfiltration Over C2 Channel)
+
+  [EXECUTION] AB6-OUTBOUND: Outbound connection to external endpoint
+    Step 0: socket -> AF_INET6/SOCK_STREAM/DEFAULT  (Create socket)
+    Step 1: connect -> 12  (Connect to external endpoint)
+    MITRE: Command and Control / T1071 (Application Layer Protocol)
+
+======================================================================
+  VERDICT: MALICIOUS — 2 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - System fingerprint via syscall + exfiltration
+      - Hardware info theft + exfiltration
+      MITRE: T1082 (System Information Discovery)
+      MITRE: T1041 (Exfiltration Over C2 Channel)
+    AB6: Remote Control
+      - Outbound connection to external endpoint
+      MITRE: T1071 (Application Layer Protocol)
+======================================================================
+

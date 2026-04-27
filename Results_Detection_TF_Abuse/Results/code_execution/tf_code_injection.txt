@@ -1,0 +1,1871 @@
+Python ThreatEvent size: 152
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: tf_attacks/execute_code_by_injection/saved_model
+======================================================================
+
+[1] Detecting model type...
+    Type: tensorflow_saved
+    Framework: tensorflow
+    Has config.json: False
+    Files: saved_model.pb, fingerprint.pb...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: fingerprint.pb is suspiciously small (56 bytes)
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (56 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing saved_model.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 34bc6004
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 160479, correlation '34bc6004', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34bc6004', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Context Update] Updated 1 threads to 34bc6004 (LOADING)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=34bc6004, Phase=LOADING
+[Debug] Setting eBPF context for TID 160479, correlation '34bc6004', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='34bc6004', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for LOADING: 34bc6004
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: b4c3ec13
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'b4c3ec13', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b4c3ec13', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Context Update] Updated 1 threads to b4c3ec13 (LOADING)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=b4c3ec13, Phase=LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'b4c3ec13', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b4c3ec13', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for LOADING: b4c3ec13
+PID:160479 TID:160483 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160483 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3964000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160485 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160485 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f395c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160486 -event.operation_id: 85, 1 -> mmap -> addr=0x7f3960000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160486 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3960000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160488 -event.operation_id: 85, 1 -> mmap -> addr=0x7f3958000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160488 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3958000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160484 -event.operation_id: 85, 1 -> mmap -> addr=0x7f3968000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160484 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3968000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160489 -event.operation_id: 10, 1 -> openat -> /sys/devices/system/cpu/online
+PID:160479 TID:160489 -event.operation_id: 12, 1 -> read -> /sys/devices/system/cpu/online [fd=313, size=8192]
+PID:160479 TID:160489 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:160479 TID:160489 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160489 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f394c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160482 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160482 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f396c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160487 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160487 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3954000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160490 -event.operation_id: 85, 1 -> mmap -> addr=0x7f3950000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160490 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3950000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160490 -event.operation_id: 144, 1 -> madvise -> madvise_0x7f3970f1d000_len=8368128 [behavior=MADV_DONTNEED]
+PID:160479 TID:160479 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online
+PID:160479 TID:160479 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:160479 TID:160479 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:160479 TID:160479 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:160479 TID:160479 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:160479 TID:160479 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online [fd=309, size=4097]
+PID:160479 TID:160479 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online [fd=309, size=4093]
+PID:160479 TID:160479 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:160479 TID:160479 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:160479 TID:160479 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:160479 TID:160479 -event.operation_id: 112, 0 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:160479 TID:160479 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:160479 TID:160479 -event.operation_id: 112, 0 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:160479 TID:160479 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:160479 TID:160479 -event.operation_id: 112, 0 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:160479 TID:160479 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:160479 TID:160479 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:160479 TID:160479 -event.operation_id: 112, 0 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 0 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables
+PID:160479 TID:160479 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [fd=313, size=524288, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [fd=313, size=511287, offset=13001]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/debug/saved_mo [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /dev/urandom
+PID:160479 TID:160479 -event.operation_id: 12, 1 -> read -> /dev/urandom [fd=313, size=4]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache
+PID:160479 TID:160479 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libcuda.so.1
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /lib/libcuda.so.1
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /usr/lib/libcuda.so.1
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> /proc/driver/nvidia/version [mode=R_OK|W_OK|X_OK]
+PID:160479 TID:160479 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3973763000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3972f62000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3972761000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3971f60000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f397175f000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 2, 1 -> sysinfo -> sysinfo
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 44, 1 -> readlink -> /proc/se [bufsiz=4095]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> /proc/self/cmdline
+PID:160479 TID:160479 -event.operation_id: 12, 1 -> read -> /proc/self/cmdline [fd=313, size=4095]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow [mode=R_OK|X_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f3970f1e000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:160479 TID:160479 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=48, offset=234]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=20, offset=214]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=315, size=280, offset=11]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=48, offset=234]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=20, offset=214]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=317, size=1048576, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=317, size=1048285, offset=291]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524288, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524232, offset=56]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524288, offset=56]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8124, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8152, stream=stdout]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160481
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.788505
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160482
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.813098
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160483
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.813326
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160484
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.813548
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160485
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.814039
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160486
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.814540
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160487
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.814834
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160488
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.815123
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160489
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.815655
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 160479 -> Child PID: 160490
+  Correlation ID: b4c3ec13
+  Phase: 1
+  Command: python3.9
+  Timestamp: 353318.873358
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8161, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (b4c3ec13) - Total: 156
+======================================================================
+[1] PID:160479 TID:160479 - bpf ->  {}
+[2] PID:160479 TID:160479 - bpf ->  {}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables {}
+[5] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'mode': 'R_OK'}
+[16] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {}
+[17] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {}
+[18] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'fd': 313, 'size': 524288, 'offset': 0}
+[19] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'fd': 313, 'size': 511287, 'offset': 13001}
+[20] PID:160479 TID:160479 - close -> fd=313 {'fd': 313}
+[21] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/debug/saved_mo {'mode': 'R_OK'}
+[22] PID:160479 TID:160479 - openat -> /dev/urandom {}
+[23] PID:160479 TID:160479 - read -> /dev/urandom {'fd': 313, 'size': 4}
+[24] PID:160479 TID:160479 - close -> fd=313 {'fd': 313}
+[25] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[26] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[27] PID:160479 TID:160479 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo {}
+[28] PID:160479 TID:160479 - openat -> /etc/ld.so.cache {}
+[29] PID:160479 TID:160479 - fstat -> fd=313 {'fd': 313}
+[30] PID:160479 TID:160479 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[31] PID:160479 TID:160479 - close -> fd=313 {'fd': 313}
+[32] PID:160479 TID:160479 - openat -> /lib/x86_64-linux-gnu/libcuda.so.1 {}
+[33] PID:160479 TID:160479 - openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 {}
+[34] PID:160479 TID:160479 - openat -> /lib/libcuda.so.1 {}
+[35] PID:160479 TID:160479 - openat -> /usr/lib/libcuda.so.1 {}
+[36] PID:160479 TID:160479 - access -> /proc/driver/nvidia/version {'mode': 'R_OK|W_OK|X_OK'}
+[37] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[38] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[39] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[40] PID:160479 TID:160482 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[41] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[42] PID:160479 TID:160483 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[43] PID:160479 TID:160482 - mprotect -> addr=0x7f396c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[44] PID:160479 TID:160483 - mprotect -> addr=0x7f3964000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[45] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[46] PID:160479 TID:160479 - mprotect -> addr=0x7f3973763000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[47] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[48] PID:160479 TID:160484 - mmap -> addr=0x7f3968000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[49] PID:160479 TID:160484 - mprotect -> addr=0x7f3968000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[50] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[51] PID:160479 TID:160485 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[52] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[53] PID:160479 TID:160485 - mprotect -> addr=0x7f395c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[54] PID:160479 TID:160479 - mprotect -> addr=0x7f3972f62000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[55] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[56] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[57] PID:160479 TID:160479 - mprotect -> addr=0x7f3972761000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[58] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[59] PID:160479 TID:160486 - mmap -> addr=0x7f3960000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[60] PID:160479 TID:160486 - mprotect -> addr=0x7f3960000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[61] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[62] PID:160479 TID:160479 - mprotect -> addr=0x7f3971f60000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[63] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[64] PID:160479 TID:160487 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[65] PID:160479 TID:160487 - mprotect -> addr=0x7f3954000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[66] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[67] PID:160479 TID:160479 - mprotect -> addr=0x7f397175f000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[68] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[69] PID:160479 TID:160488 - mmap -> addr=0x7f3958000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[70] PID:160479 TID:160488 - mprotect -> addr=0x7f3958000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[71] PID:160479 TID:160489 - openat -> /sys/devices/system/cpu/online {}
+[72] PID:160479 TID:160489 - read -> /sys/devices/system/cpu/online {'fd': 313, 'size': 8192}
+[73] PID:160479 TID:160489 - close -> fd=313 {'fd': 313}
+[74] PID:160479 TID:160489 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[75] PID:160479 TID:160489 - mprotect -> addr=0x7f394c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[76] PID:160479 TID:160479 - uname -> uname {}
+[77] PID:160479 TID:160479 - uname -> uname {}
+[78] PID:160479 TID:160479 - uname -> uname {}
+[79] PID:160479 TID:160479 - uname -> uname {}
+[80] PID:160479 TID:160479 - sysinfo -> sysinfo {}
+[81] PID:160479 TID:160479 - uname -> uname {}
+[82] PID:160479 TID:160479 - uname -> uname {}
+[83] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[84] PID:160479 TID:160479 - readlink -> /proc/se {'bufsiz': 4095}
+[85] PID:160479 TID:160479 - openat -> /proc/self/cmdline {}
+[86] PID:160479 TID:160479 - read -> /proc/self/cmdline {'fd': 313, 'size': 4095}
+[87] PID:160479 TID:160479 - access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow {'mode': 'R_OK|X_OK'}
+[88] PID:160479 TID:160479 - openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels {}
+[89] PID:160479 TID:160479 - uname -> uname {}
+[90] PID:160479 TID:160479 - uname -> uname {}
+[91] PID:160479 TID:160479 - uname -> uname {}
+[92] PID:160479 TID:160479 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[93] PID:160479 TID:160479 - mprotect -> addr=0x7f3970f1e000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[94] PID:160479 TID:160479 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[95] PID:160479 TID:160490 - mmap -> addr=0x7f3950000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[96] PID:160479 TID:160490 - mprotect -> addr=0x7f3950000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[97] PID:160479 TID:160490 - madvise -> madvise_0x7f3970f1d000_len=8368128 {'behavior': 'MADV_DONTNEED'}
+[98] PID:160479 TID:160479 - uname -> uname {}
+[99] PID:160479 TID:160479 - uname -> uname {}
+[100] PID:160479 TID:160479 - uname -> uname {}
+[101] PID:160479 TID:160479 - uname -> uname {}
+[102] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'mode': 'R_OK'}
+[103] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[104] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[105] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 48, 'offset': 234}
+[106] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 20, 'offset': 214}
+[107] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[108] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[109] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[110] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[111] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 315, 'size': 280, 'offset': 11}
+[112] PID:160479 TID:160479 - uname -> uname {}
+[113] PID:160479 TID:160479 - uname -> uname {}
+[114] PID:160479 TID:160479 - uname -> uname {}
+[115] PID:160479 TID:160479 - uname -> uname {}
+[116] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'mode': 'R_OK'}
+[117] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[118] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[119] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 48, 'offset': 234}
+[120] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 20, 'offset': 214}
+[121] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 201, 'offset': 0}
+[122] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[123] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 317, 'size': 1048576, 'offset': 0}
+[124] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 317, 'size': 1048285, 'offset': 291}
+[125] PID:160479 TID:160479 - close -> fd=316 {'fd': 316}
+[126] PID:160479 TID:160479 - close -> fd=317 {'fd': 317}
+[127] PID:160479 TID:160479 - uname -> uname {}
+[128] PID:160479 TID:160479 - uname -> uname {}
+[129] PID:160479 TID:160479 - uname -> uname {}
+[130] PID:160479 TID:160479 - uname -> uname {}
+[131] PID:160479 TID:160479 - uname -> uname {}
+[132] PID:160479 TID:160479 - uname -> uname {}
+[133] PID:160479 TID:160479 - uname -> uname {}
+[134] PID:160479 TID:160479 - uname -> uname {}
+[135] PID:160479 TID:160479 - uname -> uname {}
+[136] PID:160479 TID:160479 - uname -> uname {}
+[137] PID:160479 TID:160479 - uname -> uname {}
+[138] PID:160479 TID:160479 - uname -> uname {}
+[139] PID:160479 TID:160479 - uname -> uname {}
+[140] PID:160479 TID:160479 - uname -> uname {}
+[141] PID:160479 TID:160479 - uname -> uname {}
+[142] PID:160479 TID:160479 - uname -> uname {}
+[143] PID:160479 TID:160479 - uname -> uname {}
+[144] PID:160479 TID:160479 - uname -> uname {}
+[145] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[146] PID:160479 TID:160479 - close -> fd=315 {'fd': 315}
+[147] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'mode': 'R_OK'}
+[148] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {}
+[149] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 0}
+[150] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524232, 'offset': 56}
+[151] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 56}
+[152] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[153] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8124, 'stream': 'stdout'}
+[154] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[155] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8152, 'stream': 'stdout'}
+[156] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8161, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2430 seconds
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8160, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (34bc6004) - Total: 1
+======================================================================
+[1] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8160, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.3382 seconds
+    ✓ Model loaded successfully
+    Model loaded, attempting execution...
+    Trying direct model call...
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: cf0b63ed
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to cf0b63ed (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=cf0b63ed, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation 'cf0b63ed', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='cf0b63ed', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: cf0b63ed
+PID:160479 TID:160488 -event.operation_id: 10, 2 -> openat -> /tmp/exploit.sh
+PID:160479 TID:160488 -event.operation_id: 18, 2 -> stat -> /etc/localtime
+PID:160479 TID:160488 -event.operation_id: 15, 2 -> write -> stderr [fd=2, size=172, stream=stderr]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8191, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 10, 2 -> openat -> /proc/cpuinfo
+PID:160479 TID:160479 -event.operation_id: 12, 2 -> read -> /proc/cpuinfo [fd=314, size=8191]
+PID:160479 TID:160479 -event.operation_id: 57, 2 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 2, 2 -> sysinfo -> sysinfo
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (cf0b63ed) - Total: 47
+======================================================================
+[1] PID:160479 TID:160479 - bpf ->  {}
+[2] PID:160479 TID:160479 - bpf ->  {}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8191, 'stream': 'stdout'}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[26] PID:160479 TID:160479 - uname -> uname {}
+[27] PID:160479 TID:160479 - uname -> uname {}
+[28] PID:160479 TID:160479 - uname -> uname {}
+[29] PID:160479 TID:160479 - uname -> uname {}
+[30] PID:160479 TID:160479 - uname -> uname {}
+[31] PID:160479 TID:160479 - uname -> uname {}
+[32] PID:160479 TID:160479 - uname -> uname {}
+[33] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[34] PID:160479 TID:160479 - uname -> uname {}
+[35] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[36] PID:160479 TID:160479 - openat -> /proc/cpuinfo {}
+[37] PID:160479 TID:160479 - read -> /proc/cpuinfo {'fd': 314, 'size': 8191}
+[38] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[39] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[40] PID:160479 TID:160479 - sysinfo -> sysinfo {}
+[41] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[42] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[43] PID:160479 TID:160479 - uname -> uname {}
+[44] PID:160479 TID:160488 - openat -> /tmp/exploit.sh {}
+[45] PID:160479 TID:160488 - stat -> /etc/localtime {}
+[46] PID:160479 TID:160488 - write -> stderr {'fd': 2, 'size': 172, 'stream': 'stderr'}
+[47] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1393 seconds
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 81eeed09
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to 81eeed09 (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=81eeed09, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '81eeed09', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='81eeed09', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: 81eeed09
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8192, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (81eeed09) - Total: 26
+======================================================================
+[1] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8192, 'stream': 'stdout'}
+[2] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - bpf ->  {}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1141 seconds
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 5abcfacd
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to 5abcfacd (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=5abcfacd, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '5abcfacd', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5abcfacd', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: 5abcfacd
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8157, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (5abcfacd) - Total: 26
+======================================================================
+[1] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8157, 'stream': 'stdout'}
+[2] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - bpf ->  {}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.0986 seconds
+    Trying to create proper input from TensorSpec...
+    Attempting to trigger any embedded code...
+      Accessed __dict__: <class 'dict'>
+      Accessed __class__: <class 'type'>
+      Accessed __init__: <class 'method-wrapper'>
+      Accessed __new__: <class 'builtin_function_or_method'>
+      Accessed __reduce__: <class 'builtin_function_or_method'>
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (56 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing fingerprint.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 2b7d6276
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 160479, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to 2b7d6276 (LOADING)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=2b7d6276, Phase=LOADING
+[Debug] Setting eBPF context for TID 160479, correlation '2b7d6276', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='2b7d6276', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for LOADING: 2b7d6276
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: b888a8dd
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to b888a8dd (LOADING)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=b888a8dd, Phase=LOADING
+[Debug] Setting eBPF context for TID 160479, correlation 'b888a8dd', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='b888a8dd', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for LOADING: b888a8dd
+PID:160479 TID:160479 -event.operation_id: 18, 2 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables
+PID:160479 TID:160479 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8177, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [fd=314, size=524288, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb [fd=314, size=511287, offset=13001]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/debug/saved_mo [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 1 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=48, offset=234]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=20, offset=214]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=314, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=315, size=280, offset=11]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 18, 1 -> stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=48, offset=234]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=20, offset=214]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=316, size=201, offset=0]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=317, size=1048576, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari [fd=317, size=1048285, offset=291]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:160479 TID:160479 -event.operation_id: 22, 1 -> access -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [mode=R_OK]
+PID:160479 TID:160479 -event.operation_id: 10, 1 -> openat -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524288, offset=0]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524232, offset=56]
+PID:160479 TID:160479 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb [fd=314, size=524288, offset=56]
+PID:160479 TID:160479 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8166, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (b888a8dd) - Total: 98
+======================================================================
+[1] PID:160479 TID:160479 - uname -> uname {}
+[2] PID:160479 TID:160479 - uname -> uname {}
+[3] PID:160479 TID:160479 - uname -> uname {}
+[4] PID:160479 TID:160479 - uname -> uname {}
+[5] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[27] PID:160479 TID:160479 - bpf ->  {}
+[28] PID:160479 TID:160479 - bpf ->  {}
+[29] PID:160479 TID:160479 - bpf ->  {}
+[30] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[31] PID:160479 TID:160479 - bpf ->  {}
+[32] PID:160479 TID:160479 - bpf ->  {}
+[33] PID:160479 TID:160479 - bpf ->  {}
+[34] PID:160479 TID:160479 - bpf ->  {}
+[35] PID:160479 TID:160479 - bpf ->  {}
+[36] PID:160479 TID:160479 - bpf ->  {}
+[37] PID:160479 TID:160479 - bpf ->  {}
+[38] PID:160479 TID:160479 - bpf ->  {}
+[39] PID:160479 TID:160479 - bpf ->  {}
+[40] PID:160479 TID:160479 - bpf ->  {}
+[41] PID:160479 TID:160479 - bpf ->  {}
+[42] PID:160479 TID:160479 - bpf ->  {}
+[43] PID:160479 TID:160479 - bpf ->  {}
+[44] PID:160479 TID:160479 - bpf ->  {}
+[45] PID:160479 TID:160479 - bpf ->  {}
+[46] PID:160479 TID:160479 - bpf ->  {}
+[47] PID:160479 TID:160479 - bpf ->  {}
+[48] PID:160479 TID:160479 - bpf ->  {}
+[49] PID:160479 TID:160479 - bpf ->  {}
+[50] PID:160479 TID:160479 - bpf ->  {}
+[51] PID:160479 TID:160479 - bpf ->  {}
+[52] PID:160479 TID:160479 - bpf ->  {}
+[53] PID:160479 TID:160479 - bpf ->  {}
+[54] PID:160479 TID:160479 - bpf ->  {}
+[55] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'mode': 'R_OK'}
+[56] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {}
+[57] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {}
+[58] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'fd': 314, 'size': 524288, 'offset': 0}
+[59] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/saved_model.pb {'fd': 314, 'size': 511287, 'offset': 13001}
+[60] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[61] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/debug/saved_mo {'mode': 'R_OK'}
+[62] PID:160479 TID:160479 - uname -> uname {}
+[63] PID:160479 TID:160479 - uname -> uname {}
+[64] PID:160479 TID:160479 - uname -> uname {}
+[65] PID:160479 TID:160479 - uname -> uname {}
+[66] PID:160479 TID:160479 - uname -> uname {}
+[67] PID:160479 TID:160479 - uname -> uname {}
+[68] PID:160479 TID:160479 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[69] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'mode': 'R_OK'}
+[70] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[71] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[72] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 48, 'offset': 234}
+[73] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 20, 'offset': 214}
+[74] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[75] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[76] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 314, 'size': 201, 'offset': 0}
+[77] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[78] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 315, 'size': 280, 'offset': 11}
+[79] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'mode': 'R_OK'}
+[80] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[81] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[82] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 48, 'offset': 234}
+[83] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 20, 'offset': 214}
+[84] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 316, 'size': 201, 'offset': 0}
+[85] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {}
+[86] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 317, 'size': 1048576, 'offset': 0}
+[87] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/variables/vari {'fd': 317, 'size': 1048285, 'offset': 291}
+[88] PID:160479 TID:160479 - close -> fd=316 {'fd': 316}
+[89] PID:160479 TID:160479 - close -> fd=317 {'fd': 317}
+[90] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[91] PID:160479 TID:160479 - close -> fd=315 {'fd': 315}
+[92] PID:160479 TID:160479 - access -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'mode': 'R_OK'}
+[93] PID:160479 TID:160479 - openat -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {}
+[94] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 0}
+[95] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524232, 'offset': 56}
+[96] PID:160479 TID:160479 - pread64 -> tf_attacks/execute_code_by_injection/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 56}
+[97] PID:160479 TID:160479 - close -> fd=314 {'fd': 314}
+[98] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8166, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1452 seconds
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8158, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (2b7d6276) - Total: 1
+======================================================================
+[1] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8158, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2405 seconds
+    ✓ Model loaded successfully
+    Model loaded, attempting execution...
+    Trying direct model call...
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 591a6bc0
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to 591a6bc0 (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=591a6bc0, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '591a6bc0', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='591a6bc0', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: 591a6bc0
+PID:160479 TID:160479 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8168, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 112, 1 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 2, 2 -> sysinfo -> sysinfo
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:160479 TID:160479 -event.operation_id: 1, 2 -> uname -> uname
+PID:160479 TID:160487 -event.operation_id: 10, 2 -> openat -> /tmp/exploit.sh
+PID:160479 TID:160487 -event.operation_id: 18, 2 -> stat -> /etc/localtime
+PID:160479 TID:160487 -event.operation_id: 15, 2 -> write -> stderr [fd=2, size=172, stream=stderr]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (591a6bc0) - Total: 45
+======================================================================
+[1] PID:160479 TID:160479 - stat -> tf_attacks/execute_code_by_injection/saved_model/variables {}
+[2] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[3] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8177, 'stream': 'stdout'}
+[4] PID:160479 TID:160479 - bpf ->  {}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[27] PID:160479 TID:160479 - bpf ->  {}
+[28] PID:160479 TID:160479 - uname -> uname {}
+[29] PID:160479 TID:160479 - uname -> uname {}
+[30] PID:160479 TID:160479 - uname -> uname {}
+[31] PID:160479 TID:160479 - uname -> uname {}
+[32] PID:160479 TID:160479 - uname -> uname {}
+[33] PID:160479 TID:160479 - uname -> uname {}
+[34] PID:160479 TID:160479 - uname -> uname {}
+[35] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[36] PID:160479 TID:160479 - uname -> uname {}
+[37] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[38] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[39] PID:160479 TID:160479 - sysinfo -> sysinfo {}
+[40] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[41] PID:160479 TID:160479 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[42] PID:160479 TID:160479 - uname -> uname {}
+[43] PID:160479 TID:160487 - openat -> /tmp/exploit.sh {}
+[44] PID:160479 TID:160487 - stat -> /etc/localtime {}
+[45] PID:160479 TID:160487 - write -> stderr {'fd': 2, 'size': 172, 'stream': 'stderr'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1153 seconds
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: d82df32c
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to d82df32c (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=d82df32c, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation 'd82df32c', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d82df32c', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: d82df32c
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8178, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (d82df32c) - Total: 26
+======================================================================
+[1] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8178, 'stream': 'stdout'}
+[2] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - bpf ->  {}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1014 seconds
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: 5e71f52e
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 160479
+[Debug] Setting eBPF context for TID 160481, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160481
+[Debug] Setting eBPF context for TID 160482, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160482
+[Debug] Setting eBPF context for TID 160483, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160483
+[Debug] Setting eBPF context for TID 160484, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160484
+[Debug] Setting eBPF context for TID 160485, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160485
+[Debug] Setting eBPF context for TID 160486, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160486
+[Debug] Setting eBPF context for TID 160487, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160487
+[Debug] Setting eBPF context for TID 160488, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160488
+[Debug] Setting eBPF context for TID 160489, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160489
+[Debug] Setting eBPF context for TID 160490, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 160490
+[Context Update] Updated 11 threads to 5e71f52e (EXECUTION)
+[Debug] Thread IDs - Python: 139887184176960, Kernel: 160479
+[AOP Monitor] Context tracked: pthread_id=139887184176960, kernel_tid=160479, ID=5e71f52e, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 160479, correlation '5e71f52e', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e71f52e', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 160479
+[AOP Monitor] eBPF monitoring active for EXECUTION: 5e71f52e
+PID:160479 TID:160479 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:160479 TID:160479 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8190, stream=stdout]
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+PID:160479 TID:160479 -event.operation_id: 112, 2 -> bpf -> 
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+EXECUTION EVENTS (5e71f52e) - Total: 26
+======================================================================
+[1] PID:160479 TID:160479 - getrandom -> getrandom_size=0 {}
+[2] PID:160479 TID:160479 - write -> stdout {'fd': 1, 'size': 8190, 'stream': 'stdout'}
+[3] PID:160479 TID:160479 - bpf ->  {}
+[4] PID:160479 TID:160479 - bpf ->  {}
+[5] PID:160479 TID:160479 - bpf ->  {}
+[6] PID:160479 TID:160479 - bpf ->  {}
+[7] PID:160479 TID:160479 - bpf ->  {}
+[8] PID:160479 TID:160479 - bpf ->  {}
+[9] PID:160479 TID:160479 - bpf ->  {}
+[10] PID:160479 TID:160479 - bpf ->  {}
+[11] PID:160479 TID:160479 - bpf ->  {}
+[12] PID:160479 TID:160479 - bpf ->  {}
+[13] PID:160479 TID:160479 - bpf ->  {}
+[14] PID:160479 TID:160479 - bpf ->  {}
+[15] PID:160479 TID:160479 - bpf ->  {}
+[16] PID:160479 TID:160479 - bpf ->  {}
+[17] PID:160479 TID:160479 - bpf ->  {}
+[18] PID:160479 TID:160479 - bpf ->  {}
+[19] PID:160479 TID:160479 - bpf ->  {}
+[20] PID:160479 TID:160479 - bpf ->  {}
+[21] PID:160479 TID:160479 - bpf ->  {}
+[22] PID:160479 TID:160479 - bpf ->  {}
+[23] PID:160479 TID:160479 - bpf ->  {}
+[24] PID:160479 TID:160479 - bpf ->  {}
+[25] PID:160479 TID:160479 - bpf ->  {}
+[26] PID:160479 TID:160479 - bpf ->  {}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.0996 seconds
+    Trying to create proper input from TensorSpec...
+    Attempting to trigger any embedded code...
+      Accessed __dict__: <class 'dict'>
+      Accessed __class__: <class 'type'>
+      Accessed __init__: <class 'method-wrapper'>
+      Accessed __new__: <class 'builtin_function_or_method'>
+      Accessed __reduce__: <class 'builtin_function_or_method'>
+    Files Processed: 2
+    Successful: 2, Malicious: 0, Failed: 0
+    - saved_model.pb: model_loaded - Model loaded but execution failed. Attempts: Direc
+    - fingerprint.pb: model_loaded - Model loaded but execution failed. Attempts: Direc
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "tf_attacks/execute_code_by_injection/saved_model",
+  "model_info": {
+    "folder": "tf_attacks/execute_code_by_injection/saved_model",
+    "files": [
+      "events",
+      "saved_model.pb",
+      "variables",
+      "assets",
+      "fingerprint.pb"
+    ],
+    "has_config": false,
+    "model_type": "tensorflow_saved",
+    "framework": "tensorflow",
+    "model_files": [
+      "saved_model.pb",
+      "fingerprint.pb"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "saved_model.pb": "12.70 KB",
+      "fingerprint.pb": "0.05 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "fingerprint.pb is suspiciously small (56 bytes)"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "saved_model.pb",
+      "status": "model_loaded",
+      "output": "Model loaded but execution failed. Attempts: Direct (): Graph execution error:\n\nDetect | Direct (1, 1): Could not find matching concre | Direct (1, 10): Could not find matching concre"
+    },
+    {
+      "file": "fingerprint.pb",
+      "status": "model_loaded",
+      "output": "Model loaded but execution failed. Attempts: Direct (): Graph execution error:\n\nDetect | Direct (1, 1): Could not find matching concre | Direct (1, 10): Could not find matching concre"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 2,
+    "successful": 2,
+    "malicious": 0,
+    "failed": 0
+  }
+}

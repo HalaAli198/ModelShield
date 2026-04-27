@@ -1,0 +1,1536 @@
+Python ThreatEvent size: 152
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+
+======================================================================
+ANALYZING MODEL: tf_attacks/ip_exposure/saved_model
+======================================================================
+
+[1] Detecting model type...
+    Type: tensorflow_saved
+    Framework: tensorflow
+    Has config.json: False
+    Files: saved_model.pb, fingerprint.pb...
+
+[2] Determining input requirements...
+    Needs input: True
+    Input type: unknown_try_common
+    Modality: unknown
+    Input shape: None
+
+[3] Analyzing model structure...
+    Architecture: unknown
+    Is real model: False
+    ⚠️  Suspicious: fingerprint.pb is suspiciously small (55 bytes)
+
+[4] Creating input data...
+    Input created: <class 'torch.Tensor'>
+
+[5] Executing model...
+    ⚠️  WARNING: Executing potentially malicious code!
+from apply_sklearn_aspects
+[AOP] Comprehensive model loading monitoring active
+   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)
+   PyTorch (torch.load, JIT, State Dict, Package)
+   SafeTensors (torch, numpy, tensorflow)
+   Hugging Face (Models, Pipelines, Datasets)
+   ONNX Runtime
+   Gradient Boosting (XGBoost, LightGBM, CatBoost)
+   Scikit-learn (joblib, pickle)
+   JAX/Flax
+   CoreML
+   PaddlePaddle
+   MXNet
+   Protocol-level (pickle, msgpack, protobuf)
+here start_ebpf_monitoringe
+[ThreadPool] ✅ Python ThreadPoolExecutor hooked successfully
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Context Update] Updated 1 threads to child_init (LOADING)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=child_init, Phase=LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'child_init', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='child_init', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for LOADING: child_init
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (55 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing saved_model.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: df7868b1
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'df7868b1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='df7868b1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Context Update] Updated 1 threads to df7868b1 (LOADING)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=df7868b1, Phase=LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'df7868b1', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='df7868b1', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for LOADING: df7868b1
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 7dec11c5
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 162773, correlation '7dec11c5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7dec11c5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Context Update] Updated 1 threads to 7dec11c5 (LOADING)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=7dec11c5, Phase=LOADING
+[Debug] Setting eBPF context for TID 162773, correlation '7dec11c5', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='7dec11c5', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for LOADING: 7dec11c5
+PID:162773 TID:162777 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162777 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f254c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162780 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162780 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2544000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 10, 1 -> openat -> /sys/devices/system/cpu/online [flags=O_CLOEXEC]
+PID:162773 TID:162782 -event.operation_id: 12, 1 -> read -> /sys/devices/system/cpu/online [fd=313, size=8192]
+PID:162773 TID:162782 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:162773 TID:162782 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162782 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f253c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162775 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162775 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2564000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162778 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162778 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2554000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162783 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2540000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162783 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2540000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162783 -event.operation_id: 144, 1 -> madvise -> madvise_0x7f25637ff000_len=8368128 [behavior=MADV_DONTNEED]
+PID:162773 TID:162776 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162776 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f255c000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162779 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2550000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162779 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2550000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162781 -event.operation_id: 85, 1 -> mmap -> addr=0x7f2548000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162781 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2548000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 10, 0 -> openat -> /sys/devices/system/cpu/online [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:162773 TID:162773 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x5401
+PID:162773 TID:162773 -event.operation_id: 56, 0 -> lseek -> fd=309 [offset=0, whence=SEEK_CUR]
+PID:162773 TID:162773 -event.operation_id: 19, 0 -> fstat -> fd=309 [fd=309]
+PID:162773 TID:162773 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online [fd=309, size=4097]
+PID:162773 TID:162773 -event.operation_id: 12, 0 -> read -> /sys/devices/system/cpu/online [fd=309, size=4093]
+PID:162773 TID:162773 -event.operation_id: 57, 0 -> close -> fd=309 [fd=309]
+PID:162773 TID:162773 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=0
+PID:162773 TID:162773 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=309_cmd=0x2400
+PID:162773 TID:162773 -event.operation_id: 112, 0 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=1
+PID:162773 TID:162773 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=310_cmd=0x2400
+PID:162773 TID:162773 -event.operation_id: 112, 0 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=2
+PID:162773 TID:162773 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=311_cmd=0x2400
+PID:162773 TID:162773 -event.operation_id: 112, 0 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 142, 0 -> perf_event_open -> perf_event_pid=4294967295_cpu=3
+PID:162773 TID:162773 -event.operation_id: 85, 0 -> mmap -> addr=NULL, len=1 [protection=PROT_READ|PROT_WRITE, flags=MAP_SHARED]
+PID:162773 TID:162773 -event.operation_id: 4, 0 -> ioctl -> ioctl_fd=312_cmd=0x2400
+PID:162773 TID:162773 -event.operation_id: 112, 0 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 0 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/variables
+PID:162773 TID:162773 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/saved_model.pb [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/saved_model.pb [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/saved_model.pb
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb [fd=313, size=524288, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb [fd=313, size=511695, offset=12593]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/debug/saved_model_debug_info [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /dev/urandom [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 12, 1 -> read -> /dev/urandom [fd=313, size=4]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /etc/ld.so.cache [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 19, 1 -> fstat -> fd=313 [fd=313]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=2 [protection=PROT_READ, flags=MAP_PRIVATE]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=313 [fd=313]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /lib/x86_64-linux-gnu/libcuda.so.1 [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /lib/libcuda.so.1 [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /usr/lib/libcuda.so.1 [flags=O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> /proc/driver/nvidia/version [mode=R_OK|W_OK|X_OK]
+PID:162773 TID:162773 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f25599c5000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 3, 1 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f25699c5000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f25691c4000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f25689c3000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f25681c2000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 2, 1 -> sysinfo -> sysinfo
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 44, 1 -> readlink -> /proc/se [bufsiz=4095]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> /proc/self/cmdline [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 12, 1 -> read -> /proc/self/cmdline [fd=313, size=4095]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow [mode=R_OK|X_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels [flags=O_NONBLOCK|O_DIRECTORY|O_CLOEXEC]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 86, 1 -> mprotect -> addr=0x7f2563800000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162773 -event.operation_id: 80, 1 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/variables/variables.index [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=314, size=48, offset=234]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=314, size=20, offset=214]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=314, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=314, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=314, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=315, size=280, offset=11]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/variables/variables.index [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=316, size=48, offset=234]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=316, size=20, offset=214]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=316, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=317, size=1048576, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=317, size=1048285, offset=291]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=316 [fd=316]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=317 [fd=317]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=315 [fd=315]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=314, size=524288, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=314, size=524233, offset=55]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=314, size=524288, offset=55]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=314 [fd=314]
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8150, stream=stdout]
+PID:162773 TID:162773 -event.operation_id: 85, 1 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8128, stream=stdout]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162774
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.389469
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162775
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.413069
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162776
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.413290
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162777
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.413499
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162778
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.413781
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162779
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.414358
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162780
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.414662
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162781
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.414949
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162782
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.415234
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162783
+  Correlation ID: 7dec11c5
+  Phase: 1
+  Command: python3.9
+  Timestamp: 371386.473322
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8188, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (7dec11c5) - Total: 156
+======================================================================
+[1] PID:162773 TID:162773 - bpf ->  {}
+[2] PID:162773 TID:162773 - bpf ->  {}
+[3] PID:162773 TID:162773 - bpf ->  {}
+[4] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables {}
+[5] PID:162773 TID:162773 - getrandom -> getrandom_size=0 {}
+[6] PID:162773 TID:162773 - bpf ->  {}
+[7] PID:162773 TID:162773 - bpf ->  {}
+[8] PID:162773 TID:162773 - bpf ->  {}
+[9] PID:162773 TID:162773 - bpf ->  {}
+[10] PID:162773 TID:162773 - getrandom -> getrandom_size=0 {}
+[11] PID:162773 TID:162773 - bpf ->  {}
+[12] PID:162773 TID:162773 - bpf ->  {}
+[13] PID:162773 TID:162773 - bpf ->  {}
+[14] PID:162773 TID:162773 - bpf ->  {}
+[15] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'mode': 'R_OK'}
+[16] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'flags': 'O_RDONLY'}
+[17] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/saved_model.pb {}
+[18] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'fd': 313, 'size': 524288, 'offset': 0}
+[19] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'fd': 313, 'size': 511695, 'offset': 12593}
+[20] PID:162773 TID:162773 - close -> fd=313 {'fd': 313}
+[21] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/debug/saved_model_debug_info {'mode': 'R_OK'}
+[22] PID:162773 TID:162773 - openat -> /dev/urandom {'flags': 'O_RDONLY'}
+[23] PID:162773 TID:162773 - read -> /dev/urandom {'fd': 313, 'size': 4}
+[24] PID:162773 TID:162773 - close -> fd=313 {'fd': 313}
+[25] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[26] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[27] PID:162773 TID:162773 - openat -> /home/hala/ml_models_venv/lib/python3.9/site-packages/tensorflo {'flags': 'O_CLOEXEC'}
+[28] PID:162773 TID:162773 - openat -> /etc/ld.so.cache {'flags': 'O_CLOEXEC'}
+[29] PID:162773 TID:162773 - fstat -> fd=313 {'fd': 313}
+[30] PID:162773 TID:162773 - mmap -> addr=NULL, len=2 {'protection': 'PROT_READ', 'flags': 'MAP_PRIVATE'}
+[31] PID:162773 TID:162773 - close -> fd=313 {'fd': 313}
+[32] PID:162773 TID:162773 - openat -> /lib/x86_64-linux-gnu/libcuda.so.1 {'flags': 'O_CLOEXEC'}
+[33] PID:162773 TID:162773 - openat -> /usr/lib/x86_64-linux-gnu/libcuda.so.1 {'flags': 'O_CLOEXEC'}
+[34] PID:162773 TID:162773 - openat -> /lib/libcuda.so.1 {'flags': 'O_CLOEXEC'}
+[35] PID:162773 TID:162773 - openat -> /usr/lib/libcuda.so.1 {'flags': 'O_CLOEXEC'}
+[36] PID:162773 TID:162773 - access -> /proc/driver/nvidia/version {'mode': 'R_OK|W_OK|X_OK'}
+[37] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[38] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[39] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[40] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[41] PID:162773 TID:162775 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[42] PID:162773 TID:162776 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[43] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[44] PID:162773 TID:162773 - mprotect -> addr=0x7f25599c5000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[45] PID:162773 TID:162775 - mprotect -> addr=0x7f2564000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[46] PID:162773 TID:162776 - mprotect -> addr=0x7f255c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[47] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[48] PID:162773 TID:162778 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[49] PID:162773 TID:162777 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[50] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[51] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[52] PID:162773 TID:162778 - mprotect -> addr=0x7f2554000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[53] PID:162773 TID:162773 - mprotect -> addr=0x7f25699c5000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[54] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[55] PID:162773 TID:162777 - mprotect -> addr=0x7f254c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[56] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[57] PID:162773 TID:162773 - mprotect -> addr=0x7f25691c4000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[58] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[59] PID:162773 TID:162779 - mmap -> addr=0x7f2550000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[60] PID:162773 TID:162779 - mprotect -> addr=0x7f2550000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[61] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[62] PID:162773 TID:162773 - mprotect -> addr=0x7f25689c3000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[63] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[64] PID:162773 TID:162780 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[65] PID:162773 TID:162780 - mprotect -> addr=0x7f2544000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[66] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[67] PID:162773 TID:162773 - mprotect -> addr=0x7f25681c2000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[68] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[69] PID:162773 TID:162781 - mmap -> addr=0x7f2548000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[70] PID:162773 TID:162781 - mprotect -> addr=0x7f2548000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[71] PID:162773 TID:162782 - openat -> /sys/devices/system/cpu/online {'flags': 'O_CLOEXEC'}
+[72] PID:162773 TID:162782 - read -> /sys/devices/system/cpu/online {'fd': 313, 'size': 8192}
+[73] PID:162773 TID:162782 - close -> fd=313 {'fd': 313}
+[74] PID:162773 TID:162782 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[75] PID:162773 TID:162782 - mprotect -> addr=0x7f253c000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[76] PID:162773 TID:162773 - uname -> uname {}
+[77] PID:162773 TID:162773 - uname -> uname {}
+[78] PID:162773 TID:162773 - uname -> uname {}
+[79] PID:162773 TID:162773 - uname -> uname {}
+[80] PID:162773 TID:162773 - sysinfo -> sysinfo {}
+[81] PID:162773 TID:162773 - uname -> uname {}
+[82] PID:162773 TID:162773 - uname -> uname {}
+[83] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[84] PID:162773 TID:162773 - readlink -> /proc/se {'bufsiz': 4095}
+[85] PID:162773 TID:162773 - openat -> /proc/self/cmdline {'flags': 'O_RDONLY'}
+[86] PID:162773 TID:162773 - read -> /proc/self/cmdline {'fd': 313, 'size': 4095}
+[87] PID:162773 TID:162773 - access -> model_inspector_runner_October_4.py.runfiles/org_tensorflow {'mode': 'R_OK|X_OK'}
+[88] PID:162773 TID:162773 - openat -> model_inspector_runner_October_4.py/tensorflow/core/kernels {'flags': 'O_NONBLOCK|O_DIRECTORY|O_CLOEXEC'}
+[89] PID:162773 TID:162773 - uname -> uname {}
+[90] PID:162773 TID:162773 - uname -> uname {}
+[91] PID:162773 TID:162773 - uname -> uname {}
+[92] PID:162773 TID:162773 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[93] PID:162773 TID:162773 - mprotect -> addr=0x7f2563800000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[94] PID:162773 TID:162773 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[95] PID:162773 TID:162773 - uname -> uname {}
+[96] PID:162773 TID:162783 - mmap -> addr=0x7f2540000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[97] PID:162773 TID:162783 - mprotect -> addr=0x7f2540000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[98] PID:162773 TID:162783 - madvise -> madvise_0x7f25637ff000_len=8368128 {'behavior': 'MADV_DONTNEED'}
+[99] PID:162773 TID:162773 - uname -> uname {}
+[100] PID:162773 TID:162773 - uname -> uname {}
+[101] PID:162773 TID:162773 - uname -> uname {}
+[102] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'mode': 'R_OK'}
+[103] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {}
+[104] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'flags': 'O_RDONLY'}
+[105] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 314, 'size': 48, 'offset': 234}
+[106] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 314, 'size': 20, 'offset': 214}
+[107] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 314, 'size': 201, 'offset': 0}
+[108] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 314, 'size': 201, 'offset': 0}
+[109] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 314, 'size': 201, 'offset': 0}
+[110] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'flags': 'O_RDONLY'}
+[111] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 315, 'size': 280, 'offset': 11}
+[112] PID:162773 TID:162773 - uname -> uname {}
+[113] PID:162773 TID:162773 - uname -> uname {}
+[114] PID:162773 TID:162773 - uname -> uname {}
+[115] PID:162773 TID:162773 - uname -> uname {}
+[116] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'mode': 'R_OK'}
+[117] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {}
+[118] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'flags': 'O_RDONLY'}
+[119] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 316, 'size': 48, 'offset': 234}
+[120] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 316, 'size': 20, 'offset': 214}
+[121] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 316, 'size': 201, 'offset': 0}
+[122] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'flags': 'O_RDONLY'}
+[123] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 317, 'size': 1048576, 'offset': 0}
+[124] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 317, 'size': 1048285, 'offset': 291}
+[125] PID:162773 TID:162773 - close -> fd=316 {'fd': 316}
+[126] PID:162773 TID:162773 - close -> fd=317 {'fd': 317}
+[127] PID:162773 TID:162773 - uname -> uname {}
+[128] PID:162773 TID:162773 - uname -> uname {}
+[129] PID:162773 TID:162773 - uname -> uname {}
+[130] PID:162773 TID:162773 - uname -> uname {}
+[131] PID:162773 TID:162773 - uname -> uname {}
+[132] PID:162773 TID:162773 - uname -> uname {}
+[133] PID:162773 TID:162773 - uname -> uname {}
+[134] PID:162773 TID:162773 - uname -> uname {}
+[135] PID:162773 TID:162773 - uname -> uname {}
+[136] PID:162773 TID:162773 - uname -> uname {}
+[137] PID:162773 TID:162773 - uname -> uname {}
+[138] PID:162773 TID:162773 - uname -> uname {}
+[139] PID:162773 TID:162773 - uname -> uname {}
+[140] PID:162773 TID:162773 - uname -> uname {}
+[141] PID:162773 TID:162773 - uname -> uname {}
+[142] PID:162773 TID:162773 - uname -> uname {}
+[143] PID:162773 TID:162773 - uname -> uname {}
+[144] PID:162773 TID:162773 - uname -> uname {}
+[145] PID:162773 TID:162773 - close -> fd=314 {'fd': 314}
+[146] PID:162773 TID:162773 - close -> fd=315 {'fd': 315}
+[147] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'mode': 'R_OK'}
+[148] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'flags': 'O_RDONLY'}
+[149] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 0}
+[150] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 314, 'size': 524233, 'offset': 55}
+[151] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 314, 'size': 524288, 'offset': 55}
+[152] PID:162773 TID:162773 - close -> fd=314 {'fd': 314}
+[153] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8150, 'stream': 'stdout'}
+[154] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[155] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8128, 'stream': 'stdout'}
+[156] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8188, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2479 seconds
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8189, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 10
+
+======================================================================
+LOADING EVENTS (df7868b1) - Total: 1
+======================================================================
+[1] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8189, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.3434 seconds
+    ✓ Model loaded successfully
+    Model loaded, attempting execution...
+    Trying direct model call...
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: d460b2e3
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 162773, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Debug] Setting eBPF context for TID 162774, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162774
+[Debug] Setting eBPF context for TID 162775, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162775
+[Debug] Setting eBPF context for TID 162776, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162776
+[Debug] Setting eBPF context for TID 162777, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162777
+[Debug] Setting eBPF context for TID 162778, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162778
+[Debug] Setting eBPF context for TID 162779, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162779
+[Debug] Setting eBPF context for TID 162780, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162780
+[Debug] Setting eBPF context for TID 162781, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162781
+[Debug] Setting eBPF context for TID 162782, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162782
+[Debug] Setting eBPF context for TID 162783, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162783
+[Context Update] Updated 11 threads to d460b2e3 (EXECUTION)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=d460b2e3, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 162773, correlation 'd460b2e3', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='d460b2e3', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for EXECUTION: d460b2e3
+PID:162773 TID:162782 -event.operation_id: 10, 2 -> openat -> /sys/devices/system/cpu [flags=O_NONBLOCK|O_DIRECTORY|O_CLOEXEC]
+PID:162773 TID:162782 -event.operation_id: 19, 2 -> fstat -> fd=314 [fd=314]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c021000, len=28672 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 40, 2 -> getdents64 -> /sys/devices/system/cpu [fd=314]
+PID:162773 TID:162782 -event.operation_id: 40, 2 -> getdents64 -> /sys/devices/system/cpu [fd=314]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=314 [fd=314]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c028000, len=12288 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 80, 2 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162782 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f2562fff000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 80, 2 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=314 [fd=314]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=315 [fd=315]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=314 [fd=314]
+PID:162773 TID:162782 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162782 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=131106 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f25627fe000, len=8388608 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 80, 2 -> clone -> flags=0x3d0f00 [flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=318 [fd=318]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=319 [fd=319]
+PID:162773 TID:162782 -event.operation_id: 76, 2 -> getsockopt -> fd=320_SOL_SOCKET [optname=4]
+PID:162773 TID:162782 -event.operation_id: 77, 2 -> setsockopt -> fd=320_SOL_TCP [optname=36]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c02b000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c02c000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 71, 2 -> sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x] [fd=320, flags=0xa0d302e322f5054, total_len=1297287693, flag_names=MSG_DONTROUTE|MSG_EOR|MSG_NOSIGNAL, msg_preview=PRI * HTTP/2.0\x0d\x0a\x0d\x0aSM\x0d\x0a\x0d\x0a\x02, operation=sendmsg]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=318 [fd=318]
+PID:162773 TID:162782 -event.operation_id: 57, 2 -> close -> fd=319 [fd=319]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c02e000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c02f000, len=8192 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 71, 2 -> sendmsg -> fd=320 [fd=320, flags=0x0, operation=sendmsg]
+PID:162773 TID:162782 -event.operation_id: 71, 2 -> sendmsg -> fd=320 [fd=320, flags=0x0, operation=sendmsg]
+PID:162773 TID:162785 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162785 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f2534000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162785 -event.operation_id: 82, 2 -> prctl -> prctl_PR_SET_NAME
+PID:162773 TID:162785 -event.operation_id: 64, 2 -> socket -> AF_INET6/SOCK_STREAM/DEFAULT [family=AF_INET6, type=SOCK_STREAM, protocol=DEFAULT]
+PID:162773 TID:162785 -event.operation_id: 65, 2 -> bind -> [::]:0 [family=AF_INET6, address=::, port=0, fd=320]
+PID:162773 TID:162785 -event.operation_id: 57, 2 -> close -> fd=320 [fd=320]
+PID:162773 TID:162785 -event.operation_id: 64, 2 -> socket -> AF_INET6/SOCK_STREAM/DEFAULT [family=AF_INET6, type=SOCK_STREAM, protocol=DEFAULT]
+PID:162773 TID:162785 -event.operation_id: 77, 2 -> setsockopt -> fd=320_level_41 [optname=26]
+PID:162773 TID:162785 -event.operation_id: 48, 2 -> fcntl -> fcntl_fd=320_F_GETFL [arg=0]
+PID:162773 TID:162785 -event.operation_id: 48, 2 -> fcntl -> fcntl_fd=320_F_SETFL [arg=2050]
+PID:162773 TID:162785 -event.operation_id: 48, 2 -> fcntl -> fcntl_fd=320_F_GETFD [arg=0]
+PID:162773 TID:162785 -event.operation_id: 48, 2 -> fcntl -> fcntl_fd=320_F_SETFD [arg=1]
+PID:162773 TID:162785 -event.operation_id: 77, 2 -> setsockopt -> fd=320_SOL_TCP [optname=1]
+PID:162773 TID:162785 -event.operation_id: 76, 2 -> getsockopt -> fd=320_SOL_TCP [optname=1]
+PID:162773 TID:162785 -event.operation_id: 77, 2 -> setsockopt -> fd=320_SOL_SOCKET [optname=2]
+PID:162773 TID:162785 -event.operation_id: 76, 2 -> getsockopt -> fd=320_SOL_SOCKET [optname=2]
+PID:162773 TID:162785 -event.operation_id: 69, 2 -> connect -> 127.0.0.1:1236 [family=AF_INET, address=127.0.0.1, port=1236, note=ipv4-mapped-v6, fd=320]
+PID:162773 TID:162784 -event.operation_id: 82, 2 -> prctl -> prctl_PR_SET_NAME
+PID:162773 TID:162786 -event.operation_id: 85, 2 -> mmap -> addr=0x7f2538000000, len=16418 [protection=PROT_NONE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162786 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f2538000000, len=135168 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162786 -event.operation_id: 82, 2 -> prctl -> prctl_PR_SET_NAME
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8180, stream=stdout]
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 10, 2 -> openat -> /proc/cpuinfo [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 12, 2 -> read -> /proc/cpuinfo [fd=314, size=8191]
+PID:162773 TID:162773 -event.operation_id: 57, 2 -> close -> fd=314 [fd=314]
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 2, 2 -> sysinfo -> sysinfo
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8169, stream=stdout]
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162784
+  Correlation ID: d460b2e3
+  Phase: 2
+  Command: python3.9
+  Timestamp: 371386.782538
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162785
+  Correlation ID: d460b2e3
+  Phase: 2
+  Command: python3.9
+  Timestamp: 371386.782847
+[Process] NEW CHILD PROCESS DETECTED:
+  Parent PID: 162773 -> Child PID: 162786
+  Correlation ID: d460b2e3
+  Phase: 2
+  Command: python3.9
+  Timestamp: 371386.783709
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 13
+
+======================================================================
+EXECUTION EVENTS (d460b2e3) - Total: 97
+======================================================================
+[1] PID:162773 TID:162773 - bpf ->  {}
+[2] PID:162773 TID:162773 - bpf ->  {}
+[3] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8180, 'stream': 'stdout'}
+[4] PID:162773 TID:162773 - bpf ->  {}
+[5] PID:162773 TID:162773 - bpf ->  {}
+[6] PID:162773 TID:162773 - bpf ->  {}
+[7] PID:162773 TID:162773 - bpf ->  {}
+[8] PID:162773 TID:162773 - bpf ->  {}
+[9] PID:162773 TID:162773 - bpf ->  {}
+[10] PID:162773 TID:162773 - bpf ->  {}
+[11] PID:162773 TID:162773 - bpf ->  {}
+[12] PID:162773 TID:162773 - bpf ->  {}
+[13] PID:162773 TID:162773 - bpf ->  {}
+[14] PID:162773 TID:162773 - bpf ->  {}
+[15] PID:162773 TID:162773 - bpf ->  {}
+[16] PID:162773 TID:162773 - bpf ->  {}
+[17] PID:162773 TID:162773 - bpf ->  {}
+[18] PID:162773 TID:162773 - bpf ->  {}
+[19] PID:162773 TID:162773 - bpf ->  {}
+[20] PID:162773 TID:162773 - bpf ->  {}
+[21] PID:162773 TID:162773 - bpf ->  {}
+[22] PID:162773 TID:162773 - bpf ->  {}
+[23] PID:162773 TID:162773 - bpf ->  {}
+[24] PID:162773 TID:162773 - bpf ->  {}
+[25] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[26] PID:162773 TID:162773 - uname -> uname {}
+[27] PID:162773 TID:162773 - uname -> uname {}
+[28] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[29] PID:162773 TID:162773 - uname -> uname {}
+[30] PID:162773 TID:162773 - uname -> uname {}
+[31] PID:162773 TID:162773 - uname -> uname {}
+[32] PID:162773 TID:162773 - uname -> uname {}
+[33] PID:162773 TID:162773 - uname -> uname {}
+[34] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[35] PID:162773 TID:162773 - uname -> uname {}
+[36] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[37] PID:162773 TID:162773 - openat -> /proc/cpuinfo {'flags': 'O_RDONLY'}
+[38] PID:162773 TID:162773 - read -> /proc/cpuinfo {'fd': 314, 'size': 8191}
+[39] PID:162773 TID:162773 - close -> fd=314 {'fd': 314}
+[40] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[41] PID:162773 TID:162773 - sysinfo -> sysinfo {}
+[42] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[43] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[44] PID:162773 TID:162773 - uname -> uname {}
+[45] PID:162773 TID:162782 - openat -> /sys/devices/system/cpu {'flags': 'O_NONBLOCK|O_DIRECTORY|O_CLOEXEC'}
+[46] PID:162773 TID:162782 - fstat -> fd=314 {'fd': 314}
+[47] PID:162773 TID:162782 - mprotect -> addr=0x7f253c021000, len=28672 {'protection': 'PROT_READ|PROT_WRITE'}
+[48] PID:162773 TID:162782 - getdents64 -> /sys/devices/system/cpu {'fd': 314}
+[49] PID:162773 TID:162782 - getdents64 -> /sys/devices/system/cpu {'fd': 314}
+[50] PID:162773 TID:162782 - close -> fd=314 {'fd': 314}
+[51] PID:162773 TID:162782 - mprotect -> addr=0x7f253c028000, len=12288 {'protection': 'PROT_READ|PROT_WRITE'}
+[52] PID:162773 TID:162782 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[53] PID:162773 TID:162782 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[54] PID:162773 TID:162782 - mprotect -> addr=0x7f2562fff000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[55] PID:162773 TID:162782 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[56] PID:162773 TID:162782 - close -> fd=314 {'fd': 314}
+[57] PID:162773 TID:162782 - close -> fd=315 {'fd': 315}
+[58] PID:162773 TID:162782 - close -> fd=314 {'fd': 314}
+[59] PID:162773 TID:162785 - mmap -> addr=NULL, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[60] PID:162773 TID:162784 - prctl -> prctl_PR_SET_NAME {'arg2': 139798568234672}
+[61] PID:162773 TID:162782 - uname -> uname {}
+[62] PID:162773 TID:162785 - mprotect -> addr=0x7f2534000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[63] PID:162773 TID:162785 - prctl -> prctl_PR_SET_NAME {'arg2': 139798559841968}
+[64] PID:162773 TID:162782 - mmap -> addr=NULL, len=131106 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[65] PID:162773 TID:162782 - mprotect -> addr=0x7f25627fe000, len=8388608 {'protection': 'PROT_READ|PROT_WRITE'}
+[66] PID:162773 TID:162782 - clone -> flags=0x3d0f00 {'flags': 'CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM'}
+[67] PID:162773 TID:162786 - mmap -> addr=0x7f2538000000, len=16418 {'protection': 'PROT_NONE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[68] PID:162773 TID:162782 - close -> fd=318 {'fd': 318}
+[69] PID:162773 TID:162786 - mprotect -> addr=0x7f2538000000, len=135168 {'protection': 'PROT_READ|PROT_WRITE'}
+[70] PID:162773 TID:162782 - close -> fd=319 {'fd': 319}
+[71] PID:162773 TID:162786 - prctl -> prctl_PR_SET_NAME {'arg2': 139798551449264}
+[72] PID:162773 TID:162785 - socket -> AF_INET6/SOCK_STREAM/DEFAULT {'family': 'AF_INET6', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[73] PID:162773 TID:162785 - bind -> [::]:0 {'family': 'AF_INET6', 'address': '::', 'port': 0, 'fd': 320}
+[74] PID:162773 TID:162785 - close -> fd=320 {'fd': 320}
+[75] PID:162773 TID:162785 - socket -> AF_INET6/SOCK_STREAM/DEFAULT {'family': 'AF_INET6', 'type': 'SOCK_STREAM', 'protocol': 'DEFAULT'}
+[76] PID:162773 TID:162785 - setsockopt -> fd=320_level_41 {'optname': 26}
+[77] PID:162773 TID:162785 - fcntl -> fcntl_fd=320_F_GETFL {'arg': 0}
+[78] PID:162773 TID:162785 - fcntl -> fcntl_fd=320_F_SETFL {'arg': 2050}
+[79] PID:162773 TID:162785 - fcntl -> fcntl_fd=320_F_GETFD {'arg': 0}
+[80] PID:162773 TID:162785 - fcntl -> fcntl_fd=320_F_SETFD {'arg': 1}
+[81] PID:162773 TID:162785 - setsockopt -> fd=320_SOL_TCP {'optname': 1}
+[82] PID:162773 TID:162785 - getsockopt -> fd=320_SOL_TCP {'optname': 1}
+[83] PID:162773 TID:162785 - setsockopt -> fd=320_SOL_SOCKET {'optname': 2}
+[84] PID:162773 TID:162785 - getsockopt -> fd=320_SOL_SOCKET {'optname': 2}
+[85] PID:162773 TID:162785 - connect -> 127.0.0.1:1236 {'family': 'AF_INET', 'address': '127.0.0.1', 'port': 1236, 'note': 'ipv4-mapped-v6', 'fd': 320}
+[86] PID:162773 TID:162782 - getsockopt -> fd=320_SOL_SOCKET {'optname': 4}
+[87] PID:162773 TID:162782 - setsockopt -> fd=320_SOL_TCP {'optname': 36}
+[88] PID:162773 TID:162782 - mprotect -> addr=0x7f253c02b000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[89] PID:162773 TID:162782 - mprotect -> addr=0x7f253c02c000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[90] PID:162773 TID:162782 - sendmsg -> fd=320 [PRI * HTTP/2.0\x0d\x] {'fd': 320, 'flags': '0xa0d302e322f5054', 'total_len': 1297287693, 'flag_names': 'MSG_DONTROUTE|MSG_EOR|MSG_NOSIGNAL', 'msg_preview': 'PRI * HTTP/2.0\\x0d\\x0a\\x0d\\x0aSM\\x0d\\x0a\\x0d\\x0a\\x02', 'operation': 'sendmsg'}
+[91] PID:162773 TID:162782 - close -> fd=318 {'fd': 318}
+[92] PID:162773 TID:162782 - close -> fd=319 {'fd': 319}
+[93] PID:162773 TID:162782 - mprotect -> addr=0x7f253c02e000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[94] PID:162773 TID:162782 - mprotect -> addr=0x7f253c02f000, len=8192 {'protection': 'PROT_READ|PROT_WRITE'}
+[95] PID:162773 TID:162782 - sendmsg -> fd=320 {'fd': 320, 'flags': '0x0', 'operation': 'sendmsg'}
+[96] PID:162773 TID:162782 - sendmsg -> fd=320 {'fd': 320, 'flags': '0x0', 'operation': 'sendmsg'}
+[97] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8169, 'stream': 'stdout'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1452 seconds
+    ✓ Direct call succeeded
+⚠️  WARNINGS:
+   - fingerprint.pb is suspiciously small (55 bytes)
+   - This may not be a real model - likely just malicious code
+
+  Processing fingerprint.pb as type: tensorflow_saved
+Loading TensorFlow SavedModel...
+    Attempting standard load...
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: 5e78b441
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 162773, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Debug] Setting eBPF context for TID 162774, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162774
+[Debug] Setting eBPF context for TID 162775, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162775
+[Debug] Setting eBPF context for TID 162776, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162776
+[Debug] Setting eBPF context for TID 162777, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162777
+[Debug] Setting eBPF context for TID 162778, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162778
+[Debug] Setting eBPF context for TID 162779, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162779
+[Debug] Setting eBPF context for TID 162780, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162780
+[Debug] Setting eBPF context for TID 162781, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162781
+[Debug] Setting eBPF context for TID 162782, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162782
+[Debug] Setting eBPF context for TID 162783, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162783
+[Debug] Setting eBPF context for TID 162784, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162784
+[Debug] Setting eBPF context for TID 162785, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162785
+[Debug] Setting eBPF context for TID 162786, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162786
+[Context Update] Updated 14 threads to 5e78b441 (LOADING)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=5e78b441, Phase=LOADING
+[Debug] Setting eBPF context for TID 162773, correlation '5e78b441', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='5e78b441', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for LOADING: 5e78b441
+
+[AOP Monitor] === LOADING PHASE START ===
+[AOP Monitor] Correlation ID: bc1d9179
+[AOP Monitor] API Called: tensorflow.python.saved_model.load.load
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Debug] Setting eBPF context for TID 162774, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162774
+[Debug] Setting eBPF context for TID 162775, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162775
+[Debug] Setting eBPF context for TID 162776, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162776
+[Debug] Setting eBPF context for TID 162777, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162777
+[Debug] Setting eBPF context for TID 162778, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162778
+[Debug] Setting eBPF context for TID 162779, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162779
+[Debug] Setting eBPF context for TID 162780, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162780
+[Debug] Setting eBPF context for TID 162781, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162781
+[Debug] Setting eBPF context for TID 162782, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162782
+[Debug] Setting eBPF context for TID 162783, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162783
+[Debug] Setting eBPF context for TID 162784, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162784
+[Debug] Setting eBPF context for TID 162785, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162785
+[Debug] Setting eBPF context for TID 162786, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162786
+[Context Update] Updated 14 threads to bc1d9179 (LOADING)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=bc1d9179, Phase=LOADING
+[Debug] Setting eBPF context for TID 162773, correlation 'bc1d9179', phase 1
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='bc1d9179', phase=1
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for LOADING: bc1d9179
+PID:162773 TID:162773 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8192, stream=stdout]
+PID:162773 TID:162773 -event.operation_id: 18, 2 -> stat -> tf_attacks/ip_exposure/saved_model/variables
+PID:162773 TID:162773 -event.operation_id: 5, 2 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8180, stream=stdout]
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/saved_model.pb [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/saved_model.pb [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/saved_model.pb
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb [fd=321, size=524288, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb [fd=321, size=511695, offset=12593]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=321 [fd=321]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/debug/saved_model_debug_info [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 1 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/variables/variables.index [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=321, size=48, offset=234]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=321, size=20, offset=214]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=321, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=321, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=321, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=322, size=280, offset=11]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/variables/variables.index [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 18, 1 -> stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=323, size=48, offset=234]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=323, size=20, offset=214]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index [fd=323, size=201, offset=0]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=324, size=1048576, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 [fd=324, size=1048285, offset=291]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=323 [fd=323]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=324 [fd=324]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=321 [fd=321]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=322 [fd=322]
+PID:162773 TID:162773 -event.operation_id: 22, 1 -> access -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [mode=R_OK]
+PID:162773 TID:162773 -event.operation_id: 10, 1 -> openat -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [flags=O_RDONLY]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=321, size=524288, offset=0]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=321, size=524233, offset=55]
+PID:162773 TID:162773 -event.operation_id: 13, 1 -> pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb [fd=321, size=524288, offset=55]
+PID:162773 TID:162773 -event.operation_id: 57, 1 -> close -> fd=321 [fd=321]
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8175, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 13
+
+======================================================================
+LOADING EVENTS (bc1d9179) - Total: 110
+======================================================================
+[1] PID:162773 TID:162773 - uname -> uname {}
+[2] PID:162773 TID:162773 - uname -> uname {}
+[3] PID:162773 TID:162773 - uname -> uname {}
+[4] PID:162773 TID:162773 - uname -> uname {}
+[5] PID:162773 TID:162773 - getrandom -> getrandom_size=0 {}
+[6] PID:162773 TID:162773 - bpf ->  {}
+[7] PID:162773 TID:162773 - bpf ->  {}
+[8] PID:162773 TID:162773 - bpf ->  {}
+[9] PID:162773 TID:162773 - bpf ->  {}
+[10] PID:162773 TID:162773 - bpf ->  {}
+[11] PID:162773 TID:162773 - bpf ->  {}
+[12] PID:162773 TID:162773 - bpf ->  {}
+[13] PID:162773 TID:162773 - bpf ->  {}
+[14] PID:162773 TID:162773 - bpf ->  {}
+[15] PID:162773 TID:162773 - bpf ->  {}
+[16] PID:162773 TID:162773 - bpf ->  {}
+[17] PID:162773 TID:162773 - bpf ->  {}
+[18] PID:162773 TID:162773 - bpf ->  {}
+[19] PID:162773 TID:162773 - bpf ->  {}
+[20] PID:162773 TID:162773 - bpf ->  {}
+[21] PID:162773 TID:162773 - bpf ->  {}
+[22] PID:162773 TID:162773 - bpf ->  {}
+[23] PID:162773 TID:162773 - bpf ->  {}
+[24] PID:162773 TID:162773 - bpf ->  {}
+[25] PID:162773 TID:162773 - bpf ->  {}
+[26] PID:162773 TID:162773 - bpf ->  {}
+[27] PID:162773 TID:162773 - bpf ->  {}
+[28] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8180, 'stream': 'stdout'}
+[29] PID:162773 TID:162773 - bpf ->  {}
+[30] PID:162773 TID:162773 - bpf ->  {}
+[31] PID:162773 TID:162773 - bpf ->  {}
+[32] PID:162773 TID:162773 - bpf ->  {}
+[33] PID:162773 TID:162773 - bpf ->  {}
+[34] PID:162773 TID:162773 - bpf ->  {}
+[35] PID:162773 TID:162773 - bpf ->  {}
+[36] PID:162773 TID:162773 - bpf ->  {}
+[37] PID:162773 TID:162773 - getrandom -> getrandom_size=0 {}
+[38] PID:162773 TID:162773 - bpf ->  {}
+[39] PID:162773 TID:162773 - bpf ->  {}
+[40] PID:162773 TID:162773 - bpf ->  {}
+[41] PID:162773 TID:162773 - bpf ->  {}
+[42] PID:162773 TID:162773 - bpf ->  {}
+[43] PID:162773 TID:162773 - bpf ->  {}
+[44] PID:162773 TID:162773 - bpf ->  {}
+[45] PID:162773 TID:162773 - bpf ->  {}
+[46] PID:162773 TID:162773 - bpf ->  {}
+[47] PID:162773 TID:162773 - bpf ->  {}
+[48] PID:162773 TID:162773 - bpf ->  {}
+[49] PID:162773 TID:162773 - bpf ->  {}
+[50] PID:162773 TID:162773 - bpf ->  {}
+[51] PID:162773 TID:162773 - bpf ->  {}
+[52] PID:162773 TID:162773 - bpf ->  {}
+[53] PID:162773 TID:162773 - bpf ->  {}
+[54] PID:162773 TID:162773 - bpf ->  {}
+[55] PID:162773 TID:162773 - bpf ->  {}
+[56] PID:162773 TID:162773 - bpf ->  {}
+[57] PID:162773 TID:162773 - bpf ->  {}
+[58] PID:162773 TID:162773 - bpf ->  {}
+[59] PID:162773 TID:162773 - bpf ->  {}
+[60] PID:162773 TID:162773 - bpf ->  {}
+[61] PID:162773 TID:162773 - bpf ->  {}
+[62] PID:162773 TID:162773 - bpf ->  {}
+[63] PID:162773 TID:162773 - bpf ->  {}
+[64] PID:162773 TID:162773 - bpf ->  {}
+[65] PID:162773 TID:162773 - bpf ->  {}
+[66] PID:162773 TID:162773 - bpf ->  {}
+[67] PID:162773 TID:162773 - bpf ->  {}
+[68] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'mode': 'R_OK'}
+[69] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'flags': 'O_RDONLY'}
+[70] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/saved_model.pb {}
+[71] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'fd': 321, 'size': 524288, 'offset': 0}
+[72] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/saved_model.pb {'fd': 321, 'size': 511695, 'offset': 12593}
+[73] PID:162773 TID:162773 - close -> fd=321 {'fd': 321}
+[74] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/debug/saved_model_debug_info {'mode': 'R_OK'}
+[75] PID:162773 TID:162773 - uname -> uname {}
+[76] PID:162773 TID:162773 - uname -> uname {}
+[77] PID:162773 TID:162773 - uname -> uname {}
+[78] PID:162773 TID:162773 - uname -> uname {}
+[79] PID:162773 TID:162773 - uname -> uname {}
+[80] PID:162773 TID:162773 - uname -> uname {}
+[81] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'mode': 'R_OK'}
+[82] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {}
+[83] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'flags': 'O_RDONLY'}
+[84] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 321, 'size': 48, 'offset': 234}
+[85] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 321, 'size': 20, 'offset': 214}
+[86] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 321, 'size': 201, 'offset': 0}
+[87] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 321, 'size': 201, 'offset': 0}
+[88] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 321, 'size': 201, 'offset': 0}
+[89] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'flags': 'O_RDONLY'}
+[90] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 322, 'size': 280, 'offset': 11}
+[91] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'mode': 'R_OK'}
+[92] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {}
+[93] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'flags': 'O_RDONLY'}
+[94] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 323, 'size': 48, 'offset': 234}
+[95] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 323, 'size': 20, 'offset': 214}
+[96] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.index {'fd': 323, 'size': 201, 'offset': 0}
+[97] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'flags': 'O_RDONLY'}
+[98] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 324, 'size': 1048576, 'offset': 0}
+[99] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/variables/variables.data-000 {'fd': 324, 'size': 1048285, 'offset': 291}
+[100] PID:162773 TID:162773 - close -> fd=323 {'fd': 323}
+[101] PID:162773 TID:162773 - close -> fd=324 {'fd': 324}
+[102] PID:162773 TID:162773 - close -> fd=321 {'fd': 321}
+[103] PID:162773 TID:162773 - close -> fd=322 {'fd': 322}
+[104] PID:162773 TID:162773 - access -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'mode': 'R_OK'}
+[105] PID:162773 TID:162773 - openat -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'flags': 'O_RDONLY'}
+[106] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 321, 'size': 524288, 'offset': 0}
+[107] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 321, 'size': 524233, 'offset': 55}
+[108] PID:162773 TID:162773 - pread64 -> tf_attacks/ip_exposure/saved_model/fingerprint.pb {'fd': 321, 'size': 524288, 'offset': 55}
+[109] PID:162773 TID:162773 - close -> fd=321 {'fd': 321}
+[110] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8175, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.1186 seconds
+PID:162773 TID:162773 -event.operation_id: 15, 1 -> write -> stdout [fd=1, size=8158, stream=stdout]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 13
+
+======================================================================
+LOADING EVENTS (5e78b441) - Total: 1
+======================================================================
+[1] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8158, 'stream': 'stdout'}
+[AOP Monitor] === LOADING PHASE END ===
+[AOP Monitor] Execution Time: 0.2150 seconds
+    ✓ Model loaded successfully
+    Model loaded, attempting execution...
+    Trying direct model call...
+
+[AOP Monitor] === EXECUTION PHASE START ===
+[AOP Monitor] Correlation ID: af45b4a2
+[AOP Monitor] API Called: tensorflow.python.saved_model.function_deserialization.restored_function_body
+here start_ebpf_monitoringe
+[Context Update] Updating all threads for phase EXECUTION
+[Debug] Setting eBPF context for TID 162773, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated main thread 162773
+[Debug] Setting eBPF context for TID 162774, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162774
+[Debug] Setting eBPF context for TID 162775, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162775
+[Debug] Setting eBPF context for TID 162776, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162776
+[Debug] Setting eBPF context for TID 162777, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162777
+[Debug] Setting eBPF context for TID 162778, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162778
+[Debug] Setting eBPF context for TID 162779, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162779
+[Debug] Setting eBPF context for TID 162780, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162780
+[Debug] Setting eBPF context for TID 162781, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162781
+[Debug] Setting eBPF context for TID 162782, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162782
+[Debug] Setting eBPF context for TID 162783, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162783
+[Debug] Setting eBPF context for TID 162784, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162784
+[Debug] Setting eBPF context for TID 162785, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162785
+[Debug] Setting eBPF context for TID 162786, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[Context Update] Updated worker thread 162786
+[Context Update] Updated 14 threads to af45b4a2 (EXECUTION)
+[Debug] Thread IDs - Python: 139801119647552, Kernel: 162773
+[AOP Monitor] Context tracked: pthread_id=139801119647552, kernel_tid=162773, ID=af45b4a2, Phase=EXECUTION
+[Debug] Setting eBPF context for TID 162773, correlation 'af45b4a2', phase 2
+[Debug] eBPF context set successfully
+[Debug] ✅ eBPF context verified: correlation='af45b4a2', phase=2
+[Debug] ✅ Correlation ID matches perfectly!
+[AOP Monitor] eBPF context set successfully for kernel TID 162773
+[AOP Monitor] eBPF monitoring active for EXECUTION: af45b4a2
+PID:162773 TID:162782 -event.operation_id: 86, 2 -> mprotect -> addr=0x7f253c031000, len=4096 [protection=PROT_READ|PROT_WRITE]
+PID:162773 TID:162782 -event.operation_id: 71, 2 -> sendmsg -> fd=320 [fd=320, flags=0x0, operation=sendmsg]
+PID:162773 TID:162773 -event.operation_id: 5, 1 -> getrandom -> getrandom_size=0
+PID:162773 TID:162773 -event.operation_id: 112, 1 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8162, stream=stdout]
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 112, 2 -> bpf -> 
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 2, 2 -> sysinfo -> sysinfo
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 3, 2 -> sched_getaffinity -> sched_getaffinity_pid=0 [cpusetsize=128]
+PID:162773 TID:162773 -event.operation_id: 1, 2 -> uname -> uname
+PID:162773 TID:162773 -event.operation_id: 85, 2 -> mmap -> addr=NULL, len=34 [protection=PROT_READ|PROT_WRITE, flags=MAP_PRIVATE|MAP_ANONYMOUS]
+
+[Thread] THREAD GENEALOGY ANALYSIS:
+  Total child threads created: 13
+
+======================================================================
+EXECUTION EVENTS (af45b4a2) - Total: 52
+======================================================================
+[1] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8192, 'stream': 'stdout'}
+[2] PID:162773 TID:162773 - stat -> tf_attacks/ip_exposure/saved_model/variables {}
+[3] PID:162773 TID:162773 - getrandom -> getrandom_size=0 {}
+[4] PID:162773 TID:162773 - bpf ->  {}
+[5] PID:162773 TID:162773 - bpf ->  {}
+[6] PID:162773 TID:162773 - bpf ->  {}
+[7] PID:162773 TID:162773 - bpf ->  {}
+[8] PID:162773 TID:162773 - write -> stdout {'fd': 1, 'size': 8162, 'stream': 'stdout'}
+[9] PID:162773 TID:162773 - bpf ->  {}
+[10] PID:162773 TID:162773 - bpf ->  {}
+[11] PID:162773 TID:162773 - bpf ->  {}
+[12] PID:162773 TID:162773 - bpf ->  {}
+[13] PID:162773 TID:162773 - bpf ->  {}
+[14] PID:162773 TID:162773 - bpf ->  {}
+[15] PID:162773 TID:162773 - bpf ->  {}
+[16] PID:162773 TID:162773 - bpf ->  {}
+[17] PID:162773 TID:162773 - bpf ->  {}
+[18] PID:162773 TID:162773 - bpf ->  {}
+[19] PID:162773 TID:162773 - bpf ->  {}
+[20] PID:162773 TID:162773 - bpf ->  {}
+[21] PID:162773 TID:162773 - bpf ->  {}
+[22] PID:162773 TID:162773 - bpf ->  {}
+[23] PID:162773 TID:162773 - bpf ->  {}
+[24] PID:162773 TID:162773 - bpf ->  {}
+[25] PID:162773 TID:162773 - bpf ->  {}
+[26] PID:162773 TID:162773 - bpf ->  {}
+[27] PID:162773 TID:162773 - bpf ->  {}
+[28] PID:162773 TID:162773 - bpf ->  {}
+[29] PID:162773 TID:162773 - bpf ->  {}
+[30] PID:162773 TID:162773 - bpf ->  {}
+[31] PID:162773 TID:162773 - bpf ->  {}
+[32] PID:162773 TID:162773 - bpf ->  {}
+[33] PID:162773 TID:162773 - bpf ->  {}
+[34] PID:162773 TID:162773 - bpf ->  {}
+[35] PID:162773 TID:162773 - uname -> uname {}
+[36] PID:162773 TID:162773 - uname -> uname {}
+[37] PID:162773 TID:162773 - uname -> uname {}
+[38] PID:162773 TID:162773 - uname -> uname {}
+[39] PID:162773 TID:162773 - uname -> uname {}
+[40] PID:162773 TID:162773 - uname -> uname {}
+[41] PID:162773 TID:162773 - uname -> uname {}
+[42] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[43] PID:162773 TID:162773 - uname -> uname {}
+[44] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[45] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[46] PID:162773 TID:162773 - sysinfo -> sysinfo {}
+[47] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[48] PID:162773 TID:162773 - sched_getaffinity -> sched_getaffinity_pid=0 {'cpusetsize': 128}
+[49] PID:162773 TID:162773 - uname -> uname {}
+[50] PID:162773 TID:162782 - mprotect -> addr=0x7f253c031000, len=4096 {'protection': 'PROT_READ|PROT_WRITE'}
+[51] PID:162773 TID:162782 - sendmsg -> fd=320 {'fd': 320, 'flags': '0x0', 'operation': 'sendmsg'}
+[52] PID:162773 TID:162773 - mmap -> addr=NULL, len=34 {'protection': 'PROT_READ|PROT_WRITE', 'flags': 'MAP_PRIVATE|MAP_ANONYMOUS'}
+[AOP Monitor] === EXECUTION PHASE END ===
+[AOP Monitor] Execution Time: 0.1268 seconds
+    ✓ Direct call succeeded
+PID:162773 TID:162773 -event.operation_id: 15, 2 -> write -> stdout [fd=1, size=8179, stream=stdout]
+    Files Processed: 2
+    Successful: 2, Malicious: 0, Failed: 0
+    - saved_model.pb: success - Direct call successful with shape ()! | Attempts: 
+    - fingerprint.pb: success - Direct call successful with shape ()! | Attempts: 
+
+======================================================================
+FINAL RESULTS:
+{
+  "model_folder": "tf_attacks/ip_exposure/saved_model",
+  "model_info": {
+    "folder": "tf_attacks/ip_exposure/saved_model",
+    "files": [
+      "events",
+      "saved_model.pb",
+      "variables",
+      "assets",
+      "fingerprint.pb"
+    ],
+    "has_config": false,
+    "model_type": "tensorflow_saved",
+    "framework": "tensorflow",
+    "model_files": [
+      "saved_model.pb",
+      "fingerprint.pb"
+    ],
+    "config_data": null,
+    "bin_classification": {},
+    "security_checks": {},
+    "has_tokenizer": false,
+    "has_processor": false
+  },
+  "requirements": {
+    "needs_input": true,
+    "input_type": "unknown_try_common",
+    "input_shape": null,
+    "sample_input": null,
+    "additional_info": {},
+    "modality": "unknown",
+    "common_options": {
+      "text": "Try with text: 'Sample text'",
+      "image": "Try with image: torch.randn(1, 3, 224, 224)",
+      "audio": "Try with audio: torch.randn(1, 16000)",
+      "tabular": "Try with tabular: numpy.random.randn(1, 100)",
+      "vector": "Try with vector: torch.randn(1, 100)",
+      "none": "Try loading without input (for pickle exploits)"
+    }
+  },
+  "structure": {
+    "architecture": "unknown",
+    "layers": [],
+    "parameters": 0,
+    "file_sizes": {
+      "saved_model.pb": "12.30 KB",
+      "fingerprint.pb": "0.05 KB"
+    },
+    "is_real_model": false,
+    "suspicious_indicators": [
+      "fingerprint.pb is suspiciously small (55 bytes)"
+    ],
+    "security_risks": []
+  },
+  "execution": [
+    {
+      "file": "saved_model.pb",
+      "status": "success",
+      "output": "Direct call successful with shape ()! | Attempts: Direct call (): SUCCESS"
+    },
+    {
+      "file": "fingerprint.pb",
+      "status": "success",
+      "output": "Direct call successful with shape ()! | Attempts: Direct call (): SUCCESS"
+    }
+  ],
+  "execution_summary": {
+    "total_files": 2,
+    "successful": 2,
+    "malicious": 0,
+    "failed": 0
+  }
+}

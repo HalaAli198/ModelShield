@@ -1,0 +1,27 @@
+hala@ubuntu:~/9_OCtober$ python3 attack_behavior_classifier.py /home/hala/97.tf_leak/
+  Tagged 199 loading events from 00004_hala_leak_loading_events.json
+  Tagged 1056 execution events from 00004_hala_leak_execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: /home/hala/97.tf_leak/
+Loading events: 199
+Execution events: 1056
+Patterns defined: 193
+======================================================================
+
+  [LOADING] Pre-filtered: removed 1 O_DIRECTORY events
+
+  [EXECUTION] Pre-filtered: removed 2 O_DIRECTORY events
+
+  [EXECUTION] AB1-CRED-SSH-LOCAL: SSH key access during model execution
+    Step 0: openat -> /home/hala/.ssh/id_rsa  (Open credential file (SSH key access during model execution))
+    Step 1: pread64 -> /home/hala/.ssh/id_rsa  (Read credential data)
+    MITRE: Credential Access / T1552.004 (Private Keys)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - SSH key access during model execution
+      MITRE: T1552.004 (Private Keys)
+======================================================================
