@@ -15,12 +15,18 @@ You are analyzing Linux syscall traces captured from HuggingFace models executed
 
 ## Input
 
-Each model produces two JSON files sharing a prefix `NNNNN_UserName_ModelName_`:
+Each analysis unit is a single file within a model repo. For each unit you receive two JSON files sharing a prefix `NNNNN_UserName_ModelName__FileStem_`:
 
-- `..._loading_events.json` — syscalls during deserialization (loading weights from disk into memory)
-- `..._execution_events.json` — syscalls captured during model inference (running a forward pass / prediction)
 
-Files with the same prefix belong to the same model and must be analyzed jointly.
+- `..._loading_events.json` — syscalls during deserialization of that file (loading weights from disk into memory)
+- `..._execution_events.json` — syscalls captured during inference using that file
+
+
+The prefix has two parts separated by a double underscore __:
+
+- `NNNNN_UserName_ModelName` identifies the model repo (shared across all files in the same repo)
+- `FileStem` identifies which file within the repo (e.g., `pytorch_model_bin`, `extra_data_pickle`, `model_safetensors`)
+Files sharing the full `NNNNN_UserName_ModelName__FileStem_` prefix belong to the same file-load and must be analyzed jointly. Files sharing only the `NNNNN_UserName_ModelName` prefix belong to the same repo but represent different files — analyze each independently and emit one verdict object per file.
 
 ## Event schema
 
