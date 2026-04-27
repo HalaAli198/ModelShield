@@ -1,0 +1,438 @@
+[
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.266574679,
+    "comm": "python3.9",
+    "user_stack_id": 2688,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.266893563,
+    "comm": "python3.9",
+    "user_stack_id": 14446,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "eda2fb6a",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "eda2fb6a"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "openat",
+    "filename": "gadget_test/g11_sympy_sympify/g11_sympy_sympify.joblib",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.267100975,
+    "comm": "python3.9",
+    "user_stack_id": 6560,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "fstat",
+    "filename": "fd=313",
+    "extra_details": {
+      "fd": 313
+    },
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.267116531,
+    "comm": "python3.9",
+    "user_stack_id": 14524,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=313_cmd=0x5401",
+    "extra_details": {},
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.26712489,
+    "comm": "python3.9",
+    "user_stack_id": 15331,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=313",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.267134044,
+    "comm": "python3.9",
+    "user_stack_id": 13355,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "read",
+    "filename": "gadget_test/g11_sympy_sympify/g11_sympy_sympify.joblib",
+    "extra_details": {
+      "fd": 313,
+      "size": 4096
+    },
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.267272964,
+    "comm": "python3.9",
+    "user_stack_id": 5749,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.26746304,
+    "comm": "python3.9",
+    "user_stack_id": 7640,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 33764,
+    "tid": 33764,
+    "timestamp": 21251.273027007,
+    "comm": "python3.9",
+    "user_stack_id": 14446,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "0f6f132c",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "0f6f132c"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "joblib.numpy_pickle.load",
+        "timestamp": 1774703841.8645546,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8706944,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      },
+      {
+        "operation": "posix.system",
+        "timestamp": 1774703841.8709207,
+        "thread_id": 139904320718656,
+        "ml_context": null
+      }
+    ]
+  }
+]
