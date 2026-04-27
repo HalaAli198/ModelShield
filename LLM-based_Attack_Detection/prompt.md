@@ -26,6 +26,7 @@ The prefix has two parts separated by a double underscore __:
 
 - `NNNNN_UserName_ModelName` identifies the model repo (shared across all files in the same repo)
 - `FileStem` identifies which file within the repo (e.g., `pytorch_model_bin`, `extra_data_pickle`, `model_safetensors`)
+  
 Files sharing the full `NNNNN_UserName_ModelName__FileStem_` prefix belong to the same file-load and must be analyzed jointly. Files sharing only the `NNNNN_UserName_ModelName` prefix belong to the same repo but represent different files — analyze each independently and emit one verdict object per file.
 
 ## Event schema
