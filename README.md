@@ -196,7 +196,7 @@ This produces phase-separated syscall traces, which can then be passed to:
 ```bash
 python attack_behavior_classifier.py <events_dir>
 ```
-**Note:** `model_inspector.py` is the inspection engine. For platform-scale scanning, the scan scripts select the appropriate framework environment from `Sandbox_Design/` via `env_selector.py` and invoke the inspector under that interpreter. For standalone single-model analysis, run the inspector in an environment that has the dependencies required for the target model format, or use the corresponding sandbox environment directly.
+**Note:** `model_inspector.py` is the inspection engine. For platform-scale scanning, the scan scripts select the appropriate framework environment from `Runtime_Environments/` via `env_selector.py` and invoke the inspector under that interpreter. For standalone single-model analysis, run the inspector in an environment that has the dependencies required for the target model format, or use the corresponding runtime environment directly.
 
 ### Output
 
@@ -206,7 +206,7 @@ Large-scale scans write:
 - archived traces under `TRACES_DIR`
 - evidence for malicious models under `malicious/`
 
-For full configuration details, output layout, and scanner flags, see `Platform Scanning/README.md` and `Sandbox_Design/README.md`.
+For full configuration details, output layout, and scanner flags, see `Platform Scanning/README.md` and `Runtime_Environments/README.md`.
 
 ## Evaluation Results
 
