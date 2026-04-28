@@ -1,5 +1,5 @@
 """
-env_selector.py:  select the sandbox environment for a given model.
+env_selector.py:  select the runtime environment for a given model.
 Given a model entry from the discovery pipeline, pick one of the five
 pre-built venvs in the environment pool and return the path to its python3.9 interpreter.
 The pipeline then spawns the model loader as a subprocess under that interpreter.
