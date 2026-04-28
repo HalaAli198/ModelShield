@@ -108,7 +108,8 @@ The scanning pipeline currently supports:
 
 ## Supported Execution Environments
 
-The sandbox pool currently includes five Python 3.9 virtual environments targeting the framework/version combinations that dominate recent public uploads:
+
+The runtime environment pool currently includes five Python 3.9 virtual environments targeting the framework/version combinations that dominate recent public uploads:
 
 - PyTorch (current)
 - PyTorch (legacy)
@@ -125,12 +126,12 @@ ModelShield supports two main workflows:
 1. **Single-model inspection** using the core scripts
 2. **Large-scale platform scanning** using the platform scanners
 
-### A. Build the sandbox environment pool
+### A. Build the runtime environment pool
 
 The scanning and inspection workflows depend on a pool of prebuilt Python environments for supported frameworks and formats.
 
 ```bash
-cd Sandbox_Design
+cd Runtime_Environments
 export ENVS_ROOT=$HOME/modelshield/env_pool
 chmod +x build_env_pool.sh
 ./build_env_pool.sh
