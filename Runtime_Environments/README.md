@@ -1,7 +1,7 @@
 
-# Sandbox Design
+# Runtime Environments
 
-This directory contains the sandbox configuration used by **ModelShield**  to load and execute each scanned model.
+This directory contains the runtime environment configuration used by **ModelShield**  to load and execute each scanned model.
 The pool contains **5 Python 3.9 virtual environments**, each pinned to a `(framework, major-version)` combination that dominates current uploads. 
 
 ## Environments and Supported Formats
@@ -62,7 +62,7 @@ sudo apt install -y bpfcc-tools python3-bpfcc linux-headers-$(uname -r)
 4. Clone the repository and change into this directory:
 ```bash
 git clone https://github.com//ModelShield.git
-cd ModelShield/Sandbox_Design
+cd ModelShield/Runtime_Environments
 ```
 
 5. Choose where the pool will live and export it for the current shell:
@@ -97,4 +97,4 @@ python3.9 -c "from env_selector import validate_pool; validate_pool(); print('po
 `validate_pool()` raises `RuntimeError` and lists any missing environments if the build is incomplete.
 
 ## Note
-The sandbox is designed for broad, reproducible coverage rather than exhaustive version emulation. Some artifacts, especially version-specific or experimental serialization formats such as `torch.export` `.pt2` archives, may fail if their archive layout does not match the pinned framework version. These cases are reported as loader failures or unsupported-version cases rather than treated as evidence of benign behavior.
+The runtime environment pool is designed for broad, reproducible coverage rather than exhaustive version emulation. Some artifacts, especially version-specific or experimental serialization formats such as `torch.export` `.pt2` archives, may fail if their archive layout does not match the pinned framework version. These cases are reported as loader failures or unsupported-version cases rather than treated as evidence of benign behavior.
