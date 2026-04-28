@@ -5231,7 +5231,7 @@ class AspectMonitor:
             with open(EBPF_PROGRAM_PATH, 'r') as f:
                   ebpf_program = f.read()   
             
-            self.bpf = BPF(text=ebpf_program)
+            self.bpf = BPF(text=ebpf_program, cflags=["-Wno-macro-redefined"]))
             current_pid = os.getpid()
             key = ct.c_uint32(current_pid)
             val = ct.c_uint8(1)
