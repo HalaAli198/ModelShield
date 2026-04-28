@@ -19,7 +19,7 @@ For every discovered model, each script runs the same five stages:
 
 2. **Download.** Pull the model files and auxiliary config/tokenizer files into a per-run temp directory.
 
-3. **Environment selection.** Assign the model to one of the sandbox environments in the pool. See [`../Sandbox_Design/`](../Sandbox_Design/) for how the selection works and the set of supported frameworks.
+3. **Environment selection.** Assign the model to one of the runtime environments in the pool. See [`../Runtime_Environments/`](../Runtime_Environments/) for how the selection works and the set of supported frameworks.
 
 4. **Inspection.** Call ModelShield's inspector inside the selected environment. The inspector runs the model under ModelShield's dual-layer monitoring (application-level AOP interception of framework loading and inference APIs, plus kernel-level eBPF syscall tracing) and captures the attributed syscall stream across the loading and execution phases.
 
@@ -108,7 +108,7 @@ python3.9 -m venv "$SCANNER_ENV"
 
 ## Running
 
-The sandbox pool must be built first (`../Sandbox_Design/build_env_pool.sh`) or `validate_pool()` will abort the run.
+The runtime environment pool must be built first (`../Runtime_Environments/build_env_pool.sh`) or `validate_pool()` will abort the run.
 
 ```bash
 # Hugging Face
@@ -135,4 +135,4 @@ sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && $SCANNER_ENV/bin/pyt
 
 ## Isolation
 
-The scripts run the model loader as a subprocess under the routed sandbox interpreter, but the sandbox is a *reproducibility* layer, not a security boundary.  Payloads have full user-level access to the host. Run on a disposable VM with no credentials, SSH keys, or cloud tokens on disk.
+The scripts run the model loader as a subprocess under the routed runtime environment interpreter, but the runtime environment pool is a *reproducibility* layer, not a security boundary. Payloads have full user-level access to the host. Run on a disposable VM with no credentials, SSH keys, or cloud tokens on disk.
