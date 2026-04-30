@@ -38,7 +38,7 @@ ModelShield/
 ├── Runtime_Environments/
 │   ├── build_env_pool.sh
 │   └── env_selector.py
-├── all_attacks_patterns.xlsx
+├── detection_patterns.xlsx
 ├── detected_malicious_models.xlsx
 ├── LICENSE
 └── README.md
@@ -51,12 +51,12 @@ ModelShield/
 | `ModelShield Core Scripts/` | Core runtime analysis pipeline: model inspection, eBPF syscall capture, semantic syscall decoding, and attack behavior classification. |
 | `Platform Scanning/` | End-to-end scanning pipelines for Hugging Face, ModelScope, and Kaggle. These scripts automate discovery, download, environment selection, inspection, classification, and trace archiving. |
 | `Runtime_Environments/` | Runtime environment setup used to load and execute models across supported frameworks and formats. Includes the environment builder and environment-selection logic. |
-| `LLM-based_Attack_Detection/` | Offline prompt and workflow used to analyze captured syscall traces and propose candidate attack patterns beyond the initial predefined taxonomy. |
+| `LLM-based_Attack_Detection/` | Offline prompt and workflow used to analyze captured syscall traces and propose candidate patterns beyond the initial predefined taxonomy. |
 | `Results_Comparision_MalHug_Dataset/` | Detection results for malicious models from the MalHug dataset. |
 | `Results_Detection_Pickle_Gadget_Substitution/` | Detection results for pickle gadget-substitution attacks. |
 | `Results_Detection_Pickle_Paths/` | Detection results for loading-path and container-based pickle evasion techniques. |
 | `Results_Detection_TF_Abuse/` | Detection results for TensorFlow API abuse attacks. |
-| `all_attacks_patterns.xlsx` | Full attack behavior taxonomy and pattern definitions used by the classifier. |
+| `detection_patterns.xlsx` | Full attack behavior taxonomy and pattern definitions used by the classifier. |
 | `detected_malicious_models.xlsx` | Summary of malicious models detected during scanning the Hugging Face platform. |
 
 ---
