@@ -6729,7 +6729,10 @@ def apply_huggingface_aspects():
         # Model loading methods
         if hasattr(transformers, 'pipeline'):
             transformers.pipeline = monitor.monitor_api(transformers.pipeline, phase="LOADING")
-        
+        if hasattr(transformers, 'AutoModel'):
+           transformers.AutoModel.from_pretrained = monitor.monitor_api(transformers.AutoModel.from_pretrained, phase="LOADING")
+        if hasattr(transformers, 'TFAutoModel'):
+           transformers.TFAutoModel.from_pretrained = monitor.monitor_api(transformers.TFAutoModel.from_pretrained, phase="LOADING")
         if hasattr(transformers, 'AutoConfig'):
             transformers.AutoConfig.from_pretrained = monitor.monitor_api(transformers.AutoConfig.from_pretrained, phase="LOADING")
         
