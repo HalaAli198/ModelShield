@@ -5794,7 +5794,7 @@ class AspectMonitor:
                 filename = f"fd={fd_val}"
             
             extra_details['fd'] = fd_val
-            extra_details['iovcnt'] = event.io_size
+            extra_details['size'] = event.io_size  # actual bytes transferre
             
         elif event.operation_id == 19:  # fstat
             filename = f"fd={event.data.generic.arg1}"
