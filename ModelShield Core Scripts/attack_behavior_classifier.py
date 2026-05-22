@@ -53,16 +53,18 @@ class PatternStep:
     One step in an ordered pattern.
     All three constraints must be true on the same event for the step to match.
     """
-    sub_op: Any               # str or set of str (e.g., "File.open" or {"File.open", "File.read"})
-    path_match: Any = None    # callable(filename) -> bool, or None = any path
-    flag_match: Any = None    # callable(extra_details) -> bool, or None = any flags
+    sub_op: Any                  # str or set of str (e.g., "File.open" or {"File.open", "File.read"})
+    path_match: Any = None       # callable(filename) -> bool, or None = any path
+    flag_match: Any = None       # callable(extra_details) -> bool, or None = any flags
     description: str = ""
     optional: bool = False
-    capture_fd: str = ""      # name to store fd under (e.g., "file_fd", "sock_fd")
-    require_fd: str = ""      # name of previously captured fd to require match
+    capture_fd: str = ""         # name to store fd under (e.g., "file_fd", "sock_fd")
+    require_fd: str = ""         # name of previously captured fd to require match
     exclude_fd: str = "" 
-    capture_path: str = ""    # name to store path under (e.g., "file_path")
-    require_path: str = ""    # name of previously captured path to match
+    capture_path: str = ""       # name to store path under (e.g., "file_path")
+    require_path: str = ""       # name of previously captured path to match
+    capture_size: str = ""       # name to store io_size under (e.g., "read_size")
+    require_size_range: str = "" # name of previously captured size to range-check
     
     def matches(self, event: dict) -> bool:
         ev_sub_op = event.get("sub_op", "")
@@ -277,7 +279,23 @@ def _paths_match(captured_path: str, event_path: str) -> bool:
         return False
     return captured_path == event_path
 
-
+def _extract_io_size(event: dict) -> Optional[int]:
+    """
+    Extract I/O byte count from an event.
+    Maps to io_size field in the eBPF syscall_event struct,
+    which is populated from args->count (read) or args->len (sendto).
+    """
+    details = event.get("extra_details", {})
+    for key in ("io_size", "count", "len", "size", "bytes_read", "bytes_sent"):
+        val = details.get(key)
+        if val is not None:
+            try:
+                v = int(val)
+                if v > 0:
+                    return v
+            except (ValueError, TypeError):
+                pass
+    return None
 # ============================================================================
 # PATH / FLAG MATCHING HELPERS
 #
@@ -920,6 +938,7 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
                 sub_op="File.read",
                 description="Read file contents",
                 require_path="file_path",
+                capture_size="read_size",
             ),
             PatternStep(
                 sub_op="Network.socket",
@@ -937,6 +956,7 @@ def _ab1_exfil(pid, sub, paths, mitre_list):
                path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
                description="Send stolen data",
                require_fd="exfil_fd",
+               require_size_range="read_size",
             ),
         ],
     )
@@ -962,7 +982,8 @@ def _ab1_exfil_udp(pid, sub, paths, mitre_list):
             PatternStep(
                 sub_op="File.read",
                 description="Read file contents",
-                require_path="file_path"
+                require_path="file_path",
+                capture_size="read_size",
             ),
             PatternStep(
                 sub_op="Network.socket",
@@ -974,6 +995,7 @@ def _ab1_exfil_udp(pid, sub, paths, mitre_list):
                 sub_op="Network.send",
                 description="Send stolen data (UDP sendto)",
                 require_fd="udp_fd",
+                require_size_range="read_size",
             ),
         ],
     )
@@ -1254,12 +1276,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
                         flag_match=flag_readonly(),
                         description="Open process info file", capture_path="file_path"),
-            PatternStep(sub_op="File.read", description="Read process data", require_path="file_path"),
+            PatternStep(sub_op="File.read", description="Read process data", require_path="file_path",capture_size="read_size"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
                         description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"},
                         path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate",require_fd="exfil_fd"),
+                        description="Exfiltrate",require_fd="exfil_fd", require_size_range="read_size"),
         ],
     ))
 
@@ -1280,12 +1302,12 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         path_match=path_regex(r"/proc/\d+/(cmdline|comm|status|environ|maps|cgroup)"),
                         flag_match=flag_readonly(),
                         description="Open process info file",capture_path="file_path"),
-            PatternStep(sub_op="File.read", description="Read process data",require_path="file_path"),
+            PatternStep(sub_op="File.read", description="Read process data",require_path="file_path",capture_size="read_size"),
             PatternStep(sub_op="Network.socket",
                         flag_match=flag_family("AF_INET", "AF_INET6"),
                         description="Create UDP socket",capture_fd="udp_fd"),
             PatternStep(sub_op="Network.send",
-                        description="Exfiltrate (UDP sendto)",require_fd="udp_fd"),
+                        description="Exfiltrate (UDP sendto)",require_fd="udp_fd",require_size_range="read_size"),
         ],
     ))
     
@@ -1433,11 +1455,11 @@ def build_ab1_patterns() -> List[SequencePattern]:
                         flag_match=flag_readonly(),
                         description="Open input device",capture_path="file_path"),
             PatternStep(sub_op="File.read",
-                        description="Read input events",require_path="file_path"),
+                        description="Read input events",require_path="file_path",capture_size="read_size"),
             PatternStep(sub_op="Network.connect", flag_match=flag_inet_remote(),
                         description="Connect to remote server",capture_fd="exfil_fd"),
             PatternStep(sub_op={"Network.send", "File.sendfile", "File.write"}, path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                        description="Exfiltrate keystrokes",require_fd="exfil_fd"),
+                        description="Exfiltrate keystrokes",require_fd="exfil_fd",require_size_range="read_size"),
         ],
     ))
     
@@ -1646,7 +1668,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read credential data", require_path="file_path"
+                description="Read credential data", require_path="file_path",capture_size="read_size"
             ),
             PatternStep(
                 sub_op="Network.connect",
@@ -1656,7 +1678,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(
                 sub_op={"Network.send", "File.sendfile", "File.write"},
                 path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate stolen credentials",require_fd="exfil_fd"
+                description="Exfiltrate stolen credentials",require_fd="exfil_fd", require_size_range="read_size"
             ),
         ],
     ))
@@ -1689,7 +1711,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             ),
             PatternStep(
                 sub_op="File.read",
-                description="Read system info",require_path="file_path"
+                description="Read system info",require_path="file_path", capture_size="read_size"
             ),
             PatternStep(
                 sub_op="Network.connect",
@@ -1699,7 +1721,7 @@ def build_ab1_patterns() -> List[SequencePattern]:
             PatternStep(
                 sub_op={"Network.send", "File.sendfile", "File.write"},
                 path_match=lambda fn: not fn or fn.startswith("fd=") or fn in ("stdout", "stderr"),
-                description="Exfiltrate system info", require_fd="exfil_fd"
+                description="Exfiltrate system info", require_fd="exfil_fd",   require_size_range="read_size"
             ),
         ],
     )) 
@@ -4070,6 +4092,7 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
     completed = [False] * n_patterns
     captured_fds = [{} for _ in range(n_patterns)]
     captured_paths = [{} for _ in range(n_patterns)]
+    captured_sizes = [{} for _ in range(n_patterns)]
     repeat_matches = [[] for _ in range(n_patterns)]
  
     for event in events:
@@ -4105,7 +4128,25 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
                         event_path = _extract_path(event)
                         if not required_path or not event_path or not _paths_match(required_path, event_path):
                             break  # fail closed: missing or mismatched path
- 
+                    
+                    # Check size-range requirement
+                    if step.require_size_range:
+                        required_size = captured_sizes[pi].get(step.require_size_range)
+                        event_size = _extract_io_size(event)
+                        if required_size is not None and event_size is not None:
+                            # Allow 0.3x to 4x range to account for:
+                            # - base64 encoding (~1.33x)
+                            # - hex encoding (2x)
+                            # - JSON/HTTP wrapping (variable overhead)
+                            # - partial sends (< 1x)
+                            lo = int(required_size * 0.3)
+                            hi = int(required_size * 4.0)
+                            if event_size < lo or event_size > hi:
+                                break  # size mismatch — likely unrelated data
+                        # If either size is missing, pass through (don't fail
+                        # closed on size — it's a strengthening signal, not
+                        # a hard requirement like fd/path)
+                   
                     # --- Capture values for future steps ---
  
                     if step.capture_fd:
@@ -4117,7 +4158,12 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
                         path_val = _extract_path(event)
                         if path_val:
                             captured_paths[pi][step.capture_path] = path_val
- 
+                    
+                    if step.capture_size:
+                        size_val = _extract_io_size(event)
+                        if size_val is not None:
+                            captured_sizes[pi][step.capture_size] = size_val
+                    
                     # --- Record match ---
                     matched_evs[pi].append(event)
                     matched_idxs[pi].append(si)
@@ -4151,6 +4197,7 @@ def scan_all_patterns(events: list, patterns: list) -> List[Tuple[SequencePatter
                     matched_idxs[pi] = []
                     captured_fds[pi] = {}
                     captured_paths[pi] = {}
+                    captured_sizes[pi] = {}
                 else:
                     completed[pi] = True
  
