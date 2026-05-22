@@ -569,13 +569,37 @@ TRACEPOINT_PROBE(syscalls, sys_enter_creat) {
 }
 
 //OP_READ
+//OP_READ - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_read) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.buff_ptr = (u64)args->buf;
+    data.flags = (u64)args->count; // stash requested count in flags field
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_read) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -583,12 +607,10 @@ TRACEPOINT_PROBE(syscalls, sys_enter_read) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    // Store fd and count OUTSIDE the union
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->count;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret; // actual bytes read, not buffer size
     
-    // Look up path — writes into union, no longer conflicts
-    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    u64 fd_key = ((u64)pid << 32) | (u32)data->fd;
     struct fd_info *path_info = fd_paths.lookup(&fd_key);
     if (path_info != NULL) {
         bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
@@ -597,17 +619,42 @@ TRACEPOINT_PROBE(syscalls, sys_enter_read) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 
-//OP_PREAD64
+//OP_PREAD64 - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_pread64) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.buff_ptr = (u64)args->pos; // stash offset in buff_ptr
+    data.flags = (u64)args->count;  // stash requested count
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_pread64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -615,13 +662,11 @@ TRACEPOINT_PROBE(syscalls, sys_enter_pread64) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    // Store fd, count, offset OUTSIDE the union — never clobbered by path
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->count;
-    event.io_offset = (u64)args->pos;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;           // actual bytes read
+    event.io_offset = (u64)data->buff_ptr; // offset we stashed
     
-    // Path lookup writes into union — safe now since fd/size/offset are elsewhere
-    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    u64 fd_key = ((u64)pid << 32) | (u32)data->fd;
     struct fd_info *path_info = fd_paths.lookup(&fd_key);
     if (path_info != NULL) {
         bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
@@ -630,17 +675,40 @@ TRACEPOINT_PROBE(syscalls, sys_enter_pread64) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
-
-//OP_READV
+//OP_READV - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_readv) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.flags = (u64)args->vlen; // stash iovec count
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_readv) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -648,23 +716,48 @@ TRACEPOINT_PROBE(syscalls, sys_enter_readv) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->vlen;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret; // actual total bytes read across all iovecs
     
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 
-//OP_WRITE
+//OP_WRITE - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_write) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.buff_ptr = (u64)args->buf;
+    data.flags = (u64)args->count;
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_write) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -672,11 +765,10 @@ TRACEPOINT_PROBE(syscalls, sys_enter_write) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    // Store fd and count outside the union
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->count;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret; // actual bytes written
     
-    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    u64 fd_key = ((u64)pid << 32) | (u32)data->fd;
     struct fd_info *path_info = fd_paths.lookup(&fd_key);
     if (path_info != NULL) {
         bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
@@ -685,17 +777,42 @@ TRACEPOINT_PROBE(syscalls, sys_enter_write) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 
-//OP_PWRITE64
+//OP_PWRITE64 - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_pwrite64) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.buff_ptr = (u64)args->pos; // stash offset
+    data.flags = (u64)args->count;
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_pwrite64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -703,13 +820,11 @@ TRACEPOINT_PROBE(syscalls, sys_enter_pwrite64) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    // Store fd, count, offset OUTSIDE the union — never clobbered by path
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->count;
-    event.io_offset = (u64)args->pos;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;              // actual bytes written
+    event.io_offset = (u64)data->buff_ptr; // offset
     
-    // Path lookup writes into union — safe now since fd/size/offset are elsewhere
-    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    u64 fd_key = ((u64)pid << 32) | (u32)data->fd;
     struct fd_info *path_info = fd_paths.lookup(&fd_key);
     if (path_info != NULL) {
         bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
@@ -718,17 +833,40 @@ TRACEPOINT_PROBE(syscalls, sys_enter_pwrite64) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
-
-//OP_WRITEV
+//OP_WRITEV - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_writev) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.flags = (u64)args->vlen; // stash iovec count
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_writev) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -736,10 +874,10 @@ TRACEPOINT_PROBE(syscalls, sys_enter_writev) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->vlen;
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret; // actual total bytes written across all iovecs
     
-    u64 fd_key = ((u64)pid << 32) | (u32)args->fd;
+    u64 fd_key = ((u64)pid << 32) | (u32)data->fd;
     struct fd_info *path_info = fd_paths.lookup(&fd_key);
     if (path_info != NULL) {
         bpf_probe_read(event.data.file.path, sizeof(event.data.file.path), path_info->path);
@@ -748,9 +886,10 @@ TRACEPOINT_PROBE(syscalls, sys_enter_writev) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
-
 //OP_STAT
 TRACEPOINT_PROBE(syscalls, sys_enter_newstat) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
@@ -1552,27 +1691,54 @@ TRACEPOINT_PROBE(syscalls, sys_enter_fchdir) {
     return 0;
 }
 
-//OP_SENDFILE
+//OP_SENDFILE - stash at enter, emit at exit with actual bytes
 TRACEPOINT_PROBE(syscalls, sys_enter_sendfile64) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->out_fd;       // out_fd
+    data.buff_ptr = (u64)args->in_fd;  // in_fd
+    data.flags = (u64)args->count;     // requested count
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_sendfile64) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
     event.operation_id = OP_SENDFILE;
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
-    event.data.generic.arg1 = (u64)args->out_fd;
-    event.data.generic.arg2 = (u64)args->in_fd;
-    event.data.generic.arg3 = (u32)args->count;
+    event.data.generic.arg1 = (u64)data->fd;       // out_fd
+    event.data.generic.arg2 = (u64)data->buff_ptr;  // in_fd
+    event.data.generic.arg3 = (u32)ret;              // actual bytes sent
+    
+    event.io_size = (u32)ret; // actual bytes transferred
     
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 
@@ -2121,15 +2287,38 @@ TRACEPOINT_PROBE(syscalls, sys_enter_connect) {
     return 0;
 }
 
-//OP_SENDTO
-// For sendto - capture outgoing message content
+///OP_SENDTO - stash at enter, emit at exit with actual bytes sent
 TRACEPOINT_PROBE(syscalls, sys_enter_sendto) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.buff_ptr = (u64)args->buff;
+    data.flags = (u64)args->flags;
+    data.msg_ptr = (u64)args->len; // stash requested len
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_sendto) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
@@ -2137,54 +2326,81 @@ TRACEPOINT_PROBE(syscalls, sys_enter_sendto) {
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
     
-    // fd, len, flags all OUTSIDE the union
-    event.io_fd = (u32)args->fd;
-    event.io_size = (u32)args->len;
-    event.io_offset = (u64)args->flags;  // reuse io_offset for flags
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;           // actual bytes sent
+    event.io_offset = (u64)data->flags; // flags
     
-    // Message content into union — safe now, no longer clobbers fd/len/flags
-    if (args->buff && args->len > 0) {
-        bpf_probe_read_user_str(&event.data.file.path, 
+    // Capture message content from stashed buffer pointer
+    if (data->buff_ptr && ret > 0) {
+        bpf_probe_read_user_str(&event.data.file.path,
                                 sizeof(event.data.file.path),
-                                (void *)args->buff);
+                                (void *)data->buff_ptr);
     }
     
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 
 //OP_SENDMSG
+//OP_SENDMSG - stash at enter, emit at exit with actual bytes sent
 TRACEPOINT_PROBE(syscalls, sys_enter_sendmsg) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
     
     if (!should_trace(pid, tid)) return 0;
     
-    struct syscall_event  event = {};
+    struct syscall_data data = {};
+    data.fd = (u64)args->fd;
+    data.msg_ptr = (u64)args->msg;
+    data.flags = (u64)args->flags;
+    syscall_args.update(&tid, &data);
+    return 0;
+}
+
+TRACEPOINT_PROBE(syscalls, sys_exit_sendmsg) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
+    u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
+    
+    long ret = (long)args->ret;
+    if (ret <= 0) {
+        syscall_args.delete(&tid);
+        return 0;
+    }
+    
+    struct syscall_data *data = syscall_args.lookup(&tid);
+    if (!data) return 0;
+    
+    struct syscall_event event = {};
     event.pid = pid;
     event.tid = tid;
     event.timestamp = bpf_ktime_get_ns();
     event.operation_id = 71;  // OP_SENDMSG
     
     bpf_get_current_comm(&event.comm, sizeof(event.comm));
-    event.io_fd = (u32)args->fd;
-    event.io_offset = (u64)args->flags;  // reuse io_offset for flags
     
+    event.io_fd = (u32)data->fd;
+    event.io_size = (u32)ret;           // actual bytes sent
+    event.io_offset = (u64)data->flags;
+    
+    // Read message content from stashed msg pointer
     struct user_msghdr msg = {};
-    if (args->msg) {
-        bpf_probe_read_user(&msg, sizeof(msg), (void *)args->msg);
+    if (data->msg_ptr) {
+        bpf_probe_read_user(&msg, sizeof(msg), (void *)data->msg_ptr);
         
         if (msg.msg_iov && msg.msg_iovlen > 0) {
             struct iovec iov = {};
             bpf_probe_read_user(&iov, sizeof(iov), msg.msg_iov);
             
-            if (iov.iov_base && iov.iov_len > 0) {
+            if (iov.iov_base) {
                 bpf_probe_read_user_str(&event.data.file.path,
                                         sizeof(event.data.file.path),
                                         iov.iov_base);
-                event.io_size = (u32)iov.iov_len;
             }
         }
     }
@@ -2192,13 +2408,18 @@ TRACEPOINT_PROBE(syscalls, sys_enter_sendmsg) {
     event.user_stack_id = stack_traces.get_stackid(args, BPF_F_USER_STACK);
     copy_correlation_context(&event, tid);
     events.perf_submit(args, &event, sizeof(event));
+    
+    syscall_args.delete(&tid);
     return 0;
 }
 // ========== RECVFROM ENTER ==========
 // Stash fd/buffer/flags at enter. The buffer is empty until
 // the kernel fills it, so we read it in sys_exit_recvfrom.
 TRACEPOINT_PROBE(syscalls, sys_enter_recvfrom) {
+    u32 pid = bpf_get_current_pid_tgid() >> 32;
     u32 tid = bpf_get_current_pid_tgid();
+    
+    if (!should_trace(pid, tid)) return 0;
     
     struct syscall_data data = {};
     data.fd = args->fd;
