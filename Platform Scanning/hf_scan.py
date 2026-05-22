@@ -464,9 +464,11 @@ def run_inspector(model_dir, model_entry=None):
             capture_output=True, text=True,
             timeout=INSPECTOR_TIMEOUT,
         )
-        return result.returncode == 0, env_name
+        return result.returncode == 0, env_name, result.stderr
     except subprocess.TimeoutExpired:
-        return False, env_name
+        return False, env_name, "Inspector timed out"
+    except Exception as e:
+        return False, env_name, str(e)
 
 
 def run_classifier(events_dir, output_json_path):
@@ -585,13 +587,16 @@ def evaluate_model(model_info, index, total):
     # Step 2: inspect (loading + execution phases)
     log(f"  Running eBPF inspector (loading + execution)...")
     inspector_start = time.time()
-    inspector_ok, env_name = run_inspector(MODEL_TEMP_DIR, model_info)
+    inspector_ok, env_name, inspector_stderr = run_inspector(MODEL_TEMP_DIR, model_info)
     result['routed_env'] = env_name
     inspector_time = time.time() - inspector_start
     log(f"  Inspector finished in {inspector_time:.1f}s")
 
     if not inspector_ok:
+        reason = (inspector_stderr or 'unknown')[:500]
+        log(f"  Inspector FAILED ({env_name}): {reason[:300]}")
         result['status'] = 'inspector_failed'
+        result['inspector_error'] = reason
         result['inspector_time'] = inspector_time
         result['download_time'] = download_time
         cleanup_model()
@@ -606,6 +611,7 @@ def evaluate_model(model_info, index, total):
             break
 
     if not events_dir or not os.path.isdir(events_dir):
+        log(f"  No events directory found after inspector run")
         result['status'] = 'no_events'
         result['inspector_time'] = inspector_time
         result['download_time'] = download_time
