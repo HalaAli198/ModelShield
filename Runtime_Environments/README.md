@@ -10,10 +10,11 @@ The pool contains **5 Python 3.9 virtual environments**, each pinned to a `(fram
 |---------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
 | PyTorch (current)   | `torch` 2.4.0, `transformers` 4.44.0, `tokenizers`, `sentencepiece`, `dill`, `cloudpickle`, `safetensors`       | `.pt`, `.pt2`,`.pth`, `.bin`, `.th`, `.safetensors`            |
 | PyTorch (legacy)    | `torch` 1.13.1, `transformers` 4.30.0, `dill`, `cloudpickle`, `safetensors`                                     | `.pt`,  `.bin` (pre-2.0)                                 |
-| TensorFlow / Keras  | `tensorflow` 2.17.0, `keras` 3.5.0, `safetensors`                                                               | `.h5`, `.keras`, `.pb`, `.tflite`                       |
-| Classical ML        | `scikit-learn` 1.5.1, `joblib` 1.4.2, `xgboost` 2.1.1, `lightgbm` 4.5.0, `catboost` 1.2.7, `pandas`, `sympy`, `pypmml` 1.5.8| `.joblib`, `.pkl`, `.xgb`, `.bst`, `.lgb`, `.cbm` `.pmml`      |
-| ONNX Runtime        | `onnxruntime` 1.18.1, `onnx` 1.16.2, `safetensors`                                                              | `.onnx`                                                 |
-
+| TensorFlow / Keras  | `tensorflow` 2.17.0, `keras` 3.5.0, `torch (CPU)`, `safetensors`                                                               | `.h5`, `.keras`, `.pb`, `.tflite`                       |
+| Classical ML        | `scikit-learn` 1.5.1, `joblib` 1.4.2, `xgboost` 2.1.1, `lightgbm` 4.5.0, `catboost` 1.2.7, `pandas`, `sympy`, `pypmml` 1.5.8, ` torch (CPU)`| `.joblib`, `.pkl`, `.xgb`, `.bst`, `.lgb`, `.cbm` `.pmml`      |
+| ONNX Runtime        | `onnxruntime` 1.18.1, `onnx` 1.16.2, `torch (CPU)`, `safetensors`                                                              | `.onnx`                                                 |
+#### Note: 
+Every environment includes a CPU-only build of PyTorch and safetensors because the inspector is a single entry point that handles all formats. It imports torch and safetensors unconditionally at startup for format detection and synthetic input construction, even when the primary model file targets a different framework.
 ## Files
 
 | File                    | Purpose                                                  |
