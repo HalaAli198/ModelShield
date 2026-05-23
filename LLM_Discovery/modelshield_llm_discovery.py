@@ -1,8 +1,39 @@
+#!/usr/bin/env python3
+"""
+ModelShield LLM-Assisted Pattern Discovery
 
-SYSTEM PROMPT
-==============
+Submits syscall traces from models classified as benign by ModelShield's
+pattern matcher to an LLM for discovery of novel attack behaviors not
+covered by the existing AB1-AB8 taxonomy.
+"""
 
-You are analyzing Linux syscall traces captured during ML model loading and inference. Your task is to identify syscall behavior that is inconsistent with a benign ML workload. Focus on discovering behaviors that fall OUTSIDE the known attack categories listed below — the pattern-based classifier has already checked for those.
+import json
+import os
+import sys
+import time
+from pathlib import Path
+from collections import defaultdict
+
+# ─────────────────────────────────────────────────
+# Configuration — edit these
+# ─────────────────────────────────────────────────
+OPENAI_API_KEY = "YOUR_API_KEY_HERE"
+
+LLM_MODEL = "gpt-5.5"
+
+TRACES_DIR = r"E:\ML_Project_2026\expirements\hf_evalautions_all\hf_evaluation5_5000\benign"
+
+OUTPUT_FILE = r"E:\ML_Project_2026\expirements\hf_evalautions_all\hf_evaluation5_5000\llm_discovery_results.json"
+
+BATCH_SIZE = 2          # models per LLM call (2 = one loading + one execution per model, sent together)
+MAX_MODELS = 5000
+MAX_EVENTS_PER_PHASE = 2000
+
+# ─────────────────────────────────────────────────
+# Prompt
+# ─────────────────────────────────────────────────
+
+SYSTEM_PROMPT = """You are analyzing Linux syscall traces captured during ML model loading and inference. Your task is to identify syscall behavior that is inconsistent with a benign ML workload. Focus on discovering behaviors that fall OUTSIDE the known attack categories listed below — the pattern-based classifier has already checked for those.
 
 BENIGN BASELINE
 ===============
@@ -75,7 +106,7 @@ Return a JSON array, one object per model. No prose outside the JSON.
 
 [
   {
-    "model": "<prefix_identifying_the_model>",
+    "model": "<model_folder_name>",
     "verdict": "MALICIOUS|SUSPICIOUS|BENIGN",
     "confidence": "HIGH|MEDIUM|LOW",
     "phase": "LOADING|EXECUTION",
@@ -89,9 +120,228 @@ Return a JSON array, one object per model. No prose outside the JSON.
     "reasoning": "<brief explanation of the novel behavior>"
   },
   {
-    "model": "<benign_model_prefix>",
+    "model": "<benign_model_folder_name>",
     "verdict": "BENIGN"
   }
 ]
 
-For BENIGN verdicts, include only model and verdict.
+For BENIGN verdicts, include only model and verdict."""
+
+
+# ─────────────────────────────────────────────────
+# Trace Loading
+# ─────────────────────────────────────────────────
+
+def discover_models(traces_dir: str) -> list:
+    """
+    Scan traces_dir for model subfolders. Each subfolder contains
+    *_loading_events.json and *_execution_events.json.
+
+    Returns list of dicts:
+        [{"model_id": "00001_User_Model",
+          "loading_files": [path, ...],
+          "execution_files": [path, ...]}, ...]
+    """
+    traces_path = Path(traces_dir)
+    models = []
+
+    for subfolder in sorted(traces_path.iterdir()):
+        if not subfolder.is_dir():
+            continue
+
+        loading_files = sorted(subfolder.glob("*_loading_events.json"))
+        execution_files = sorted(subfolder.glob("*_execution_events.json"))
+
+        if not loading_files and not execution_files:
+            continue
+
+        models.append({
+            "model_id": subfolder.name,
+            "loading_files": [str(f) for f in loading_files],
+            "execution_files": [str(f) for f in execution_files],
+        })
+
+    return models
+
+
+def load_events(file_paths: list, max_events: int = 2000) -> list:
+    """Load and merge event JSON files, truncating to max_events."""
+    events = []
+    for fpath in file_paths:
+        try:
+            with open(fpath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    events.extend(data)
+                elif isinstance(data, dict):
+                    events.append(data)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"  Warning: Could not read {fpath}: {e}", file=sys.stderr)
+
+    events.sort(key=lambda e: e.get("timestamp", 0))
+
+    if len(events) > max_events:
+        print(f"  Truncating {len(events)} -> {max_events} events",
+              file=sys.stderr)
+        events = events[:max_events]
+
+    return events
+
+
+# ─────────────────────────────────────────────────
+# LLM Interaction
+# ─────────────────────────────────────────────────
+
+def call_llm(batch: list) -> list:
+    """
+    Submit a batch of models to the LLM.
+
+    batch: list of {"model_id", "loading_events", "execution_events"}
+    Returns: list of verdict dicts
+    """
+    import requests
+
+    user_content = "Analyze the following model traces:\n\n"
+
+    for item in batch:
+        user_content += f"=== Model: {item['model_id']} ===\n"
+
+        if item["loading_events"]:
+            user_content += (
+                f"LOADING PHASE ({len(item['loading_events'])} events):\n"
+            )
+            user_content += json.dumps(item["loading_events"]) + "\n\n"
+        else:
+            user_content += "LOADING PHASE: No events captured.\n\n"
+
+        if item["execution_events"]:
+            user_content += (
+                f"EXECUTION PHASE ({len(item['execution_events'])} events):\n"
+            )
+            user_content += json.dumps(item["execution_events"]) + "\n\n"
+        else:
+            user_content += "EXECUTION PHASE: No events captured.\n\n"
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {OPENAI_API_KEY}",
+    }
+
+    payload = {
+        "model": LLM_MODEL,
+        "temperature": 0.1,
+        "max_tokens": 4096,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_content},
+        ],
+    }
+
+    try:
+        resp = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers=headers,
+            json=payload,
+            timeout=180,
+        )
+        resp.raise_for_status()
+
+        content = resp.json()["choices"][0]["message"]["content"].strip()
+
+        # Strip markdown fences
+        if content.startswith("```json"):
+            content = content[7:]
+        if content.startswith("```"):
+            content = content[3:]
+        if content.endswith("```"):
+            content = content[:-3]
+        content = content.strip()
+
+        verdicts = json.loads(content)
+        if not isinstance(verdicts, list):
+            verdicts = [verdicts]
+        return verdicts
+
+    except Exception as e:
+        print(f"  API error: {e}", file=sys.stderr)
+        return []
+
+
+# ─────────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────────
+
+def main():
+    global OPENAI_API_KEY
+    if OPENAI_API_KEY == "YOUR_API_KEY_HERE":
+        OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+    if not OPENAI_API_KEY:
+        print("ERROR: Set OPENAI_API_KEY in the script or as env var",
+              file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Scanning: {TRACES_DIR}")
+    models = discover_models(TRACES_DIR)
+    print(f"Found {len(models)} model folders")
+
+    models = models[:MAX_MODELS]
+    print(f"Analyzing {len(models)} models, batch size {BATCH_SIZE}\n")
+
+    all_results = []
+    batch = []
+    total_batches = (len(models) + BATCH_SIZE - 1) // BATCH_SIZE
+
+    for i, m in enumerate(models):
+        loading_events = load_events(m["loading_files"], MAX_EVENTS_PER_PHASE)
+        execution_events = load_events(m["execution_files"], MAX_EVENTS_PER_PHASE)
+
+        batch.append({
+            "model_id": m["model_id"],
+            "loading_events": loading_events,
+            "execution_events": execution_events,
+        })
+
+        if len(batch) >= BATCH_SIZE or i == len(models) - 1:
+            batch_num = (i // BATCH_SIZE) + 1
+            print(f"Batch {batch_num}/{total_batches} "
+                  f"({len(batch)} models)...")
+
+            verdicts = call_llm(batch)
+
+            for v in verdicts:
+                all_results.append(v)
+                verdict_str = v.get("verdict", "UNKNOWN")
+                if verdict_str != "BENIGN":
+                    print(f"  >> {v.get('model', '?')}: {verdict_str} "
+                          f"({v.get('confidence', '?')})")
+
+            batch = []
+            time.sleep(1)  # rate limit
+
+    # Write results
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(all_results, f, indent=2)
+
+    # Summary
+    summary = defaultdict(int)
+    for r in all_results:
+        summary[r.get("verdict", "UNKNOWN")] += 1
+
+    print(f"\n{'='*50}")
+    print(f"Results: {OUTPUT_FILE}")
+    print(f"Total: {len(all_results)}")
+    for v, c in sorted(summary.items()):
+        print(f"  {v}: {c}")
+
+    non_benign = [r for r in all_results if r.get("verdict") != "BENIGN"]
+    if non_benign:
+        print(f"\nFlagged for manual review ({len(non_benign)}):")
+        for r in non_benign:
+            print(f"  - {r.get('model')}: {r.get('verdict')} "
+                  f"({r.get('confidence')})")
+            if "reasoning" in r:
+                print(f"    {r['reasoning'][:150]}")
+
+
+if __name__ == "__main__":
+    main()
