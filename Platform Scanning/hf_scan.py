@@ -21,6 +21,8 @@ import time
 import shutil
 import argparse
 import subprocess
+import multiprocessing
+import queue
 from datetime import datetime, timezone
 import re
 from env_selector import select, validate_pool, POOL
@@ -68,7 +70,7 @@ MIN_MODEL_SIZE = 100
 # Subprocess timeouts, in seconds.
 INSPECTOR_TIMEOUT = 300
 CLASSIFIER_TIMEOUT = 300
-
+DOWNLOAD_TIMEOUT = 300
 # Upper bound on files inspected per repo; keeps runtime predictable on
 # multi-checkpoint repositories.
 MAX_FILES_PER_MODEL = 10
@@ -389,6 +391,35 @@ def discover_models(num_models):
 # =============================================================================
 # Download, inspect, classify
 # =============================================================================
+def _hf_download_worker(q, kwargs):
+    try:
+        q.put(('ok', hf_hub_download(**kwargs)))
+    except Exception as e:
+        q.put(('err', str(e)))
+
+def _hf_download_with_timeout(timeout=DOWNLOAD_TIMEOUT, **kwargs):
+    q = multiprocessing.Queue()
+    p = multiprocessing.Process(target=_hf_download_worker, args=(q, kwargs))
+    p.start()
+    p.join(timeout)
+
+    if p.is_alive():
+        p.terminate()
+        p.join(5)
+        if p.is_alive():
+            p.kill()
+            p.join()
+        raise FuturesTimeoutError(f"download exceeded {timeout}s")
+
+    try:
+        status, payload = q.get(timeout=10)
+    except queue.Empty:
+        raise RuntimeError("download worker died without result")
+
+    if status == 'err':
+        raise RuntimeError(payload)
+    return payload
+
 def download_model(model_id, model_files):
     """Download model files and auxiliary config/tokenizer files."""
     try:
@@ -411,15 +442,17 @@ def download_model(model_id, model_files):
                         f"{remote_size / (1024*1024):.1f} MB exceeds limit")
                     continue
 
-                path = hf_hub_download(
+                path = _hf_download_with_timeout(
                     repo_id=model_id, filename=filename,
-                    local_dir=MODEL_TEMP_DIR, local_dir_use_symlinks=False,
+                    local_dir=MODEL_TEMP_DIR, 
                     token=HF_TOKEN,
                 )
                 downloaded.append({
                     'filename': filename, 'path': path,
                     'size': os.path.getsize(path),
                 })
+            except FuturesTimeoutError:
+                   log(f"    Skipping {filename}: download timed out after {DOWNLOAD_TIMEOUT}s")
             except Exception as e:
                 log(f"    Skipping {filename}: {e}")
 
@@ -429,9 +462,9 @@ def download_model(model_id, model_files):
         for aux in ['config.json', 'tokenizer.json', 'tokenizer_config.json',
                     'vocab.txt', 'special_tokens_map.json']:
             try:
-                hf_hub_download(
+                _hf_download_with_timeout(
                     repo_id=model_id, filename=aux,
-                    local_dir=MODEL_TEMP_DIR, local_dir_use_symlinks=False,
+                    local_dir=MODEL_TEMP_DIR, 
                     token=HF_TOKEN,
                 )
             except Exception:
@@ -441,6 +474,7 @@ def download_model(model_id, model_files):
     except Exception as e:
         log(f"  Download failed: {e}")
         return []
+
 
 
 def run_inspector(model_dir, model_entry=None):
