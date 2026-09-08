@@ -801,6 +801,7 @@ _SIDE_EFFECT_COMMANDS = [
     "/usr/bin/chown", "/bin/chown",
     "/usr/bin/ln", "/bin/ln",
     "/usr/bin/tee", "/bin/tee",
+    "/usr/bin/gsettings", "/bin/gsettings", 
 ]
 # Paths for AB3 policy manipulation (sudoers + PAM + security config)
 _POLICY_PATHS = [
