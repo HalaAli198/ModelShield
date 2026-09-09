@@ -4,7 +4,7 @@ ModelShield is a runtime behavioral detection system for malicious machine learn
 
 This repository contains the reference implementation, supporting artifacts, and evaluation materials for the ModelShield paper, *I Don’t Care How You Hide It, I Care What You Do: Runtime Detection of Malicious ML Models*.
 
-### This paper is currently under review at ACSAC, and the repository is being evaluated by the Artifact Evaluation Committee.
+### This paper is currently under review at IEEE ACSAC, and the repository is being evaluated by the conference Artifact Evaluation Committee.
 
 ## Key Features
 
