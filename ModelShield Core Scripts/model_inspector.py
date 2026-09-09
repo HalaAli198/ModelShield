@@ -923,7 +923,7 @@ def create_model_input(requirements):
 # sys.exit(), or spin forever without taking down the monitor. The
 # parent keeps draining the perf buffer the whole time.
 # ==============================================================================
-@with_timeout(60)
+@with_timeout(120)
 def execute_model(model_info, requirements, structure, input_data):
   """
   Load and execute each model file under AOP + eBPF monitoring.
@@ -934,6 +934,8 @@ def execute_model(model_info, requirements, structure, input_data):
   import io  
   import zipfile
   import pickle
+  import torch
+  import numpy as np
   original_stdin = sys.stdin
   sys.stdin = io.StringIO('')
   model_results=[]
@@ -1488,7 +1490,22 @@ def execute_model(model_info, requirements, structure, input_data):
                     model = wrap_model_for_execution(model)
                     results['execution_status'] = 'model_loaded'
                     results['output'] = f"Sklearn model loaded: {type(model).__name__}"
-                    
+                    # MLflow lifecycle if applicable
+                    if hasattr(model, 'load_context'):
+                        try:
+                            try:
+                                from mlflow.pyfunc import PythonModelContext
+                                try:
+                                    mlflow_ctx = PythonModelContext(artifacts={}, model_config={})
+                                except TypeError:
+                                    mlflow_ctx = PythonModelContext(artifacts={})
+                            except ImportError:
+                                mlflow_ctx = type('PythonModelContext', (), {'artifacts': {}, 'model_config': {}})()
+                            model.load_context(mlflow_ctx)
+                            results['output'] += " | load_context() invoked"
+                        except Exception as lc_err:
+                            print(f"    load_context failed: {lc_err}")
+                            results['output'] += f" | load_context error: {str(lc_err)[:50]}"
                     # Try to predict
                     if hasattr(model, 'predict'):
                         test_input = np.random.randn(10, 100).astype(np.float32)
@@ -3636,7 +3653,7 @@ def execute_model(model_info, requirements, structure, input_data):
                                     output = model(input_data)
                                 loaded_models.append(f"Executed {file}: {output.shape if hasattr(output, 'shape') else type(output)}")
                                 results['execution_status'] = 'success'
-                                break  # Success, stop trying other files
+                               
                             except Exception as exec_err:
                                 loaded_models.append(f"Execution failed for {file}: {str(exec_err)[:30]}")
                                 
@@ -3651,7 +3668,7 @@ def execute_model(model_info, requirements, structure, input_data):
                                     output = model(input_data)
                                 loaded_models.append(f"Executed {file}: {output.shape if hasattr(output, 'shape') else type(output)}")
                                 results['execution_status'] = 'success'
-                                break
+                                
                             except Exception as exec_err:
                                 loaded_models.append(f"Forward failed for {file}: {str(exec_err)[:30]}")
                                 
@@ -3693,6 +3710,21 @@ def execute_model(model_info, requirements, structure, input_data):
                         results['warnings'].append(f"Malicious execution in {file}: {error_msg[:100]}")
                     else:
                         loaded_models.append(f"{file} failed: {error_msg}")
+                    if 'PytorchStreamReader' in error_msg or 'central directory' in error_msg:
+                        try:
+                            with open(model_file, 'rb') as _f:
+                                raw = _f.read()
+                            pkl_start = raw.find(b'\x80\x02')
+                            if pkl_start >= 0:
+                                import io as _io
+                                print(f"    Corrupted ZIP — loading raw pickle at offset {pkl_start}...")
+                                model = pickle.load(_io.BytesIO(raw[pkl_start:]))
+                                model = wrap_model_for_execution(model)
+                                any_code_executed = True
+                                loaded_models.append(f"{file}: raw pickle extraction from corrupted ZIP: SUCCESS")
+                                results['execution_status'] = 'malicious_executed'
+                        except Exception:
+                            pass
                     pass  # Try next file
             
                 # Compile results
@@ -3961,6 +3993,18 @@ def execute_model(model_info, requirements, structure, input_data):
             stderr_capture = io_module.StringIO()
             captured_output = ""
             captured_errors = ""
+            # If .pkl is actually a torch ZIP archive, use torch.load
+            with open(pickle_file, 'rb') as _f:
+                _magic = _f.read(4)
+            if _magic == b'PK\x03\x04':
+                print(f"    Detected torch ZIP archive (despite .pkl extension), using torch.load...")
+                
+                model = torch.load(pickle_file, map_location='cpu', weights_only=False)
+                model = wrap_model_for_execution(model)
+                results['loading_method'] = 'torch_load_zip'
+                results['execution_status'] = 'malicious_executed'
+                results['output'] = f"{file}: Loaded via torch.load (ZIP): {type(model)}"
+                
             try:
               
               class CustomUnpickler(pickle.Unpickler):
@@ -3976,15 +4020,18 @@ def execute_model(model_info, requirements, structure, input_data):
                           model = unpickler.load()
                           model = wrap_model_for_execution(model)
                         except Exception as e1:
-                          print(f"    CustomUnpickler failed: {e1}, trying standard pickle...")
+                          print(f"    CustomUnpickler failed: {type(e1).__name__}: {e1}")
                           try:
                             f.seek(0)
                             model = pickle.load(f)
                             model = wrap_model_for_execution(model)
                           except Exception as e2:
-                            print(f"    Standard pickle also failed: {e2}")
-                            # Don't raise - let it continue to capture output
-                            pass
+                            print(f"    Standard pickle also failed: {type(e2).__name__}: {e2}")
+                            results['warnings'].append(f"Pickle load failed: {type(e2).__name__}: {str(e2)[:100]}")
+                            if any(x in str(e2) for x in ['ModuleNotFoundError', 'No module named', 'ImportError']):
+                                results['warnings'].append(f"Missing dependency: {str(e2)}")
+                                results['execution_status'] = 'missing_dependency'
+                                print(f"    MISSING DEPENDENCY — install it in this env and rerun")
                    
               
               print(f"\n DEBUG CHECK (AFTER pickle.load):")
@@ -4042,16 +4089,124 @@ def execute_model(model_info, requirements, structure, input_data):
                        results['warnings'].append(f"Errors: {captured_errors}")
         
             # Check what we got
-            if model is not None and callable(model):
-               try:
-                   if input_data is not None:
-                      output = model(input_data)
-                   else:
-                      output = model()
-                   results['output'] = results.get('output', '') + f" | Executed callable: {type(output)}"
-                   results['execution_status'] = 'success'
-               except Exception as exec_error:
-                   results['output'] = results.get('output', '') + f" | Execution error: {str(exec_error)[:30]}"
+            if model is not None:
+               # Try MLflow PythonModel interface first
+               if hasattr(model, 'load_context') or (hasattr(model, 'predict') and not isinstance(model, dict) and any('PythonModel' 
+               in c.__name__ for c in type(model).__mro__ if hasattr(c, '__name__'))):
+                   # Step A: Call load_context() — this is where many MLflow payloads fire
+                   if hasattr(model, 'load_context'):
+                       try:
+                           try:
+                               from mlflow.pyfunc import PythonModelContext
+                               try:
+                                   mlflow_ctx = PythonModelContext(artifacts={}, model_config={})
+                               except TypeError:
+                                   mlflow_ctx = PythonModelContext(artifacts={})
+                           except ImportError:
+                               mlflow_ctx = type('PythonModelContext', (), {'artifacts': {}, 'model_config': {}})()
+                           
+                           lc_stdout = io_module.StringIO()
+                           lc_stderr = io_module.StringIO()
+                           with contextlib.redirect_stdout(lc_stdout), contextlib.redirect_stderr(lc_stderr):
+                               model.load_context(mlflow_ctx)
+                           
+                           lc_out = lc_stdout.getvalue()
+                           lc_err = lc_stderr.getvalue()
+                           if lc_out:
+                               print(f"     load_context STDOUT: {lc_out[:200]}")
+                               results['warnings'].append(f"load_context output: {lc_out}")
+                               results['execution_status'] = 'malicious_executed'
+                           if lc_err:
+                               print(f"     load_context STDERR: {lc_err[:200]}")
+                               results['warnings'].append(f"load_context errors: {lc_err}")
+                               results['execution_status'] = 'malicious_executed'
+                           
+                           results['output'] = results.get('output', '') + " | load_context() invoked"
+                       except Exception as lc_error:
+                           lc_error_msg = str(lc_error)
+                           print(f"    load_context failed: {type(lc_error).__name__}: {lc_error_msg[:100]}")
+                           results['output'] = results.get('output', '') + f" | load_context() raised: {type(lc_error).__name__}: {lc_error_msg[:80]}"
+                           # A crash after firing is still evidence
+                           if any(x in lc_error_msg.lower() for x in ['exec', 'eval', 'import', 'module', 'network', 'connection', 'display']):
+                               results['execution_status'] = 'malicious_executed'
+                               results['warnings'].append(f"Suspicious load_context failure: {lc_error_msg[:100]}")
+                   
+                   # Step B: Call predict() with proper arguments
+                   if hasattr(model, 'predict'):
+                       predict_ctx = mlflow_ctx if 'mlflow_ctx' in dir() else None
+                       predict_attempts = []
+                       predict_success = False
+                       
+                       # Attempt 1: predict(context, DataFrame)
+                       try:
+                           import pandas as pd
+                           pred_stdout = io_module.StringIO()
+                           pred_stderr = io_module.StringIO()
+                           with contextlib.redirect_stdout(pred_stdout), contextlib.redirect_stderr(pred_stderr):
+                               output = model.predict(predict_ctx, pd.DataFrame({"input": ["test"]}))
+                           
+                           pred_out = pred_stdout.getvalue()
+                           pred_err = pred_stderr.getvalue()
+                           if pred_out:
+                               print(f"     predict STDOUT: {pred_out[:200]}")
+                               results['warnings'].append(f"predict output: {pred_out}")
+                               results['execution_status'] = 'malicious_executed'
+                           if pred_err:
+                               print(f"     predict STDERR: {pred_err[:200]}")
+                               results['warnings'].append(f"predict errors: {pred_err}")
+                           
+                           results['output'] = results.get('output', '') + f" | MLflow predict: {type(output)}"
+                           results['execution_status'] = results.get('execution_status', '') or 'success'
+                           predict_success = True
+                           predict_attempts.append("predict(ctx, DataFrame): SUCCESS")
+                       except ImportError:
+                           predict_attempts.append("predict(ctx, DataFrame): pandas not available")
+                       except Exception as pred_err1:
+                           predict_attempts.append(f"predict(ctx, DataFrame): {type(pred_err1).__name__}: {str(pred_err1)[:50]}")
+                       
+                       # Attempt 2: predict(None, None)
+                       if not predict_success:
+                           try:
+                               pred_stdout2 = io_module.StringIO()
+                               pred_stderr2 = io_module.StringIO()
+                               with contextlib.redirect_stdout(pred_stdout2), contextlib.redirect_stderr(pred_stderr2):
+                                   output = model.predict(None, None)
+                               
+                               pred_out2 = pred_stdout2.getvalue()
+                               if pred_out2:
+                                   print(f"     predict(None,None) STDOUT: {pred_out2[:200]}")
+                                   results['warnings'].append(f"predict output: {pred_out2}")
+                                   results['execution_status'] = 'malicious_executed'
+                               
+                               results['output'] = results.get('output', '') + f" | MLflow predict(None): {type(output)}"
+                               predict_success = True
+                               predict_attempts.append("predict(None, None): SUCCESS")
+                           except Exception as pred_err2:
+                               predict_attempts.append(f"predict(None, None): {type(pred_err2).__name__}: {str(pred_err2)[:50]}")
+                       
+                       if not predict_success:
+                           results['output'] = results.get('output', '') + f" | predict attempts: {'; '.join(predict_attempts)}"
+                           print(f"    All predict attempts failed: {predict_attempts}")
+               
+               # Generic callable fallback (non-MLflow)
+               elif hasattr(model, 'predict') and not isinstance(model, dict):
+                   try:
+                       import pandas as pd
+                       output = model.predict(None, pd.DataFrame({"input": ["test"]}))
+                       results['output'] = results.get('output', '') + f" | predict: {type(output)}"
+                       results['execution_status'] = 'success'
+                   except Exception as generic_pred_err:
+                       results['output'] = results.get('output', '') + f" | predict error: {type(generic_pred_err).__name__}: {str(generic_pred_err)[:50]}"
+               elif callable(model):
+                  try:
+                      if input_data is not None:
+                         output = model(input_data)
+                      else:
+                         output = model()
+                      results['output'] = results.get('output', '') + f" | Executed callable: {type(output)}"
+                      results['execution_status'] = 'success'
+                  except Exception as exec_error:
+                      results['output'] = results.get('output', '') + f" | Execution error: {str(exec_error)[:30]}"
           
             if 'model' in locals():
                del model
@@ -4136,16 +4291,58 @@ def execute_model(model_info, requirements, structure, input_data):
                 results['execution_status'] = 'malicious_executed'
                 results['warnings'].append(f"Errors: {captured_errors}")
 
-            if model is not None and callable(model):
-                try:
-                    if input_data is not None:
-                        output = model(input_data)
-                    else:
-                        output = model()
-                    results['output'] = results.get('output', '') + f" | Executed callable: {type(output)}"
-                    results['execution_status'] = 'success'
-                except Exception as exec_error:
-                    results['output'] = results.get('output', '') + f" | Execution error: {str(exec_error)[:30]}"
+            if model is not None:
+                # MLflow PythonModel lifecycle
+                if hasattr(model, 'load_context') or any('PythonModel' in c.__name__ for c in type(model).__mro__ if hasattr(c, '__name__')):
+                    if hasattr(model, 'load_context'):
+                        try:
+                            try:
+                                from mlflow.pyfunc import PythonModelContext
+                                try:
+                                    mlflow_ctx = PythonModelContext(artifacts={}, model_config={})
+                                except TypeError:
+                                    mlflow_ctx = PythonModelContext(artifacts={})
+                            except ImportError:
+                                mlflow_ctx = type('PythonModelContext', (), {'artifacts': {}, 'model_config': {}})()
+                            
+                            lc_stdout = io_module.StringIO()
+                            lc_stderr = io_module.StringIO()
+                            with contextlib.redirect_stdout(lc_stdout), contextlib.redirect_stderr(lc_stderr):
+                                model.load_context(mlflow_ctx)
+                            
+                            lc_out = lc_stdout.getvalue()
+                            if lc_out:
+                                print(f"     load_context STDOUT: {lc_out[:200]}")
+                                results['warnings'].append(f"load_context output: {lc_out}")
+                                results['execution_status'] = 'malicious_executed'
+                            results['output'] = results.get('output', '') + " | load_context() invoked"
+                        except Exception as lc_error:
+                            results['output'] = results.get('output', '') + f" | load_context() raised: {type(lc_error).__name__}: {str(lc_error)[:80]}"
+                    
+                    if hasattr(model, 'predict'):
+                        try:
+                            predict_ctx = mlflow_ctx if 'mlflow_ctx' in dir() else None
+                            pred_stdout = io_module.StringIO()
+                            with contextlib.redirect_stdout(pred_stdout):
+                                output = model.predict(predict_ctx, None)
+                            pred_out = pred_stdout.getvalue()
+                            if pred_out:
+                                results['warnings'].append(f"predict output: {pred_out}")
+                                results['execution_status'] = 'malicious_executed'
+                            results['output'] = results.get('output', '') + f" | MLflow predict: {type(output)}"
+                        except Exception as pred_err:
+                            results['output'] = results.get('output', '') + f" | predict error: {str(pred_err)[:50]}"
+                
+                elif callable(model):
+                    try:
+                        if input_data is not None:
+                            output = model(input_data)
+                        else:
+                            output = model()
+                        results['output'] = results.get('output', '') + f" | Executed callable: {type(output)}"
+                        results['execution_status'] = 'success'
+                    except Exception as exec_error:
+                        results['output'] = results.get('output', '') + f" | Execution error: {str(exec_error)[:30]}"
 
             if 'model' in locals():
                 del model
@@ -4213,6 +4410,12 @@ def execute_model(model_info, requirements, structure, input_data):
            results['warnings'].append("Malicious import attempt detected")
         print(f" Execution failed: {e}")
     
+    if monitor.bpf and monitor.monitoring_active:
+        for _ in range(10):
+            try:
+                monitor.bpf.perf_buffer_poll(timeout=20)
+            except Exception:
+                pass
     # Tag all events captured during this file's processing with source_file
     for e in monitor.loading_events:
         if 'source_file' not in e:
@@ -4351,6 +4554,12 @@ def analyze_and_execute_model(model_folder):
             all_execution = [e for e in (monitor.all_execution_events + monitor.execution_events)
                    if e.get('operation') not in noise_ops]
             
+            _mf = model_info.get('model_files', [])
+            if len(_mf) == 1:
+                for e in all_loading:
+                    e.setdefault('source_file', _mf[0])
+                for e in all_execution:
+                    e.setdefault('source_file', _mf[0])
            
             # chown output files to the user who invoked sudo
             import pwd
@@ -4404,7 +4613,7 @@ def analyze_and_execute_model(model_folder):
     process.start()
 
     # Poll eBPF events in parent while child executes
-    deadline = time.time() + 180  # 3 minute timeout
+    deadline = time.time() + 300  # 3 minute timeout
     while process.is_alive() and time.time() < deadline:
           if monitor.bpf and monitor.monitoring_active:
              monitor.bpf.perf_buffer_poll(timeout=100)  # 100ms poll
@@ -4794,6 +5003,11 @@ def wrap_model_for_execution(model):
             model.predict = monitor.monitor_api(model.predict, phase="EXECUTION")
         if hasattr(model, 'evaluate'):
             model.evaluate = monitor.monitor_api(model.evaluate, phase="EXECUTION")
+    
+    elif any('PythonModel' in c.__name__ for c in type(model).__mro__ if hasattr(c, '__name__')):
+        for m in ('load_context', 'predict', 'predict_stream', '__call__'):
+            if hasattr(model, m) and callable(getattr(model, m)):
+                setattr(model, m, monitor.monitor_api(getattr(model, m), phase="EXECUTION"))
     # ==================== GENERIC FALLBACK ====================
     else:
         # For any unknown model type, wrap common execution methods
@@ -4822,7 +5036,8 @@ def wrap_model_for_execution(model):
     
     # Handle models with custom execution methods
     custom_execution_indicators = ['run_model', 'do_inference', 'get_prediction', 
-                                  'make_prediction', 'get_output', 'compute']
+                                  'make_prediction', 'get_output', 'compute',
+                                  'load_context', 'predict_stream']
     for method_name in custom_execution_indicators:
         if hasattr(model, method_name) and callable(getattr(model, method_name)):
             setattr(model, method_name, 
@@ -6706,6 +6921,22 @@ class AspectMonitor:
 
 monitor = AspectMonitor()
 atexit.register(monitor.cleanup)
+def apply_mlflow_aspects():
+    """Monitor MLflow model operations"""
+    try:
+        import mlflow.pyfunc
+        if hasattr(mlflow.pyfunc, 'load_model'):
+            mlflow.pyfunc.load_model = monitor.monitor_api(mlflow.pyfunc.load_model, phase="LOADING")
+        
+        # Also hook the PythonModel methods at the class level
+        from mlflow.pyfunc.model import PythonModel
+        if hasattr(PythonModel, 'predict'):
+            PythonModel.predict = monitor.monitor_api(PythonModel.predict, phase="EXECUTION")
+        if hasattr(PythonModel, 'load_context'):
+            PythonModel.load_context = monitor.monitor_api(PythonModel.load_context, phase="EXECUTION")
+    except ImportError:
+        pass
+        
 def apply_safetensors_aspects():
     try:
         import safetensors.torch
@@ -6767,9 +6998,18 @@ def apply_tensorflow_aspects():
 def apply_pytorch_aspects():
     try:
         import torch
+        # Force weights_only=False so malicious payloads execute
+        # inside the sandbox. PyTorch >=2.4 defaults to True,
+        # which blocks pickle deserialization of arbitrary classes.
+        _original_torch_load = torch.load
+        def _unsafe_torch_load(*args, **kwargs):
+            kwargs.setdefault('weights_only', False)
+            return _original_torch_load(*args, **kwargs)
+        torch.load = _unsafe_torch_load
         
         if hasattr(torch, 'load'):
             torch.load = monitor.monitor_api(torch.load, phase="LOADING")
+            
         
         if hasattr(torch.jit, 'load'):
             torch.jit.load = monitor.monitor_api(torch.jit.load, phase="LOADING")
@@ -7059,6 +7299,7 @@ def AOP_monitoring():
     apply_mxnet_aspects()
     apply_numpy_aspects()
     apply_dill_aspects()
+    apply_mlflow_aspects()
     print("[AOP] Comprehensive model loading monitoring active")
     print("   TensorFlow (SavedModel, Keras, Checkpoints, TFLite)")
     print("   PyTorch (torch.load, JIT, State Dict, Package)")
@@ -7144,3 +7385,4 @@ if __name__ == "__main__":
         print("\nExample:")
         print("  python script.py ./Models/Narsil_totallysafe")
         print("  python script.py ./Models/")
+
