@@ -2811,7 +2811,7 @@ def build_ab4_patterns() -> List[SequencePattern]:
                             "/usr/bin/curl", "/usr/bin/wget",
                             "/usr/bin/find",
                             "/usr/bin/id", "/usr/bin/whoami",
-                            "/bin/nc",
+                            "/bin/nc","/usr/bin/ls", "/bin/ls",
                             "/bin/id", "/bin/whoami"),
                         description="Execute recon/network binary"),
         ],
@@ -3056,6 +3056,24 @@ def build_ab4_patterns() -> List[SequencePattern]:
                         description="Verify browser accessibility"),
         ],
     ))
+    # ------------------------------------------------------------------
+    # Embedded HTML/URL content in syscall arguments
+    # Detects IPython display(HTML(...)) payloads that leak URLs
+    # through stat() calls when the HTML string is resolved as a path
+    # ------------------------------------------------------------------
+    patterns.append(SequencePattern(
+        pattern_id="AB4-HTML-INJECTION",
+        behavior_id="AB4",
+        sub_behavior="Embedded HTML/URL content rendered during model execution",
+        mitre=[MITREMapping("Execution", "T1059.006", "Python"),
+               MITREMapping("Exfiltration", "T1567", "Exfiltration Over Web Service")],
+        steps=[
+            PatternStep(sub_op="File.stat",
+                        path_match=path_contains("<img", "<script", "https://", "http://"),
+                        description="HTML/URL content leaked into file stat syscall"),
+        ],
+    ))
+    
     return patterns
 
 
