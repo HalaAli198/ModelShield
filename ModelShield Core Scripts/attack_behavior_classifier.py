@@ -801,7 +801,7 @@ _SIDE_EFFECT_COMMANDS = [
     "/usr/bin/chown", "/bin/chown",
     "/usr/bin/ln", "/bin/ln",
     "/usr/bin/tee", "/bin/tee",
-    "/usr/bin/gsettings", "/bin/gsettings", 
+    "/usr/bin/gsettings", "/bin/gsettings",
 ]
 # Paths for AB3 policy manipulation (sudoers + PAM + security config)
 _POLICY_PATHS = [
@@ -2739,18 +2739,17 @@ def build_ab3_patterns() -> List[SequencePattern]:
             sub_op="Network.socket",
             flag_match=_flag_unix_dgram(),
             description="Create AF_UNIX datagram socket",
-            capture_fd="syslog_fd"
         ),
         PatternStep(
             sub_op="Network.connect",
             description="Connect to AF_UNIX socket",
-            require_fd="syslog_fd"
+            capture_fd="syslog_fd",
         ),
         PatternStep(
             sub_op="Network.send",
             flag_match=_flag_syslog_payload(),
             description="Inject syslog-formatted message",
-            require_fd="syslog_fd"
+            require_fd="syslog_fd",
         ),
       ],
     ))
@@ -2811,7 +2810,7 @@ def build_ab4_patterns() -> List[SequencePattern]:
                             "/usr/bin/curl", "/usr/bin/wget",
                             "/usr/bin/find",
                             "/usr/bin/id", "/usr/bin/whoami",
-                            "/bin/nc","/usr/bin/ls", "/bin/ls",
+                            "/bin/nc", "/usr/bin/ls", "/bin/ls",
                             "/bin/id", "/bin/whoami"),
                         description="Execute recon/network binary"),
         ],
@@ -3056,6 +3055,7 @@ def build_ab4_patterns() -> List[SequencePattern]:
                         description="Verify browser accessibility"),
         ],
     ))
+    
     # ------------------------------------------------------------------
     # Embedded HTML/URL content in syscall arguments
     # Detects IPython display(HTML(...)) payloads that leak URLs
@@ -3073,7 +3073,6 @@ def build_ab4_patterns() -> List[SequencePattern]:
                         description="HTML/URL content leaked into file stat syscall"),
         ],
     ))
-    
     return patterns
 
 
@@ -4569,3 +4568,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
