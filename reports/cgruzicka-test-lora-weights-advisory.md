@@ -8,7 +8,7 @@
 
 ## Summary
 
-During automated scanning of recently uploaded Hugging Face models, I identified a model repository that appeared to contain malicious pickle payloads with active outbound network behavior.
+During automated scanning of recently uploaded Hugging Face models using [ModelShield](https://github.com/HalaAli198/ModelShield) , a runtime behavioral detection system that monitors system-call activity during model loading, I identified a model repository that appeared to contain malicious pickle payloads with active outbound network behavior.
 
 The repository, `cgruzicka/test-lora-weights`, included files named `lora_weights.bin` and `pytorch_lora_weights.bin`. In controlled analysis, deserializing these files with `torch.load()` triggered shell execution, host reconnaissance, sensitive file access, environment variable collection, and outbound HTTPS connections to external infrastructure.
 
@@ -64,8 +64,7 @@ The observed behavior indicates that loading the model could execute attacker-co
 Because the behavior is triggered during deserialization, users may be exposed simply by loading the model artifact with unsafe loading mechanisms.
 
 ## Detection Context
-
-The activity was observed during controlled runtime analysis of the model loading phase. The behavior was identified through runtime monitoring rather than static metadata alone, highlighting the risk of relying exclusively on static scanners for malicious ML model detection.
+The activity was observed during controlled runtime analysis of the model loading phase. The behavior was identified through ModelShield's eBPF-based runtime monitoring rather than static metadata alone, highlighting the risk of relying exclusively on static scanners for malicious ML model detection.
 
 ## Responsible Disclosure
 
