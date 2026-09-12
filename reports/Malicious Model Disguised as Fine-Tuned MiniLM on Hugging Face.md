@@ -1,7 +1,7 @@
 # Malicious Model Disguised as Fine-Tuned MiniLM on Hugging Face
 
 **Date:** July 27, 2026
-**Classification:** MALICIOUS - Shell Execution via Pipe-Based Subprocess Chains
+**Classification:** MALICIOUS(Shell Execution via Pipe-Based Subprocess Chains)
 **Status:** Active, flagged as unsafe by Hugging Face but still publicly accessible
 
 ---
@@ -105,7 +105,7 @@ Step 6: Attacker gains shell execution with victim's privileges
 
 ---
 
-## Detection Timeline
+## Disclosure  Timeline
 
 | Date | Event |
 |---|---|
