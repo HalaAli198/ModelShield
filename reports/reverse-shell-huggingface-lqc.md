@@ -1,14 +1,14 @@
 # Reverse Shell Malware Found on Hugging Face: Analysis of LQCTestingSpace/lqc_model
 
 **Date:** March 30, 2026
-**Classification:** MALICIOUS — Reverse Shell
+**Classification:** MALICIOUS,  Reverse Shell
 **Status:** Reported to Hugging Face Security and AWS Trust & Safety. Model removed.
 
 ---
 
 ## TL;DR
 
-A malicious model on Hugging Face disguised as a Qwen2 language model contained no real weights — just a 10.2 KB pickle payload that opens a reverse shell to an attacker-controlled AWS EC2 instance in Singapore. It sat on the platform for 3 days, was downloaded 108 times, and **every scanner on the platform either returned "No issue" or was still queued**. The model used PyTorch's legacy TAR-based loading path, a known scanner bypass technique that, to our knowledge, had never been seen in the wild before this case.
+ModelShield, a runtime behavioral detection system, identified a malicious model on Hugging Face disguised as a Qwen2 language model that contained no real weights, just a 10.2 KB pickle payload that opens a reverse shell to an attacker-controlled AWS EC2 instance in Singapore. It sat on the platform for 3 days, was downloaded 108 times, and **every scanner on the platform either returned "No issue" or was still queued**. The model used PyTorch's legacy TAR-based loading path, a known scanner bypass technique that, to our knowledge, had never been seen in the wild before this case.
 
 ---
 
@@ -54,7 +54,7 @@ If the C2 server is listening, the attacker gets a fully interactive shell on th
 
 ### The evasion technique: Legacy TAR loading path
 
-The file is **not** a standard ZIP-based PyTorch checkpoint. It begins with the bytes `storages` followed by a `ustar` TAR header at offset `0x100`, identifying it as a **TAR archive** — the legacy format used by older versions of `torch.save()`.
+The file is **not** a standard ZIP-based PyTorch checkpoint. It begins with the bytes `storages` followed by a `ustar` TAR header at offset `0x100`, identifying it as a **TAR archive**,  the legacy format used by older versions of `torch.save()`.
 
 This matters because every existing static scanner (PickleScan, ModelScan, Hugging Face's built-in scanner, ProtectAI) expects the modern ZIP-based container format. When they encounter a TAR-based file, they either fail to parse it or skip it entirely. **PyTorch's `torch.load()` handles both formats transparently** — the framework loads the TAR, extracts the pickle stream, and executes the payload. The scanners never see it.
 
@@ -62,7 +62,7 @@ This loading path bypass was [documented by Liu et al.](https://arxiv.org/abs/24
 
 ### Scanner results at time of discovery
 
-All scanner results on Hugging Face showed either "No issue" or "Queued" — the model was fully downloadable and executable with no security warning attached.
+All scanner results on Hugging Face showed either "No issue" or "Queued". The model was fully downloadable and executable with no security warning attached.
 
 ---
 
@@ -78,7 +78,7 @@ The repository included a `config.json` claiming the following architecture:
 }
 ```
 
-A legitimate Qwen2 model with these parameters would require approximately **300 MB** of weights. The actual file was **10.2 KB** — roughly **30,000x smaller** than expected. The `config.json` exists solely to make the model loadable via `transformers.AutoModel.from_pretrained()`.
+A legitimate Qwen2 model with these parameters would require approximately **300 MB** of weights. The actual file was **10.2 KB**, roughly **30,000x smaller** than expected. The `config.json` exists solely to make the model loadable via `transformers.AutoModel.from_pretrained()`.
 
 ---
 
@@ -196,7 +196,7 @@ Port 11014 is a non-standard port commonly used by attackers to avoid basic fire
 
 ## Key Takeaways
 
-- **ML models are executable artifacts.** Loading a model from a public hub can execute arbitrary code on your machine. This is not theoretical — it happened here.
+- **ML models are executable artifacts.** Loading a model from a public hub can execute arbitrary code on your machine. This is not theoretical, it happened here.
 - **Static scanners missed it.** Every scanner on Hugging Face failed to flag a plaintext reverse shell because the payload was wrapped in a TAR archive that scanners cannot parse, even though PyTorch loads it without issue.
 - **Published bypass techniques are being used in the wild.** The legacy TAR loading path was documented as a scanner evasion technique in academic research. This is the first confirmed case of it being deployed against a real platform.
 - **File size is a signal.** A 10.2 KB file claiming to be a 24-layer language model is a 30,000x size mismatch. Simple metadata validation would have flagged this immediately.
