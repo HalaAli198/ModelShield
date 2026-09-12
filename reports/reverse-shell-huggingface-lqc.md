@@ -1,14 +1,14 @@
 # Reverse Shell Malware Found on Hugging Face: Analysis of LQCTestingSpace/lqc_model
 
 **Date:** March 30, 2026
-**Classification:** MALICIOUS,  Reverse Shell
+**Classification:** MALICIOUS(Reverse Shell)
 **Status:** Reported to Hugging Face Security and AWS Trust & Safety. Model removed.
 
 ---
 
-## TL;DR
+## Summary
 
-ModelShield, a runtime behavioral detection system, identified a malicious model on Hugging Face disguised as a Qwen2 language model that contained no real weights, just a 10.2 KB pickle payload that opens a reverse shell to an attacker-controlled AWS EC2 instance in Singapore. It sat on the platform for 3 days, was downloaded 108 times, and **every scanner on the platform either returned "No issue" or was still queued**. The model used PyTorch's legacy TAR-based loading path, a known scanner bypass technique that, to our knowledge, had never been seen in the wild before this case.
+On March 30, 2026, [ModelShield](https://github.com/HalaAli198/ModelShield) identified a malicious model on Hugging Face disguised as a Qwen2 language model. This model contained no real weights, just a 10.2 KB pickle payload that opens a reverse shell to an attacker-controlled AWS EC2 instance in Singapore. It sat on the platform for 3 days, was downloaded 108 times, and **every scanner on the platform either returned "No issue" or was still queued**. The model used PyTorch's legacy TAR-based loading path, a known scanner bypass technique that, to our knowledge, had never been seen in the wild before this case.
 
 ---
 
@@ -196,7 +196,7 @@ Port 11014 is a non-standard port commonly used by attackers to avoid basic fire
 
 ## Key Takeaways
 
-- **ML models are executable artifacts.** Loading a model from a public hub can execute arbitrary code on your machine. This is not theoretical, it happened here.
+- **ML models are executable artifacts.** Loading a model from a public hub can execute arbitrary code on your machine. This is not theoretical; it happened here.
 - **Static scanners missed it.** Every scanner on Hugging Face failed to flag a plaintext reverse shell because the payload was wrapped in a TAR archive that scanners cannot parse, even though PyTorch loads it without issue.
 - **Published bypass techniques are being used in the wild.** The legacy TAR loading path was documented as a scanner evasion technique in academic research. This is the first confirmed case of it being deployed against a real platform.
 - **File size is a signal.** A 10.2 KB file claiming to be a 24-layer language model is a 30,000x size mismatch. Simple metadata validation would have flagged this immediately.
@@ -208,4 +208,4 @@ Port 11014 is a non-standard port commonly used by attackers to avoid basic fire
 
 This analysis was conducted as part of research on runtime behavioral detection of malicious ML models. The detection was made using [ModelShield](https://github.com/HalaAli198/ModelShield), a runtime behavioral detection system that monitors system-call activity during model loading and inference.
 
-**Authors:** Hala Ali (Virginia Commonwealth University), Andrew Case (Volatility Foundation)
+**Author:** Hala Ali
