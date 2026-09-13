@@ -650,7 +650,7 @@ _CRED_LOGIN = [
 _CRED_BROWSER = [
     ".config/google-chrome/", ".config/chromium/",
     ".config/BraveSoftware/", ".config/microsoft-edge/",
-    ".mozilla/firefox/", "Cookies", "Login Data",
+    ".mozilla/firefox/", "/Default/Cookies", "Login Data",
     "logins.json", "key4.db", "key3.db", "cookies.sqlite", "cert9.db",
 ]
 
