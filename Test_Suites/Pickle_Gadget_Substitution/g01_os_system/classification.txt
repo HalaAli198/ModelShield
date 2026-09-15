@@ -1,0 +1,32 @@
+  Tagged 89 loading events from _loading_events.json
+  Tagged 0 execution events from _execution_events.json
+
+======================================================================
+ATTACK BEHAVIOR CLASSIFICATION
+Model: /home/hala/9_OCtober/gadget_test/g01_os_system/events/
+Loading events: 89
+Execution events: 0
+Patterns defined: 193
+======================================================================
+
+  [LOADING] AB1-EXEC-CRED-ACCESS: Command-based credential file access
+    Step 0: execve -> /usr/bin/cat  (Execute file-reading command (cat/head/grep/etc.))
+    Step 1: openat -> /home/hala/.ssh/id_rsa  (Open credential/sensitive file)
+    Step 2: read -> /home/hala/.ssh/id_rsa  (Read credential data)
+    MITRE: Credential Access / T1003.008 (/etc/passwd and /etc/shadow)
+    MITRE: Execution / T1059.004 (Unix Shell)
+
+  [LOADING] AB1-CRED-SSH-LOCAL: SSH key access during model execution
+    Step 0: openat -> /home/hala/.ssh/id_rsa  (Open credential file (SSH key access during model execution))
+    Step 1: read -> /home/hala/.ssh/id_rsa  (Read credential data)
+    MITRE: Credential Access / T1552.004 (Private Keys)
+
+======================================================================
+  VERDICT: MALICIOUS — 1 attack behavior(s) detected
+    AB1: Sensitive Information Theft
+      - SSH key access during model execution
+      - Command-based credential file access
+      MITRE: T1003.008 (/etc/passwd and /etc/shadow)
+      MITRE: T1059.004 (Unix Shell)
+      MITRE: T1552.004 (Private Keys)
+===================================================================
