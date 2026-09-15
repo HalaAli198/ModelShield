@@ -1,0 +1,42 @@
+[
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 8191,
+      "stream": "stdout"
+    },
+    "pid": 9547,
+    "tid": 9547,
+    "timestamp": 2882.641149832,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7868,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "4e26c81d",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "4e26c81d"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "xgboost.sklearn.predict",
+        "timestamp": 1789447624.5324223,
+        "thread_id": 131950242230272,
+        "ml_context": null
+      }
+    ],
+    "source_file": "unsafe_model.pkl"
+  }
+]

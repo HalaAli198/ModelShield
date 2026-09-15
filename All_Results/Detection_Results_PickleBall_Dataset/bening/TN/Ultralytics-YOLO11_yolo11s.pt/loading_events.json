@@ -1,0 +1,2971 @@
+[
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395902858,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13782,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395929628,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3407,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395939668,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2573,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395950318,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395967348,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.395987048,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4325,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396094238,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13782,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396109668,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3407,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396117578,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2573,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396133108,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_END"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396173228,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396180168,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 18446744073709551594,
+      "whence": "SEEK_END"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396186748,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396192948,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13817,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396198418,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 22
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396208378,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19313690,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396236868,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396246248,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19313634,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396261128,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 98
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396269118,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19282296,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396283288,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 28672
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396302238,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 2764
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.396310448,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.398561618,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4325,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.398592848,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.398647618,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12035,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.398857628,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6669,
+    "phase": "LOADING",
+    "effective_correlation_id": "3c670541",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "3c670541"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.399148918,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13782,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.399167778,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3407,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.399176548,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2573,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.399187728,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.399210868,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402722227,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402743697,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402824887,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_END"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402863357,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402870237,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7822,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402876377,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402903977,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402918027,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19309636,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402948877,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402959367,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19313710,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402966247,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 22
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402974067,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19313690,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402980277,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402987877,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19313634,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.402994047,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 98
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403011757,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19282296,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403034677,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 31338
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403050937,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19282130,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403259987,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403269087,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 19282000,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403335297,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403344817,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403548177,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4645,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 203668,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403643487,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403657856,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403739147,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6754,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403751287,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/benign_pickleball/temp_model/yolo11s.pt",
+    "extra_details": {
+      "fd": 294,
+      "size": 199556
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.403805697,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15747,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.404115247,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/lib/python3.9",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.404181856,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/lib/python3.9/lib-dynload",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.404204067,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/home/halaali_cs/modelshield/env_pool/torch_current/lib/python3",
+    "extra_details": {},
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.404222877,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4649,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.404289637,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4325,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 8151,
+      "stream": "stdout"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.405297486,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3966,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 8192,
+      "stream": "stdout"
+    },
+    "pid": 473757,
+    "tid": 473757,
+    "timestamp": 18477.48843259,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3966,
+    "phase": "LOADING",
+    "effective_correlation_id": "2e83a6ee",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2e83a6ee"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7070758,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789410122.7071924,
+        "thread_id": 131993305268224,
+        "ml_context": null
+      }
+    ],
+    "source_file": "yolo11s.pt"
+  }
+]

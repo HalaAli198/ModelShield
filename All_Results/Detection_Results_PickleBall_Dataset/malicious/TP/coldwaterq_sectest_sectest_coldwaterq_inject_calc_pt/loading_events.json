@@ -1,0 +1,4579 @@
+[
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.122556227,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.122751437,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "2d543675",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "2d543675"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/coldwaterq_inj",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123034257,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3508,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123059257,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10406,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123069837,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5388,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123081207,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123104247,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/coldwaterq_inj",
+    "extra_details": {
+      "fd": 294,
+      "size": 4096
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123120667,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8378,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123181487,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123197347,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123450557,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123480287,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123580997,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123598317,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8938,
+    "phase": "LOADING",
+    "effective_correlation_id": "39c69a7e",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "39c69a7e"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.123682417,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8273,
+    "phase": "LOADING",
+    "effective_correlation_id": "f8ab705b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f8ab705b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789445994.0142245,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.015069,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.319663606,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "33592bfd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "33592bfd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.211171,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.319868586,
+    "comm": "pt_main_thread",
+    "user_stack_id": 1010,
+    "phase": "LOADING",
+    "effective_correlation_id": "db4a4d98",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "db4a4d98"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.0151608,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.211171,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.514632185,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "c1096aa9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c1096aa9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.514822365,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8273,
+    "phase": "LOADING",
+    "effective_correlation_id": "4f891745",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "4f891745"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pipe2",
+    "filename": "create_pipe",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.515263715,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15999,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pipe2",
+    "filename": "create_pipe",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.515293785,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15999,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "clone",
+    "filename": "flags=0x1200011",
+    "extra_details": {
+      "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.515364265,
+    "comm": "pt_main_thread",
+    "user_stack_id": 663,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=296",
+    "extra_details": {
+      "fd": 296
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.531778174,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7806,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=297",
+    "extra_details": {
+      "fd": 297
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.531796555,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7806,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=1",
+    "extra_details": {},
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.532778325,
+    "comm": "pt_main_thread",
+    "user_stack_id": 1811,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.532902295,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7806,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=298",
+    "extra_details": {
+      "fd": 298
+    },
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.532912935,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7806,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/dev/null",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533097804,
+    "comm": "pt_main_thread",
+    "user_stack_id": 807,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533156324,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10406,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=295_cmd=0x5401",
+    "extra_details": {},
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533178495,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5388,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=295",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533204735,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=295_cmd=0x5401",
+    "extra_details": {},
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533222035,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5388,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=131106",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533938524,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7897,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "clone3",
+    "filename": "clone",
+    "extra_details": {},
+    "pid": 3410,
+    "tid": 3410,
+    "timestamp": 1252.533964955,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11782,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "execve",
+    "filename": "/bin/sh",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534176304,
+    "comm": "sh",
+    "user_stack_id": 872,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534609864,
+    "comm": "sh",
+    "user_stack_id": 14185,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "access",
+    "filename": "/etc/ld.so.preload",
+    "extra_details": {
+      "mode": "R_OK|W_OK|X_OK"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534627074,
+    "comm": "sh",
+    "user_stack_id": 6013,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/etc/ld.so.cache",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534640334,
+    "comm": "sh",
+    "user_stack_id": 5726,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534654025,
+    "comm": "sh",
+    "user_stack_id": 2991,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=2",
+    "extra_details": {
+      "protection": "PROT_READ",
+      "flags": "MAP_PRIVATE"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534661254,
+    "comm": "sh",
+    "user_stack_id": 14185,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=3",
+    "extra_details": {
+      "fd": 3
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534670525,
+    "comm": "sh",
+    "user_stack_id": 8670,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "openat",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534682434,
+    "comm": "sh",
+    "user_stack_id": 2675,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "fd": 3,
+      "size": 832
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534704044,
+    "comm": "sh",
+    "user_stack_id": 15905,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pread64",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "fd": 3,
+      "size": 784,
+      "offset": 64
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534715494,
+    "comm": "sh",
+    "user_stack_id": 10387,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pread64",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "fd": 3,
+      "size": 48,
+      "offset": 848
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534722074,
+    "comm": "sh",
+    "user_stack_id": 10387,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pread64",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "fd": 3,
+      "size": 68,
+      "offset": 896
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534728684,
+    "comm": "sh",
+    "user_stack_id": 10387,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534734844,
+    "comm": "sh",
+    "user_stack_id": 6441,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "pread64",
+    "filename": "/lib/x86_64-linux-gnu/libc.so.6",
+    "extra_details": {
+      "fd": 3,
+      "size": 784,
+      "offset": 64
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534742604,
+    "comm": "sh",
+    "user_stack_id": 14891,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=2050",
+    "extra_details": {
+      "protection": "PROT_READ",
+      "flags": "MAP_PRIVATE"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534750934,
+    "comm": "sh",
+    "user_stack_id": 1515,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mprotect",
+    "filename": "addr=0x78120be28000, len=2023424",
+    "extra_details": {
+      "protection": "PROT_NONE"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534761374,
+    "comm": "sh",
+    "user_stack_id": 3489,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=0x78120be28000, len=2066",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_EXEC",
+      "flags": "MAP_PRIVATE|MAP_FIXED"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534774944,
+    "comm": "sh",
+    "user_stack_id": 1515,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=0x78120bfbd000, len=2066",
+    "extra_details": {
+      "protection": "PROT_READ",
+      "flags": "MAP_PRIVATE|MAP_FIXED"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534789015,
+    "comm": "sh",
+    "user_stack_id": 1515,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=0x78120c016000, len=2066",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_FIXED"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534803495,
+    "comm": "sh",
+    "user_stack_id": 1515,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=0x78120c01c000, len=50",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534820364,
+    "comm": "sh",
+    "user_stack_id": 1515,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=3",
+    "extra_details": {
+      "fd": 3
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534842074,
+    "comm": "sh",
+    "user_stack_id": 6544,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534859834,
+    "comm": "sh",
+    "user_stack_id": 14185,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mprotect",
+    "filename": "addr=0x78120c016000, len=16384",
+    "extra_details": {
+      "protection": "PROT_READ"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534938994,
+    "comm": "sh",
+    "user_stack_id": 2731,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mprotect",
+    "filename": "addr=0x607d49544000, len=8192",
+    "extra_details": {
+      "protection": "PROT_READ"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.534986764,
+    "comm": "sh",
+    "user_stack_id": 2731,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mprotect",
+    "filename": "addr=0x78120c0af000, len=8192",
+    "extra_details": {
+      "protection": "PROT_READ"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535019064,
+    "comm": "sh",
+    "user_stack_id": 7738,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getuid",
+    "filename": "getuid",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535093564,
+    "comm": "sh",
+    "user_stack_id": 507,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getgid",
+    "filename": "getgid",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535100804,
+    "comm": "sh",
+    "user_stack_id": 15096,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "geteuid",
+    "filename": "geteuid",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535117024,
+    "comm": "sh",
+    "user_stack_id": 8983,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=1",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535127224,
+    "comm": "sh",
+    "user_stack_id": 12690,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/home/halaali_cs",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535168054,
+    "comm": "sh",
+    "user_stack_id": 15433,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": ".",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535179764,
+    "comm": "sh",
+    "user_stack_id": 15433,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "geteuid",
+    "filename": "geteuid",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535200094,
+    "comm": "sh",
+    "user_stack_id": 8983,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getegid",
+    "filename": "getegid",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535205865,
+    "comm": "sh",
+    "user_stack_id": 6292,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/local/sbin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535221174,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/local/bin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535228694,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/sbin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535234874,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/bin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535241074,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/sbin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535247004,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/bin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535253364,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/snap/bin/calc",
+    "extra_details": {},
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535259634,
+    "comm": "sh",
+    "user_stack_id": 11501,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.535273794,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7897,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stderr",
+    "extra_details": {
+      "fd": 2,
+      "size": 7,
+      "stream": "stderr"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535296534,
+    "comm": "sh",
+    "user_stack_id": 11784,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stderr",
+    "extra_details": {
+      "fd": 2,
+      "size": 15,
+      "stream": "stderr"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535306804,
+    "comm": "sh",
+    "user_stack_id": 11784,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stderr",
+    "extra_details": {
+      "fd": 2,
+      "size": 1,
+      "stream": "stderr"
+    },
+    "pid": 3411,
+    "tid": 3411,
+    "timestamp": 1252.535315014,
+    "comm": "sh",
+    "user_stack_id": 11784,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.2113426,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.40614,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.691325215,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "c98fb8f9",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "c98fb8f9"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.691584625,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16322,
+    "phase": "LOADING",
+    "effective_correlation_id": "ad506753",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "ad506753"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886134514,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886193534,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2672,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 621,
+      "whence": "SEEK_SET"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886202394,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2672,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/coldwaterq_inj",
+    "extra_details": {
+      "fd": 294,
+      "size": 8
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886223814,
+    "comm": "pt_main_thread",
+    "user_stack_id": 1172,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/coldwaterq_inj",
+    "extra_details": {
+      "fd": 294,
+      "size": 141312
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886300715,
+    "comm": "pt_main_thread",
+    "user_stack_id": 1172,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886307164,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2672,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 4096,
+      "whence": "SEEK_SET"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886312135,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2672,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 141941,
+      "whence": "SEEK_SET"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886323464,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13557,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886330184,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7022,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1252.886377044,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4616,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 1844,
+      "stream": "stdout"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1253.081557103,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8445,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 33462,
+      "stream": "stdout"
+    },
+    "pid": 3405,
+    "tid": 3405,
+    "timestamp": 1253.081621623,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8445,
+    "phase": "LOADING",
+    "effective_correlation_id": "5d00a50b",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5d00a50b"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.4062915,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445994.5828416,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445994.5830593,
+        "thread_id": 134163092365312,
+        "ml_context": null
+      }
+    ],
+    "source_file": "coldwaterq_inject_calc.pt"
+  }
+]
