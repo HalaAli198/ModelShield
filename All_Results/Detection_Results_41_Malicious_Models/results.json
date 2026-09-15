@@ -1,0 +1,2012 @@
+[
+  {
+    "model_id": "20.manja316_modelscan-bypass-pycompile/pycompile_persist.pkl",
+    "model_files": [
+      "pycompile_persist.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 58,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:39:48.629768",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "pycompile_persist.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB3"
+    ],
+    "pattern_ids": [
+      "AB3-TMP-SCRIPT-STAGE-ATTEMPT"
+    ],
+    "behavior_count": 1,
+    "loading_events": 34,
+    "execution_events": 0,
+    "inspector_time": 19.21145486831665,
+    "classifier_time": 0.09214901924133301,
+    "copy_time": 0.0012814998626708984,
+    "total_time": 19.306071996688843
+  },
+  {
+    "model_id": "17.hacnho_pickle-scanner-bypass-smtplib-smtp/exploit-smtplib-smtp.pkl",
+    "model_files": [
+      "exploit-smtplib-smtp.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 40,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:40:07.939603",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-smtplib-smtp.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 139,
+    "execution_events": 0,
+    "inspector_time": 19.86809754371643,
+    "classifier_time": 0.10566425323486328,
+    "copy_time": 0.001505136489868164,
+    "total_time": 19.976202964782715
+  },
+  {
+    "model_id": "14.hacnho_pickle-scanner-bypass-torch-multiprocessing/exploit-torch-multiprocessing-spawn.pkl",
+    "model_files": [
+      "exploit-torch-multiprocessing-spawn.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 45,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:40:27.917463",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-torch-multiprocessing-spawn.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-PYTHON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 6400,
+    "execution_events": 0,
+    "inspector_time": 24.31991457939148,
+    "classifier_time": 1.4302725791931152,
+    "copy_time": 0.001295328140258789,
+    "total_time": 25.752671718597412
+  },
+  {
+    "model_id": "12.hacnho_pickle-scanner-bypass-nntplib-nntp/exploit-nntplib-nntp.pkl",
+    "model_files": [
+      "exploit-nntplib-nntp.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 35,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:40:53.689773",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-nntplib-nntp.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 87,
+    "execution_events": 0,
+    "inspector_time": 30.082204818725586,
+    "classifier_time": 0.09656429290771484,
+    "copy_time": 0.0014276504516601562,
+    "total_time": 30.181366682052612
+  },
+  {
+    "model_id": "39.cgruzicka_test-lora-weights_events/lora_weights.bin",
+    "model_files": [
+      "lora_weights.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 7864213,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:41:23.873911",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "lora_weights.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-SYS-EXFIL",
+      "AB1-USERACCT-EXFIL",
+      "AB1-UNAME-EXFIL",
+      "AB1-PERMQUERY-EXFIL",
+      "AB1-CRED-LOGIN-EXFIL",
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB1-SHELL-SYSINFO-ACCESS",
+      "AB1-EXEC-SYSINFO-EXFIL",
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 3,
+    "loading_events": 1221,
+    "execution_events": 0,
+    "inspector_time": 24.48751664161682,
+    "classifier_time": 0.3454020023345947,
+    "copy_time": 0.04198861122131348,
+    "total_time": 24.87600326538086
+  },
+  {
+    "model_id": "39.cgruzicka_test-lora-weights_events/pytorch_lora_weights.bin",
+    "model_files": [
+      "pytorch_lora_weights.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 314,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:41:48.760674",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_lora_weights.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-SYS-EXFIL",
+      "AB1-USERACCT-EXFIL",
+      "AB1-UNAME-EXFIL",
+      "AB1-PERMQUERY-EXFIL",
+      "AB1-CRED-LOGIN-EXFIL",
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB1-SHELL-SYSINFO-ACCESS",
+      "AB1-EXEC-SYSINFO-EXFIL",
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 3,
+    "loading_events": 1225,
+    "execution_events": 0,
+    "inspector_time": 24.222127199172974,
+    "classifier_time": 0.35683298110961914,
+    "copy_time": 0.0013332366943359375,
+    "total_time": 24.58128309249878
+  },
+  {
+    "model_id": "27.Skyflocka_dill-importlib-rce-poc/model.dill",
+    "model_files": [
+      "model.dill"
+    ],
+    "file_types": [
+      ".dill"
+    ],
+    "total_size": 168,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:42:13.351529",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.dill"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 256,
+    "execution_events": 0,
+    "inspector_time": 20.003641843795776,
+    "classifier_time": 0.14695048332214355,
+    "copy_time": 0.0014925003051757812,
+    "total_time": 20.15329933166504
+  },
+  {
+    "model_id": "19.manja316_modelscan-bypass-timeit-repeat/timeit_repeat_rce.pkl",
+    "model_files": [
+      "timeit_repeat_rce.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 121,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:42:33.507848",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "timeit_repeat_rce.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 249,
+    "execution_events": 0,
+    "inspector_time": 19.168705701828003,
+    "classifier_time": 0.1426844596862793,
+    "copy_time": 0.0015764236450195312,
+    "total_time": 19.313868284225464
+  },
+  {
+    "model_id": "18.modelscan-bypass-timeit/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 119,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:42:52.824565",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 56,
+    "execution_events": 0,
+    "inspector_time": 23.317718029022217,
+    "classifier_time": 0.09084367752075195,
+    "copy_time": 0.0014836788177490234,
+    "total_time": 23.411025285720825
+  },
+  {
+    "model_id": "18.modelscan-bypass-timeit/timeit_bypass.pkl",
+    "model_files": [
+      "timeit_bypass.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 81,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:43:16.237921",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "timeit_bypass.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 12513,
+    "execution_events": 0,
+    "inspector_time": 309.48608112335205,
+    "classifier_time": 2.909449815750122,
+    "copy_time": 0.0014224052429199219,
+    "total_time": 312.39798283576965
+  },
+  {
+    "model_id": "18.modelscan-bypass-timeit/timeit_bypass.bin",
+    "model_files": [
+      "timeit_bypass.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 81,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:48:28.674542",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "timeit_bypass.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 12545,
+    "execution_events": 0,
+    "inspector_time": 144.2510585784912,
+    "classifier_time": 3.07304048538208,
+    "copy_time": 0.00045490264892578125,
+    "total_time": 147.32554149627686
+  },
+  {
+    "model_id": "18.modelscan-bypass-timeit/timeit_rce.pkl",
+    "model_files": [
+      "timeit_rce.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 112,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:50:56.043187",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "timeit_rce.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 249,
+    "execution_events": 0,
+    "inspector_time": 19.0596022605896,
+    "classifier_time": 0.14361000061035156,
+    "copy_time": 0.00041747093200683594,
+    "total_time": 19.204498052597046
+  },
+  {
+    "model_id": "34.TheAuroraAi_profile-run-bypass-poc/poc_profile_run.pkl",
+    "model_files": [
+      "poc_profile_run.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 98,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:51:15.250746",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "poc_profile_run.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 59,
+    "execution_events": 0,
+    "inspector_time": 19.780933141708374,
+    "classifier_time": 0.09074091911315918,
+    "copy_time": 0.00032711029052734375,
+    "total_time": 19.872907876968384
+  },
+  {
+    "model_id": "34.TheAuroraAi_profile-run-bypass-poc/poc_profile_run.bin",
+    "model_files": [
+      "poc_profile_run.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 98,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:51:35.126764",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "poc_profile_run.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 88,
+    "execution_events": 0,
+    "inspector_time": 23.860692024230957,
+    "classifier_time": 0.10024046897888184,
+    "copy_time": 0.00034165382385253906,
+    "total_time": 23.96221137046814
+  },
+  {
+    "model_id": "5.cw/dspy_model.pkl",
+    "model_files": [
+      "dspy_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 89,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:51:59.091478",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "dspy_model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 251,
+    "execution_events": 0,
+    "inspector_time": 19.760067224502563,
+    "classifier_time": 0.14044713973999023,
+    "copy_time": 0.0003063678741455078,
+    "total_time": 19.901691436767578
+  },
+  {
+    "model_id": "16.hacnho_pickle-scanner-bypass-poplib-pop3/exploit-poplib-pop3.pkl",
+    "model_files": [
+      "exploit-poplib-pop3.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 34,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:52:18.997953",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-poplib-pop3.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 87,
+    "execution_events": 0,
+    "inspector_time": 30.424153089523315,
+    "classifier_time": 0.09954357147216797,
+    "copy_time": 0.0005176067352294922,
+    "total_time": 30.525179386138916
+  },
+  {
+    "model_id": "33.TheAuroraAi_modelscan-denylist-gap-poc/bypass_profile_run.pkl",
+    "model_files": [
+      "bypass_profile_run.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 82,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:52:49.526961",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_profile_run.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 59,
+    "execution_events": 0,
+    "inspector_time": 19.491722106933594,
+    "classifier_time": 0.0870976448059082,
+    "copy_time": 0.0004467964172363281,
+    "total_time": 19.58009672164917
+  },
+  {
+    "model_id": "33.TheAuroraAi_modelscan-denylist-gap-poc/bypass_cProfile_run.pkl",
+    "model_files": [
+      "bypass_cProfile_run.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 84,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:53:09.109744",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_cProfile_run.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 59,
+    "execution_events": 0,
+    "inspector_time": 19.402392864227295,
+    "classifier_time": 0.09530973434448242,
+    "copy_time": 0.0003437995910644531,
+    "total_time": 19.498860597610474
+  },
+  {
+    "model_id": "33.TheAuroraAi_modelscan-denylist-gap-poc/bypass_http.server_test.pkl",
+    "model_files": [
+      "bypass_http.server_test.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 42,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:53:28.610983",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_http.server_test.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 65,
+    "execution_events": 0,
+    "inspector_time": 20.498596668243408,
+    "classifier_time": 0.0950171947479248,
+    "copy_time": 0.00033664703369140625,
+    "total_time": 20.5949068069458
+  },
+  {
+    "model_id": "3.5006w32cu_test-model/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 10240,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:53:49.208619",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-PYTHON",
+      "AB4-SCRIPT",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 772,
+    "execution_events": 0,
+    "inspector_time": 150.20907640457153,
+    "classifier_time": 0.24413681030273438,
+    "copy_time": 0.00036263465881347656,
+    "total_time": 150.4544379711151
+  },
+  {
+    "model_id": "35.thisisauser101_picklescan-bypass-poc_events/rce_full_chain.pkl",
+    "model_files": [
+      "rce_full_chain.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 84,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:56:19.670549",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "rce_full_chain.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 241,
+    "execution_events": 0,
+    "inspector_time": 19.325876474380493,
+    "classifier_time": 0.13119006156921387,
+    "copy_time": 0.00046563148498535156,
+    "total_time": 19.45849919319153
+  },
+  {
+    "model_id": "35.thisisauser101_picklescan-bypass-poc_events/auto_rce_final.pkl",
+    "model_files": [
+      "auto_rce_final.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 119,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:56:39.132302",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "auto_rce_final.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 303,
+    "execution_events": 0,
+    "inspector_time": 18.99360990524292,
+    "classifier_time": 0.14820551872253418,
+    "copy_time": 0.0004112720489501953,
+    "total_time": 19.143063068389893
+  },
+  {
+    "model_id": "7.m_j/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 1361,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:56:58.278503",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 291,
+    "execution_events": 0,
+    "inspector_time": 25.062824010849,
+    "classifier_time": 0.15117979049682617,
+    "copy_time": 0.00031757354736328125,
+    "total_time": 25.215235710144043
+  },
+  {
+    "model_id": "13.hacnho_pickle-scanner-bypass-py-compile-compile/exploit-py-compile-compile.pkl",
+    "model_files": [
+      "exploit-py-compile-compile.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 41,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:57:23.498162",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-py-compile-compile.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB3"
+    ],
+    "pattern_ids": [
+      "AB3-TMP-SCRIPT-STAGE-ATTEMPT"
+    ],
+    "behavior_count": 1,
+    "loading_events": 34,
+    "execution_events": 0,
+    "inspector_time": 21.447545289993286,
+    "classifier_time": 0.08707737922668457,
+    "copy_time": 0.0005762577056884766,
+    "total_time": 21.53596806526184
+  },
+  {
+    "model_id": "11.hacnho_pickle-scanner-bypass-imaplib-imap4/exploit-imaplib-imap4.pkl",
+    "model_files": [
+      "exploit-imaplib-imap4.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 36,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:57:45.036954",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-imaplib-imap4.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 87,
+    "execution_events": 0,
+    "inspector_time": 28.7572124004364,
+    "classifier_time": 0.0985865592956543,
+    "copy_time": 0.00038433074951171875,
+    "total_time": 28.857047080993652
+  },
+  {
+    "model_id": "6.jkhjkll/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 65,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:58:13.898405",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 241,
+    "execution_events": 0,
+    "inspector_time": 19.10343360900879,
+    "classifier_time": 0.1294853687286377,
+    "copy_time": 0.00038814544677734375,
+    "total_time": 19.2342586517334
+  },
+  {
+    "model_id": "22.mscgo77_modelscan-bypass-ftplib/modelscan-bypass-ftplib.joblib",
+    "model_files": [
+      "modelscan-bypass-ftplib.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 47,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:58:33.136011",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "modelscan-bypass-ftplib.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 75,
+    "execution_events": 0,
+    "inspector_time": 19.21668767929077,
+    "classifier_time": 0.09706544876098633,
+    "copy_time": 0.00037980079650878906,
+    "total_time": 19.315048217773438
+  },
+  {
+    "model_id": "23.mscgo77_modelscan-bypass-logging-config/modelscan-bypass-logging-config.joblib",
+    "model_files": [
+      "modelscan-bypass-logging-config.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 159,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:58:52.454277",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "modelscan-bypass-logging-config.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 534,
+    "execution_events": 0,
+    "inspector_time": 19.158468008041382,
+    "classifier_time": 0.19503474235534668,
+    "copy_time": 0.0005269050598144531,
+    "total_time": 19.35484266281128
+  },
+  {
+    "model_id": "8.Deneimaiegw-modelscan-npy-bypass-poc/malicious_model.npy",
+    "model_files": [
+      "malicious_model.npy"
+    ],
+    "file_types": [
+      ".npy"
+    ],
+    "total_size": 415,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:59:11.813529",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_model.npy"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 518,
+    "execution_events": 0,
+    "inspector_time": 19.478452444076538,
+    "classifier_time": 0.18572616577148438,
+    "copy_time": 0.0003669261932373047,
+    "total_time": 19.665332794189453
+  },
+  {
+    "model_id": "26.rajasingh010_vllm-torch-rce_events/malicious_vllm_model.pt",
+    "model_files": [
+      "malicious_vllm_model.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 1531,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:59:31.483233",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "malicious_vllm_model.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 854,
+    "execution_events": 0,
+    "inspector_time": 23.59463405609131,
+    "classifier_time": 0.25752735137939453,
+    "copy_time": 0.00038433074951171875,
+    "total_time": 23.853453636169434
+  },
+  {
+    "model_id": "2.mathiasthemaster_tabular-playground/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 155,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T17:59:55.343952",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 59,
+    "execution_events": 0,
+    "inspector_time": 19.186596870422363,
+    "classifier_time": 0.09305739402770996,
+    "copy_time": 0.0004220008850097656,
+    "total_time": 19.28119421005249
+  },
+  {
+    "model_id": "29.Skyflocka_numpy-npy-importlib-rce-poc/malicious_model.npy",
+    "model_files": [
+      "malicious_model.npy"
+    ],
+    "file_types": [
+      ".npy"
+    ],
+    "total_size": 240,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:00:14.627717",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_model.npy"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 55,
+    "execution_events": 0,
+    "inspector_time": 19.787822008132935,
+    "classifier_time": 0.09737253189086914,
+    "copy_time": 0.0003323554992675781,
+    "total_time": 19.886441469192505
+  },
+  {
+    "model_id": "1.LQCT/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 10240,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:00:34.517030",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SCRIPT",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 303,
+    "execution_events": 0,
+    "inspector_time": 24.60890793800354,
+    "classifier_time": 0.14559245109558105,
+    "copy_time": 0.0004394054412841797,
+    "total_time": 24.755836248397827
+  },
+  {
+    "model_id": "31.Skyflocka_pickle-importlib-rce-poc/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 174,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:00:59.276640",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 259,
+    "execution_events": 0,
+    "inspector_time": 19.97951579093933,
+    "classifier_time": 0.14275622367858887,
+    "copy_time": 0.0003256797790527344,
+    "total_time": 20.123568058013916
+  },
+  {
+    "model_id": "21.manja316_modelscan-bypass-ssl-ssrf/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 76,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:01:19.403134",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 143,
+    "execution_events": 0,
+    "inspector_time": 20.196836471557617,
+    "classifier_time": 0.11692190170288086,
+    "copy_time": 0.0003628730773925781,
+    "total_time": 20.31500506401062
+  },
+  {
+    "model_id": "36.vellaveto_joblib-scanner-bypass-poc/payload4_uncompressed.joblib",
+    "model_files": [
+      "payload4_uncompressed.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 74,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:01:39.723201",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "payload4_uncompressed.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 586,
+    "execution_events": 0,
+    "inspector_time": 20.129401683807373,
+    "classifier_time": 0.2322843074798584,
+    "copy_time": 0.00041031837463378906,
+    "total_time": 20.36323118209839
+  },
+  {
+    "model_id": "36.vellaveto_joblib-scanner-bypass-poc/payload6_fake_pipeline.joblib",
+    "model_files": [
+      "payload6_fake_pipeline.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 333,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:02:00.092595",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "payload6_fake_pipeline.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 586,
+    "execution_events": 0,
+    "inspector_time": 20.253066062927246,
+    "classifier_time": 0.21626996994018555,
+    "copy_time": 0.0003876686096191406,
+    "total_time": 20.47055411338806
+  },
+  {
+    "model_id": "36.vellaveto_joblib-scanner-bypass-poc/payload3_hidden_in_numpy.joblib",
+    "model_files": [
+      "payload3_hidden_in_numpy.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 39536,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:02:20.567803",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "payload3_hidden_in_numpy.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 605,
+    "execution_events": 0,
+    "inspector_time": 20.489591121673584,
+    "classifier_time": 0.20780324935913086,
+    "copy_time": 0.0004343986511230469,
+    "total_time": 20.698827505111694
+  },
+  {
+    "model_id": "36.vellaveto_joblib-scanner-bypass-poc/payload2_lzma_rce.joblib",
+    "model_files": [
+      "payload2_lzma_rce.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 92,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:02:41.271886",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "payload2_lzma_rce.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 586,
+    "execution_events": 0,
+    "inspector_time": 20.418640613555908,
+    "classifier_time": 0.22734594345092773,
+    "copy_time": 0.00033283233642578125,
+    "total_time": 20.64731454849243
+  },
+  {
+    "model_id": "36.vellaveto_joblib-scanner-bypass-poc/payload1_zlib_rce.joblib",
+    "model_files": [
+      "payload1_zlib_rce.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 77,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:03:01.924336",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "payload1_zlib_rce.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 586,
+    "execution_events": 0,
+    "inspector_time": 19.90956401824951,
+    "classifier_time": 0.2218017578125,
+    "copy_time": 0.0003960132598876953,
+    "total_time": 20.13260531425476
+  },
+  {
+    "model_id": "38.jorseckc_hazard/model (1).joblib",
+    "model_files": [
+      "model (1).joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 656,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:03:22.063994",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model (1).joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-PYTHON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 1652,
+    "execution_events": 0,
+    "inspector_time": 20.373669624328613,
+    "classifier_time": 0.45636844635009766,
+    "copy_time": 0.00041484832763671875,
+    "total_time": 20.831371307373047
+  },
+  {
+    "model_id": "41.abdellahennajari_totally-harmless-model/pytorch_model (1).bin",
+    "model_files": [
+      "pytorch_model (1).bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265482233,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:03:42.903463",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model (1).bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-UNAME-EXFIL",
+      "AB1-CWD-EXFIL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 1052,
+    "execution_events": 0,
+    "inspector_time": 23.561264753341675,
+    "classifier_time": 0.2912418842315674,
+    "copy_time": 0.4445648193359375,
+    "total_time": 24.298059463500977
+  },
+  {
+    "model_id": "40.SantanamoDon_huggingface-transformers-poc/payload.bin",
+    "model_files": [
+      "payload.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 37,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:04:07.277524",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "payload.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 244,
+    "execution_events": 0,
+    "inspector_time": 24.16890048980713,
+    "classifier_time": 0.13503384590148926,
+    "copy_time": 0.0004305839538574219,
+    "total_time": 24.305439949035645
+  },
+  {
+    "model_id": "37.vellaveto_mfv-pickle-modelscan-bypass/pytorch_model-00001-of-00001.bin",
+    "model_files": [
+      "pytorch_model-00001-of-00001.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 464,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:04:31.586236",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model-00001-of-00001.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 293,
+    "execution_events": 0,
+    "inspector_time": 23.4136061668396,
+    "classifier_time": 0.14654088020324707,
+    "copy_time": 0.00038242340087890625,
+    "total_time": 23.561549425125122
+  },
+  {
+    "model_id": "15.hacnho_poc-joblib-compressed-bypass/malicious_compressed.joblib",
+    "model_files": [
+      "malicious_compressed.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 61,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:04:55.151101",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_compressed.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 248,
+    "execution_events": 0,
+    "inspector_time": 19.299493074417114,
+    "classifier_time": 0.14064717292785645,
+    "copy_time": 0.00040602684020996094,
+    "total_time": 19.44157910346985
+  },
+  {
+    "model_id": "25.rajasingh010_keras-saveable-rce_events/malicious_keras_rce.pkl",
+    "model_files": [
+      "malicious_keras_rce.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 144,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:05:14.597904",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_keras_rce.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 792,
+    "execution_events": 0,
+    "inspector_time": 19.474956512451172,
+    "classifier_time": 0.25219225883483887,
+    "copy_time": 0.00042366981506347656,
+    "total_time": 19.728495836257935
+  },
+  {
+    "model_id": "32.Skyflocka_pytorch-importlib-rce-poc/model.pt",
+    "model_files": [
+      "model.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 1082,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:05:34.331528",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "model.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 302,
+    "execution_events": 0,
+    "inspector_time": 23.332274436950684,
+    "classifier_time": 0.15137815475463867,
+    "copy_time": 0.0003066062927246094,
+    "total_time": 23.484806776046753
+  },
+  {
+    "model_id": "24.mscgo77_npy-scanner-bypass-poc/malicious_scanner_bypass.npy",
+    "model_files": [
+      "malicious_scanner_bypass.npy"
+    ],
+    "file_types": [
+      ".npy"
+    ],
+    "total_size": 367,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:05:57.819686",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_scanner_bypass.npy"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 190,
+    "execution_events": 0,
+    "inspector_time": 19.41083860397339,
+    "classifier_time": 0.12199282646179199,
+    "copy_time": 0.000396728515625,
+    "total_time": 19.534039974212646
+  },
+  {
+    "model_id": "24.mscgo77_npy-scanner-bypass-poc/malicious_scanner_bypass.npz",
+    "model_files": [
+      "malicious_scanner_bypass.npz"
+    ],
+    "file_types": [
+      ".npz"
+    ],
+    "total_size": 501,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:06:17.356952",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_scanner_bypass.npz"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 222,
+    "execution_events": 0,
+    "inspector_time": 20.115448713302612,
+    "classifier_time": 0.1373579502105713,
+    "copy_time": 0.0003247261047363281,
+    "total_time": 20.253940105438232
+  },
+  {
+    "model_id": "10.hacnho_pickle-scanner-bypass-compileall-compile-file/exploit-compileall-compile-file.pkl",
+    "model_files": [
+      "exploit-compileall-compile-file.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 46,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:06:37.613846",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-compileall-compile-file.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB3"
+    ],
+    "pattern_ids": [
+      "AB3-TMP-SCRIPT-PROBE"
+    ],
+    "behavior_count": 1,
+    "loading_events": 40,
+    "execution_events": 0,
+    "inspector_time": 21.857527017593384,
+    "classifier_time": 0.08125090599060059,
+    "copy_time": 0.0003266334533691406,
+    "total_time": 21.93997025489807
+  },
+  {
+    "model_id": "9.hacnho_pickle-scanner-bypass-syslog-syslog/exploit-syslog-syslog.pkl",
+    "model_files": [
+      "exploit-syslog-syslog.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 29,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:06:59.558480",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "exploit-syslog-syslog.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB3"
+    ],
+    "pattern_ids": [
+      "AB3-SYSLOG-INJECT"
+    ],
+    "behavior_count": 1,
+    "loading_events": 17,
+    "execution_events": 0,
+    "inspector_time": 21.13104557991028,
+    "classifier_time": 0.08721232414245605,
+    "copy_time": 0.00030803680419921875,
+    "total_time": 21.219473600387573
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/bypass_timeit.joblib",
+    "model_files": [
+      "bypass_timeit.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 147,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:07:20.780529",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_timeit.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 55,
+    "execution_events": 0,
+    "inspector_time": 19.51554799079895,
+    "classifier_time": 0.11145329475402832,
+    "copy_time": 0.0003476142883300781,
+    "total_time": 19.628226280212402
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/bypass_cprofile.joblib",
+    "model_files": [
+      "bypass_cprofile.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 123,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:07:40.411311",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_cprofile.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 55,
+    "execution_events": 0,
+    "inspector_time": 19.49511432647705,
+    "classifier_time": 0.09172248840332031,
+    "copy_time": 0.00040793418884277344,
+    "total_time": 19.58818793296814
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/control_blocked.joblib",
+    "model_files": [
+      "control_blocked.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 96,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:08:00.003384",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "control_blocked.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 55,
+    "execution_events": 0,
+    "inspector_time": 18.96639895439148,
+    "classifier_time": 0.08841085433959961,
+    "copy_time": 0.0004069805145263672,
+    "total_time": 19.056107997894287
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/bypass_profile.joblib",
+    "model_files": [
+      "bypass_profile.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 108,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:08:19.062448",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_profile.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 55,
+    "execution_events": 0,
+    "inspector_time": 19.081459045410156,
+    "classifier_time": 0.09199047088623047,
+    "copy_time": 0.00031948089599609375,
+    "total_time": 19.174631595611572
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/bypass_pty.joblib",
+    "model_files": [
+      "bypass_pty.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 66,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:08:38.241599",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_pty.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 146,
+    "execution_events": 0,
+    "inspector_time": 21.42489218711853,
+    "classifier_time": 0.11226511001586914,
+    "copy_time": 0.00033283233642578125,
+    "total_time": 21.538314819335938
+  },
+  {
+    "model_id": "4.askj00bs_modelscan-test-1/bypass_logging.joblib",
+    "model_files": [
+      "bypass_logging.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 149,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:08:59.782549",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "bypass_logging.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 160,
+    "execution_events": 0,
+    "inspector_time": 18.812333345413208,
+    "classifier_time": 0.11463022232055664,
+    "copy_time": 0.0003504753112792969,
+    "total_time": 18.928235054016113
+  },
+  {
+    "model_id": "30.Skyflocka_numpy-npz-modelscan-bypass-poc/malicious_model.npz",
+    "model_files": [
+      "malicious_model.npz"
+    ],
+    "file_types": [
+      ".npz"
+    ],
+    "total_size": 507,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:09:18.713712",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "malicious_model.npz"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 89,
+    "execution_events": 0,
+    "inspector_time": 19.208953380584717,
+    "classifier_time": 0.09508395195007324,
+    "copy_time": 0.0003600120544433594,
+    "total_time": 19.305325984954834
+  },
+  {
+    "model_id": "30.Skyflocka_numpy-npz-modelscan-bypass-poc/importlib_bypass.npz",
+    "model_files": [
+      "importlib_bypass.npz"
+    ],
+    "file_types": [
+      ".npz"
+    ],
+    "total_size": 386,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:09:38.021882",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "importlib_bypass.npz"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 76,
+    "execution_events": 0,
+    "inspector_time": 19.153427839279175,
+    "classifier_time": 0.10256838798522949,
+    "copy_time": 0.00039839744567871094,
+    "total_time": 19.257366180419922
+  },
+  {
+    "model_id": "28.Skyflocka_joblib-importlib-rce-poc/model.joblib",
+    "model_files": [
+      "model.joblib"
+    ],
+    "file_types": [
+      ".joblib"
+    ],
+    "total_size": 174,
+    "has_pickle": true,
+    "timestamp": "2026-09-14T18:09:57.281985",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.joblib"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 257,
+    "execution_events": 0,
+    "inspector_time": 19.05525302886963,
+    "classifier_time": 0.1494596004486084,
+    "copy_time": 0.0004055500030517578,
+    "total_time": 19.206165075302124
+  }
+]

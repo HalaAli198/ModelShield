@@ -1,0 +1,144 @@
+[
+  {
+    "model_id": "TF_Abuse/IP_exposure/saved_model/saved_model.pb",
+    "model_files": [
+      "saved_model.pb"
+    ],
+    "file_types": [
+      ".pb"
+    ],
+    "total_size": 12593,
+    "has_pickle": false,
+    "timestamp": "2026-09-14T17:56:59.501054",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "tf2",
+    "downloaded_files": [
+      "saved_model.pb"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-HW-EXFIL",
+      "AB1-UNAME-EXFIL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 157,
+    "execution_events": 102,
+    "inspector_time": 21.768860340118408,
+    "classifier_time": 0.14485597610473633,
+    "copy_time": 0.00040602684020996094,
+    "total_time": 21.91499614715576
+  },
+  {
+    "model_id": "TF_Abuse/code_execution/saved_model/saved_model.pb",
+    "model_files": [
+      "saved_model.pb"
+    ],
+    "file_types": [
+      ".pb"
+    ],
+    "total_size": 13001,
+    "has_pickle": false,
+    "timestamp": "2026-09-14T17:57:21.419869",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "tf2",
+    "downloaded_files": [
+      "saved_model.pb"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB2",
+      "AB3"
+    ],
+    "pattern_ids": [
+      "AB2-PYTHON-MODULE-SHADOW",
+      "AB2-PYTHON-MODULE-SHADOW-ATTEMPT",
+      "AB3-TMP-SCRIPT-STAGE",
+      "AB3-TMP-SCRIPT-STAGE-ATTEMPT"
+    ],
+    "behavior_count": 2,
+    "loading_events": 157,
+    "execution_events": 40,
+    "inspector_time": 22.73039722442627,
+    "classifier_time": 0.12252402305603027,
+    "copy_time": 0.00027441978454589844,
+    "total_time": 22.854066371917725
+  },
+  {
+    "model_id": "TF_Abuse/shell_access/saved_model/saved_model.pb",
+    "model_files": [
+      "saved_model.pb"
+    ],
+    "file_types": [
+      ".pb"
+    ],
+    "total_size": 15562,
+    "has_pickle": false,
+    "timestamp": "2026-09-14T17:57:44.276939",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "tf2",
+    "downloaded_files": [
+      "saved_model.pb"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB2",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB2-SSH-KEYS",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 158,
+    "execution_events": 413,
+    "inspector_time": 19.75766897201538,
+    "classifier_time": 0.19269394874572754,
+    "copy_time": 0.00028204917907714844,
+    "total_time": 19.95164966583252
+  },
+  {
+    "model_id": "TF_Abuse/file_leak/saved_model/saved_model.pb",
+    "model_files": [
+      "saved_model.pb"
+    ],
+    "file_types": [
+      ".pb"
+    ],
+    "total_size": 21406,
+    "has_pickle": false,
+    "timestamp": "2026-09-14T17:58:04.233182",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "tf2",
+    "downloaded_files": [
+      "saved_model.pb"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-HW-EXFIL",
+      "AB1-UNAME-EXFIL",
+      "AB1-CRED-SSH-EXFIL",
+      "AB1-CRED-SSH-LOCAL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 189,
+    "execution_events": 270,
+    "inspector_time": 20.334863424301147,
+    "classifier_time": 0.1765298843383789,
+    "copy_time": 0.0004146099090576172,
+    "total_time": 20.512678861618042
+  }
+]

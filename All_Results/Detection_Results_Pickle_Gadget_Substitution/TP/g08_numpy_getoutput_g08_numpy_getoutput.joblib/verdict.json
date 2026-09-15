@@ -1,0 +1,426 @@
+{
+  "model_path": "/home/halaali_cs/gadget_substitution_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 2172,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB1",
+      "behavior_name": "Sensitive Information Theft",
+      "sub_behaviors": [
+        "SSH key access during model execution",
+        "Command-based credential file access",
+        "Shell-based credential file access"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Credential Access",
+          "technique_id": "T1003.008",
+          "technique_name": "/etc/passwd and /etc/shadow"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Credential Access",
+          "technique_id": "T1552.004",
+          "technique_name": "Private Keys"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB1-EXEC-CRED-ACCESS",
+          "sub_behavior": "Command-based credential file access",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/cat",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.18662624,
+              "tid": 253644,
+              "extra_details": {}
+            },
+            {
+              "operation": "openat",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.open",
+              "timestamp": 16006.18831494,
+              "tid": 253644,
+              "extra_details": {
+                "flags": "O_RDONLY"
+              }
+            },
+            {
+              "operation": "read",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.read",
+              "timestamp": 16006.18835694,
+              "tid": 253644,
+              "extra_details": {
+                "fd": 3,
+                "size": 26
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Credential Access",
+              "technique_id": "T1003.008",
+              "technique_name": "/etc/passwd and /etc/shadow"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB1-SHELL-CRED-ACCESS",
+          "sub_behavior": "Shell-based credential file access",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.13541739,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "openat",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.open",
+              "timestamp": 16006.18831494,
+              "tid": 253644,
+              "extra_details": {
+                "flags": "O_RDONLY"
+              }
+            },
+            {
+              "operation": "read",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.read",
+              "timestamp": 16006.18835694,
+              "tid": 253644,
+              "extra_details": {
+                "fd": 3,
+                "size": 26
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Credential Access",
+              "technique_id": "T1003.008",
+              "technique_name": "/etc/passwd and /etc/shadow"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB1-CRED-SSH-LOCAL",
+          "sub_behavior": "SSH key access during model execution",
+          "matched_events": [
+            {
+              "operation": "openat",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.open",
+              "timestamp": 16006.18831494,
+              "tid": 253644,
+              "extra_details": {
+                "flags": "O_RDONLY"
+              }
+            },
+            {
+              "operation": "read",
+              "filename": "/home/hala/.ssh/id_rsa",
+              "sub_op": "File.read",
+              "timestamp": 16006.18835694,
+              "tid": 253644,
+              "extra_details": {
+                "fd": 3,
+                "size": 26
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Credential Access",
+              "technique_id": "T1552.004",
+              "technique_name": "Private Keys"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB4",
+      "behavior_name": "Malicious Code Execution",
+      "sub_behaviors": [
+        "Suspicious subprocess spawning via pipe+fork+redirect",
+        "Shell interpreter spawning"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1106",
+          "technique_name": "Native API"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB4-SHELL",
+          "sub_behavior": "Shell interpreter spawning",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.13541739,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.172325343,
+              "tid": 253643,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-SUBPROCESS",
+          "sub_behavior": "Suspicious subprocess spawning via pipe+fork+redirect",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 16006.116759494,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 16006.116967854,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 16006.132681411,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.13541739,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 16006.154518276,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 16006.154718857,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 16006.169576244,
+              "tid": 253643,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.172325343,
+              "tid": 253643,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1106",
+              "technique_name": "Native API"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Pipe-based shell (minimal \u2014 no fd format dependency)",
+        "Pipe-based shell"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-PIPESHELL",
+          "sub_behavior": "Pipe-based shell",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 16006.116759494,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 16006.116967854,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 16006.132681411,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.13541739,
+              "tid": 253641,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB6-PIPESHELL-MINIMAL",
+          "sub_behavior": "Pipe-based shell (minimal \u2014 no fd format dependency)",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 16006.116759494,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 16006.116967854,
+              "tid": 253620,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 16006.132681411,
+              "tid": 253641,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16006.13541739,
+              "tid": 253641,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

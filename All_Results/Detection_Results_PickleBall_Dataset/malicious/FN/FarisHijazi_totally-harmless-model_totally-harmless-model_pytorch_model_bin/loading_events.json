@@ -1,0 +1,2668 @@
+[
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876388934,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15961,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876412884,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12591,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876422544,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6527,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876433114,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 495
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876449534,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876464924,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6390,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876548924,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15961,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876562834,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12591,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876569434,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6527,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876584564,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_END"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876628824,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876635404,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 18446744073709551594,
+      "whence": "SEEK_END"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876641604,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876647504,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13921,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876652634,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10662,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 22
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876660554,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 453,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876691674,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876699774,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 397,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876713814,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 98
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876720994,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 274,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876734614,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 221
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876741774,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876888544,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 495
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876898904,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876904924,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876918884,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.876925674,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877036064,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877113514,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6390,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877138304,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10662,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877187054,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3883,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877401304,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7915,
+    "phase": "LOADING",
+    "effective_correlation_id": "8845a014",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "8845a014"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877654584,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15961,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877671204,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12591,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877678984,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6527,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877686454,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877710444,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 495
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877723914,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877730994,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877789464,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_END"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877821564,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877828214,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2644,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877833884,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877859414,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 495
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877869084,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 473,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877895994,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 22
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877903944,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 453,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877909774,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877916524,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 397,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877922144,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 98
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877935154,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 274,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877942184,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 221
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.877949084,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 200,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.878048984,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 295
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.878066034,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.878228884,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13160,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/pytorch_model.",
+    "extra_details": {
+      "fd": 294,
+      "size": 495
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.878239224,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8566,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.878453794,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6390,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 8114,
+      "stream": "stdout"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.879459824,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2885,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  },
+  {
+    "operation": "write",
+    "filename": "stdout",
+    "extra_details": {
+      "fd": 1,
+      "size": 8112,
+      "stream": "stdout"
+    },
+    "pid": 10725,
+    "tid": 10725,
+    "timestamp": 3118.962675283,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2885,
+    "phase": "LOADING",
+    "effective_correlation_id": "f18ca2d7",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "f18ca2d7"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.768749,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      },
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447860.7688718,
+        "thread_id": 135394864521216,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  }
+]

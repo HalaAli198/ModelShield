@@ -1,0 +1,212 @@
+{
+  "model_path": "/home/halaali_cs/tf_abuse_attacks_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 157,
+  "total_execution_events": 102,
+  "behaviors": [
+    {
+      "behavior_id": "AB1",
+      "behavior_name": "Sensitive Information Theft",
+      "sub_behaviors": [
+        "System fingerprint via syscall + exfiltration",
+        "Hardware info theft + exfiltration"
+      ],
+      "phase": "EXECUTION",
+      "mitre_techniques": [
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1082",
+          "technique_name": "System Information Discovery"
+        },
+        {
+          "tactic": "Exfiltration",
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB1-HW-EXFIL",
+          "sub_behavior": "Hardware info theft + exfiltration",
+          "matched_events": [
+            {
+              "operation": "openat",
+              "filename": "/proc/cpuinfo",
+              "sub_op": "File.open",
+              "timestamp": 16987.792854673,
+              "tid": 470415,
+              "extra_details": {
+                "flags": "O_RDONLY"
+              }
+            },
+            {
+              "operation": "read",
+              "filename": "/proc/cpuinfo",
+              "sub_op": "File.read",
+              "timestamp": 16987.792969983,
+              "tid": 470415,
+              "extra_details": {
+                "fd": 295,
+                "size": 3438
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "127.0.0.1:1236",
+              "sub_op": "Network.connect",
+              "timestamp": 16987.802289881,
+              "tid": 470435,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "127.0.0.1",
+                "port": 1236,
+                "note": "ipv4-mapped-v6",
+                "fd": 301
+              }
+            },
+            {
+              "operation": "sendmsg",
+              "filename": "fd=301 [PRI * HTTP/2.0\\x0d\\x]",
+              "sub_op": "Network.send",
+              "timestamp": 16987.802640791,
+              "tid": 470433,
+              "extra_details": {
+                "fd": 301,
+                "flags": "0xa0d302e322f5054",
+                "total_len": 1297287693,
+                "flag_names": "MSG_DONTROUTE|MSG_EOR|MSG_NOSIGNAL",
+                "msg_preview": "PRI * HTTP/2.0\\x0d\\x0a\\x0d\\x0aSM\\x0d\\x0a\\x0d\\x0aA",
+                "operation": "sendmsg"
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1082",
+              "technique_name": "System Information Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB1-UNAME-EXFIL",
+          "sub_behavior": "System fingerprint via syscall + exfiltration",
+          "matched_events": [
+            {
+              "operation": "uname",
+              "filename": "uname",
+              "sub_op": "System.info",
+              "timestamp": 16987.786745544,
+              "tid": 470415,
+              "extra_details": {}
+            },
+            {
+              "operation": "connect",
+              "filename": "127.0.0.1:1236",
+              "sub_op": "Network.connect",
+              "timestamp": 16987.802289881,
+              "tid": 470435,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "127.0.0.1",
+                "port": 1236,
+                "note": "ipv4-mapped-v6",
+                "fd": 301
+              }
+            },
+            {
+              "operation": "sendmsg",
+              "filename": "fd=301 [PRI * HTTP/2.0\\x0d\\x]",
+              "sub_op": "Network.send",
+              "timestamp": 16987.802640791,
+              "tid": 470433,
+              "extra_details": {
+                "fd": 301,
+                "flags": "0xa0d302e322f5054",
+                "total_len": 1297287693,
+                "flag_names": "MSG_DONTROUTE|MSG_EOR|MSG_NOSIGNAL",
+                "msg_preview": "PRI * HTTP/2.0\\x0d\\x0a\\x0d\\x0aSM\\x0d\\x0a\\x0d\\x0aA",
+                "operation": "sendmsg"
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1082",
+              "technique_name": "System Information Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Outbound connection to external endpoint"
+      ],
+      "phase": "EXECUTION",
+      "mitre_techniques": [
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "AF_INET6/SOCK_STREAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 16987.802103681,
+              "tid": 470435,
+              "extra_details": {
+                "family": "AF_INET6",
+                "type": "SOCK_STREAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "127.0.0.1:1236",
+              "sub_op": "Network.connect",
+              "timestamp": 16987.802289881,
+              "tid": 470435,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "127.0.0.1",
+                "port": 1236,
+                "note": "ipv4-mapped-v6",
+                "fd": 301
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

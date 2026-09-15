@@ -1,0 +1,272 @@
+{
+  "model_path": "/home/halaali_cs/malicious_pickleball/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 222,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB1",
+      "behavior_name": "Sensitive Information Theft",
+      "sub_behaviors": [
+        "File and directory discovery + exfiltration",
+        "Socket-based network discovery + exfiltration"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1016",
+          "technique_name": "System Network Configuration Discovery"
+        },
+        {
+          "tactic": "Exfiltration",
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel"
+        },
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB1-SOCKINFO-EXFIL",
+          "sub_behavior": "Socket-based network discovery + exfiltration",
+          "matched_events": [
+            {
+              "operation": "getsockname",
+              "filename": "fd=295",
+              "sub_op": "Network.info",
+              "timestamp": 1090.713908053,
+              "tid": 2666,
+              "extra_details": {
+                "fd": 295
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "32.193.162.111:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1092.325900693,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "32.193.162.111",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "write",
+              "filename": "fd=296",
+              "sub_op": "File.write",
+              "timestamp": 1092.330585482,
+              "tid": 2666,
+              "extra_details": {
+                "fd": 296,
+                "size": 517
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1016",
+              "technique_name": "System Network Configuration Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB1-DIR-DISCOVERY",
+          "sub_behavior": "File and directory discovery + exfiltration",
+          "matched_events": [
+            {
+              "operation": "getdents64",
+              "filename": "/usr/lib/ssl/certs",
+              "sub_op": "File.enumerate",
+              "timestamp": 1090.722412422,
+              "tid": 2666,
+              "extra_details": {
+                "fd": 296
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "32.193.162.111:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1092.325900693,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "32.193.162.111",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "write",
+              "filename": "fd=296",
+              "sub_op": "File.write",
+              "timestamp": 1092.330585482,
+              "tid": 2666,
+              "extra_details": {
+                "fd": 296,
+                "size": 517
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1083",
+              "technique_name": "File and Directory Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Outbound connection to external endpoint"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "AF_UNIX/SOCK_STREAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 1090.705486273,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_UNIX",
+                "type": "SOCK_STREAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "44.219.2.115:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1090.713997373,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "44.219.2.115",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 1090.714299113,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "44.219.2.115:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1090.714332913,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "44.219.2.115",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 1092.323674343,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "32.193.162.111:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1092.325900693,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "32.193.162.111",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 1092.326181743,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "32.193.162.111:443",
+              "sub_op": "Network.connect",
+              "timestamp": 1092.326219433,
+              "tid": 2666,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "32.193.162.111",
+                "port": 443,
+                "fd": 296
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

@@ -1,0 +1,700 @@
+[
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/Baddream.pkl",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979363096,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6793,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979384856,
+    "comm": "pt_main_thread",
+    "user_stack_id": 110,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979393306,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10404,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979400906,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2311,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/Baddream.pkl",
+    "extra_details": {
+      "fd": 294,
+      "size": 566
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979414866,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7018,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979422896,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16000,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/Baddream.pkl",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979474306,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6793,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979486746,
+    "comm": "pt_main_thread",
+    "user_stack_id": 110,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979493306,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10404,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979499736,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2311,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979547276,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9133,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/malicious_pickleball/temp_model/Baddream.pkl",
+    "extra_details": {
+      "fd": 294,
+      "size": 566
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979588536,
+    "comm": "pt_main_thread",
+    "user_stack_id": 7018,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979785996,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14469,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.979940286,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14469,
+    "phase": "LOADING",
+    "effective_correlation_id": "8b98746a",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "8b98746a"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1072.980407976,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9922,
+    "phase": "LOADING",
+    "effective_correlation_id": "5a3fda2a",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5a3fda2a"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 2567,
+    "tid": 2567,
+    "timestamp": 1073.165176895,
+    "comm": "pt_main_thread",
+    "user_stack_id": 16000,
+    "phase": "LOADING",
+    "effective_correlation_id": "5a3fda2a",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "5a3fda2a"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789445814.8713248,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789445814.871418,
+        "thread_id": 135912023683072,
+        "ml_context": null
+      }
+    ],
+    "source_file": "Baddream.pkl"
+  }
+]

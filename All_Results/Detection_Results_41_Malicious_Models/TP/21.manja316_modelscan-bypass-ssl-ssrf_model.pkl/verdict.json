@@ -1,0 +1,189 @@
+{
+  "model_path": "/home/halaali_cs/41_malicious_models_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 143,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Outbound connection to external endpoint"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "AF_UNIX/SOCK_STREAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.018597541,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_UNIX",
+                "type": "SOCK_STREAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "172.66.147.243:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.02411067,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "172.66.147.243",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.02416841,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET6",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2606:4700:10::ac42:93f3]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.024179999,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2606:4700:10::ac42:93f3",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.024505319,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "172.66.147.243:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.024550709,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "172.66.147.243",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.046306795,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "104.20.23.154:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.047248995,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "104.20.23.154",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.047296565,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET6",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2606:4700:10::ac42:93f3]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.047306735,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2606:4700:10::ac42:93f3",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 17248.047427655,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "104.20.23.154:443",
+              "sub_op": "Network.connect",
+              "timestamp": 17248.047457745,
+              "tid": 470891,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "104.20.23.154",
+                "port": 443,
+                "fd": 295
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

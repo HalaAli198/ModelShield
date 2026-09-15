@@ -1,0 +1,2897 @@
+[
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/41_malicious_models_results/temp_model/bypass_",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67048068,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13208,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67050872,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5223,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67051907,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10191,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67053044,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8556,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/41_malicious_models_results/temp_model/bypass_",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.6705495,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9817,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67056065,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3711,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "openat",
+    "filename": "/home/halaali_cs/41_malicious_models_results/temp_model/bypass_",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67061719,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13208,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67063111,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5223,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=294_cmd=0x5401",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67063809,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10191,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67064502,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8556,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=294",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_SET"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67071371,
+    "comm": "pt_main_thread",
+    "user_stack_id": 300,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/home/halaali_cs/41_malicious_models_results/temp_model/bypass_",
+    "extra_details": {
+      "fd": 294,
+      "size": 42
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67076346,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9817,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/lib/python3.9/http",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67087506,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2652,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/lib/python3.9/http/server.py",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.670925819,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2652,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "/usr/lib/python3.9/http/server.py",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67101682,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2652,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "openat",
+    "filename": "/usr/lib/python3.9/http/__pycache__/server.cpython-39.pyc",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67103655,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10818,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.671051969,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5223,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "ioctl",
+    "filename": "ioctl_fd=295_cmd=0x5401",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.671059889,
+    "comm": "pt_main_thread",
+    "user_stack_id": 10191,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=295",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.671067909,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8556,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "lseek",
+    "filename": "fd=295",
+    "extra_details": {
+      "offset": 0,
+      "whence": "SEEK_CUR"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67107588,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14842,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67108148,
+    "comm": "pt_main_thread",
+    "user_stack_id": 2652,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/usr/lib/python3.9/http/__pycache__/server.cpython-39.pyc",
+    "extra_details": {
+      "fd": 295,
+      "size": 35030
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67125396,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9817,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.67126889,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3711,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "mmap",
+    "filename": "addr=NULL, len=34",
+    "extra_details": {
+      "protection": "PROT_READ|PROT_WRITE",
+      "flags": "MAP_PRIVATE|MAP_ANONYMOUS"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.671698699,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9012,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "openat",
+    "filename": "/etc/gai.conf",
+    "extra_details": {
+      "flags": "O_CLOEXEC"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673294359,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4253,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673321179,
+    "comm": "pt_main_thread",
+    "user_stack_id": 58,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "newfstatat",
+    "filename": "<empty_path>",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673330499,
+    "comm": "pt_main_thread",
+    "user_stack_id": 58,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "read",
+    "filename": "/etc/gai.conf",
+    "extra_details": {
+      "fd": 295,
+      "size": 2584
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673343509,
+    "comm": "pt_main_thread",
+    "user_stack_id": 15619,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673362989,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6055,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "socket",
+    "filename": "family_16/SOCK_RAW/DEFAULT",
+    "extra_details": {
+      "family": "family_16",
+      "type": "SOCK_RAW",
+      "protocol": "DEFAULT"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673385899,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14855,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "bind",
+    "filename": "[unknown_family:16]",
+    "extra_details": {
+      "family": "family_16",
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673416369,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11938,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673429909,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8521,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "sendto",
+    "filename": "fd=295 [\\x14]",
+    "extra_details": {
+      "fd": 295,
+      "len": 20,
+      "flags": "0x0",
+      "msg_preview": "\\x14",
+      "operation": "sendto"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673458459,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6465,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [L]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "L",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673482519,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [H]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "H",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673500189,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [\\x14]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "\\x14",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673508419,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "socket",
+    "filename": "AF_UNIX/SOCK_STREAM/DEFAULT",
+    "extra_details": {
+      "family": "AF_UNIX",
+      "type": "SOCK_STREAM",
+      "protocol": "DEFAULT"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673523229,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4391,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "unix",
+    "extra_details": {
+      "family": "AF_UNIX",
+      "fd": 296
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673537869,
+    "comm": "pt_main_thread",
+    "user_stack_id": 4826,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=296",
+    "extra_details": {
+      "fd": 296
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673558219,
+    "comm": "pt_main_thread",
+    "user_stack_id": 9103,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673571219,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5193,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "socket",
+    "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+    "extra_details": {
+      "family": "AF_INET6",
+      "type": "SOCK_DGRAM",
+      "protocol": "DEFAULT"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673581619,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13445,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "[::]:8000",
+    "extra_details": {
+      "family": "AF_INET6",
+      "address": "::",
+      "port": 8000,
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673592239,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673609399,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11149,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "[unknown_family:0]",
+    "extra_details": {
+      "family": "family_0",
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673616679,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "0.0.0.0:8000",
+    "extra_details": {
+      "family": "AF_INET",
+      "address": "0.0.0.0",
+      "port": 8000,
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673623089,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673635499,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11149,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673641209,
+    "comm": "pt_main_thread",
+    "user_stack_id": 479,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.673773079,
+    "comm": "pt_main_thread",
+    "user_stack_id": 344,
+    "phase": "LOADING",
+    "effective_correlation_id": "child_init",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "child_init"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674024819,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14630,
+    "phase": "LOADING",
+    "effective_correlation_id": "fedc7798",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "fedc7798"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "socket",
+    "filename": "family_16/SOCK_RAW/DEFAULT",
+    "extra_details": {
+      "family": "family_16",
+      "type": "SOCK_RAW",
+      "protocol": "DEFAULT"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674146519,
+    "comm": "pt_main_thread",
+    "user_stack_id": 14855,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "bind",
+    "filename": "[unknown_family:16]",
+    "extra_details": {
+      "family": "family_16",
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674163509,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11938,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674171769,
+    "comm": "pt_main_thread",
+    "user_stack_id": 8521,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "sendto",
+    "filename": "fd=295 [\\x14]",
+    "extra_details": {
+      "fd": 295,
+      "len": 20,
+      "flags": "0x0",
+      "msg_preview": "\\x14",
+      "operation": "sendto"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674189989,
+    "comm": "pt_main_thread",
+    "user_stack_id": 6465,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [L]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "L",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674206479,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [H]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "H",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674219969,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "recvmsg",
+    "filename": "fd=295 [\\x14]",
+    "extra_details": {
+      "fd": 295,
+      "flags": "0x0",
+      "msg_preview": "\\x14",
+      "operation": "recvmsg"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674228239,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11874,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674234129,
+    "comm": "pt_main_thread",
+    "user_stack_id": 5193,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "socket",
+    "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+    "extra_details": {
+      "family": "AF_INET6",
+      "type": "SOCK_DGRAM",
+      "protocol": "DEFAULT"
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674245289,
+    "comm": "pt_main_thread",
+    "user_stack_id": 13445,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "[::]:8000",
+    "extra_details": {
+      "family": "AF_INET6",
+      "address": "::",
+      "port": 8000,
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674256709,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674267569,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11149,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "[unknown_family:0]",
+    "extra_details": {
+      "family": "family_0",
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674274109,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "connect",
+    "filename": "0.0.0.0:8000",
+    "extra_details": {
+      "family": "AF_INET",
+      "address": "0.0.0.0",
+      "port": 8000,
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674280079,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12117,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "getsockname",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674290029,
+    "comm": "pt_main_thread",
+    "user_stack_id": 11149,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=295",
+    "extra_details": {
+      "fd": 295
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.674295879,
+    "comm": "pt_main_thread",
+    "user_stack_id": 479,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  },
+  {
+    "operation": "close",
+    "filename": "fd=294",
+    "extra_details": {
+      "fd": 294
+    },
+    "pid": 469716,
+    "tid": 469716,
+    "timestamp": 16777.87270799,
+    "comm": "pt_main_thread",
+    "user_stack_id": 3711,
+    "phase": "LOADING",
+    "effective_correlation_id": "11de03dd",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "11de03dd"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__.wrapper",
+        "timestamp": 1789408422.982197,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      },
+      {
+        "operation": "_pickle.load",
+        "timestamp": 1789408422.982377,
+        "thread_id": 126802759405568,
+        "ml_context": null
+      }
+    ],
+    "source_file": "bypass_http.server_test.pkl"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "operation": "getrandom",
+    "filename": "getrandom_size=0",
+    "extra_details": {},
+    "pid": 9575,
+    "tid": 9575,
+    "timestamp": 2908.567059709,
+    "comm": "pt_main_thread",
+    "user_stack_id": 12362,
+    "phase": "EXECUTION",
+    "effective_correlation_id": "d17e067d",
+    "attribution_method": "EBPF_KERNEL",
+    "attribution_details": {
+      "correlation_id": "d17e067d"
+    },
+    "thread_pool_task_id": null,
+    "thread_pool_function": null,
+    "thread_pool_duration": null,
+    "python_correlation_id": "unknown",
+    "thread_correlation_id": "unknown",
+    "genealogy_correlation_id": "unknown",
+    "ml_operations": [],
+    "suspicious_indicators": [],
+    "operation_categories": [],
+    "triggering_ml_function": "unknown",
+    "attack_indicators": [],
+    "operation_chain": [
+      {
+        "operation": "__main__._unsafe_torch_load",
+        "timestamp": 1789447649.172992,
+        "thread_id": 138728445444096,
+        "ml_context": null
+      },
+      {
+        "operation": "transformers.models.gpt2.modeling_gpt2.forward",
+        "timestamp": 1789447650.358816,
+        "thread_id": 138728445444096,
+        "ml_context": null
+      },
+      {
+        "operation": "transformers.models.gpt2.modeling_gpt2.forward",
+        "timestamp": 1789447650.4585712,
+        "thread_id": 138728445444096,
+        "ml_context": null
+      }
+    ],
+    "source_file": "pytorch_model.bin"
+  }
+]

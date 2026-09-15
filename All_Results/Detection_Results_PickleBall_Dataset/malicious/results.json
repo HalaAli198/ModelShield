@@ -1,0 +1,2666 @@
+[
+  {
+    "model_id": "MustEr/rager_legacy/rager_legacy/psgs_w100.tsv.pkl",
+    "model_files": [
+      "psgs_w100.tsv.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 548141185,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:13:12.980142",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "psgs_w100.tsv.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 570,
+    "execution_events": 0,
+    "inspector_time": 25.560184717178345,
+    "classifier_time": 0.19910478591918945,
+    "copy_time": 2.89378023147583,
+    "total_time": 28.653870105743408
+  },
+  {
+    "model_id": "MustEr/m3e_biased/m3e_biased/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 379364991,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:13:41.738243",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 62,
+    "execution_events": 0,
+    "inspector_time": 33.486327171325684,
+    "classifier_time": 0.0805351734161377,
+    "copy_time": 1.551880121231079,
+    "total_time": 35.119425535202026
+  },
+  {
+    "model_id": "MustEr/gpt2-elite/gpt2-elite/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 47380552,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:14:16.931177",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 403,
+    "execution_events": 0,
+    "inspector_time": 21.396093606948853,
+    "classifier_time": 0.15108776092529297,
+    "copy_time": 0.24486422538757324,
+    "total_time": 21.792866945266724
+  },
+  {
+    "model_id": "MustEr/best_model_for_identifying_frogs/best_model_for_identifying_frogs/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 47384776,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:14:38.737593",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-UNAME-EXFIL",
+      "AB1-SOCKINFO-EXFIL",
+      "AB1-DIR-DISCOVERY",
+      "AB1-PERMQUERY-EXFIL",
+      "AB4-SYSBIN-RECON",
+      "AB4-DOWNLOAD-EXEC",
+      "AB4-UNEXPECTED-EXEC",
+      "AB6-REMOTE-CMD",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 3,
+    "loading_events": 3212,
+    "execution_events": 0,
+    "inspector_time": 22.801926612854004,
+    "classifier_time": 0.7102763652801514,
+    "copy_time": 0.2404317855834961,
+    "total_time": 23.753401279449463
+  },
+  {
+    "model_id": "ours/call_system.pkl",
+    "model_files": [
+      "call_system.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 880,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:15:02.512672",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "call_system.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 198,
+    "execution_events": 0,
+    "inspector_time": 18.132287740707397,
+    "classifier_time": 0.11839056015014648,
+    "copy_time": 0.001131296157836914,
+    "total_time": 18.252498149871826
+  },
+  {
+    "model_id": "ours/write_file.pkl",
+    "model_files": [
+      "write_file.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 940,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:15:20.768156",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "write_file.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 56,
+    "execution_events": 0,
+    "inspector_time": 18.336766242980957,
+    "classifier_time": 0.08880996704101562,
+    "copy_time": 0.0011293888092041016,
+    "total_time": 18.427372217178345
+  },
+  {
+    "model_id": "gabejabe/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:15:39.196917",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 21.800488233566284,
+    "classifier_time": 0.1466662883758545,
+    "copy_time": 2.5297913551330566,
+    "total_time": 24.477813482284546
+  },
+  {
+    "model_id": "matanby/unsafe-diffusion/unsafe-diffusion/diffusion_pytorch_model.bin",
+    "model_files": [
+      "diffusion_pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 751,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:16:03.771742",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "diffusion_pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 60,
+    "execution_events": 0,
+    "inspector_time": 19.641419649124146,
+    "classifier_time": 0.09128260612487793,
+    "copy_time": 0.0012960433959960938,
+    "total_time": 19.734575986862183
+  },
+  {
+    "model_id": "matanby/unsafe-diffusion/unsafe-diffusion/vae/diffusion_pytorch_model.bin",
+    "model_files": [
+      "diffusion_pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 751,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:16:23.507668",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "diffusion_pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 60,
+    "execution_events": 0,
+    "inspector_time": 19.69174075126648,
+    "classifier_time": 0.08263802528381348,
+    "copy_time": 0.0011909008026123047,
+    "total_time": 19.77629256248474
+  },
+  {
+    "model_id": "graniet/twgewgwe/twgewgwe/Baddream.pkl",
+    "model_files": [
+      "Baddream.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 566,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:16:43.285370",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "Baddream.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 16,
+    "execution_events": 0,
+    "inspector_time": 17.630916595458984,
+    "classifier_time": 0.07963824272155762,
+    "copy_time": 0.0014498233795166016,
+    "total_time": 17.71274161338806
+  },
+  {
+    "model_id": "graniet/fwefwefwe/fwefwefwe/BadDreams.pkl",
+    "model_files": [
+      "BadDreams.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 419,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:17:01.000208",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "BadDreams.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-SOCKINFO-EXFIL",
+      "AB1-DIR-DISCOVERY",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 222,
+    "execution_events": 0,
+    "inspector_time": 21.0954806804657,
+    "classifier_time": 0.12124109268188477,
+    "copy_time": 0.0013091564178466797,
+    "total_time": 21.21873712539673
+  },
+  {
+    "model_id": "Shayo/pickle_test/pickle_test/pickle_test.pt",
+    "model_files": [
+      "pickle_test.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 238064,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:17:22.222061",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pickle_test.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 240,
+    "execution_events": 0,
+    "inspector_time": 22.707611083984375,
+    "classifier_time": 0.1304934024810791,
+    "copy_time": 0.003255605697631836,
+    "total_time": 22.84210228919983
+  },
+  {
+    "model_id": "d4s/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803866,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:17:45.066875",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 21.85008955001831,
+    "classifier_time": 0.14401531219482422,
+    "copy_time": 2.6567609310150146,
+    "total_time": 24.651594638824463
+  },
+  {
+    "model_id": "coryhardman/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:18:09.816580",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 22.0988929271698,
+    "classifier_time": 0.14477252960205078,
+    "copy_time": 2.607579469680786,
+    "total_time": 24.851977109909058
+  },
+  {
+    "model_id": "ankush-new-org/safe-model/safe-model/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:18:34.786320",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 194,
+    "execution_events": 0,
+    "inspector_time": 17.937573671340942,
+    "classifier_time": 0.1139211654663086,
+    "copy_time": 0.0025441646575927734,
+    "total_time": 18.054662466049194
+  },
+  {
+    "model_id": "coldwaterq/sectest/sectest/fickling_system_calc.pt",
+    "model_files": [
+      "fickling_system_calc.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 74,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:18:52.844200",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "fickling_system_calc.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 67,
+    "execution_events": 0,
+    "inspector_time": 22.104367971420288,
+    "classifier_time": 0.08654165267944336,
+    "copy_time": 0.0008025169372558594,
+    "total_time": 22.192341089248657
+  },
+  {
+    "model_id": "coldwaterq/sectest/sectest/coldwaterq_inject_first_calc.pt",
+    "model_files": [
+      "coldwaterq_inject_first_calc.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 141941,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:19:15.038781",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "coldwaterq_inject_first_calc.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 92,
+    "execution_events": 0,
+    "inspector_time": 23.664178609848022,
+    "classifier_time": 0.09412598609924316,
+    "copy_time": 0.0029900074005126953,
+    "total_time": 23.761953592300415
+  },
+  {
+    "model_id": "coldwaterq/sectest/sectest/coldwaterq_inject_calc.pt",
+    "model_files": [
+      "coldwaterq_inject_calc.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 141941,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:19:38.802852",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "coldwaterq_inject_calc.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 92,
+    "execution_events": 0,
+    "inspector_time": 23.71317481994629,
+    "classifier_time": 0.10945868492126465,
+    "copy_time": 0.0025980472564697266,
+    "total_time": 23.8258376121521
+  },
+  {
+    "model_id": "funnythingy123a/balling112a/balling112a/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:20:02.631042",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 127,
+    "execution_events": 0,
+    "inspector_time": 21.707133293151855,
+    "classifier_time": 0.0961158275604248,
+    "copy_time": 0.0037813186645507812,
+    "total_time": 21.807751655578613
+  },
+  {
+    "model_id": "funnythingy123a/imessedup123/imessedup123/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:20:24.441275",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 135,
+    "execution_events": 0,
+    "inspector_time": 21.301223754882812,
+    "classifier_time": 0.10439467430114746,
+    "copy_time": 0.0037975311279296875,
+    "total_time": 21.410115718841553
+  },
+  {
+    "model_id": "RiddleLi/a-very-safe-m0del/a-very-safe-m0del/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265482553,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:20:45.855140",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 263,
+    "execution_events": 0,
+    "inspector_time": 21.346630334854126,
+    "classifier_time": 0.1253032684326172,
+    "copy_time": 1.3279592990875244,
+    "total_time": 22.80055856704712
+  },
+  {
+    "model_id": "drhyrum/bert-tiny-torch-picklebomb/bert-tiny-torch-picklebomb/archive/data.pkl",
+    "model_files": [
+      "data.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 8906,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:21:08.709650",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "data.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-CAPSET",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 23747,
+    "execution_events": 0,
+    "inspector_time": 23.206607818603516,
+    "classifier_time": 5.369993448257446,
+    "copy_time": 0.001153707504272461,
+    "total_time": 28.578434467315674
+  },
+  {
+    "model_id": "drhyrum/bert-tiny-torch-vuln/bert-tiny-torch-vuln/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 16429761,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:21:37.346184",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-CAPSET",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 28357,
+    "execution_events": 0,
+    "inspector_time": 24.763372898101807,
+    "classifier_time": 6.399394512176514,
+    "copy_time": 0.06954383850097656,
+    "total_time": 31.232996940612793
+  },
+  {
+    "model_id": "admko/evil_test/evil_test/evil_checkpoint.pt",
+    "model_files": [
+      "evil_checkpoint.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 46832461,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:22:08.651968",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "evil_checkpoint.pt"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 68,
+    "execution_events": 0,
+    "inspector_time": 21.854771852493286,
+    "classifier_time": 0.09253811836242676,
+    "copy_time": 0.23874688148498535,
+    "total_time": 22.186853647232056
+  },
+  {
+    "model_id": "Yash2998db/totally_safe_model/totally_safe_model/python_model.pkl",
+    "model_files": [
+      "python_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 1296,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:22:30.852083",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "python_model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-HTML-INJECTION"
+    ],
+    "behavior_count": 1,
+    "loading_events": 26,
+    "execution_events": 5,
+    "inspector_time": 18.08789896965027,
+    "classifier_time": 0.0767214298248291,
+    "copy_time": 0.0015106201171875,
+    "total_time": 18.166763067245483
+  },
+  {
+    "model_id": "ScanMe/Models/Models/eval.pkl",
+    "model_files": [
+      "eval.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 118,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:22:49.022282",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "eval.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 14,
+    "execution_events": 0,
+    "inspector_time": 17.9401957988739,
+    "classifier_time": 0.07744359970092773,
+    "copy_time": 0.0009710788726806641,
+    "total_time": 18.019205808639526
+  },
+  {
+    "model_id": "ScanMe/Models/Models/numpy_load.pkl",
+    "model_files": [
+      "numpy_load.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:23:07.042780",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "numpy_load.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 18,
+    "execution_events": 0,
+    "inspector_time": 18.43730092048645,
+    "classifier_time": 0.08100175857543945,
+    "copy_time": 0.0016055107116699219,
+    "total_time": 18.520630359649658
+  },
+  {
+    "model_id": "ScanMe/Models/Models/eval.pt",
+    "model_files": [
+      "eval.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 858,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:23:25.564914",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "eval.pt"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 49,
+    "execution_events": 0,
+    "inspector_time": 22.205495357513428,
+    "classifier_time": 0.08110928535461426,
+    "copy_time": 0.00141143798828125,
+    "total_time": 22.288944005966187
+  },
+  {
+    "model_id": "anigma21/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:23:47.855254",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 82,
+    "execution_events": 0,
+    "inspector_time": 23.5119686126709,
+    "classifier_time": 0.08877968788146973,
+    "copy_time": 2.315899133682251,
+    "total_time": 25.917580604553223
+  },
+  {
+    "model_id": "ykilcher/totally-harmless-model/totally-harmless-model/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265482233,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:24:13.872782",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-CAPSET",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 26010,
+    "execution_events": 0,
+    "inspector_time": 24.664767503738403,
+    "classifier_time": 5.933777332305908,
+    "copy_time": 1.3241956233978271,
+    "total_time": 31.923441886901855
+  },
+  {
+    "model_id": "neilalfred93/my_demo/my_demo/malware_mnist.pt",
+    "model_files": [
+      "malware_mnist.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 888,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:24:45.912925",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "malware_mnist.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 203,
+    "execution_events": 0,
+    "inspector_time": 22.81476402282715,
+    "classifier_time": 0.12199115753173828,
+    "copy_time": 0.0012736320495605469,
+    "total_time": 22.938717126846313
+  },
+  {
+    "model_id": "Ankush-Organization/safe-model/safe-model/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:25:08.854221",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 194,
+    "execution_events": 0,
+    "inspector_time": 18.742648124694824,
+    "classifier_time": 0.12329530715942383,
+    "copy_time": 0.0030508041381835938,
+    "total_time": 18.869787454605103
+  },
+  {
+    "model_id": "luthra/bsidesSF-gordon-ramsey-test/bsidesSF-gordon-ramsey-test/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:25:27.726273",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 23.41809582710266,
+    "classifier_time": 0.1528763771057129,
+    "copy_time": 2.6980140209198,
+    "total_time": 26.269660472869873
+  },
+  {
+    "model_id": "star23/sm-1/sm-1/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231135,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:25:54.112891",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 133,
+    "execution_events": 0,
+    "inspector_time": 21.251235008239746,
+    "classifier_time": 0.10295796394348145,
+    "copy_time": 0.0033028125762939453,
+    "total_time": 21.358178853988647
+  },
+  {
+    "model_id": "star23/baller11/baller11/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 7610219,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:26:15.473643",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 398,
+    "execution_events": 0,
+    "inspector_time": 21.051387071609497,
+    "classifier_time": 0.15476679801940918,
+    "copy_time": 0.04339241981506348,
+    "total_time": 21.250168800354004
+  },
+  {
+    "model_id": "star23/baller12/baller12/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231133,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:26:36.729918",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB6-REVSHELL",
+      "AB6-REVSHELL-RELAXED",
+      "AB6-REVSHELL-MINIMAL",
+      "AB6-REVSHELL-DAEMON",
+      "AB6-REVSHELL-DAEMON-MINIMAL",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 2,
+    "loading_events": 532,
+    "execution_events": 0,
+    "inspector_time": 300.0038299560547,
+    "classifier_time": 0.2157282829284668,
+    "copy_time": 0.00260162353515625,
+    "total_time": 300.22347140312195
+  },
+  {
+    "model_id": "star23/baller13/baller13/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:31:36.958539",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 133,
+    "execution_events": 0,
+    "inspector_time": 26.436800003051758,
+    "classifier_time": 0.1368858814239502,
+    "copy_time": 0.0038738250732421875,
+    "total_time": 26.579344749450684
+  },
+  {
+    "model_id": "star23/death/death/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:32:03.540656",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 131,
+    "execution_events": 0,
+    "inspector_time": 24.680148601531982,
+    "classifier_time": 0.1017768383026123,
+    "copy_time": 0.0034487247467041016,
+    "total_time": 24.78608465194702
+  },
+  {
+    "model_id": "star23/baller10/baller10/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231129,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:32:28.329211",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 131,
+    "execution_events": 0,
+    "inspector_time": 22.314725637435913,
+    "classifier_time": 0.10444879531860352,
+    "copy_time": 0.0029332637786865234,
+    "total_time": 22.42287015914917
+  },
+  {
+    "model_id": "star23/round2/round2/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231134,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:32:50.754643",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 129,
+    "execution_events": 0,
+    "inspector_time": 22.007514715194702,
+    "classifier_time": 0.11569499969482422,
+    "copy_time": 0.0022461414337158203,
+    "total_time": 22.12615418434143
+  },
+  {
+    "model_id": "star23/round2-1/round2-1/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231134,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:33:12.884988",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 133,
+    "execution_events": 0,
+    "inspector_time": 21.151528120040894,
+    "classifier_time": 0.10247588157653809,
+    "copy_time": 0.0032258033752441406,
+    "total_time": 21.257928609848022
+  },
+  {
+    "model_id": "star23/death2/death2/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:33:34.145181",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 131,
+    "execution_events": 0,
+    "inspector_time": 21.604713916778564,
+    "classifier_time": 0.10660791397094727,
+    "copy_time": 0.002656221389770508,
+    "total_time": 21.714652061462402
+  },
+  {
+    "model_id": "star23/servomotor-1/servomotor-1/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231137,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:33:55.862365",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 133,
+    "execution_events": 0,
+    "inspector_time": 22.761371612548828,
+    "classifier_time": 0.11395955085754395,
+    "copy_time": 0.0027632713317871094,
+    "total_time": 22.87877655029297
+  },
+  {
+    "model_id": "aissg2024/pyamor_modelscan/pyamor_modelscan/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 52827,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:34:18.743703",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 61,
+    "execution_events": 0,
+    "inspector_time": 22.410002946853638,
+    "classifier_time": 0.08838152885437012,
+    "copy_time": 0.0013751983642578125,
+    "total_time": 22.500434637069702
+  },
+  {
+    "model_id": "aissg2024/pyamor_modelscan/pyamor_modelscan/unsafe_model.pkl",
+    "model_files": [
+      "unsafe_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167030,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:34:41.245563",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "unsafe_model.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 24,
+    "execution_events": 0,
+    "inspector_time": 18.287117958068848,
+    "classifier_time": 0.0731661319732666,
+    "copy_time": 0.002599477767944336,
+    "total_time": 18.363565921783447
+  },
+  {
+    "model_id": "Madans/twitter-roberta-base-sentiment-unsafe/twitter-roberta-base-sentiment-unsafe/unsafe_model.pt",
+    "model_files": [
+      "unsafe_model.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 498718055,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:34:59.612386",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "unsafe_model.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 656,
+    "execution_events": 16,
+    "inspector_time": 22.709256887435913,
+    "classifier_time": 0.21733999252319336,
+    "copy_time": 2.671804666519165,
+    "total_time": 25.599111557006836
+  },
+  {
+    "model_id": "paclove/pytorchTest/pytorchTest/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 908,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:35:25.339441",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 1721,
+    "execution_events": 0,
+    "inspector_time": 22.563222408294678,
+    "classifier_time": 0.4834756851196289,
+    "copy_time": 0.002298593521118164,
+    "total_time": 23.049701690673828
+  },
+  {
+    "model_id": "baraths84/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265483866,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:35:48.395005",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 251,
+    "execution_events": 0,
+    "inspector_time": 21.70425510406494,
+    "classifier_time": 0.12514996528625488,
+    "copy_time": 1.3474678993225098,
+    "total_time": 23.17758870124817
+  },
+  {
+    "model_id": "zhuzhuzai/harmless_model_for_research/harmless_model_for_research/pytorch/pytorch_reduce_os_system.pt",
+    "model_files": [
+      "pytorch_reduce_os_system.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 844,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:36:11.638895",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_reduce_os_system.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 235,
+    "execution_events": 0,
+    "inspector_time": 21.95621609687805,
+    "classifier_time": 0.12663984298706055,
+    "copy_time": 0.0014133453369140625,
+    "total_time": 22.085148811340332
+  },
+  {
+    "model_id": "zhuzhuzai/harmless_model_for_research/harmless_model_for_research/pytorch/pytorch_reduce_test.pt",
+    "model_files": [
+      "pytorch_reduce_test.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 952,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:36:33.727020",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_reduce_test.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 89,
+    "execution_events": 0,
+    "inspector_time": 22.60917353630066,
+    "classifier_time": 0.09455084800720215,
+    "copy_time": 0.0014765262603759766,
+    "total_time": 22.705928802490234
+  },
+  {
+    "model_id": "zhuzhuzai/harmless_model_for_research/harmless_model_for_research/pytorch/pytorch_reduce_subprocess_model.pt",
+    "model_files": [
+      "pytorch_reduce_subprocess_model.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 916,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:36:56.437553",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_reduce_subprocess_model.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 527,
+    "execution_events": 0,
+    "inspector_time": 22.259096145629883,
+    "classifier_time": 0.18420791625976562,
+    "copy_time": 0.0011157989501953125,
+    "total_time": 22.44510316848755
+  },
+  {
+    "model_id": "zhuzhuzai/harmless_model_for_research/harmless_model_for_research/pytorch/pytorch_reduce_execfile.pt",
+    "model_files": [
+      "pytorch_reduce_execfile.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 908,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:37:18.885991",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_reduce_execfile.pt"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 114,
+    "execution_events": 0,
+    "inspector_time": 22.509467363357544,
+    "classifier_time": 0.1038508415222168,
+    "copy_time": 0.0016422271728515625,
+    "total_time": 22.615619659423828
+  },
+  {
+    "model_id": "zhuzhuzai/harmless_model_for_research/harmless_model_for_research/pytorch/pytorch_reduce_eval.pt",
+    "model_files": [
+      "pytorch_reduce_eval.pt"
+    ],
+    "file_types": [
+      ".pt"
+    ],
+    "total_size": 844,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:37:41.502951",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_reduce_eval.pt"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 234,
+    "execution_events": 0,
+    "inspector_time": 22.562039375305176,
+    "classifier_time": 0.1267104148864746,
+    "copy_time": 0.0016632080078125,
+    "total_time": 22.691129684448242
+  },
+  {
+    "model_id": "ekbat/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:38:04.196831",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 22.25737762451172,
+    "classifier_time": 0.1634993553161621,
+    "copy_time": 2.6139438152313232,
+    "total_time": 25.03566288948059
+  },
+  {
+    "model_id": "tulayaka/loadtest/loadtest/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 437985505,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:38:29.353595",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 418,
+    "execution_events": 0,
+    "inspector_time": 22.507944107055664,
+    "classifier_time": 0.15938448905944824,
+    "copy_time": 2.45670747756958,
+    "total_time": 25.124807596206665
+  },
+  {
+    "model_id": "zillwc/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:38:54.568010",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 22.35384750366211,
+    "classifier_time": 0.14494657516479492,
+    "copy_time": 2.6248552799224854,
+    "total_time": 25.12458300590515
+  },
+  {
+    "model_id": "Narsil/totallysafe/totallysafe/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 870254,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:39:19.815378",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 556,
+    "execution_events": 0,
+    "inspector_time": 22.105224609375,
+    "classifier_time": 0.1902024745941162,
+    "copy_time": 0.005825042724609375,
+    "total_time": 22.30194091796875
+  },
+  {
+    "model_id": "guychuk/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:39:42.121044",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 22.206341981887817,
+    "classifier_time": 0.14963603019714355,
+    "copy_time": 2.5199596881866455,
+    "total_time": 24.876641988754272
+  },
+  {
+    "model_id": "sheigel/best-llm/best-llm/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265483549,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:40:07.117980",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-CAPSET",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 25917,
+    "execution_events": 0,
+    "inspector_time": 24.662273168563843,
+    "classifier_time": 5.894236326217651,
+    "copy_time": 1.3830695152282715,
+    "total_time": 31.940313816070557
+  },
+  {
+    "model_id": "sheigel/best-llm/best-llm/pytorch_model_v2.bin",
+    "model_files": [
+      "pytorch_model_v2.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265483549,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:40:39.175766",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model_v2.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 24564,
+    "execution_events": 0,
+    "inspector_time": 24.715669631958008,
+    "classifier_time": 5.794950485229492,
+    "copy_time": 1.5782835483551025,
+    "total_time": 32.089560985565186
+  },
+  {
+    "model_id": "ivanprogramming/ib-tottaly-not-a-bad-model/ib-tottaly-not-a-bad-model/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 265483802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:41:11.418700",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 250,
+    "execution_events": 0,
+    "inspector_time": 34.02858757972717,
+    "classifier_time": 0.23618054389953613,
+    "copy_time": 1.4621984958648682,
+    "total_time": 35.72806239128113
+  },
+  {
+    "model_id": "Frase/tiny-bert-model-unsafe/tiny-bert-model-unsafe/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 16429798,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:41:47.226412",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB8"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY",
+      "AB8-CAPSET",
+      "AB8-NS-ESCAPE-EXEC",
+      "AB8-NS-SETNS"
+    ],
+    "behavior_count": 3,
+    "loading_events": 26605,
+    "execution_events": 0,
+    "inspector_time": 37.85305905342102,
+    "classifier_time": 6.28857946395874,
+    "copy_time": 0.1028599739074707,
+    "total_time": 44.245707511901855
+  },
+  {
+    "model_id": "Frase/tiny-bert-model-unsafe/tiny-bert-model-unsafe/archive/data.pkl",
+    "model_files": [
+      "data.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 8906,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:42:31.551962",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "data.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY"
+    ],
+    "behavior_count": 2,
+    "loading_events": 19378,
+    "execution_events": 0,
+    "inspector_time": 23.92255926132202,
+    "classifier_time": 4.746713399887085,
+    "copy_time": 0.0015363693237304688,
+    "total_time": 28.671907663345337
+  },
+  {
+    "model_id": "jossefharush/gpt2-rs/gpt2-rs/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803421,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:43:00.277975",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 163,
+    "execution_events": 0,
+    "inspector_time": 25.429701566696167,
+    "classifier_time": 0.10883021354675293,
+    "copy_time": 3.6359519958496094,
+    "total_time": 29.175249814987183
+  },
+  {
+    "model_id": "Ankush-Org-Original/safe-model/safe-model/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:43:29.580054",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 194,
+    "execution_events": 0,
+    "inspector_time": 18.79686975479126,
+    "classifier_time": 0.1254134178161621,
+    "copy_time": 0.00376129150390625,
+    "total_time": 18.926745653152466
+  },
+  {
+    "model_id": "oceanhacktitude/tinymodel/tinymodel/twitter-roberta-base-sentiment.bin",
+    "model_files": [
+      "twitter-roberta-base-sentiment.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 498714322,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:43:48.512297",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "twitter-roberta-base-sentiment.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 492,
+    "execution_events": 16,
+    "inspector_time": 25.522167921066284,
+    "classifier_time": 0.1796431541442871,
+    "copy_time": 2.679471969604492,
+    "total_time": 28.38197088241577
+  },
+  {
+    "model_id": "oceanhacktitude/tinymodel/tinymodel/realmodel_pickle_exec_writefile.bin",
+    "model_files": [
+      "realmodel_pickle_exec_writefile.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 498718947,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:44:17.020371",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "realmodel_pickle_exec_writefile.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 503,
+    "execution_events": 15,
+    "inspector_time": 24.473310232162476,
+    "classifier_time": 0.17705655097961426,
+    "copy_time": 2.750924587249756,
+    "total_time": 27.402003049850464
+  },
+  {
+    "model_id": "Wi/gptp/gptp/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 431,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:44:44.521696",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SUBPROCESS",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL"
+    ],
+    "behavior_count": 2,
+    "loading_events": 440,
+    "execution_events": 0,
+    "inspector_time": 23.369739055633545,
+    "classifier_time": 0.16433024406433105,
+    "copy_time": 0.0014467239379882812,
+    "total_time": 23.536156177520752
+  },
+  {
+    "model_id": "ankushvangari/unsafe_model/unsafe_model/unsafe_model.pkl",
+    "model_files": [
+      "unsafe_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:45:08.061377",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "unsafe_model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 194,
+    "execution_events": 0,
+    "inspector_time": 19.095926761627197,
+    "classifier_time": 0.1272258758544922,
+    "copy_time": 0.0033757686614990234,
+    "total_time": 19.227256059646606
+  },
+  {
+    "model_id": "mlakav/bsidesSF-gordon-ramsey/bsidesSF-gordon-ramsey/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 497803802,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:45:27.291347",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 370,
+    "execution_events": 0,
+    "inspector_time": 24.07034659385681,
+    "classifier_time": 0.15038847923278809,
+    "copy_time": 2.715123414993286,
+    "total_time": 26.936702013015747
+  },
+  {
+    "model_id": "badmoh/testfirst/testfirst/backup.pkl",
+    "model_files": [
+      "backup.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 74,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:45:54.328400",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "backup.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 14,
+    "execution_events": 0,
+    "inspector_time": 18.946665287017822,
+    "classifier_time": 0.08020806312561035,
+    "copy_time": 0.0014116764068603516,
+    "total_time": 19.0289249420166
+  },
+  {
+    "model_id": "moom825/testing/testing/mal.pkl",
+    "model_files": [
+      "mal.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 42,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:46:13.358819",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "mal.pkl"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 24,
+    "execution_events": 0,
+    "inspector_time": 19.19994592666626,
+    "classifier_time": 0.07962250709533691,
+    "copy_time": 0.0015301704406738281,
+    "total_time": 19.282127857208252
+  },
+  {
+    "model_id": "ankushvangari-org2/unsafe-model/unsafe-model/unsafe_model.pkl",
+    "model_files": [
+      "unsafe_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:46:32.642253",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "unsafe_model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 194,
+    "execution_events": 0,
+    "inspector_time": 19.19998836517334,
+    "classifier_time": 0.1291508674621582,
+    "copy_time": 0.0030508041381835938,
+    "total_time": 19.333328008651733
+  },
+  {
+    "model_id": "ankushvangari-org2/unsafe_model/unsafe_model/unsafe_model.pkl",
+    "model_files": [
+      "unsafe_model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:46:51.978428",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "unsafe_model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 193,
+    "execution_events": 1,
+    "inspector_time": 18.900062799453735,
+    "classifier_time": 0.1238093376159668,
+    "copy_time": 0.0033473968505859375,
+    "total_time": 19.027878999710083
+  },
+  {
+    "model_id": "mkiani/gpt2-exec/gpt2-exec/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 510416699,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:47:11.009142",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 511,
+    "execution_events": 1,
+    "inspector_time": 24.013254642486572,
+    "classifier_time": 0.17603206634521484,
+    "copy_time": 2.636920928955078,
+    "total_time": 26.82692265510559
+  },
+  {
+    "model_id": "mkiani/gpt2-eval/gpt2-eval/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 510416699,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:47:37.942283",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SYSBIN-RECON"
+    ],
+    "behavior_count": 1,
+    "loading_events": 692,
+    "execution_events": 1,
+    "inspector_time": 23.31348705291748,
+    "classifier_time": 0.22020554542541504,
+    "copy_time": 2.445006847381592,
+    "total_time": 25.979562044143677
+  },
+  {
+    "model_id": "mkiani/gpt2-runpy/gpt2-runpy/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 510393075,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:48:04.057109",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB1-EXEC-SYSINFO-ACCESS",
+      "AB4-SIDE-EFFECT-UTILITY",
+      "AB4-UNEXPECTED-EXEC",
+      "AB4-SUBPROCESS",
+      "AB4-BROWSER-DISCOVERY"
+    ],
+    "behavior_count": 2,
+    "loading_events": 14435,
+    "execution_events": 0,
+    "inspector_time": 25.279618978500366,
+    "classifier_time": 3.3462436199188232,
+    "copy_time": 2.569199800491333,
+    "total_time": 31.195802688598633
+  },
+  {
+    "model_id": "bricksbricks919/threemodelz/threemodelz/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 231139,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:48:35.511210",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 1,
+    "loading_events": 135,
+    "execution_events": 0,
+    "inspector_time": 22.8196542263031,
+    "classifier_time": 0.10657191276550293,
+    "copy_time": 0.0037565231323242188,
+    "total_time": 22.93091654777527
+  },
+  {
+    "model_id": "Ankush-Org-New/safe-model/safe-model/model.pkl",
+    "model_files": [
+      "model.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 167033,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:48:58.444821",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "model.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL"
+    ],
+    "behavior_count": 1,
+    "loading_events": 196,
+    "execution_events": 0,
+    "inspector_time": 19.59581446647644,
+    "classifier_time": 0.12829971313476562,
+    "copy_time": 0.0028028488159179688,
+    "total_time": 19.727587938308716
+  },
+  {
+    "model_id": "zpbrent/RagReuse/RagReuse/psgs_w100.tsv.pkl",
+    "model_files": [
+      "psgs_w100.tsv.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 668,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:49:18.174712",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "psgs_w100.tsv.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 478,
+    "execution_events": 0,
+    "inspector_time": 19.098506689071655,
+    "classifier_time": 0.17817163467407227,
+    "copy_time": 0.001230478286743164,
+    "total_time": 19.278587818145752
+  },
+  {
+    "model_id": "zpbrent/reuse/reuse/vocab.pkl",
+    "model_files": [
+      "vocab.pkl"
+    ],
+    "file_types": [
+      ".pkl"
+    ],
+    "total_size": 772,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:49:37.459091",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "sklearn",
+    "downloaded_files": [
+      "vocab.pkl"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-SHELL",
+      "AB4-SIDE-EFFECT-UTILITY"
+    ],
+    "behavior_count": 1,
+    "loading_events": 359,
+    "execution_events": 0,
+    "inspector_time": 19.14800524711609,
+    "classifier_time": 0.16778779029846191,
+    "copy_time": 0.0012450218200683594,
+    "total_time": 19.317832231521606
+  },
+  {
+    "model_id": "omershelef/mytest-omer/mytest-omer/resnet18-f37072fd.pth",
+    "model_files": [
+      "resnet18-f37072fd.pth"
+    ],
+    "file_types": [
+      ".pth"
+    ],
+    "total_size": 46829637,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:49:56.780307",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "resnet18-f37072fd.pth"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB4"
+    ],
+    "pattern_ids": [
+      "AB4-GUI-IMPORT"
+    ],
+    "behavior_count": 1,
+    "loading_events": 1568,
+    "execution_events": 0,
+    "inspector_time": 23.11673355102539,
+    "classifier_time": 0.3872411251068115,
+    "copy_time": 0.26128649711608887,
+    "total_time": 23.766053676605225
+  },
+  {
+    "model_id": "omershelef/mytest-omer/mytest-omer/mytest.pth",
+    "model_files": [
+      "mytest.pth"
+    ],
+    "file_types": [
+      ".pth"
+    ],
+    "total_size": 46822221,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:50:20.565918",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "mytest.pth"
+    ],
+    "verdict": "MALICIOUS",
+    "behavior_ids": [
+      "AB1",
+      "AB4",
+      "AB6"
+    ],
+    "pattern_ids": [
+      "AB1-SOCKINFO-EXFIL",
+      "AB1-DIR-DISCOVERY",
+      "AB4-SHELL",
+      "AB4-SUBPROCESS",
+      "AB4-GUI-IMPORT",
+      "AB6-PIPESHELL",
+      "AB6-PIPESHELL-MINIMAL",
+      "AB6-REMOTE-CMD",
+      "AB6-OUTBOUND"
+    ],
+    "behavior_count": 3,
+    "loading_events": 2728,
+    "execution_events": 0,
+    "inspector_time": 23.87188982963562,
+    "classifier_time": 0.6250369548797607,
+    "copy_time": 0.24979615211486816,
+    "total_time": 24.747426509857178
+  },
+  {
+    "model_id": "FarisHijazi/totally-harmless-model/totally-harmless-model/pytorch_model.bin",
+    "model_files": [
+      "pytorch_model.bin"
+    ],
+    "file_types": [
+      ".bin"
+    ],
+    "total_size": 495,
+    "has_pickle": true,
+    "timestamp": "2026-09-15T04:50:45.336557",
+    "status": "completed",
+    "source": "local",
+    "routed_env": "torch_current",
+    "downloaded_files": [
+      "pytorch_model.bin"
+    ],
+    "verdict": "BENIGN",
+    "behavior_ids": [],
+    "pattern_ids": [],
+    "behavior_count": 0,
+    "loading_events": 60,
+    "execution_events": 0,
+    "inspector_time": 22.915438652038574,
+    "classifier_time": 0.08834385871887207,
+    "copy_time": 0.0013167858123779297,
+    "total_time": 23.00579571723938
+  }
+]

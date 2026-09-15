@@ -1,0 +1,599 @@
+{
+  "model_path": "/home/halaali_cs/malicious_pickleball/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 2728,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB1",
+      "behavior_name": "Sensitive Information Theft",
+      "sub_behaviors": [
+        "File and directory discovery + exfiltration",
+        "Socket-based network discovery + exfiltration"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1016",
+          "technique_name": "System Network Configuration Discovery"
+        },
+        {
+          "tactic": "Exfiltration",
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel"
+        },
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB1-SOCKINFO-EXFIL",
+          "sub_behavior": "Socket-based network discovery + exfiltration",
+          "matched_events": [
+            {
+              "operation": "getsockname",
+              "filename": "fd=295",
+              "sub_op": "Network.info",
+              "timestamp": 3094.745563274,
+              "tid": 10698,
+              "extra_details": {
+                "fd": 295
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "198.202.211.1:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.821022903,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "198.202.211.1",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "write",
+              "filename": "fd=296",
+              "sub_op": "File.write",
+              "timestamp": 3094.857433663,
+              "tid": 10698,
+              "extra_details": {
+                "fd": 296,
+                "size": 517
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1016",
+              "technique_name": "System Network Configuration Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB1-DIR-DISCOVERY",
+          "sub_behavior": "File and directory discovery + exfiltration",
+          "matched_events": [
+            {
+              "operation": "getdents64",
+              "filename": "/usr/lib/python3.9/tkinter",
+              "sub_op": "File.enumerate",
+              "timestamp": 3094.723447614,
+              "tid": 10698,
+              "extra_details": {
+                "fd": 295
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2606:4700:3035::6815:3414]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.745651134,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2606:4700:3035::6815:3414",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "write",
+              "filename": "fd=295",
+              "sub_op": "File.write",
+              "timestamp": 3094.782784693,
+              "tid": 10698,
+              "extra_details": {
+                "fd": 295,
+                "size": 517
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1083",
+              "technique_name": "File and Directory Discovery"
+            },
+            {
+              "tactic": "Exfiltration",
+              "technique_id": "T1041",
+              "technique_name": "Exfiltration Over C2 Channel"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB4",
+      "behavior_name": "Malicious Code Execution",
+      "sub_behaviors": [
+        "Shell interpreter spawning",
+        "Suspicious subprocess spawning via pipe+fork+redirect",
+        "GUI framework imported during model loading (code execution evidence)"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1106",
+          "technique_name": "Native API"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.006",
+          "technique_name": "Python"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1204",
+          "technique_name": "User Execution"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB4-SHELL",
+          "sub_behavior": "Shell interpreter spawning",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 3094.965559192,
+              "tid": 10699,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-SUBPROCESS",
+          "sub_behavior": "Suspicious subprocess spawning via pipe+fork+redirect",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 3094.944679463,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 3094.944917803,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 3094.962960282,
+              "tid": 10699,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 3094.965559192,
+              "tid": 10699,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1106",
+              "technique_name": "Native API"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-GUI-IMPORT",
+          "sub_behavior": "GUI framework imported during model loading (code execution evidence)",
+          "matched_events": [
+            {
+              "operation": "openat",
+              "filename": "/usr/lib/python3.9/tkinter/__pycache__/__init__.cpython-39.pyc",
+              "sub_op": "File.open",
+              "timestamp": 3094.712235044,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.006",
+              "technique_name": "Python"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1204",
+              "technique_name": "User Execution"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Pipe-based shell",
+        "Pipe-based shell (minimal \u2014 no fd format dependency)",
+        "Outbound connection to external endpoint",
+        "Remote command execution"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1095",
+          "technique_name": "Non-Application Layer Protocol"
+        },
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-PIPESHELL",
+          "sub_behavior": "Pipe-based shell",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 3094.944679463,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 3094.944917803,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 3094.962960282,
+              "tid": 10699,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 3094.965559192,
+              "tid": 10699,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB6-PIPESHELL-MINIMAL",
+          "sub_behavior": "Pipe-based shell (minimal \u2014 no fd format dependency)",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 3094.944679463,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 3094.944917803,
+              "tid": 10698,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 3094.962960282,
+              "tid": 10699,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 3094.965559192,
+              "tid": 10699,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB6-REMOTE-CMD",
+          "sub_behavior": "Remote command execution",
+          "matched_events": [
+            {
+              "operation": "connect",
+              "filename": "[2606:4700:3035::6815:3414]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.745651134,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2606:4700:3035::6815:3414",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "recvfrom",
+              "filename": "fd=296 [\\x03u]",
+              "sub_op": "Network.recv",
+              "timestamp": 3094.819413293,
+              "tid": 10698,
+              "extra_details": {
+                "fd": 296,
+                "len": 91,
+                "flags": "0x0",
+                "msg_preview": "\\x03u",
+                "operation": "recvfrom"
+              }
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 3094.965559192,
+              "tid": 10699,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            },
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1095",
+              "technique_name": "Non-Application Layer Protocol"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "AF_UNIX/SOCK_STREAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 3094.732112374,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_UNIX",
+                "type": "SOCK_STREAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2606:4700:3035::6815:3414]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.745651134,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2606:4700:3035::6815:3414",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 3094.745873064,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "172.67.194.75:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.745937264,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "172.67.194.75",
+                "port": 443,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 3094.808933933,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "198.202.211.1:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.821022903,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "198.202.211.1",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 3094.821052413,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET6",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2620:cb:2000::1]:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.821062383,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2620:cb:2000::1",
+                "port": 443,
+                "fd": 296
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 3094.821163033,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "198.202.211.1:443",
+              "sub_op": "Network.connect",
+              "timestamp": 3094.821211933,
+              "tid": 10698,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "198.202.211.1",
+                "port": 443,
+                "fd": 296
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

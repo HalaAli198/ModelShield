@@ -1,0 +1,439 @@
+{
+  "model_path": "/home/halaali_cs/malicious_pickleball/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 19378,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB1",
+      "behavior_name": "Sensitive Information Theft",
+      "sub_behaviors": [
+        "Command-based system info access"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1082",
+          "technique_name": "System Information Discovery"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB1-EXEC-SYSINFO-ACCESS",
+          "sub_behavior": "Command-based system info access",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/grep",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2623.564362668,
+              "tid": 8555,
+              "extra_details": {}
+            },
+            {
+              "operation": "openat",
+              "filename": "/etc/os-release",
+              "sub_op": "File.open",
+              "timestamp": 2626.014800241,
+              "tid": 9245,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "read",
+              "filename": "/etc/os-release",
+              "sub_op": "File.read",
+              "timestamp": 2626.014904631,
+              "tid": 9245,
+              "extra_details": {
+                "fd": 3,
+                "size": 177
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1082",
+              "technique_name": "System Information Discovery"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    },
+    {
+      "behavior_id": "AB4",
+      "behavior_name": "Malicious Code Execution",
+      "sub_behaviors": [
+        "External side-effect utility execution during model execution",
+        "Unexpected external program execution during model inference",
+        "Suspicious subprocess spawning via pipe+fork+redirect",
+        "Browser discovery scan (webbrowser.open fingerprint)"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Impact",
+          "technique_id": "T1565.001",
+          "technique_name": "Stored Data Manipulation"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1204",
+          "technique_name": "User Execution"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1106",
+          "technique_name": "Native API"
+        },
+        {
+          "tactic": "Discovery",
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB4-SIDE-EFFECT-UTILITY",
+          "sub_behavior": "External side-effect utility execution during model execution",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/gsettings",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2624.031862236,
+              "tid": 8710,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/gsettings",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2625.83232671,
+              "tid": 9206,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/chmod",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2625.988948612,
+              "tid": 9237,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/mkdir",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.026164591,
+              "tid": 9250,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            },
+            {
+              "tactic": "Impact",
+              "technique_id": "T1565.001",
+              "technique_name": "Stored Data Manipulation"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-UNEXPECTED-EXEC",
+          "sub_behavior": "Unexpected external program execution during model inference",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/firefox",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2623.774991308,
+              "tid": 8623,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/snap/command-chain/gpu-2404-wrapper",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2625.962538083,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/snap/command-chain/desktop-launch",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2625.979932483,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/gnome-platform/usr/bin/xdg-user-dirs-update",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.04918674,
+              "tid": 9253,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/firefox.launcher",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.120215946,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/usr/lib/firefox/firefox",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.122375726,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/usr/lib/firefox/crashhelper",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.164373564,
+              "tid": 9274,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1204",
+              "technique_name": "User Execution"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-SUBPROCESS",
+          "sub_behavior": "Suspicious subprocess spawning via pipe+fork+redirect",
+          "matched_events": [
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 2623.52692666,
+              "tid": 8550,
+              "extra_details": {
+                "flags": "O_CLOEXEC"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 2623.52730849,
+              "tid": 8550,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_296->1",
+              "sub_op": "File.dup",
+              "timestamp": 2623.54206546,
+              "tid": 8551,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/firefox",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2623.774991308,
+              "tid": 8623,
+              "extra_details": {}
+            },
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 2623.791588038,
+              "tid": 8623,
+              "extra_details": {
+                "flags": "0x0"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 2623.791606668,
+              "tid": 8623,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_4->1",
+              "sub_op": "File.dup",
+              "timestamp": 2623.791875958,
+              "tid": 8624,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/snap/command-chain/gpu-2404-wrapper",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2625.962538083,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 2625.966624133,
+              "tid": 9111,
+              "extra_details": {
+                "flags": "0x0"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 2625.966647493,
+              "tid": 9111,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_3->255",
+              "sub_op": "File.dup",
+              "timestamp": 2625.983560413,
+              "tid": 9111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/gnome-platform/usr/bin/xdg-user-dirs-update",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.04918674,
+              "tid": 9253,
+              "extra_details": {}
+            },
+            {
+              "operation": "pipe2",
+              "filename": "create_pipe",
+              "sub_op": "File.pipe",
+              "timestamp": 2626.068742929,
+              "tid": 9111,
+              "extra_details": {
+                "flags": "0x0"
+              }
+            },
+            {
+              "operation": "clone",
+              "filename": "flags=0x1200011",
+              "sub_op": "Process.fork",
+              "timestamp": 2626.068771408,
+              "tid": 9111,
+              "extra_details": {
+                "flags": "CLONE_SYSVSEM|CLONE_CHILD_CLEARTID"
+              }
+            },
+            {
+              "operation": "dup2",
+              "filename": "dup_3->2",
+              "sub_op": "File.dup",
+              "timestamp": 2626.070216958,
+              "tid": 9259,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/snap/firefox/8863/firefox.launcher",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 2626.120215946,
+              "tid": 9111,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            },
+            {
+              "tactic": "Execution",
+              "technique_id": "T1106",
+              "technique_name": "Native API"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-BROWSER-DISCOVERY",
+          "sub_behavior": "Browser discovery scan (webbrowser.open fingerprint)",
+          "matched_events": [
+            {
+              "operation": "newfstatat",
+              "filename": "/usr/local/sbin/xdg-open",
+              "sub_op": "File.stat",
+              "timestamp": 2623.75451773,
+              "tid": 8550,
+              "extra_details": {}
+            },
+            {
+              "operation": "newfstatat",
+              "filename": "/usr/local/bin/xdg-open",
+              "sub_op": "File.stat",
+              "timestamp": 2623.75455928,
+              "tid": 8550,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1204",
+              "technique_name": "User Execution"
+            },
+            {
+              "tactic": "Discovery",
+              "technique_id": "T1083",
+              "technique_name": "File and Directory Discovery"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

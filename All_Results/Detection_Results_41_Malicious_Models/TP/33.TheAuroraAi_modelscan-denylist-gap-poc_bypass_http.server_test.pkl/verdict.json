@@ -1,0 +1,89 @@
+{
+  "model_path": "/home/halaali_cs/41_malicious_models_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 65,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Outbound connection to external endpoint"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "family_16/SOCK_RAW/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 16777.673385899,
+              "tid": 469716,
+              "extra_details": {
+                "family": "family_16",
+                "type": "SOCK_RAW",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[::]:8000",
+              "sub_op": "Network.connect",
+              "timestamp": 16777.673592239,
+              "tid": 469716,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "::",
+                "port": 8000,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "family_16/SOCK_RAW/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 16777.674146519,
+              "tid": 469716,
+              "extra_details": {
+                "family": "family_16",
+                "type": "SOCK_RAW",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[::]:8000",
+              "sub_op": "Network.connect",
+              "timestamp": 16777.674256709,
+              "tid": 469716,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "::",
+                "port": 8000,
+                "fd": 295
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}

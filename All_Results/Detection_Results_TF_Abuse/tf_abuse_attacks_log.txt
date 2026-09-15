@@ -1,0 +1,97 @@
+[2026-09-14 17:56:59] [trace_counter] Initialized to 0 (next folder will be 00001)
+[2026-09-14 17:56:59] ======================================================================
+[2026-09-14 17:56:59] TF Abuse Attacks Scan Pipeline
+[2026-09-14 17:56:59] Source:     /home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse
+[2026-09-14 17:56:59] File types: 36 formats supported
+[2026-09-14 17:56:59] Work dir:   /home/halaali_cs/tf_abuse_attacks_results
+[2026-09-14 17:56:59] Inspector:  /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-14 17:56:59] Classifier: /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-14 17:56:59] Traces:     /home/halaali_cs/tf_abuse_attacks_results
+[2026-09-14 17:56:59] ======================================================================
+[2026-09-14 17:56:59] [discover_local] Found 4 model files in /home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse
+[2026-09-14 17:56:59] 
+======================================================================
+Evaluating 4 models
+======================================================================
+[2026-09-14 17:56:59] 
+[1/4] TF_Abuse/IP_exposure/saved_model/saved_model.pb
+[2026-09-14 17:56:59]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-14 17:56:59]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse/TF_Abuse/IP_exposure/saved_model/saved_model.pb)
+[2026-09-14 17:56:59]   Copying local file...
+[2026-09-14 17:56:59]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:56:59]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:56:59]     Routed to env: tf2
+[2026-09-14 17:57:21]   Inspector finished in 21.8s
+[2026-09-14 17:57:21]   Running classifier...
+[2026-09-14 17:57:21]   Classifier finished in 0.14s
+[2026-09-14 17:57:21]   Saved traces to /home/halaali_cs/tf_abuse_attacks_results/TP/TF_Abuse_IP_exposure_saved_model
+[2026-09-14 17:57:21]   MALICIOUS — saved evidence to /home/halaali_cs/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-14 17:57:21]   Verdict: MALICIOUS
+[2026-09-14 17:57:21]   Behaviors: AB1, AB6
+[2026-09-14 17:57:21]   Patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB6-OUTBOUND
+[2026-09-14 17:57:21] 
+[2/4] TF_Abuse/code_execution/saved_model/saved_model.pb
+[2026-09-14 17:57:21]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-14 17:57:21]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse/TF_Abuse/code_execution/saved_model/saved_model.pb)
+[2026-09-14 17:57:21]   Copying local file...
+[2026-09-14 17:57:21]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:57:21]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:57:21]     Routed to env: tf2
+[2026-09-14 17:57:44]   Inspector finished in 22.7s
+[2026-09-14 17:57:44]   Running classifier...
+[2026-09-14 17:57:44]   Classifier finished in 0.12s
+[2026-09-14 17:57:44]   Saved traces to /home/halaali_cs/tf_abuse_attacks_results/TP/TF_Abuse_code_execution_saved_model
+[2026-09-14 17:57:44]   MALICIOUS — saved evidence to /home/halaali_cs/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-14 17:57:44]   Verdict: MALICIOUS
+[2026-09-14 17:57:44]   Behaviors: AB2, AB3
+[2026-09-14 17:57:44]   Patterns: AB2-PYTHON-MODULE-SHADOW, AB2-PYTHON-MODULE-SHADOW-ATTEMPT, AB3-TMP-SCRIPT-STAGE, AB3-TMP-SCRIPT-STAGE-ATTEMPT
+[2026-09-14 17:57:44] 
+[3/4] TF_Abuse/shell_access/saved_model/saved_model.pb
+[2026-09-14 17:57:44]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-14 17:57:44]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse/TF_Abuse/shell_access/saved_model/saved_model.pb)
+[2026-09-14 17:57:44]   Copying local file...
+[2026-09-14 17:57:44]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:57:44]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:57:44]     Routed to env: tf2
+[2026-09-14 17:58:04]   Inspector finished in 19.8s
+[2026-09-14 17:58:04]   Running classifier...
+[2026-09-14 17:58:04]   Classifier finished in 0.19s
+[2026-09-14 17:58:04]   Saved traces to /home/halaali_cs/tf_abuse_attacks_results/TP/TF_Abuse_shell_access_saved_model
+[2026-09-14 17:58:04]   MALICIOUS — saved evidence to /home/halaali_cs/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-14 17:58:04]   Verdict: MALICIOUS
+[2026-09-14 17:58:04]   Behaviors: AB2, AB6
+[2026-09-14 17:58:04]   Patterns: AB2-SSH-KEYS, AB6-OUTBOUND
+[2026-09-14 17:58:04] 
+[4/4] TF_Abuse/file_leak/saved_model/saved_model.pb
+[2026-09-14 17:58:04]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-14 17:58:04]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/TF_Abuse/TF_Abuse/file_leak/saved_model/saved_model.pb)
+[2026-09-14 17:58:04]   Copying local file...
+[2026-09-14 17:58:04]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:58:04]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:58:04]     Routed to env: tf2
+[2026-09-14 17:58:24]   Inspector finished in 20.3s
+[2026-09-14 17:58:24]   Running classifier...
+[2026-09-14 17:58:24]   Classifier finished in 0.18s
+[2026-09-14 17:58:24]   Saved traces to /home/halaali_cs/tf_abuse_attacks_results/TP/TF_Abuse_file_leak_saved_model
+[2026-09-14 17:58:24]   MALICIOUS — saved evidence to /home/halaali_cs/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-14 17:58:24]   Verdict: MALICIOUS
+[2026-09-14 17:58:24]   Behaviors: AB1, AB6
+[2026-09-14 17:58:24]   Patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB1-CRED-SSH-EXFIL, AB1-CRED-SSH-LOCAL, AB6-OUTBOUND
+[2026-09-14 17:58:24] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-14 17:58:24]   Total:     4 models
+[2026-09-14 17:58:24]   Benign:    0 (0.0%)
+[2026-09-14 17:58:24]   Malicious: 4 (100.0%)
+[2026-09-14 17:58:24]   Errors:    0
+[2026-09-14 17:58:24]   File types tested: {'.pb': 4}
+[2026-09-14 17:58:24] 
+  MALICIOUS MODELS FOUND:
+[2026-09-14 17:58:24]   TF_Abuse/IP_exposure/saved_model/saved_model.pb — types=['.pb'], patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB6-OUTBOUND
+[2026-09-14 17:58:24]   TF_Abuse/code_execution/saved_model/saved_model.pb — types=['.pb'], patterns: AB2-PYTHON-MODULE-SHADOW, AB2-PYTHON-MODULE-SHADOW-ATTEMPT, AB3-TMP-SCRIPT-STAGE, AB3-TMP-SCRIPT-STAGE-ATTEMPT
+[2026-09-14 17:58:24]   TF_Abuse/shell_access/saved_model/saved_model.pb — types=['.pb'], patterns: AB2-SSH-KEYS, AB6-OUTBOUND
+[2026-09-14 17:58:24]   TF_Abuse/file_leak/saved_model/saved_model.pb — types=['.pb'], patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB1-CRED-SSH-EXFIL, AB1-CRED-SSH-LOCAL, AB6-OUTBOUND
+[2026-09-14 17:58:24] 
+Results saved to: /home/halaali_cs/tf_abuse_attacks_results
+[2026-09-14 17:58:24] True positives: /home/halaali_cs/tf_abuse_attacks_results/verdict_results/TP/

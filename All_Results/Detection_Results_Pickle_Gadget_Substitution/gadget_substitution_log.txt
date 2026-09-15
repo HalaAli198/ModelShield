@@ -1,0 +1,293 @@
+[2026-09-14 17:37:35] [trace_counter] Initialized to 0 (next folder will be 00001)
+[2026-09-14 17:37:35] ======================================================================
+[2026-09-14 17:37:35] Pickle Gadget Substitution Scan Pipeline
+[2026-09-14 17:37:35] Source:     /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution
+[2026-09-14 17:37:35] File types: 36 formats supported
+[2026-09-14 17:37:35] Work dir:   /home/halaali_cs/gadget_substitution_results
+[2026-09-14 17:37:35] Inspector:  /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-14 17:37:35] Classifier: /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-14 17:37:35] Traces:     /home/halaali_cs/gadget_substitution_results
+[2026-09-14 17:37:35] ======================================================================
+[2026-09-14 17:37:35] [discover_local] Found 15 model files in /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution
+[2026-09-14 17:37:35] 
+======================================================================
+Evaluating 15 models
+======================================================================
+[2026-09-14 17:37:35] 
+[1/15] g02_pydoc_pipepager/g02_pydoc_pipepager.joblib
+[2026-09-14 17:37:35]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:37:35]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g02_pydoc_pipepager/g02_pydoc_pipepager.joblib)
+[2026-09-14 17:37:35]   Copying local file...
+[2026-09-14 17:37:35]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:37:35]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:37:35]     Routed to env: sklearn
+[2026-09-14 17:37:55]   Inspector finished in 19.9s
+[2026-09-14 17:37:55]   Running classifier...
+[2026-09-14 17:37:56]   Classifier finished in 0.20s
+[2026-09-14 17:37:56]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g02_pydoc_pipepager_g02_pydoc_pipepager.joblib
+[2026-09-14 17:37:56]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:37:56]   Verdict: MALICIOUS
+[2026-09-14 17:37:56]   Behaviors: AB1, AB4, AB6
+[2026-09-14 17:37:56]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS, AB6-PIPESHELL, AB6-PIPESHELL-MINIMAL
+[2026-09-14 17:37:56] 
+[2/15] g06_exec/g06_exec.joblib
+[2026-09-14 17:37:56]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:37:56]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g06_exec/g06_exec.joblib)
+[2026-09-14 17:37:56]   Copying local file...
+[2026-09-14 17:37:56]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:37:56]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:37:56]     Routed to env: sklearn
+[2026-09-14 17:38:15]   Inspector finished in 19.3s
+[2026-09-14 17:38:15]   Running classifier...
+[2026-09-14 17:38:15]   Classifier finished in 0.15s
+[2026-09-14 17:38:15]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g06_exec_g06_exec.joblib
+[2026-09-14 17:38:15]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:38:15]   Verdict: MALICIOUS
+[2026-09-14 17:38:15]   Behaviors: AB1, AB4
+[2026-09-14 17:38:15]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:38:15] 
+[3/15] g04_doctest_debug_script/g04_doctest_debug_script.joblib
+[2026-09-14 17:38:15]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:38:15]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g04_doctest_debug_script/g04_doctest_debug_script.joblib)
+[2026-09-14 17:38:15]   Copying local file...
+[2026-09-14 17:38:15]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:38:15]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:38:15]     Routed to env: sklearn
+[2026-09-14 17:38:35]   Inspector finished in 19.9s
+[2026-09-14 17:38:35]   Running classifier...
+[2026-09-14 17:38:35]   Classifier finished in 0.13s
+[2026-09-14 17:38:35]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g04_doctest_debug_script_g04_doctest_debug_script.joblib
+[2026-09-14 17:38:35]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:38:35]   Verdict: MALICIOUS
+[2026-09-14 17:38:35]   Behaviors: AB1, AB4
+[2026-09-14 17:38:35]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:38:35] 
+[4/15] g07_numpy_exec_command/g07_numpy_exec_command.joblib
+[2026-09-14 17:38:35]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:38:35]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g07_numpy_exec_command/g07_numpy_exec_command.joblib)
+[2026-09-14 17:38:35]   Copying local file...
+[2026-09-14 17:38:35]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:38:35]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:38:35]     Routed to env: sklearn
+[2026-09-14 17:38:55]   Inspector finished in 20.2s
+[2026-09-14 17:38:55]   Running classifier...
+[2026-09-14 17:38:56]   Classifier finished in 0.46s
+[2026-09-14 17:38:56]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g07_numpy_exec_command_g07_numpy_exec_command.joblib
+[2026-09-14 17:38:56]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:38:56]   Verdict: MALICIOUS
+[2026-09-14 17:38:56]   Behaviors: AB1, AB4, AB6
+[2026-09-14 17:38:56]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS, AB6-PIPESHELL, AB6-PIPESHELL-MINIMAL
+[2026-09-14 17:38:56] 
+[5/15] g11_sympy_sympify/g11_sympy_sympify.joblib
+[2026-09-14 17:38:56]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:38:56]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g11_sympy_sympify/g11_sympy_sympify.joblib)
+[2026-09-14 17:38:56]   Copying local file...
+[2026-09-14 17:38:56]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:38:56]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:38:56]     Routed to env: sklearn
+[2026-09-14 17:39:15]   Inspector finished in 19.7s
+[2026-09-14 17:39:15]   Running classifier...
+[2026-09-14 17:39:16]   Classifier finished in 0.46s
+[2026-09-14 17:39:16]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g11_sympy_sympify_g11_sympy_sympify.joblib
+[2026-09-14 17:39:16]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:39:16]   Verdict: MALICIOUS
+[2026-09-14 17:39:16]   Behaviors: AB1, AB4
+[2026-09-14 17:39:16]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:39:16] 
+  --- Progress: 5/15 | Benign: 0 | Malicious: 5 | Errors: 0 ---
+
+[2026-09-14 17:39:16] 
+[6/15] g14_exec_import/g14_exec_import.joblib
+[2026-09-14 17:39:16]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:39:16]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g14_exec_import/g14_exec_import.joblib)
+[2026-09-14 17:39:16]   Copying local file...
+[2026-09-14 17:39:16]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:39:16]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:39:16]     Routed to env: sklearn
+[2026-09-14 17:39:36]   Inspector finished in 19.7s
+[2026-09-14 17:39:36]   Running classifier...
+[2026-09-14 17:39:36]   Classifier finished in 0.12s
+[2026-09-14 17:39:36]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g14_exec_import_g14_exec_import.joblib
+[2026-09-14 17:39:36]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:39:36]   Verdict: MALICIOUS
+[2026-09-14 17:39:36]   Behaviors: AB1, AB4
+[2026-09-14 17:39:36]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:39:36] 
+[7/15] g12_pandas_eval_chain/g12_pandas_eval_chain.joblib
+[2026-09-14 17:39:36]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:39:36]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g12_pandas_eval_chain/g12_pandas_eval_chain.joblib)
+[2026-09-14 17:39:36]   Copying local file...
+[2026-09-14 17:39:36]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:39:36]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:39:36]     Routed to env: sklearn
+[2026-09-14 17:39:55]   Inspector finished in 19.6s
+[2026-09-14 17:39:55]   Running classifier...
+[2026-09-14 17:39:55]   Classifier finished in 0.12s
+[2026-09-14 17:39:55]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g12_pandas_eval_chain_g12_pandas_eval_chain.joblib
+[2026-09-14 17:39:55]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:39:55]   Verdict: MALICIOUS
+[2026-09-14 17:39:55]   Behaviors: AB1, AB4
+[2026-09-14 17:39:55]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:39:55] 
+[8/15] g10_sympy_sT/g10_sympy_sT.joblib
+[2026-09-14 17:39:55]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:39:55]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g10_sympy_sT/g10_sympy_sT.joblib)
+[2026-09-14 17:39:55]   Copying local file...
+[2026-09-14 17:39:55]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:39:55]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:39:55]     Routed to env: sklearn
+[2026-09-14 17:40:15]   Inspector finished in 19.9s
+[2026-09-14 17:40:15]   Running classifier...
+[2026-09-14 17:40:16]   Classifier finished in 0.46s
+[2026-09-14 17:40:16]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g10_sympy_sT_g10_sympy_sT.joblib
+[2026-09-14 17:40:16]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:40:16]   Verdict: MALICIOUS
+[2026-09-14 17:40:16]   Behaviors: AB1, AB4
+[2026-09-14 17:40:16]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:40:16] 
+[9/15] g13_cprofile_run/g13_cprofile_run.joblib
+[2026-09-14 17:40:16]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:40:16]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g13_cprofile_run/g13_cprofile_run.joblib)
+[2026-09-14 17:40:16]   Copying local file...
+[2026-09-14 17:40:16]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:40:16]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:40:16]     Routed to env: sklearn
+[2026-09-14 17:40:36]   Inspector finished in 19.9s
+[2026-09-14 17:40:36]   Running classifier...
+[2026-09-14 17:40:36]   Classifier finished in 0.12s
+[2026-09-14 17:40:36]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g13_cprofile_run_g13_cprofile_run.joblib
+[2026-09-14 17:40:36]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:40:36]   Verdict: MALICIOUS
+[2026-09-14 17:40:36]   Behaviors: AB1, AB4
+[2026-09-14 17:40:36]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:40:36] 
+[10/15] g08_numpy_getoutput/g08_numpy_getoutput.joblib
+[2026-09-14 17:40:36]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:40:36]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g08_numpy_getoutput/g08_numpy_getoutput.joblib)
+[2026-09-14 17:40:36]   Copying local file...
+[2026-09-14 17:40:36]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:40:36]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:40:36]     Routed to env: sklearn
+[2026-09-14 17:40:57]   Inspector finished in 21.4s
+[2026-09-14 17:40:57]   Running classifier...
+[2026-09-14 17:40:58]   Classifier finished in 0.53s
+[2026-09-14 17:40:58]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g08_numpy_getoutput_g08_numpy_getoutput.joblib
+[2026-09-14 17:40:58]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:40:58]   Verdict: MALICIOUS
+[2026-09-14 17:40:58]   Behaviors: AB1, AB4, AB6
+[2026-09-14 17:40:58]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS, AB6-PIPESHELL, AB6-PIPESHELL-MINIMAL
+[2026-09-14 17:40:58] 
+  --- Progress: 10/15 | Benign: 0 | Malicious: 10 | Errors: 0 ---
+
+[2026-09-14 17:40:58] 
+[11/15] g09_numpy_ufunc/g09_numpy_ufunc.joblib
+[2026-09-14 17:40:58]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:40:58]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g09_numpy_ufunc/g09_numpy_ufunc.joblib)
+[2026-09-14 17:40:58]   Copying local file...
+[2026-09-14 17:40:58]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:40:58]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:40:58]     Routed to env: sklearn
+[2026-09-14 17:41:17]   Inspector finished in 19.3s
+[2026-09-14 17:41:17]   Running classifier...
+[2026-09-14 17:41:17]   Classifier finished in 0.12s
+[2026-09-14 17:41:17]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g09_numpy_ufunc_g09_numpy_ufunc.joblib
+[2026-09-14 17:41:17]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:41:17]   Verdict: MALICIOUS
+[2026-09-14 17:41:17]   Behaviors: AB1, AB4
+[2026-09-14 17:41:17]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:41:17] 
+[12/15] g05_eval/g05_eval.joblib
+[2026-09-14 17:41:17]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:41:17]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g05_eval/g05_eval.joblib)
+[2026-09-14 17:41:17]   Copying local file...
+[2026-09-14 17:41:17]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:41:17]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:41:17]     Routed to env: sklearn
+[2026-09-14 17:41:37]   Inspector finished in 19.4s
+[2026-09-14 17:41:37]   Running classifier...
+[2026-09-14 17:41:37]   Classifier finished in 0.12s
+[2026-09-14 17:41:37]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g05_eval_g05_eval.joblib
+[2026-09-14 17:41:37]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:41:37]   Verdict: MALICIOUS
+[2026-09-14 17:41:37]   Behaviors: AB1, AB4
+[2026-09-14 17:41:37]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:41:37] 
+[13/15] g01_os_system/g01_os_system.joblib
+[2026-09-14 17:41:37]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:41:37]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g01_os_system/g01_os_system.joblib)
+[2026-09-14 17:41:37]   Copying local file...
+[2026-09-14 17:41:37]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:41:37]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:41:37]     Routed to env: sklearn
+[2026-09-14 17:41:56]   Inspector finished in 19.3s
+[2026-09-14 17:41:56]   Running classifier...
+[2026-09-14 17:41:56]   Classifier finished in 0.12s
+[2026-09-14 17:41:56]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g01_os_system_g01_os_system.joblib
+[2026-09-14 17:41:56]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:41:56]   Verdict: MALICIOUS
+[2026-09-14 17:41:56]   Behaviors: AB1, AB4
+[2026-09-14 17:41:56]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:41:56] 
+[14/15] g15_subprocess/g15_subprocess.joblib
+[2026-09-14 17:41:56]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:41:56]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g15_subprocess/g15_subprocess.joblib)
+[2026-09-14 17:41:56]   Copying local file...
+[2026-09-14 17:41:56]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:41:56]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:41:56]     Routed to env: sklearn
+[2026-09-14 17:42:17]   Inspector finished in 21.0s
+[2026-09-14 17:42:17]   Running classifier...
+[2026-09-14 17:42:17]   Classifier finished in 0.20s
+[2026-09-14 17:42:17]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g15_subprocess_g15_subprocess.joblib
+[2026-09-14 17:42:17]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:42:17]   Verdict: MALICIOUS
+[2026-09-14 17:42:17]   Behaviors: AB1
+[2026-09-14 17:42:17]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-CRED-SSH-LOCAL
+[2026-09-14 17:42:17] 
+[15/15] g03_pydoc_tempfilepager/g03_pydoc_tempfilepager.joblib
+[2026-09-14 17:42:17]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:42:17]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Gadget_Substitution/g03_pydoc_tempfilepager/g03_pydoc_tempfilepager.joblib)
+[2026-09-14 17:42:17]   Copying local file...
+[2026-09-14 17:42:17]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:42:17]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:42:17]     Routed to env: sklearn
+[2026-09-14 17:42:38]   Inspector finished in 20.8s
+[2026-09-14 17:42:38]   Running classifier...
+[2026-09-14 17:42:38]   Classifier finished in 0.28s
+[2026-09-14 17:42:38]   Saved traces to /home/halaali_cs/gadget_substitution_results/TP/g03_pydoc_tempfilepager_g03_pydoc_tempfilepager.joblib
+[2026-09-14 17:42:38]   MALICIOUS — saved evidence to /home/halaali_cs/gadget_substitution_results/verdict_results/TP
+[2026-09-14 17:42:38]   Verdict: MALICIOUS
+[2026-09-14 17:42:38]   Behaviors: AB1, AB4
+[2026-09-14 17:42:38]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-PYTHON, AB4-SCRIPT
+[2026-09-14 17:42:38] 
+  --- Progress: 15/15 | Benign: 0 | Malicious: 15 | Errors: 0 ---
+
+[2026-09-14 17:42:38] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-14 17:42:38]   Total:     15 models
+[2026-09-14 17:42:38]   Benign:    0 (0.0%)
+[2026-09-14 17:42:38]   Malicious: 15 (100.0%)
+[2026-09-14 17:42:38]   Errors:    0
+[2026-09-14 17:42:38]   File types tested: {'.joblib': 15}
+[2026-09-14 17:42:38] 
+  MALICIOUS MODELS FOUND:
+[2026-09-14 17:42:38]   g02_pydoc_pipepager/g02_pydoc_pipepager.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS
+[2026-09-14 17:42:38]   g06_exec/g06_exec.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g04_doctest_debug_script/g04_doctest_debug_script.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g07_numpy_exec_command/g07_numpy_exec_command.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS
+[2026-09-14 17:42:38]   g11_sympy_sympify/g11_sympy_sympify.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g14_exec_import/g14_exec_import.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g12_pandas_eval_chain/g12_pandas_eval_chain.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g10_sympy_sT/g10_sympy_sT.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g13_cprofile_run/g13_cprofile_run.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g08_numpy_getoutput/g08_numpy_getoutput.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SUBPROCESS
+[2026-09-14 17:42:38]   g09_numpy_ufunc/g09_numpy_ufunc.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g05_eval/g05_eval.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g01_os_system/g01_os_system.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:42:38]   g15_subprocess/g15_subprocess.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-CRED-SSH-LOCAL
+[2026-09-14 17:42:38]   g03_pydoc_tempfilepager/g03_pydoc_tempfilepager.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-PYTHON
+[2026-09-14 17:42:38] 
+Results saved to: /home/halaali_cs/gadget_substitution_results
+[2026-09-14 17:42:38] True positives: /home/halaali_cs/gadget_substitution_results/verdict_results/TP/

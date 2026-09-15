@@ -1,0 +1,410 @@
+[2026-09-14 15:43:02] [trace_counter] Initialized to 0 (next folder will be 00001)
+[2026-09-14 15:43:02] ======================================================================
+[2026-09-14 15:43:02] Pickle Paths Scan Pipeline
+[2026-09-14 15:43:02] Source:     /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths
+[2026-09-14 15:43:02] File types: 36 formats supported
+[2026-09-14 15:43:02] Work dir:   /home/halaali_cs/pickle_paths_results
+[2026-09-14 15:43:02] Inspector:  /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-14 15:43:02] Classifier: /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-14 15:43:02] Traces:     /home/halaali_cs/pickle_paths_results
+[2026-09-14 15:43:02] ======================================================================
+[2026-09-14 15:43:02] [discover_local] Found 10 model files in /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths
+[2026-09-14 15:43:02] 
+======================================================================
+Evaluating 10 models
+======================================================================
+[2026-09-14 15:43:02] 
+[1/10] Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib
+[2026-09-14 15:43:02]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:43:02]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib)
+[2026-09-14 15:43:02]   Copying local file...
+[2026-09-14 15:43:02]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:43:02]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:43:02]     Routed to env: sklearn
+[2026-09-14 15:43:21]   Inspector finished in 18.7s
+[2026-09-14 15:43:21]   Running classifier...
+[2026-09-14 15:43:21]   Classifier finished in 0.12s
+[2026-09-14 15:43:21]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00001_Pickle_Paths_path02_joblib_gzip_path02_joblib_gzip
+[2026-09-14 15:43:21]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:43:21]   Verdict: MALICIOUS
+[2026-09-14 15:43:21]   Behaviors: AB1, AB4
+[2026-09-14 15:43:21]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:43:21] 
+[2/10] Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib
+[2026-09-14 15:43:21]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:43:21]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib)
+[2026-09-14 15:43:21]   Copying local file...
+[2026-09-14 15:43:21]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:43:21]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:43:21]     Routed to env: sklearn
+[2026-09-14 15:43:39]   Inspector finished in 18.6s
+[2026-09-14 15:43:39]   Running classifier...
+[2026-09-14 15:43:40]   Classifier finished in 0.12s
+[2026-09-14 15:43:40]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00002_Pickle_Paths_path04_joblib_xz_path04_joblib_xz
+[2026-09-14 15:43:40]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:43:40]   Verdict: MALICIOUS
+[2026-09-14 15:43:40]   Behaviors: AB1, AB4
+[2026-09-14 15:43:40]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:43:40] 
+[3/10] Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib
+[2026-09-14 15:43:40]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:43:40]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib)
+[2026-09-14 15:43:40]   Copying local file...
+[2026-09-14 15:43:40]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:43:40]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:43:40]     Routed to env: sklearn
+[2026-09-14 15:43:59]   Inspector finished in 19.3s
+[2026-09-14 15:43:59]   Running classifier...
+[2026-09-14 15:43:59]   Classifier finished in 0.12s
+[2026-09-14 15:43:59]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00003_Pickle_Paths_path06_joblib_zlib_path06_joblib_zlib
+[2026-09-14 15:43:59]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:43:59]   Verdict: MALICIOUS
+[2026-09-14 15:43:59]   Behaviors: AB1, AB4
+[2026-09-14 15:43:59]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:43:59] 
+[4/10] Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib
+[2026-09-14 15:43:59]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:43:59]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib)
+[2026-09-14 15:43:59]   Copying local file...
+[2026-09-14 15:43:59]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:43:59]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:43:59]     Routed to env: sklearn
+[2026-09-14 15:44:19]   Inspector finished in 19.8s
+[2026-09-14 15:44:19]   Running classifier...
+[2026-09-14 15:44:19]   Classifier finished in 0.14s
+[2026-09-14 15:44:19]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00004_Pickle_Paths_path05_joblib_lzma_path05_joblib_lzma
+[2026-09-14 15:44:19]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:44:19]   Verdict: MALICIOUS
+[2026-09-14 15:44:19]   Behaviors: AB1, AB4
+[2026-09-14 15:44:19]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:44:19] 
+[5/10] Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib
+[2026-09-14 15:44:19]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:44:19]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib)
+[2026-09-14 15:44:19]   Copying local file...
+[2026-09-14 15:44:19]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:44:19]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:44:19]     Routed to env: sklearn
+[2026-09-14 15:44:40]   Inspector finished in 21.4s
+[2026-09-14 15:44:40]   Running classifier...
+[2026-09-14 15:44:40]   Classifier finished in 0.12s
+[2026-09-14 15:44:40]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00005_Pickle_Paths_path03_joblib_bz2_path03_joblib_bz2
+[2026-09-14 15:44:40]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:44:40]   Verdict: MALICIOUS
+[2026-09-14 15:44:40]   Behaviors: AB1, AB4
+[2026-09-14 15:44:40]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:44:40] 
+  --- Progress: 5/10 | Benign: 0 | Malicious: 5 | Errors: 0 ---
+
+[2026-09-14 15:44:40] 
+[6/10] Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib
+[2026-09-14 15:44:40]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 15:44:40]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib)
+[2026-09-14 15:44:40]   Copying local file...
+[2026-09-14 15:44:40]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:44:40]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:44:40]     Routed to env: sklearn
+[2026-09-14 15:45:00]   Inspector finished in 19.3s
+[2026-09-14 15:45:00]   Running classifier...
+[2026-09-14 15:45:00]   Classifier finished in 0.11s
+[2026-09-14 15:45:00]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00006_Pickle_Paths_path01_joblib_raw_path01_joblib_raw
+[2026-09-14 15:45:00]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:45:00]   Verdict: MALICIOUS
+[2026-09-14 15:45:00]   Behaviors: AB1, AB4
+[2026-09-14 15:45:00]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:45:00] 
+[7/10] Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt
+[2026-09-14 15:45:00]   Files: 1 (0.0 MB) — types: ['.pt']
+[2026-09-14 15:45:00]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt)
+[2026-09-14 15:45:00]   Copying local file...
+[2026-09-14 15:45:00]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:45:00]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:45:00]     Routed to env: torch_current
+[2026-09-14 15:45:40]   Inspector finished in 39.8s
+[2026-09-14 15:45:40]   Running classifier...
+[2026-09-14 15:45:40]   Classifier finished in 0.12s
+[2026-09-14 15:45:40]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00007_Pickle_Paths_path07_pytorch_zip_path07_pytorch_zip
+[2026-09-14 15:45:40]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:45:40]   Verdict: MALICIOUS
+[2026-09-14 15:45:40]   Behaviors: AB1, AB4
+[2026-09-14 15:45:40]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:45:40] 
+[8/10] Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy
+[2026-09-14 15:45:40]   Files: 1 (0.0 MB) — types: ['.npy']
+[2026-09-14 15:45:40]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy)
+[2026-09-14 15:45:40]   Copying local file...
+[2026-09-14 15:45:40]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:45:40]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:45:40]     Routed to env: sklearn
+[2026-09-14 15:45:58]   Inspector finished in 18.8s
+[2026-09-14 15:45:58]   Running classifier...
+[2026-09-14 15:45:59]   Classifier finished in 0.11s
+[2026-09-14 15:45:59]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00008_Pickle_Paths_path09_numpy_npy_path09_numpy_npy
+[2026-09-14 15:45:59]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:45:59]   Verdict: MALICIOUS
+[2026-09-14 15:45:59]   Behaviors: AB1, AB4
+[2026-09-14 15:45:59]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:45:59] 
+[9/10] Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt
+[2026-09-14 15:45:59]   Files: 1 (0.0 MB) — types: ['.pt']
+[2026-09-14 15:45:59]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt)
+[2026-09-14 15:45:59]   Copying local file...
+[2026-09-14 15:45:59]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:45:59]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:45:59]     Routed to env: torch_current
+[2026-09-14 15:46:22]   Inspector finished in 22.9s
+[2026-09-14 15:46:22]   Running classifier...
+[2026-09-14 15:46:22]   Classifier finished in 0.18s
+[2026-09-14 15:46:22]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00009_Pickle_Paths_path08_pytorch_tar_path08_pytorch_tar
+[2026-09-14 15:46:22]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:46:22]   Verdict: MALICIOUS
+[2026-09-14 15:46:22]   Behaviors: AB1, AB4
+[2026-09-14 15:46:22]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SCRIPT
+[2026-09-14 15:46:22] 
+[10/10] Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl
+[2026-09-14 15:46:22]   Files: 1 (0.0 MB) — types: ['.pkl']
+[2026-09-14 15:46:22]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl)
+[2026-09-14 15:46:22]   Copying local file...
+[2026-09-14 15:46:22]   Copied 1 file(s) in 0.0s
+[2026-09-14 15:46:22]   Running eBPF inspector (loading + execution)...
+[2026-09-14 15:46:22]     Routed to env: sklearn
+[2026-09-14 15:46:40]   Inspector finished in 18.7s
+[2026-09-14 15:46:40]   Running classifier...
+[2026-09-14 15:46:40]   Classifier finished in 0.12s
+[2026-09-14 15:46:40]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/00010_Pickle_Paths_path10_edp_bypass_path10_edp_bypass
+[2026-09-14 15:46:40]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 15:46:40]   Verdict: MALICIOUS
+[2026-09-14 15:46:40]   Behaviors: AB1, AB4
+[2026-09-14 15:46:40]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:40] 
+  --- Progress: 10/10 | Benign: 0 | Malicious: 10 | Errors: 0 ---
+
+[2026-09-14 15:46:41] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-14 15:46:41]   Total:     10 models
+[2026-09-14 15:46:41]   Benign:    0 (0.0%)
+[2026-09-14 15:46:41]   Malicious: 10 (100.0%)
+[2026-09-14 15:46:41]   Errors:    0
+[2026-09-14 15:46:41]   File types tested: {'.joblib': 6, '.pt': 2, '.npy': 1, '.pkl': 1}
+[2026-09-14 15:46:41] 
+  MALICIOUS MODELS FOUND:
+[2026-09-14 15:46:41]   Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt — types=['.pt'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy — types=['.npy'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41]   Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt — types=['.pt'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SCRIPT
+[2026-09-14 15:46:41]   Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl — types=['.pkl'], patterns: AB1-EXEC-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 15:46:41] 
+Results saved to: /home/halaali_cs/pickle_paths_results
+[2026-09-14 15:46:41] True positives: /home/halaali_cs/pickle_paths_results/verdict_results/TP/
+[2026-09-14 17:45:55] [trace_counter] Initialized to 10 (next folder will be 00011)
+[2026-09-14 17:45:55] ======================================================================
+[2026-09-14 17:45:55] Pickle Paths Scan Pipeline
+[2026-09-14 17:45:55] Source:     /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths
+[2026-09-14 17:45:55] File types: 28 extensions supported
+[2026-09-14 17:45:55] Work dir:   /home/halaali_cs/pickle_paths_results
+[2026-09-14 17:45:55] Inspector:  /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-14 17:45:55] Classifier: /home/halaali_cs/ModelShield-main/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-14 17:45:55] Traces:     /home/halaali_cs/pickle_paths_results
+[2026-09-14 17:45:55] ======================================================================
+[2026-09-14 17:45:55] [discover_local] Found 10 model files in /home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths
+[2026-09-14 17:45:55] 
+======================================================================
+Evaluating 10 models
+======================================================================
+[2026-09-14 17:45:55] 
+[1/10] Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib
+[2026-09-14 17:45:55]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:45:55]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib)
+[2026-09-14 17:45:55]   Copying local file...
+[2026-09-14 17:45:55]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:45:55]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:45:55]     Routed to env: sklearn
+[2026-09-14 17:46:15]   Inspector finished in 20.1s
+[2026-09-14 17:46:15]   Running classifier...
+[2026-09-14 17:46:16]   Classifier finished in 0.12s
+[2026-09-14 17:46:16]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path02_joblib_gzip_path02_joblib_gzip
+[2026-09-14 17:46:16]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:46:16]   Verdict: MALICIOUS
+[2026-09-14 17:46:16]   Behaviors: AB1, AB4
+[2026-09-14 17:46:16]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:46:16] 
+[2/10] Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib
+[2026-09-14 17:46:16]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:46:16]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib)
+[2026-09-14 17:46:16]   Copying local file...
+[2026-09-14 17:46:16]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:46:16]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:46:16]     Routed to env: sklearn
+[2026-09-14 17:46:36]   Inspector finished in 20.4s
+[2026-09-14 17:46:36]   Running classifier...
+[2026-09-14 17:46:36]   Classifier finished in 0.13s
+[2026-09-14 17:46:36]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path04_joblib_xz_path04_joblib_xz
+[2026-09-14 17:46:36]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:46:36]   Verdict: MALICIOUS
+[2026-09-14 17:46:36]   Behaviors: AB1, AB4
+[2026-09-14 17:46:36]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:46:36] 
+[3/10] Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib
+[2026-09-14 17:46:36]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:46:36]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib)
+[2026-09-14 17:46:36]   Copying local file...
+[2026-09-14 17:46:36]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:46:36]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:46:36]     Routed to env: sklearn
+[2026-09-14 17:46:57]   Inspector finished in 20.4s
+[2026-09-14 17:46:57]   Running classifier...
+[2026-09-14 17:46:57]   Classifier finished in 0.12s
+[2026-09-14 17:46:57]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path06_joblib_zlib_path06_joblib_zlib
+[2026-09-14 17:46:57]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:46:57]   Verdict: MALICIOUS
+[2026-09-14 17:46:57]   Behaviors: AB1, AB4
+[2026-09-14 17:46:57]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:46:57] 
+[4/10] Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib
+[2026-09-14 17:46:57]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:46:57]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib)
+[2026-09-14 17:46:57]   Copying local file...
+[2026-09-14 17:46:57]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:46:57]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:46:57]     Routed to env: sklearn
+[2026-09-14 17:47:17]   Inspector finished in 20.1s
+[2026-09-14 17:47:17]   Running classifier...
+[2026-09-14 17:47:17]   Classifier finished in 0.13s
+[2026-09-14 17:47:17]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path05_joblib_lzma_path05_joblib_lzma
+[2026-09-14 17:47:17]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:47:17]   Verdict: MALICIOUS
+[2026-09-14 17:47:17]   Behaviors: AB1, AB4
+[2026-09-14 17:47:17]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:47:17] 
+[5/10] Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib
+[2026-09-14 17:47:17]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:47:17]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib)
+[2026-09-14 17:47:17]   Copying local file...
+[2026-09-14 17:47:17]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:47:17]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:47:17]     Routed to env: sklearn
+[2026-09-14 17:47:38]   Inspector finished in 20.9s
+[2026-09-14 17:47:38]   Running classifier...
+[2026-09-14 17:47:38]   Classifier finished in 0.18s
+[2026-09-14 17:47:38]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path03_joblib_bz2_path03_joblib_bz2
+[2026-09-14 17:47:38]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:47:38]   Verdict: MALICIOUS
+[2026-09-14 17:47:38]   Behaviors: AB1, AB4
+[2026-09-14 17:47:38]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:47:38] 
+  --- Progress: 5/10 | Benign: 0 | Malicious: 5 | Errors: 0 ---
+
+[2026-09-14 17:47:38] 
+[6/10] Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib
+[2026-09-14 17:47:38]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-14 17:47:38]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib)
+[2026-09-14 17:47:38]   Copying local file...
+[2026-09-14 17:47:38]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:47:38]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:47:38]     Routed to env: sklearn
+[2026-09-14 17:47:58]   Inspector finished in 20.1s
+[2026-09-14 17:47:58]   Running classifier...
+[2026-09-14 17:47:58]   Classifier finished in 0.13s
+[2026-09-14 17:47:58]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path01_joblib_raw_path01_joblib_raw
+[2026-09-14 17:47:58]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:47:58]   Verdict: MALICIOUS
+[2026-09-14 17:47:58]   Behaviors: AB1, AB4
+[2026-09-14 17:47:58]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:47:58] 
+[7/10] Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt
+[2026-09-14 17:47:58]   Files: 1 (0.0 MB) — types: ['.pt']
+[2026-09-14 17:47:58]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt)
+[2026-09-14 17:47:58]   Copying local file...
+[2026-09-14 17:47:58]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:47:58]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:47:58]     Routed to env: torch_current
+[2026-09-14 17:48:23]   Inspector finished in 24.4s
+[2026-09-14 17:48:23]   Running classifier...
+[2026-09-14 17:48:23]   Classifier finished in 0.12s
+[2026-09-14 17:48:23]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path07_pytorch_zip_path07_pytorch_zip
+[2026-09-14 17:48:23]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:48:23]   Verdict: MALICIOUS
+[2026-09-14 17:48:23]   Behaviors: AB1, AB4
+[2026-09-14 17:48:23]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:48:23] 
+[8/10] Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy
+[2026-09-14 17:48:23]   Files: 1 (0.0 MB) — types: ['.npy']
+[2026-09-14 17:48:23]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy)
+[2026-09-14 17:48:23]   Copying local file...
+[2026-09-14 17:48:23]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:48:23]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:48:23]     Routed to env: sklearn
+[2026-09-14 17:48:43]   Inspector finished in 20.3s
+[2026-09-14 17:48:43]   Running classifier...
+[2026-09-14 17:48:43]   Classifier finished in 0.12s
+[2026-09-14 17:48:43]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path09_numpy_npy_path09_numpy_npy
+[2026-09-14 17:48:43]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:48:43]   Verdict: MALICIOUS
+[2026-09-14 17:48:43]   Behaviors: AB1, AB4
+[2026-09-14 17:48:43]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:48:43] 
+[9/10] Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt
+[2026-09-14 17:48:43]   Files: 1 (0.0 MB) — types: ['.pt']
+[2026-09-14 17:48:43]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt)
+[2026-09-14 17:48:43]   Copying local file...
+[2026-09-14 17:48:43]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:48:43]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:48:43]     Routed to env: torch_current
+[2026-09-14 17:49:08]   Inspector finished in 24.7s
+[2026-09-14 17:49:08]   Running classifier...
+[2026-09-14 17:49:08]   Classifier finished in 0.20s
+[2026-09-14 17:49:08]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path08_pytorch_tar_path08_pytorch_tar
+[2026-09-14 17:49:08]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:49:08]   Verdict: MALICIOUS
+[2026-09-14 17:49:08]   Behaviors: AB1, AB4
+[2026-09-14 17:49:08]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SCRIPT
+[2026-09-14 17:49:08] 
+[10/10] Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl
+[2026-09-14 17:49:08]   Files: 1 (0.0 MB) — types: ['.pkl']
+[2026-09-14 17:49:08]   Source: LOCAL (/home/halaali_cs/ModelShield-main/evaluation_data/Pickle_Paths/Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl)
+[2026-09-14 17:49:08]   Copying local file...
+[2026-09-14 17:49:08]   Copied 1 file(s) in 0.0s
+[2026-09-14 17:49:08]   Running eBPF inspector (loading + execution)...
+[2026-09-14 17:49:08]     Routed to env: sklearn
+[2026-09-14 17:49:29]   Inspector finished in 20.7s
+[2026-09-14 17:49:29]   Running classifier...
+[2026-09-14 17:49:29]   Classifier finished in 0.12s
+[2026-09-14 17:49:29]   Saved traces to /home/halaali_cs/pickle_paths_results/TP/Pickle_Paths_path10_edp_bypass_path10_edp_bypass
+[2026-09-14 17:49:29]   MALICIOUS — saved evidence to /home/halaali_cs/pickle_paths_results/verdict_results/TP
+[2026-09-14 17:49:29]   Verdict: MALICIOUS
+[2026-09-14 17:49:29]   Behaviors: AB1, AB4
+[2026-09-14 17:49:29]   Patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29] 
+  --- Progress: 10/10 | Benign: 0 | Malicious: 10 | Errors: 0 ---
+
+[2026-09-14 17:49:29] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-14 17:49:29]   Total:     10 models
+[2026-09-14 17:49:29]   Benign:    0 (0.0%)
+[2026-09-14 17:49:29]   Malicious: 10 (100.0%)
+[2026-09-14 17:49:29]   Errors:    0
+[2026-09-14 17:49:29]   File types tested: {'.joblib': 6, '.pt': 2, '.npy': 1, '.pkl': 1}
+[2026-09-14 17:49:29] 
+  MALICIOUS MODELS FOUND:
+[2026-09-14 17:49:29]   Pickle_Paths/path02_joblib_gzip/path02_joblib_gzip.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path04_joblib_xz/path04_joblib_xz.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path06_joblib_zlib/path06_joblib_zlib.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path05_joblib_lzma/path05_joblib_lzma.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path03_joblib_bz2/path03_joblib_bz2.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path01_joblib_raw/path01_joblib_raw.joblib — types=['.joblib'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path07_pytorch_zip/path07_pytorch_zip.pt — types=['.pt'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path09_numpy_npy/path09_numpy_npy.npy — types=['.npy'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29]   Pickle_Paths/path08_pytorch_tar/path08_pytorch_tar.pt — types=['.pt'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL, AB4-SCRIPT
+[2026-09-14 17:49:29]   Pickle_Paths/path10_edp_bypass/path10_edp_bypass.pkl — types=['.pkl'], patterns: AB1-EXEC-CRED-ACCESS, AB1-SHELL-CRED-ACCESS, AB1-CRED-SSH-LOCAL, AB4-SHELL
+[2026-09-14 17:49:29] 
+Results saved to: /home/halaali_cs/pickle_paths_results
+[2026-09-14 17:49:29] True positives: /home/halaali_cs/pickle_paths_results/verdict_results/TP/
