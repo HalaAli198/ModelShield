@@ -3073,6 +3073,28 @@ def build_ab4_patterns() -> List[SequencePattern]:
                         description="HTML/URL content leaked into file stat syscall"),
         ],
     ))
+    # ------------------------------------------------------------------
+    # GUI framework import during model loading
+    # Catches payloads that exec() code importing tkinter/PyQt/wx
+    # during pickle deserialization — no real model needs a GUI toolkit
+    # ------------------------------------------------------------------
+    patterns.append(SequencePattern(
+        pattern_id="AB4-GUI-IMPORT",
+        behavior_id="AB4",
+        sub_behavior="GUI framework imported during model loading (code execution evidence)",
+        mitre=[MITREMapping("Execution", "T1059.006", "Python"),
+               MITREMapping("Execution", "T1204", "User Execution")],
+        steps=[
+            PatternStep(sub_op="File.open",
+                        path_match=path_contains(
+                            "/tkinter/", "/_tkinter",
+                            "/PyQt5/", "/PyQt6/",
+                            "/wx/", "/wxPython/",
+                            "/gtk/", "/gi/repository/Gtk",
+                        ),
+                        description="GUI framework module opened during model load"),
+        ],
+    ))
     return patterns
 
 
