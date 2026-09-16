@@ -3,24 +3,28 @@ local_scan_pickleball_malicious.py
 
 Scans the PickleBall malicious model dataset from a local directory.
 Each model file is traced via eBPF during loading and execution,
-then classified against 195 behavioral patterns (AB1–AB8).
+then classified against 195 behavioral patterns (AB1-AB8).
 
 All models in this dataset are malicious. Verdicts of MALICIOUS are
 true positives (TP); verdicts of BENIGN are false negatives (FN).
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    cd ~/ModelShield
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        xvfb-run $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickleball_malicious.py \\
-        --local-dir evaluation_data/malicious_pickleball"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        xvfb-run $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickleball_malicious.py \
+        --local-dir <path-to-downloaded-malicious-pickleball>"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        xvfb-run $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickleball_malicious.py \\
-        --local-dir evaluation_data/malicious_pickleball --resume"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        xvfb-run $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickleball_malicious.py \
+        --local-dir <path-to-downloaded-malicious-pickleball> --resume"
 
 Results are saved under ~/malicious_pickleball/ in the home
 directory of the user who invoked sudo.
