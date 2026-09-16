@@ -16,6 +16,7 @@ Prerequisites:
        at the top of this script before first use.
 
 Usage (run from the repository root):
+    cd ~/ModelShield
     export ENVS_ROOT=~/ms_envs/env_pool
     SCANNER_ENV=~/ms_envs/scanner_env
 
@@ -65,28 +66,25 @@ TRACES_DIR = '/path/to/captured_events'
 MS_API_BASE      = 'https://modelscope.cn/api/v1'
 MS_DOWNLOAD_BASE = 'https://modelscope.cn/models'
 
-# Every extension the pipeline will download and inspect.
+# File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th',
-    '.safetensors', '.sft',
+    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
+    '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel',
+    '.mlmodel', '.mlpackage',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.gguf',
+    '.engine', '.plan', '.trt',
 ]
 
-# Subset of the above that can execute arbitrary code on load.
-HIGH_RISK_EXTENSIONS = [
-    '.pkl', '.pickle', '.joblib','.dill',
-    '.bin', '.pt', '.pth', '.th',
-    '.npy', '.npz',
-]
+# Extensions that deserialize arbitrary Python objects on load.
+HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
+                        '.th', '.ckpt', '.npy', '.npz']
 
 # Per-file size limits. Files outside this range are skipped during discovery.
 MAX_DOWNLOAD_SIZE = 3 * 1024 * 1024 * 1024
@@ -937,7 +935,7 @@ def main():
     log(f"\n{'='*70}")
     log(f"  ModelScope Model Scan Pipeline")
     log(f"  Target:     {args.num_models} models")
-    log(f"  Extensions: {len(MODEL_EXTENSIONS)} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
     log(f"  Work dir:   {SCAN_DIR}")
     log(f"  Inspector:  {INSPECTOR_PATH}")
     log(f"  Classifier: {CLASSIFIER_PATH}")
