@@ -3,7 +3,7 @@ local_scan_tf_abuse_attacks.py
 
 Scans the TF Abuse Attacks dataset from a local directory.
 Each model file is traced via eBPF during loading and execution,
-then classified against 195 behavioral patterns (AB1–AB8).
+then classified against 195 behavioral patterns (AB1-AB8).
 
 TF Abuse Attack Servers:
     Two of the four TF abuse attacks require a listener server running on
@@ -31,32 +31,36 @@ TF Abuse Attack Servers:
       model loading. No network activity.
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    cd ~/ModelShield
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
     # Start the listener servers in the background:
-    python3 <path-to>/IP_exposure/server_for_hack.py &
+    python3 Test_Suites/TF_Abuse/IP_exposure/server_for_hack.py &
     SERVER_PID_1=$!
 
-    python3 <path-to>/file_leak/server.py &
+    python3 Test_Suites/TF_Abuse/file_leak/server.py &
     SERVER_PID_2=$!
 
     # Allow servers to bind before starting the scan:
     sleep 2
 
     # Run the scan:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_tf_abuse_attacks.py \\
-        --local-dir evaluation_data/TF_Abuse"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_tf_abuse_attacks.py \
+        --local-dir Test_Suites/TF_Abuse"
 
     # Cleanup:
     kill $SERVER_PID_1 $SERVER_PID_2 2>/dev/null
 
-    # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_tf_abuse_attacks.py \\
-        --local-dir evaluation_data/TF_Abuse --resume"
+    # Resume after interruption (restart servers first):
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_tf_abuse_attacks.py \
+        --local-dir Test_Suites/TF_Abuse --resume"
 
 Results are saved under ~/tf_abuse_attacks_results/ in the home
 directory of the user who invoked sudo.
