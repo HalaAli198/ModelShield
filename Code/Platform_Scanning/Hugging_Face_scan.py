@@ -1,7 +1,7 @@
 """
 Hugging_Face_scan.py
 
-Scans recently uploaded HuggingFace models(default: last 10 days) across all supported formats
+Scans recently uploaded HuggingFace models (default: last 10 days) across all supported formats
 (pickle, safetensors, ONNX, Keras, TF, etc.) during both LOADING and
 EXECUTION phases. Discovery is resumable and runs in continuous polling
 cycles.
@@ -17,35 +17,40 @@ Arguments:
     --resume             Resume an interrupted scan from the last checkpoint
     --reset-discovery    Discard cached discovery state and start fresh
     --poll-interval S    Seconds between continuous scan cycles (default: 1800).
-                         The scanner runs in a loop: discover → scan → sleep →
+                         The scanner runs in a loop: discover, scan, sleep,
                          repeat. Press Ctrl+C during sleep to exit cleanly.
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
     # Single batch: scan 500 recently uploaded models:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/Hugging_Face_scan.py"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/Hugging_Face_scan.py"
 
     # Larger batch: scan 1000 models:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/Hugging_Face_scan.py \\
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/Hugging_Face_scan.py \
         --num-models 1000"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/Hugging_Face_scan.py \\
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/Hugging_Face_scan.py \
         --resume"
 
     # Continuous monitoring: scan 500 models every 10 minutes:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/Hugging_Face_scan.py \\
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/Hugging_Face_scan.py \
         --num-models 500 --poll-interval 600"
-        
+
 Results are saved under ~/hf_scan_results/ in the home directory of
 the user who invoked sudo (via SUDO_USER), so multiple reviewers can
 run scans without overwriting each other's results.
@@ -97,22 +102,21 @@ CLASSIFIER_PATH = os.path.join(_REPO_ROOT, 'ModelShield_Core_Scripts', 'attack_b
 # File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel', '.mlpackage',
+    '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.engine', '.plan', '.trt',
 ]
 
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
-                        '.th', '.ckpt', '.npy', '.npz']
+                        '.th', '.npy', '.npz']
 
 # Per-file size limits.
 MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
@@ -984,7 +988,7 @@ def main():
     log(f"{'='*70}")
     log(f"HuggingFace Model Scan Pipeline")
     log(f"Target:     {args.num_models} models per cycle")
-    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
     log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
