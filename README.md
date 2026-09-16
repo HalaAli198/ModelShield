@@ -277,15 +277,9 @@ sudo ./run.sh
 
 Pre-computed traces and verdicts are in `All_Results/Detection_Results_TF_Abuse/`.
 
-### PickleBall Evaluation
+### Claim 5: 252 Benign PickleBall Models
 
 The PickleBall dataset (252 benign, 84 malicious models) is publicly available at [https://doi.org/10.5281/zenodo.16974644](https://doi.org/10.5281/zenodo.16974644). Download and extract the two subsets to `~/pickleball_dataset/benign/` and `~/pickleball_dataset/malicious/`. Each `run.sh` also accepts a directory as its first argument if you extracted elsewhere.
-
-ModelShield achieved 0 false positives on all 252 benign models and flagged 52 of the 84 malicious models. Of the remaining 32, 1 is a mislabeled benign sample in the dataset, and the other 31 either generate no syscalls at runtime (e.g., targeting Windows, importing modules not present in the execution environment) or produce harmless syscall patterns (e.g., payloads limited to printing to stdout or writing to non-sensitive paths).
-
-`PickleBall_Malicious_TP_FN.xlsx` documents each of the 84 malicious files: for the 52 true positives it lists the malicious behavior, the detection pattern matched by ModelShield, and the mapped MITRE ATT&CK techniques; for the 32 false negatives it explains the reason.
-
-#### Claim 5: 252 benign PickleBall models (0 FP)
 
 ```bash
 cd Claims/claim5_pickleball_benign
@@ -294,7 +288,11 @@ sudo ./run.sh
 
 **Expected:** 252 files scanned, 0 MALICIOUS, 252 BENIGN, 0 errors (~119 minutes). Compare output against `expected/expected.txt`.
 
-#### Claim 6: 84 malicious PickleBall models
+No benign model triggered a detection pattern, giving zero false positives across the full benign set.
+
+### Claim 6: 84 Malicious PickleBall Models
+
+Requires the PickleBall dataset (see Claim 5).
 
 ```bash
 cd Claims/claim6_pickleball_malicious
@@ -302,6 +300,10 @@ sudo ./run.sh
 ```
 
 **Expected:** 84 files scanned, 52 MALICIOUS, 32 BENIGN, 0 errors (~38 minutes). Compare output against `expected/expected.txt`.
+
+ModelShield flagged 52 of the 84 malicious models. Of the remaining 32, 1 is a mislabeled benign sample in the dataset, and the other 31 either generate no syscalls at runtime (e.g., targeting Windows, importing modules not present in the execution environment) or produce harmless syscall patterns (e.g., payloads limited to printing to stdout or writing to non-sensitive paths).
+
+`PickleBall_Malicious_TP_FN.xlsx` documents each of the 84 malicious files: for the 52 true positives it lists the malicious behavior, the detection pattern matched by ModelShield, and the mapped MITRE ATT&CK techniques; for the 32 false negatives it explains the reason.
 
 Pre-computed traces and verdicts are in `All_Results/Detection_Results_PickleBall_Dataset/`.
 
