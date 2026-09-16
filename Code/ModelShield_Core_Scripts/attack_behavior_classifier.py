@@ -650,7 +650,7 @@ _CRED_LOGIN = [
 _CRED_BROWSER = [
     ".config/google-chrome/", ".config/chromium/",
     ".config/BraveSoftware/", ".config/microsoft-edge/",
-    ".mozilla/firefox/", "/Default/Cookies", "Login Data",
+    ".mozilla/firefox/", "Cookies", "Login Data",
     "logins.json", "key4.db", "key3.db", "cookies.sqlite", "cert9.db",
 ]
 
@@ -908,7 +908,7 @@ def prefilter_events(events: list) -> list:
             continue
 
         # Remove random localhost framework bridge ports, but keep the SSRF PoC target.
-        if addr.startswith("127.") and port not in ("9999", "53"):
+        if addr.startswith("127.") and port not in ("9999", "53", "1234", "1236"):
             continue
 
         filtered.append(ev)
