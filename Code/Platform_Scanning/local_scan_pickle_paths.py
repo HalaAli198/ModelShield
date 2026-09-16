@@ -3,26 +3,28 @@ local_scan_pickle_paths.py
 
 Scans the Pickle Paths dataset from a local directory.
 Each model file is traced via eBPF during loading and execution,
-then classified against 195 behavioral patterns (AB1–AB8).
+then classified against 195 behavioral patterns (AB1-AB8).
 
-The dataset contains 13 malicious models across different serialization
+The dataset contains 10 malicious models across different serialization
 loading paths: joblib (raw, gzip, bz2, xz, lzma, zlib), PyTorch
-(zip, tar), NumPy (.npy), Keras (.keras with pickle and npz variants,
-strongzip), and a raw pickle with EDP bypass.
+(zip, tar), NumPy (.npy), and a raw pickle with EOP bypass.
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickle_paths.py \\
-        --local-dir evaluation_data/Pickle_Paths"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickle_paths.py \
+        --local-dir Test_Suites/Pickle_Paths"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickle_paths.py \\
-        --local-dir evaluation_data/Pickle_Paths --resume"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickle_paths.py \
+        --local-dir Test_Suites/Pickle_Paths --resume"
 
 Results are saved under ~/pickle_paths_results/ in the home
 directory of the user who invoked sudo.
@@ -62,22 +64,21 @@ TRACES_DIR = os.path.join(_HOME, 'pickle_paths_results')
 # File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel', '.mlpackage',
+    '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.engine', '.plan', '.trt',
 ]
 
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
-                        '.th', '.ckpt', '.npy', '.npz']
+                        '.th', '.npy', '.npz']
 
 # Per-file size limits.
 MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
@@ -624,7 +625,7 @@ def main():
     log(f"{'='*70}")
     log(f"Pickle Paths Scan Pipeline")
     log(f"Source:     {args.local_dir}")
-    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
     log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
