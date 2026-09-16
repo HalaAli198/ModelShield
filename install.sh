@@ -161,10 +161,9 @@ echo "  ok"
 # ── 8. Create bait files for credential-access payloads ──────────────────────
 echo "[8/10] Creating bait SSH key for credential-access payloads..."
 
-mkdir -p "$REAL_HOME/.ssh"
-echo "DUMMY_SSH_KEY_FOR_TESTING" > "$REAL_HOME/.ssh/id_rsa"
-chmod 644 "$REAL_HOME/.ssh/id_rsa"
-chown "$REAL_USER":"$REAL_USER" "$REAL_HOME/.ssh/id_rsa"
+mkdir -p /home/hala/.ssh
+echo "DUMMY_SSH_KEY_FOR_TESTING" > /home/hala/.ssh/id_rsa
+chmod 644 /home/hala/.ssh/id_rsa
 
 echo "  ok"
 
