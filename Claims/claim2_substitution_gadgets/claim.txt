@@ -1,0 +1,40 @@
+# Claim: ModelShield detects all 15 pickle gadget substitution variants.
+
+## Full Run (~5 minutes, 15 models)
+
+    chmod +x run.sh
+    sudo ./run.sh
+
+## Verification
+
+View the summary:
+
+    cat ~/gadget_substitution_results/summary.json
+
+List all verdicts:
+
+    grep "Verdict:" ~/gadget_substitution_results/gadget_substitution_log.txt
+
+Count TPs and FNs:
+
+    echo "TP: $(ls ~/gadget_substitution_results/TP/ | wc -l)"
+    echo "FN: $(ls ~/gadget_substitution_results/FN/ | wc -l)"
+
+## Expected Output
+
+15 files scanned, 15 MALICIOUS, 0 BENIGN, 0 errors.
+
+## Results Are Stored at:
+
+    ~/gadget_substitution_results/
+      summary.json                        counts and breakdown
+      gadget_substitution_log.txt         full scan log
+      verdict_results/                    per-file verdict JSONs
+      verdict_results/TP/                 true positives
+      TP/                                 archived traces for true positives
+
+## Input Data
+
+    ~/ModelShield/Test_Suites/Pickle_Gadget_Substitution/
+
+Each subfolder contains one gadget variant named g<NN>_<gadget_name>.

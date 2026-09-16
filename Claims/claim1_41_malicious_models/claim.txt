@@ -1,0 +1,47 @@
+# Claim: ModelShield found 41 malicious models on Hugging Face
+
+The Test_Suites/41_Malicious_Models/ directory ships 5 representative
+repositories (10 model files) from the 41 confirmed malicious models.
+Detection is at the file level: each file is inspected and classified
+independently.
+
+## Full Run (~5 minutes, 10 files)
+
+    chmod +x run.sh
+    sudo ./run.sh
+
+## Verification
+
+View the summary:
+
+    cat ~/41_malicious_models_results/summary.json
+
+List all verdicts:
+
+    grep "Verdict:" ~/41_malicious_models_results/41_malicious_models_log.txt
+
+Count TPs and FNs:
+
+    echo "TP: $(ls ~/41_malicious_models_results/TP/ | wc -l)"
+    echo "FN: $(ls ~/41_malicious_models_results/FN/ | wc -l)"
+
+## Expected Output
+
+10 files scanned, 10 MALICIOUS, 0 BENIGN, 0 errors.
+
+## Results Are Stored at:
+
+    ~/41_malicious_models_results/
+      summary.json                      counts and breakdown
+      41_malicious_models_log.txt       full scan log
+      verdict_results/                  per-file verdict JSONs
+      verdict_results/TP/               true positives (flagged as malicious)
+      TP/                               archived traces for true positives
+      FN/                               archived traces for false negatives
+
+## Input Data
+
+    ~/ModelShield/Test_Suites/41_Malicious_Models/
+
+Each subfolder corresponds to one Hugging Face repository, named as
+<number>.<author>_<repo-name>.

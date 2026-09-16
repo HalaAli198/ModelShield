@@ -1,0 +1,127 @@
+eng_hala_s_ali@test:~/ModelShield/Claims/claim4_TF_Abuse$ sudo ./run.sh 
+
+C4: TensorFlow SavedModel API Abuse
+  user       eng_hala_s_ali
+  code       /home/eng_hala_s_ali/ModelShield/Code
+  env pool   /home/eng_hala_s_ali/ms_envs/env_pool
+  scanner    /home/eng_hala_s_ali/ms_envs/scanner_env
+  data       /home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse
+  IP server  /home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/IP_exposure/server_for_hack.py
+  file server /home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/file_leak/server.py
+
+Starting IP_exposure server on port 1236...
+Starting file_leak server on port 1234...
+waiting for connection...
+waiting for connection...
+Running local_scan_tf_abuse_attacks.py...
+
+[2026-09-16 01:37:11] [trace_counter] Initialized to 0 (next folder will be 00001)
+[2026-09-16 01:37:11] ======================================================================
+[2026-09-16 01:37:11] TF Abuse Attacks Scan Pipeline
+[2026-09-16 01:37:11] Source:     /home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse
+[2026-09-16 01:37:11] File types: 36 formats supported
+[2026-09-16 01:37:11] Work dir:   /home/eng_hala_s_ali/tf_abuse_attacks_results
+[2026-09-16 01:37:11] Inspector:  /home/eng_hala_s_ali/ModelShield/Code/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-16 01:37:11] Classifier: /home/eng_hala_s_ali/ModelShield/Code/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-16 01:37:11] Traces:     /home/eng_hala_s_ali/tf_abuse_attacks_results
+[2026-09-16 01:37:11] ======================================================================
+[2026-09-16 01:37:11] [discover_local] Found 4 model files in /home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse
+[2026-09-16 01:37:11] 
+======================================================================
+Evaluating 4 models
+======================================================================
+[2026-09-16 01:37:11] 
+[1/4] IP_exposure/saved_model/saved_model.pb
+[2026-09-16 01:37:11]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-16 01:37:11]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/IP_exposure/saved_model/saved_model.pb)
+[2026-09-16 01:37:11]   Copying local file...
+[2026-09-16 01:37:11]   Copied 1 file(s) in 0.0s
+[2026-09-16 01:37:11]   Running eBPF inspector (loading + execution)...
+[2026-09-16 01:37:11]     Routed to env: tf2
+connection from IP address: ('127.0.0.1', 51154)
+recv data: b'PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n\x00\x00$\x04\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x03\x00\x00\x00\x00\x00\x04\x00@\x00\x00\x00\x05\x00@\x00\x00\x00\x06\x00\x00 \x00\xfe\x03\x00\x00\x00\x01\x00\x00\x04\x08\x00\x00\x00\x00\x00\x00?\x00\x01\x00\x00\x08\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+recv data: b'\x00\x01\x06\x01\x04\x00\x00\x00\x01\x86\x83@\n:authority\x0e127.0.0.1:1236@\x05:path$/tensorflow.EventListener/SendEvents@\x02te\x08trailers@\x0ccontent-type\x10application/grpc@\nuser-agent9grpc-c++/1.27.0-dev grpc-c/9.0.0 (linux; chttp2; guantao)@\x14grpc-accept-encoding\x15identity,deflate,gzip@\x0faccept-encoding\ridentity,gzip'
+recv data: b'\x00\x00\x9a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x95\tX\x90/\xd6>n\x19C*\x89\x01\n\x86\x01\n\x0btest_tensor:\x1dtest_tensor:0:DebugIdentityV3B\x0f\x08\x07\x12\x00B\t123456768JG\nE\n\x08debugger\x129{"device":"","outputSlot":0,"numChunks":1,"chunkIndex":0}'
+waiting for connection...
+[2026-09-16 01:37:30]   Inspector finished in 19.0s
+[2026-09-16 01:37:30]   Running classifier...
+[2026-09-16 01:37:30]   Classifier finished in 0.13s
+[2026-09-16 01:37:30]   Saved traces to /home/eng_hala_s_ali/tf_abuse_attacks_results/TP/IP_exposure_saved_model_saved_model
+[2026-09-16 01:37:30]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-16 01:37:30]   Verdict: MALICIOUS
+[2026-09-16 01:37:30]   Behaviors: AB1, AB6
+[2026-09-16 01:37:30]   Patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB6-OUTBOUND
+[2026-09-16 01:37:30] 
+[2/4] code_execution/saved_model/saved_model.pb
+[2026-09-16 01:37:30]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-16 01:37:30]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/code_execution/saved_model/saved_model.pb)
+[2026-09-16 01:37:30]   Copying local file...
+[2026-09-16 01:37:30]   Copied 1 file(s) in 0.0s
+[2026-09-16 01:37:30]   Running eBPF inspector (loading + execution)...
+[2026-09-16 01:37:30]     Routed to env: tf2
+[2026-09-16 01:37:49]   Inspector finished in 18.9s
+[2026-09-16 01:37:49]   Running classifier...
+[2026-09-16 01:37:49]   Classifier finished in 0.12s
+[2026-09-16 01:37:49]   Saved traces to /home/eng_hala_s_ali/tf_abuse_attacks_results/TP/code_execution_saved_model_saved_model
+[2026-09-16 01:37:49]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-16 01:37:49]   Verdict: MALICIOUS
+[2026-09-16 01:37:49]   Behaviors: AB2, AB3
+[2026-09-16 01:37:49]   Patterns: AB2-PYTHON-MODULE-SHADOW, AB2-PYTHON-MODULE-SHADOW-ATTEMPT, AB3-TMP-SCRIPT-STAGE, AB3-TMP-SCRIPT-STAGE-ATTEMPT
+[2026-09-16 01:37:49] 
+[3/4] shell_access/saved_model/saved_model.pb
+[2026-09-16 01:37:49]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-16 01:37:49]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/shell_access/saved_model/saved_model.pb)
+[2026-09-16 01:37:49]   Copying local file...
+[2026-09-16 01:37:49]   Copied 1 file(s) in 0.0s
+[2026-09-16 01:37:49]   Running eBPF inspector (loading + execution)...
+[2026-09-16 01:37:49]     Routed to env: tf2
+[2026-09-16 01:38:09]   Inspector finished in 19.4s
+[2026-09-16 01:38:09]   Running classifier...
+[2026-09-16 01:38:09]   Classifier finished in 0.17s
+[2026-09-16 01:38:09]   Saved traces to /home/eng_hala_s_ali/tf_abuse_attacks_results/TP/shell_access_saved_model_saved_model
+[2026-09-16 01:38:09]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-16 01:38:09]   Verdict: MALICIOUS
+[2026-09-16 01:38:09]   Behaviors: AB2, AB6
+[2026-09-16 01:38:09]   Patterns: AB2-SSH-KEYS, AB6-OUTBOUND
+[2026-09-16 01:38:09] 
+[4/4] file_leak/saved_model/saved_model.pb
+[2026-09-16 01:38:09]   Files: 1 (0.0 MB) — types: ['.pb']
+[2026-09-16 01:38:09]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/TF_Abuse/file_leak/saved_model/saved_model.pb)
+[2026-09-16 01:38:09]   Copying local file...
+[2026-09-16 01:38:09]   Copied 1 file(s) in 0.0s
+[2026-09-16 01:38:09]   Running eBPF inspector (loading + execution)...
+[2026-09-16 01:38:09]     Routed to env: tf2
+connection from IP address: ('127.0.0.1', 48838)
+recv data: b'PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n\x00\x00$\x04\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x03\x00\x00\x00\x00\x00\x04\x00@\x00\x00\x00\x05\x00@\x00\x00\x00\x06\x00\x00 \x00\xfe\x03\x00\x00\x00\x01\x00\x00\x04\x08\x00\x00\x00\x00\x00\x00?\x00\x01\x00\x00\x08\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+recv data: b'\x00\x01\x14\x01\x04\x00\x00\x00\x01\x86\x83@\n:authority\x0e127.0.0.1:1234@\x05:path\x1f/tensorflow.rpc.RpcService/Call@\x02te\x08trailers@\x0ccontent-type\x10application/grpc@\nuser-agent9grpc-c++/1.27.0-dev grpc-c/9.0.0 (linux; chttp2; guantao)@\x14grpc-accept-encoding\x15identity,deflate,gzip@\x0faccept-encoding\ridentity,gzip@\x0cgrpc-timeout\x04100S\x00\x00\x04\x08\x00\x00\x00\x00\x01\x00\x00\x00\x05\x00\x003\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00.\n\x1aDUMMY_SSH_KEY_FOR_TESTING\n\x12\x07\x08\x03\x12\x00:\x01\x02\x12\x07\x08\x03\x12\x00:\x01\x02\x00\x00\x04\x08\x00\x00\x00\x00\x00\x00\x00\x00\x05'
+
+important file content from  ('127.0.0.1', 48838)  = 
+ b'UMMY_SSH_KEY_FOR_TESTING\n' 
+
+waiting for connection...
+[2026-09-16 01:38:28]   Inspector finished in 19.2s
+[2026-09-16 01:38:28]   Running classifier...
+[2026-09-16 01:38:28]   Classifier finished in 0.17s
+[2026-09-16 01:38:28]   Saved traces to /home/eng_hala_s_ali/tf_abuse_attacks_results/TP/file_leak_saved_model_saved_model
+[2026-09-16 01:38:28]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/tf_abuse_attacks_results/verdict_results/TP
+[2026-09-16 01:38:28]   Verdict: MALICIOUS
+[2026-09-16 01:38:28]   Behaviors: AB1, AB6
+[2026-09-16 01:38:28]   Patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB1-CRED-SSH-EXFIL, AB1-CRED-SSH-LOCAL, AB6-OUTBOUND
+[2026-09-16 01:38:28] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-16 01:38:28]   Total:     4 models
+[2026-09-16 01:38:28]   Benign:    0 (0.0%)
+[2026-09-16 01:38:28]   Malicious: 4 (100.0%)
+[2026-09-16 01:38:28]   Errors:    0
+[2026-09-16 01:38:28]   File types tested: {'.pb': 4}
+[2026-09-16 01:38:28] 
+  MALICIOUS MODELS FOUND:
+[2026-09-16 01:38:28]   IP_exposure/saved_model/saved_model.pb — types=['.pb'], patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB6-OUTBOUND
+[2026-09-16 01:38:28]   code_execution/saved_model/saved_model.pb — types=['.pb'], patterns: AB2-PYTHON-MODULE-SHADOW, AB2-PYTHON-MODULE-SHADOW-ATTEMPT, AB3-TMP-SCRIPT-STAGE, AB3-TMP-SCRIPT-STAGE-ATTEMPT
+[2026-09-16 01:38:28]   shell_access/saved_model/saved_model.pb — types=['.pb'], patterns: AB2-SSH-KEYS, AB6-OUTBOUND
+[2026-09-16 01:38:28]   file_leak/saved_model/saved_model.pb — types=['.pb'], patterns: AB1-HW-EXFIL, AB1-UNAME-EXFIL, AB1-CRED-SSH-EXFIL, AB1-CRED-SSH-LOCAL, AB6-OUTBOUND
+[2026-09-16 01:38:28] 
+Results saved to: /home/eng_hala_s_ali/tf_abuse_attacks_results
+[2026-09-16 01:38:28] True positives: /home/eng_hala_s_ali/tf_abuse_attacks_results/verdict_results/TP/

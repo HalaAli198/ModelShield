@@ -1,0 +1,214 @@
+eng_hala_s_ali@test:~/ModelShield/Claims/claim1_41_malicious_models$ sudo ./run.sh 
+
+C1: 41 Malicious Models
+  user       eng_hala_s_ali
+  code       /home/eng_hala_s_ali/ModelShield/Code
+  env pool   /home/eng_hala_s_ali/ms_envs/env_pool
+  scanner    /home/eng_hala_s_ali/ms_envs/scanner_env
+  data       /home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models
+
+[2026-09-16 00:28:58] [trace_counter] Initialized to 0 (next folder will be 00001)
+[2026-09-16 00:28:58] ======================================================================
+[2026-09-16 00:28:58] 41 Malicious Models Scan Pipeline
+[2026-09-16 00:28:58] Source:     /home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models
+[2026-09-16 00:28:58] File types: 36 formats supported
+[2026-09-16 00:28:58] Work dir:   /home/eng_hala_s_ali/41_malicious_models_results
+[2026-09-16 00:28:58] Inspector:  /home/eng_hala_s_ali/ModelShield/Code/ModelShield_Core_Scripts/model_inspector.py
+[2026-09-16 00:28:58] Classifier: /home/eng_hala_s_ali/ModelShield/Code/ModelShield_Core_Scripts/attack_behavior_classifier.py
+[2026-09-16 00:28:58] Traces:     /home/eng_hala_s_ali/41_malicious_models_results
+[2026-09-16 00:28:58] ======================================================================
+[2026-09-16 00:28:58] [discover_local] Found 10 model files in /home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models
+[2026-09-16 00:28:58] 
+======================================================================
+Evaluating 10 models
+======================================================================
+[2026-09-16 00:28:58] 
+[1/10] 5.cw/dspy_model.pkl
+[2026-09-16 00:28:58]   Files: 1 (0.0 MB) — types: ['.pkl']
+[2026-09-16 00:28:58]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/5.cw/dspy_model.pkl)
+[2026-09-16 00:28:58]   Copying local file...
+[2026-09-16 00:28:58]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:28:58]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:28:58]     Routed to env: sklearn
+[2026-09-16 00:29:17]   Inspector finished in 19.5s
+[2026-09-16 00:29:17]   Running classifier...
+[2026-09-16 00:29:18]   Classifier finished in 0.13s
+[2026-09-16 00:29:18]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/5.cw_dspy_model.pkl
+[2026-09-16 00:29:18]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:29:18]   Verdict: MALICIOUS
+[2026-09-16 00:29:18]   Behaviors: AB4
+[2026-09-16 00:29:18]   Patterns: AB4-SHELL, AB4-SYSBIN-RECON
+[2026-09-16 00:29:18] 
+[2/10] 3.5006w32cu_test-model/pytorch_model.bin
+[2026-09-16 00:29:18]   Files: 1 (0.0 MB) — types: ['.bin']
+[2026-09-16 00:29:18]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/3.5006w32cu_test-model/pytorch_model.bin)
+[2026-09-16 00:29:18]   Copying local file...
+[2026-09-16 00:29:18]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:29:18]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:29:18]     Routed to env: torch_current
+[2026-09-16 00:31:42]   Inspector finished in 144.4s
+[2026-09-16 00:31:42]   Running classifier...
+[2026-09-16 00:31:42]   Classifier finished in 0.24s
+[2026-09-16 00:31:42]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/3.5006w32cu_test-model_pytorch_model.bin
+[2026-09-16 00:31:42]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:31:42]   Verdict: MALICIOUS
+[2026-09-16 00:31:42]   Behaviors: AB4, AB6
+[2026-09-16 00:31:42]   Patterns: AB4-SHELL, AB4-PYTHON, AB4-SCRIPT, AB6-OUTBOUND
+[2026-09-16 00:31:42] 
+[3/10] 6.jkhjkll/model.pkl
+[2026-09-16 00:31:42]   Files: 1 (0.0 MB) — types: ['.pkl']
+[2026-09-16 00:31:42]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/6.jkhjkll/model.pkl)
+[2026-09-16 00:31:42]   Copying local file...
+[2026-09-16 00:31:42]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:31:42]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:31:42]     Routed to env: sklearn
+[2026-09-16 00:32:01]   Inspector finished in 18.8s
+[2026-09-16 00:32:01]   Running classifier...
+[2026-09-16 00:32:01]   Classifier finished in 0.13s
+[2026-09-16 00:32:01]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/6.jkhjkll_model.pkl
+[2026-09-16 00:32:01]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:32:01]   Verdict: MALICIOUS
+[2026-09-16 00:32:01]   Behaviors: AB4
+[2026-09-16 00:32:01]   Patterns: AB4-SHELL, AB4-SYSBIN-RECON
+[2026-09-16 00:32:01] 
+[4/10] 8.Deneimaiegw-modelscan-npy-bypass-poc/malicious_model.npy
+[2026-09-16 00:32:01]   Files: 1 (0.0 MB) — types: ['.npy']
+[2026-09-16 00:32:01]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/8.Deneimaiegw-modelscan-npy-bypass-poc/malicious_model.npy)
+[2026-09-16 00:32:01]   Copying local file...
+[2026-09-16 00:32:01]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:32:01]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:32:01]     Routed to env: sklearn
+[2026-09-16 00:32:20]   Inspector finished in 18.5s
+[2026-09-16 00:32:20]   Running classifier...
+[2026-09-16 00:32:20]   Classifier finished in 0.18s
+[2026-09-16 00:32:20]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/8.Deneimaiegw-modelscan-npy-bypass-poc_malicious_model.npy
+[2026-09-16 00:32:20]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:32:20]   Verdict: MALICIOUS
+[2026-09-16 00:32:20]   Behaviors: AB4
+[2026-09-16 00:32:20]   Patterns: AB4-SHELL
+[2026-09-16 00:32:20] 
+[5/10] 4.askj00bs_modelscan-test-1/bypass_timeit.joblib
+[2026-09-16 00:32:20]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:32:20]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/bypass_timeit.joblib)
+[2026-09-16 00:32:20]   Copying local file...
+[2026-09-16 00:32:20]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:32:20]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:32:20]     Routed to env: sklearn
+[2026-09-16 00:32:38]   Inspector finished in 18.3s
+[2026-09-16 00:32:38]   Running classifier...
+[2026-09-16 00:32:38]   Classifier finished in 0.09s
+[2026-09-16 00:32:38]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_bypass_timeit.joblib
+[2026-09-16 00:32:38]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:32:38]   Verdict: MALICIOUS
+[2026-09-16 00:32:38]   Behaviors: AB4
+[2026-09-16 00:32:38]   Patterns: AB4-SHELL
+[2026-09-16 00:32:38] 
+  --- Progress: 5/10 | Benign: 0 | Malicious: 5 | Errors: 0 ---
+
+[2026-09-16 00:32:38] 
+[6/10] 4.askj00bs_modelscan-test-1/bypass_cprofile.joblib
+[2026-09-16 00:32:38]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:32:38]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/bypass_cprofile.joblib)
+[2026-09-16 00:32:38]   Copying local file...
+[2026-09-16 00:32:38]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:32:38]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:32:38]     Routed to env: sklearn
+[2026-09-16 00:32:56]   Inspector finished in 18.2s
+[2026-09-16 00:32:56]   Running classifier...
+[2026-09-16 00:32:56]   Classifier finished in 0.09s
+[2026-09-16 00:32:56]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_bypass_cprofile.joblib
+[2026-09-16 00:32:56]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:32:56]   Verdict: MALICIOUS
+[2026-09-16 00:32:56]   Behaviors: AB4
+[2026-09-16 00:32:56]   Patterns: AB4-SHELL
+[2026-09-16 00:32:56] 
+[7/10] 4.askj00bs_modelscan-test-1/control_blocked.joblib
+[2026-09-16 00:32:56]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:32:56]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/control_blocked.joblib)
+[2026-09-16 00:32:56]   Copying local file...
+[2026-09-16 00:32:56]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:32:56]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:32:56]     Routed to env: sklearn
+[2026-09-16 00:33:15]   Inspector finished in 18.1s
+[2026-09-16 00:33:15]   Running classifier...
+[2026-09-16 00:33:15]   Classifier finished in 0.09s
+[2026-09-16 00:33:15]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_control_blocked.joblib
+[2026-09-16 00:33:15]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:33:15]   Verdict: MALICIOUS
+[2026-09-16 00:33:15]   Behaviors: AB4
+[2026-09-16 00:33:15]   Patterns: AB4-SHELL
+[2026-09-16 00:33:15] 
+[8/10] 4.askj00bs_modelscan-test-1/bypass_profile.joblib
+[2026-09-16 00:33:15]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:33:15]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/bypass_profile.joblib)
+[2026-09-16 00:33:15]   Copying local file...
+[2026-09-16 00:33:15]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:33:15]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:33:15]     Routed to env: sklearn
+[2026-09-16 00:33:33]   Inspector finished in 18.2s
+[2026-09-16 00:33:33]   Running classifier...
+[2026-09-16 00:33:33]   Classifier finished in 0.09s
+[2026-09-16 00:33:33]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_bypass_profile.joblib
+[2026-09-16 00:33:33]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:33:33]   Verdict: MALICIOUS
+[2026-09-16 00:33:33]   Behaviors: AB4
+[2026-09-16 00:33:33]   Patterns: AB4-SHELL
+[2026-09-16 00:33:33] 
+[9/10] 4.askj00bs_modelscan-test-1/bypass_pty.joblib
+[2026-09-16 00:33:33]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:33:33]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/bypass_pty.joblib)
+[2026-09-16 00:33:33]   Copying local file...
+[2026-09-16 00:33:33]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:33:33]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:33:33]     Routed to env: sklearn
+[2026-09-16 00:33:51]   Inspector finished in 18.2s
+[2026-09-16 00:33:51]   Running classifier...
+[2026-09-16 00:33:51]   Classifier finished in 0.11s
+[2026-09-16 00:33:51]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_bypass_pty.joblib
+[2026-09-16 00:33:51]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:33:51]   Verdict: MALICIOUS
+[2026-09-16 00:33:51]   Behaviors: AB4
+[2026-09-16 00:33:51]   Patterns: AB4-SIDE-EFFECT-UTILITY
+[2026-09-16 00:33:51] 
+[10/10] 4.askj00bs_modelscan-test-1/bypass_logging.joblib
+[2026-09-16 00:33:51]   Files: 1 (0.0 MB) — types: ['.joblib']
+[2026-09-16 00:33:51]   Source: LOCAL (/home/eng_hala_s_ali/ModelShield/Test_Suites/41_Malicious_Models/4.askj00bs_modelscan-test-1/bypass_logging.joblib)
+[2026-09-16 00:33:51]   Copying local file...
+[2026-09-16 00:33:51]   Copied 1 file(s) in 0.0s
+[2026-09-16 00:33:51]   Running eBPF inspector (loading + execution)...
+[2026-09-16 00:33:51]     Routed to env: sklearn
+[2026-09-16 00:34:09]   Inspector finished in 18.0s
+[2026-09-16 00:34:09]   Running classifier...
+[2026-09-16 00:34:09]   Classifier finished in 0.11s
+[2026-09-16 00:34:09]   Saved traces to /home/eng_hala_s_ali/41_malicious_models_results/TP/4.askj00bs_modelscan-test-1_bypass_logging.joblib
+[2026-09-16 00:34:09]   MALICIOUS — saved evidence to /home/eng_hala_s_ali/41_malicious_models_results/verdict_results/TP
+[2026-09-16 00:34:09]   Verdict: MALICIOUS
+[2026-09-16 00:34:09]   Behaviors: AB4
+[2026-09-16 00:34:09]   Patterns: AB4-SHELL, AB4-SIDE-EFFECT-UTILITY
+[2026-09-16 00:34:09] 
+  --- Progress: 10/10 | Benign: 0 | Malicious: 10 | Errors: 0 ---
+
+[2026-09-16 00:34:09] 
+======================================================================
+SCAN COMPLETE
+======================================================================
+[2026-09-16 00:34:09]   Total:     10 models
+[2026-09-16 00:34:09]   Benign:    0 (0.0%)
+[2026-09-16 00:34:09]   Malicious: 10 (100.0%)
+[2026-09-16 00:34:09]   Errors:    0
+[2026-09-16 00:34:09]   File types tested: {'.joblib': 6, '.pkl': 2, '.bin': 1, '.npy': 1}
+[2026-09-16 00:34:09] 
+  MALICIOUS MODELS FOUND:
+[2026-09-16 00:34:09]   5.cw/dspy_model.pkl — types=['.pkl'], patterns: AB4-SHELL, AB4-SYSBIN-RECON
+[2026-09-16 00:34:09]   3.5006w32cu_test-model/pytorch_model.bin — types=['.bin'], patterns: AB4-SHELL, AB4-PYTHON, AB4-SCRIPT, AB6-OUTBOUND
+[2026-09-16 00:34:09]   6.jkhjkll/model.pkl — types=['.pkl'], patterns: AB4-SHELL, AB4-SYSBIN-RECON
+[2026-09-16 00:34:09]   8.Deneimaiegw-modelscan-npy-bypass-poc/malicious_model.npy — types=['.npy'], patterns: AB4-SHELL
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/bypass_timeit.joblib — types=['.joblib'], patterns: AB4-SHELL
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/bypass_cprofile.joblib — types=['.joblib'], patterns: AB4-SHELL
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/control_blocked.joblib — types=['.joblib'], patterns: AB4-SHELL
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/bypass_profile.joblib — types=['.joblib'], patterns: AB4-SHELL
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/bypass_pty.joblib — types=['.joblib'], patterns: AB4-SIDE-EFFECT-UTILITY
+[2026-09-16 00:34:09]   4.askj00bs_modelscan-test-1/bypass_logging.joblib — types=['.joblib'], patterns: AB4-SHELL, AB4-SIDE-EFFECT-UTILITY
+[2026-09-16 00:34:09] 
+Results saved to: /home/eng_hala_s_ali/41_malicious_models_results
+[2026-09-16 00:34:09] True positives: /home/eng_hala_s_ali/41_malicious_

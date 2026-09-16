@@ -1,0 +1,58 @@
+# Claim: ModelShield detects all 4 TF SavedModel attack variants. The four attacks
+abuse TensorFlow's SavedModel API to execute malicious operations during
+model loading:
+
+1. IP_exposure: Uses tf.raw_ops to open a TCP connection back to the
+   attacker during tf.saved_model.load(), exfiltrating hardware and OS
+   metadata via gRPC.
+2. code_execution: Abuses TF's PrintV2 op to write a malicious Python
+   file to disk during loading.
+3. shell_access: Executes shell commands locally via os.system during
+   loading, targeting SSH keys.
+4. file_leak: Reads a sensitive file via tf.io.read_file and sends its
+   contents over gRPC to the attacker.
+
+Two of the four attacks (IP_exposure and file_leak) require a listener
+server running on localhost before the scan begins. These simulate the
+attacker's command-and-control endpoint. Without them, the connect()/send()
+syscalls fail and the classifier cannot observe the full attack sequence.
+The run.sh script handles starting and stopping the servers automatically.
+
+## Full Run (~1.5 minutes, 4 models)
+
+    chmod +x run.sh
+    sudo ./run.sh
+
+## Verification
+
+View the summary:
+
+    cat ~/tf_abuse_attacks_results/summary.json
+
+List all verdicts:
+
+    grep "Verdict:" ~/tf_abuse_attacks_results/tf_abuse_attacks_log.txt
+
+Count TPs and FNs:
+
+    echo "TP: $(ls ~/tf_abuse_attacks_results/TP/ | wc -l)"
+    echo "FN: $(ls ~/tf_abuse_attacks_results/FN/ | wc -l)"
+
+## Expected Output
+
+4 files scanned, 4 MALICIOUS, 0 BENIGN, 0 errors.
+
+## Results Are Stored at:
+
+    ~/tf_abuse_attacks_results/
+      summary.json                      counts and breakdown
+      tf_abuse_attacks_log.txt          full scan log
+      verdict_results/                  per-file verdict JSONs
+      verdict_results/TP/               true positives
+      TP/                               archived traces for true positives
+
+## Input Data
+
+    ~/ModelShield/Test_Suites/TF_Abuse/
+
+Each subfolder contains one attack variant with a saved_model/ directory.

@@ -1,0 +1,43 @@
+# Claim: ModelShield detects all 10 loading-path obfuscation variants, covering
+Joblib raw pickle, five Joblib compression variants (gzip, bz2, xz, lzma,
+zlib), PyTorch ZIP and TAR containers, NumPy pickle-backed loading, and
+one EOP bypass.
+
+## Full Run (~3 minutes, 10 models)
+
+    chmod +x run.sh
+    sudo ./run.sh
+
+## Verification
+
+View the summary:
+
+    cat ~/pickle_paths_results/summary.json
+
+List all verdicts:
+
+    grep "Verdict:" ~/pickle_paths_results/pickle_paths_log.txt
+
+Count TPs and FNs:
+
+    echo "TP: $(ls ~/pickle_paths_results/TP/ | wc -l)"
+    echo "FN: $(ls ~/pickle_paths_results/FN/ | wc -l)"
+
+## Expected Output
+
+10 files scanned, 10 MALICIOUS, 0 BENIGN, 0 errors.
+
+## Results Are Stored at:
+
+    ~/pickle_paths_results/
+      summary.json                    counts and breakdown
+      pickle_paths_log.txt            full scan log
+      verdict_results/                per-file verdict JSONs
+      verdict_results/TP/             true positives
+      TP/                             archived traces for true positives
+
+## Input Data
+
+    ~/ModelShield/Test_Suites/Pickle_Paths/
+
+Each subfolder contains one loading-path variant named path<NN>_<variant_name>.
