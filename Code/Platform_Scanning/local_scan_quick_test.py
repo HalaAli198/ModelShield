@@ -10,13 +10,17 @@ Expected results:
     Benign.bin  → BENIGN
     Malicious.bin → MALICIOUS (AB6-OUTBOUND)
 
-Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
-
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_quick_test.py \\
-        --local-dir evaluation_data/quick_test_samples"
+Usage (run from the repository root):  
+  
+    cd ~/ModelShield
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
+    
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_quick_test.py \
+        --local-dir Quick_Test_Samples"
 
 Results are saved under ~/quick_test_results/ in the home
 directory of the user who invoked sudo.
@@ -68,6 +72,7 @@ MODEL_EXTENSIONS = [
     '.pdmodel', '.pdiparams', '.pmml',
     '.engine', '.plan', '.trt',
 ]
+
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
                         '.th', '.ckpt', '.npy', '.npz']
