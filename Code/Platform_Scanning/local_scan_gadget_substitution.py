@@ -3,7 +3,7 @@ local_scan_gadget_substitution.py
 
 Scans the Pickle Gadget Substitution dataset from a local directory.
 Each model file is traced via eBPF during loading and execution,
-then classified against 195 behavioral patterns (AB1–AB8).
+then classified against 195 behavioral patterns (AB1-AB8).
 
 The dataset contains 15 malicious joblib models, each using a different
 Python gadget (os.system, eval, exec, subprocess.check_output, etc.)
@@ -11,7 +11,7 @@ to execute `cat /home/hala/.ssh/id_rsa`.
 
 Note: g15_subprocess.joblib hardcodes /home/hala/.ssh/id_rsa as the
 exfiltration target. Since this path does not exist on a fresh VM,
-subprocess.check_output executes /bin/cat but fails to open the file —
+subprocess.check_output executes /bin/cat but fails to open the file -
 no read() syscall is produced, and the classifier misses the pattern.
 The bait file must be created before running (see install.sh step 8):
     sudo mkdir -p /home/hala/.ssh
@@ -19,18 +19,21 @@ The bait file must be created before running (see install.sh step 8):
     sudo chmod 644 /home/hala/.ssh/id_rsa
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_gadget_substitution.py \\
-        --local-dir evaluation_data/Pickle_Gadget_Substitution"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_gadget_substitution.py \
+        --local-dir Test_Suites/Pickle_Gadget_Substitution"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_gadget_substitution.py \\
-        --local-dir evaluation_data/Pickle_Gadget_Substitution --resume"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_gadget_substitution.py \
+        --local-dir Test_Suites/Pickle_Gadget_Substitution --resume"
 
 Results are saved under ~/gadget_substitution_results/ in the home
 directory of the user who invoked sudo.
@@ -70,22 +73,21 @@ TRACES_DIR = os.path.join(_HOME, 'gadget_substitution_results')
 # File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel', '.mlpackage',
+    '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.engine', '.plan', '.trt',
 ]
 
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
-                        '.th', '.ckpt', '.npy', '.npz']
+                        '.th', '.npy', '.npz']
 
 # Per-file size limits.
 MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
@@ -633,7 +635,7 @@ def main():
     log(f"{'='*70}")
     log(f"Pickle Gadget Substitution Scan Pipeline")
     log(f"Source:     {args.local_dir}")
-    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
     log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
