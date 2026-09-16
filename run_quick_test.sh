@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# rundata.sh
+# run_quick_test.sh
 # Runs local_scan_quick_test.py using the Quick_Test_Samples from the repo.
 #
 # Run as root:
-#   chmod +x rundata.sh
-#   sudo ./rundata.sh
+#   chmod +x run_quick_test.sh
+#   sudo ./run_quick_test.sh
 #
 set -euo pipefail
 
