@@ -1,0 +1,9 @@
+Claim: ModelShield detects 52 of the 84 malicious PickleBall models. The remaining 32 are not flagged because their payloads produce no observable malicious behavior at runtime (e.g. print-only payloads, Windows-only code, dead URLs, writes to non-sensitive paths).
+
+Paper reference: PickleBall evaluation (to appear in the revised manuscript)
+
+The PickleBall dataset is publicly available at https://doi.org/10.5281/zenodo.16974644.
+
+Reproduction: Run run.sh. xvfb-run is required because some payloads attempt to open a GUI. Compare the final summary against expected/expected_output.txt.
+
+Actual runtime: ~38 minutes (84 models).
