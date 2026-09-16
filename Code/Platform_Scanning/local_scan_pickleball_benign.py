@@ -3,24 +3,28 @@ local_scan_pickleball_benign.py
 
 Scans the PickleBall benign model dataset from a local directory.
 Each model file is traced via eBPF during loading and execution,
-then classified against 195 behavioral patterns (AB1–AB8).
+then classified against 195 behavioral patterns (AB1-AB8).
 
 All models in this dataset are benign. Verdicts of MALICIOUS are
 false positives (FP); verdicts of BENIGN are true negatives (TN).
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    cd ~/ModelShield
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        xvfb-run $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickleball_benign.py \\
-        --local-dir evaluation_data/benign_final_pickleball"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        xvfb-run $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickleball_benign.py \
+        --local-dir <path-to-downloaded-benign-pickleball>"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        xvfb-run $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_pickleball_benign.py \\
-        --local-dir evaluation_data/benign_final_pickleball --resume"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        xvfb-run $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_pickleball_benign.py \
+        --local-dir <path-to-downloaded-benign-pickleball> --resume"
 
 Results are saved under ~/benign_pickleball/ in the home
 directory of the user who invoked sudo.
