@@ -1,0 +1,38 @@
+Data Provenance
+
+1. Hugging Face, ModelScope, and Kaggle Scan (March 25 - May 5, 2026)
+
+   145,000 models scanned via public APIs:
+   - 105,000 from Hugging Face
+   - 30,000 from ModelScope
+   - 10,000 from Kaggle
+
+   Only publicly accessible repositories were accessed. 41 malicious
+   models were identified on Hugging Face. No malicious models were
+   found on ModelScope or Kaggle within the evaluated window.
+
+   Continued scanning through August 18, 2026 found 105 additional
+   malicious models on Hugging Face.
+
+2. Gadget Substitution Variants (15 models)
+
+   Crafted by us based on evasion techniques reported by Liu et al.
+   (reference [14] in the paper).
+
+3. Loading-Path Obfuscation Variants (10 models)
+
+   Crafted by us based on evasion techniques reported by Liu et al.
+   (reference [14] in the paper).
+
+4. TensorFlow SavedModel API Abuse Attacks (4 models)
+
+   From Zhu et al. (reference [15] in the paper).
+
+5. PickleBall Dataset (252 benign, 84 malicious)
+
+   From Kellas et al. (reference [17] in the paper).
+   Publicly available at: https://doi.org/10.5281/zenodo.16974644
+
+6. Quick Test Samples (1 benign, 1 malicious)
+
+   Crafted by us for smoke testing the pipeline.

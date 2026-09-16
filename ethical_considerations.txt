@@ -1,0 +1,23 @@
+Ethical Considerations
+
+1. Controlled Execution Environment
+
+   All analysis was performed in isolated virtual machines containing
+   no real user data, credentials, or sensitive information. 
+
+2. Responsible Disclosure
+
+   All confirmed real-world malware was reported to the relevant
+   platform security teams (Hugging Face Security, AWS Trust & Safety)
+   prior to publication. Detailed disclosure timelines are documented
+   in each security advisory under Security_Advisories(Real_Malware_Cases)/
+   in the repository root.
+
+3. Malicious Model Handling
+
+   The 41 malicious models are not included in the public release
+   because they contain live payloads (reverse shells, credential
+   exfiltration, reconnaissance scripts). The crafted evasion variants,
+   TF abuse attacks, and PickleBall dataset are included as they are
+   based on previously published work (Liu et al. [14], Zhu et al. [15],
+   Kellas et al. [17]).
