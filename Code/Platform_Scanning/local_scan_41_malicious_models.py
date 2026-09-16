@@ -6,18 +6,21 @@ Each model file is traced via eBPF during loading and execution,
 then classified against 195 behavioral patterns (AB1–AB8).
 
 Usage (run from the repository root):
-    SCANNER_ENV=~/modelshield/scanner_env
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
 
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_41_malicious_models.py \\
-        --local-dir evaluation_data/41_malicious_models"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_41_malicious_models.py \
+        --local-dir Test_Suites/41_Malicious_Models"
 
     # Resume after interruption:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-        $SCANNER_ENV/bin/python3.9 \\
-        Platform_Scanning/local_scan_41_malicious_models.py \\
-        --local-dir evaluation_data/41_malicious_models --resume"
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/local_scan_41_malicious_models.py \
+        --local-dir Test_Suites/41_Malicious_Models --resume"
 
 Results are saved under ~/41_malicious_models_results/ in the home
 directory of the user who invoked sudo.
@@ -59,21 +62,21 @@ TRACES_DIR = os.path.join(_HOME, '41_malicious_models_results')
 # File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
+    '.bin', '.pt', '.pt2', '.pth', '.th',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel', '.mlpackage',
+    '.mlmodel',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.engine', '.plan', '.trt',
 ]
+
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
-                        '.th', '.ckpt', '.npy', '.npz']
+                        '.th', '.npy', '.npz']
 
 # Per-file size limits.
 MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
@@ -620,7 +623,7 @@ def main():
     log(f"{'='*70}")
     log(f"41 Malicious Models Scan Pipeline")
     log(f"Source:     {args.local_dir}")
-    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
     log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
