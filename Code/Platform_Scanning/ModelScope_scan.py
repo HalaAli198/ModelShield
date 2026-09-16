@@ -1,5 +1,5 @@
 """
-modelscope_scan.py
+ModelScope_scan.py
 
 Scans recent ModelScope model uploads across all supported formats
 (pickle, safetensors, ONNX, Keras, TF, etc.) during both LOADING and
@@ -8,9 +8,31 @@ EXECUTION phases.
 Discovery is resumable: progress is saved to discovery_progress.json
 and the scan can be interrupted and resumed at any point.
 
-Usage:
-    sudo bash -c "ulimit -u unlimited && ulimit -l unlimited && \\
-    python3.9 modelscope_scan.py --num-models 5000"
+Prerequisites:
+    1. The ModelScope SDK must be installed (pip install modelscope).
+    2. The runtime environment pool must be built (build_env_pool.sh).
+    3. Must run as root (eBPF requires CAP_SYS_ADMIN).
+    4. Edit SCAN_DIR, INSPECTOR_PATH, CLASSIFIER_PATH, and TRACES_DIR
+       at the top of this script before first use.
+
+Usage (run from the repository root):
+    export ENVS_ROOT=~/ms_envs/env_pool
+    SCANNER_ENV=~/ms_envs/scanner_env
+
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/ModelScope_scan.py \
+        --num-models 5000"
+
+    # Resume after interruption:
+    sudo bash -c "export ENVS_ROOT=$ENVS_ROOT && \
+        ulimit -u unlimited && ulimit -l unlimited && \
+        $SCANNER_ENV/bin/python3.9 \
+        Code/Platform_Scanning/ModelScope_scan.py \
+        --num-models 5000 --resume"
+
+Results are saved under the directory configured in SCAN_DIR.
 """
 
 import os
