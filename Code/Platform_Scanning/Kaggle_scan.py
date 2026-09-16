@@ -60,28 +60,25 @@ INSPECTOR_PATH = '/path/to/model_inspector.py'
 CLASSIFIER_PATH = '/path/to/attack_behavior_classifier.py'
 TRACES_DIR = '/path/to/captured_events'
 
-# Every extension the pipeline will download and inspect.
+# File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
     '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
-    '.safetensors', '.sft',
+    '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel',
+    '.mlmodel', '.mlpackage',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
-    '.gguf',
+    '.engine', '.plan', '.trt',
 ]
 
-# Subset of the above that can execute arbitrary code on load.
-HIGH_RISK_EXTENSIONS = [
-    '.pkl', '.pickle', '.joblib', '.dill',
-    '.bin', '.pt', '.pth', '.th', '.ckpt',
-    '.npy', '.npz', 
-]
+# Extensions that deserialize arbitrary Python objects on load.
+HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
+                        '.th', '.ckpt', '.npy', '.npz']
 
 # Per-file size limits. Files outside this range are skipped during discovery.
 MAX_DOWNLOAD_SIZE = 3 * 1024 * 1024 * 1024
@@ -885,7 +882,7 @@ def main():
     log(f"\n{'='*70}")
     log(f"  Kaggle Model Scan Pipeline")
     log(f"  Target:     {args.num_models} models")
-    log(f"  Extensions: {len(MODEL_EXTENSIONS)} formats supported")
+    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
     log(f"  Work dir:   {SCAN_DIR}")
     log(f"  Inspector:  {INSPECTOR_PATH}")
     log(f"  Classifier: {CLASSIFIER_PATH}")
