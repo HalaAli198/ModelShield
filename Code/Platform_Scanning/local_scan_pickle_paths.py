@@ -10,6 +10,7 @@ loading paths: joblib (raw, gzip, bz2, xz, lzma, zlib), PyTorch
 (zip, tar), NumPy (.npy), and a raw pickle with EOP bypass.
 
 Usage (run from the repository root):
+    cd ~/ModelShield
     export ENVS_ROOT=~/ms_envs/env_pool
     SCANNER_ENV=~/ms_envs/scanner_env
 
@@ -64,21 +65,22 @@ TRACES_DIR = os.path.join(_HOME, 'pickle_paths_results')
 # File extensions the pipeline inspects.
 MODEL_EXTENSIONS = [
     '.pkl', '.pickle', '.joblib',
-    '.bin', '.pt', '.pt2', '.pth', '.th',
+    '.bin', '.pt', '.pt2', '.pth', '.th', '.ckpt',
     '.safetensors',
     '.h5', '.keras', '.pb', '.tflite',
     '.onnx',
     '.msgpack',
-    '.xgb', '.bst', '.ubj', '.lgb', '.cbm',
+    '.xgb', '.bst', '.ubj', '.lgb', '.txt', '.cbm',
     '.npy', '.npz', '.dill',
-    '.mlmodel',
+    '.mlmodel', '.mlpackage',
     '.params',
     '.pdmodel', '.pdiparams', '.pmml',
+    '.engine', '.plan', '.trt',
 ]
 
 # Extensions that deserialize arbitrary Python objects on load.
 HIGH_RISK_EXTENSIONS = ['.pkl', '.pickle', '.joblib', '.dill', '.bin', '.pt', '.pth',
-                        '.th', '.npy', '.npz']
+                        '.th', '.ckpt', '.npy', '.npz']
 
 # Per-file size limits.
 MAX_MODEL_SIZE = 3 * 1024 * 1024 * 1024
@@ -625,7 +627,7 @@ def main():
     log(f"{'='*70}")
     log(f"Pickle Paths Scan Pipeline")
     log(f"Source:     {args.local_dir}")
-    log(f"File types: {len(MODEL_EXTENSIONS)} extensions supported")
+    log(f"File types: {len(MODEL_EXTENSIONS) + 2} formats supported")
     log(f"Work dir:   {SCAN_DIR}")
     log(f"Inspector:  {INSPECTOR_PATH}")
     log(f"Classifier: {CLASSIFIER_PATH}")
