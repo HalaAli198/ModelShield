@@ -165,7 +165,6 @@ Of these, the high-risk subset (formats that deserialize arbitrary Python object
 | **RAM** | 32 GB (recommended; 16 GB minimum) |
 | **Disk** | 100 GB (500 GB on the provided VM) |
 | **GPU** | Not required; all environments use CPU-only builds |
-| **Network** | Needed only for initial package installation and dataset download |
 | **Languages** | Python 3.9, C |
 | **System deps** | BCC, linux-headers, build-essential, OpenJDK 11, xvfb |
 | **Eval deps** | pydevd, Pillow, requests, mlflow, tkinter, cloudpickle, ipython |
