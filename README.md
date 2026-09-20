@@ -195,10 +195,6 @@ sudo ./install.sh
 
 > [!NOTE]
 > Installation takes roughly 20–30 minutes depending on network speed and hardware.
-> The installer also creates a dummy SSH key at `/home/hala/.ssh/id_rsa`: one gadget
-> substitution variant hardcodes this path as its exfiltration target, and without the
-> file no `read()` syscall is produced, so the credential-access pattern does not match.
-> The file contains placeholder text, not a real key.
 
 ### Quick Test
 
