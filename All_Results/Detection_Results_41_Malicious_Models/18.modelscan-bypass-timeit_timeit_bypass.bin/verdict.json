@@ -1,0 +1,1074 @@
+{
+  "model_path": "/home/halaali_cs/41_malicious_models_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 12545,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB4",
+      "behavior_name": "Malicious Code Execution",
+      "sub_behaviors": [
+        "Shell interpreter spawning",
+        "Reconnaissance/network binary execution"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1106",
+          "technique_name": "Native API"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB4-SHELL",
+          "sub_behavior": "Shell interpreter spawning",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.05953828,
+              "tid": 407173,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.064765659,
+              "tid": 407175,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.069844068,
+              "tid": 407177,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.075023307,
+              "tid": 407179,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.080580046,
+              "tid": 407181,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.086306095,
+              "tid": 407183,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.091345814,
+              "tid": 407185,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.096749293,
+              "tid": 407187,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.101949932,
+              "tid": 407189,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.107027581,
+              "tid": 407191,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.11206223,
+              "tid": 407193,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.117038999,
+              "tid": 407195,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.121868908,
+              "tid": 407197,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.126430247,
+              "tid": 407199,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.131244966,
+              "tid": 407201,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.135983485,
+              "tid": 407203,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.141177294,
+              "tid": 407205,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.146564533,
+              "tid": 407207,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.151610932,
+              "tid": 407209,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.156914711,
+              "tid": 407211,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.1623072,
+              "tid": 407213,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.167713599,
+              "tid": 407215,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.173448337,
+              "tid": 407217,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.183696276,
+              "tid": 407221,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.194202244,
+              "tid": 407225,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.200064963,
+              "tid": 407227,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.246692443,
+              "tid": 407245,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.251765582,
+              "tid": 407247,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.280353937,
+              "tid": 407259,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.285164286,
+              "tid": 407261,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.289938745,
+              "tid": 407263,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.295315944,
+              "tid": 407265,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.300910152,
+              "tid": 407267,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.310056731,
+              "tid": 407271,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.318631479,
+              "tid": 407275,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.323016918,
+              "tid": 407277,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.352405273,
+              "tid": 407291,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.357381862,
+              "tid": 407293,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.500666684,
+              "tid": 407359,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.510237232,
+              "tid": 407363,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.514876951,
+              "tid": 407365,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.529646148,
+              "tid": 407371,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.537669317,
+              "tid": 407375,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.541939626,
+              "tid": 407377,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.575304569,
+              "tid": 407393,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.118965614,
+              "tid": 410003,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.173389684,
+              "tid": 410029,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.182260772,
+              "tid": 410033,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.19100034,
+              "tid": 410037,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.200030579,
+              "tid": 410041,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.208914957,
+              "tid": 410045,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.217655315,
+              "tid": 410049,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.226363123,
+              "tid": 410053,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.235344531,
+              "tid": 410057,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.24432169,
+              "tid": 410061,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.252973298,
+              "tid": 410065,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.262128426,
+              "tid": 410069,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.270925955,
+              "tid": 410073,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.279305623,
+              "tid": 410077,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.287475211,
+              "tid": 410081,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.2964567,
+              "tid": 410085,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.305108748,
+              "tid": 410089,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.313917006,
+              "tid": 410093,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.322043495,
+              "tid": 410097,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.330431553,
+              "tid": 410101,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.338669431,
+              "tid": 410105,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.351886599,
+              "tid": 410111,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.411573507,
+              "tid": 410137,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.420876765,
+              "tid": 410141,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.429631384,
+              "tid": 410145,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.462128337,
+              "tid": 410159,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.470413826,
+              "tid": 410163,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.478809414,
+              "tid": 410167,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.487466512,
+              "tid": 410171,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.491659691,
+              "tid": 410173,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.5008625,
+              "tid": 410177,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.505186429,
+              "tid": 410179,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-SYSBIN-RECON",
+          "sub_behavior": "Reconnaissance/network binary execution",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.06095651,
+              "tid": 407174,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.066185809,
+              "tid": 407176,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.071310628,
+              "tid": 407178,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.076416586,
+              "tid": 407180,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.081813865,
+              "tid": 407182,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.087613574,
+              "tid": 407184,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.092824484,
+              "tid": 407186,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.098061072,
+              "tid": 407188,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.103288792,
+              "tid": 407190,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.10834791,
+              "tid": 407192,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.113434469,
+              "tid": 407194,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.118344718,
+              "tid": 407196,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.123078438,
+              "tid": 407198,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.127599196,
+              "tid": 407200,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.132530266,
+              "tid": 407202,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.137453275,
+              "tid": 407204,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.142551614,
+              "tid": 407206,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.147973583,
+              "tid": 407208,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.152897122,
+              "tid": 407210,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.15837181,
+              "tid": 407212,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.1637177,
+              "tid": 407214,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.169303489,
+              "tid": 407216,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.175104607,
+              "tid": 407218,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.179897106,
+              "tid": 407220,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.185216245,
+              "tid": 407222,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.190524794,
+              "tid": 407224,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.195835233,
+              "tid": 407226,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.201809752,
+              "tid": 407228,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.207049401,
+              "tid": 407230,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.21248181,
+              "tid": 407232,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.218300529,
+              "tid": 407234,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.223631928,
+              "tid": 407236,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.237893335,
+              "tid": 407242,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.276170878,
+              "tid": 407258,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.296758624,
+              "tid": 407266,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.353757462,
+              "tid": 407292,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.397638074,
+              "tid": 407312,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.496784534,
+              "tid": 407358,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.52119827,
+              "tid": 407368,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.525993679,
+              "tid": 407370,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16479.581382418,
+              "tid": 407396,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.362111617,
+              "tid": 410116,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.366958026,
+              "tid": 410118,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.371805975,
+              "tid": 410120,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.435115752,
+              "tid": 410148,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.439887632,
+              "tid": 410150,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.44443023,
+              "tid": 410152,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.44924233,
+              "tid": 410154,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.453870369,
+              "tid": 410156,
+              "extra_details": {}
+            },
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16485.458387588,
+              "tid": 410158,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1106",
+              "technique_name": "Native API"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}
