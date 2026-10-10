@@ -348,7 +348,11 @@ Each script requires a platform API token and root privileges. See the docstring
 The July and August findings come from the continued scanning described in the Overview, not from the paper's evaluation window.
 
 ---
+## Deployment Considerations
 
+In production, detection results should be forwarded off-host (e.g., to a remote syslog collector, a SIEM ingest endpoint, or a write-once object store) to prevent a compromised model from tampering with its own detection record.
+
+---
 ## Responsible Use and Safety
 
 This repository contains malicious model samples for research and evaluation purposes. These samples execute harmful payloads (shell commands, network connections, file access) when loaded or run.
@@ -359,7 +363,7 @@ This repository contains malicious model samples for research and evaluation pur
 - All real-world malware findings were responsibly disclosed to the Hugging Face Security Team and AWS Trust & Safety prior to publication.
 - The authors do not endorse misuse of these materials and are not responsible for damage resulting from unsafe or unauthorized use.
 - If you discover malicious models using ModelShield, please report them to the respective platform's security team (e.g., security@huggingface.co for Hugging Face).
-- Disclosure timelines and safety measures are documented in `ethical_considerations.txt`; dataset sources and collection methodology in `data_provenance.txt`.
+- Disclosure timelines and safety measures are documented in `ethical_considerations.txt`; dataset sources and collection methodology are in `data_provenance.txt`.
 
 ---
 
