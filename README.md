@@ -10,7 +10,7 @@ This repository contains the reference implementation, detection results, and ev
 > Hala Ali and Andrew Case
 
 > [!NOTE]
-> This paper is currently under review at IEEE ACSAC.
+> Accepted at IEEE ACSAC.
 
 The paper reports 41 malicious models detected on Hugging Face during the evaluation window (March 25 – May 5, 2026). Scanning has continued since submission and has surfaced 105 additional malicious models through August 18, 2026. All 146 are documented in `Found_Malicious_Models_HF.xlsx`, and technical write-ups for the real-world malware samples are in `Security_Advisories(Real_Malware_Cases)/`.
 
