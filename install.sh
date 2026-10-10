@@ -177,7 +177,7 @@ python3.9 -m venv "$SCANNER_ENV"
 
 chown -R "$REAL_USER":"$REAL_USER" "$REAL_HOME/ms_envs"
 
-# ── 9. Configure scan scripts ───────────────────────────────────────────────
+# ── 10. Configure scan scripts ───────────────────────────────────────────────
 echo "[10/10] Configuring scan script paths..."
 
 INSPECTOR="$REPO_DIR/ModelShield_Core_Scripts/model_inspector.py"
