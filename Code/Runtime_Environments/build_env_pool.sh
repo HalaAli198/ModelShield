@@ -26,7 +26,7 @@ if make_venv "torch_current"; then
         torch==2.4.0+cpu --index-url https://download.pytorch.org/whl/cpu
     "$ENVS_ROOT/torch_current/bin/pip" install \
         transformers==4.44.0 tokenizers sentencepiece \
-        huggingface_hub numpy safetensors
+        huggingface_hub numpy safetensors dill cloudpickle
     touch "$ENVS_ROOT/torch_current/.done"
 fi
 
@@ -35,7 +35,7 @@ if make_venv "torch_legacy"; then
     "$ENVS_ROOT/torch_legacy/bin/pip" install \
         torch==1.13.1+cpu --index-url https://download.pytorch.org/whl/cpu
     "$ENVS_ROOT/torch_legacy/bin/pip" install \
-        transformers==4.30.0 huggingface_hub numpy safetensors
+        transformers==4.30.0 huggingface_hub numpy safetensors dill cloudpickle
     touch "$ENVS_ROOT/torch_legacy/.done"
 fi
 
