@@ -37,7 +37,7 @@ echo "  scanner     $SCANNER_ENV"
 echo ""
 
 # ── 1. Python 3.9 ────────────────────────────────────────────────────────────
-echo "[1/9] Installing Python 3.9 from deadsnakes PPA..."
+echo "[1/10] Installing Python 3.9 from deadsnakes PPA..."
 
 apt-get update -qq
 apt-get install -y -qq software-properties-common
@@ -49,7 +49,7 @@ python3.9 --version
 echo "  ok"
 
 # ── 2. Java 11 ───────────────────────────────────────────────────────────────
-echo "[2/9] Installing OpenJDK 11 + Ant..."
+echo "[2/10] Installing OpenJDK 11 + Ant..."
 
 apt-get install -y -qq openjdk-11-jdk ant
 
@@ -57,7 +57,7 @@ java -version 2>&1 | head -1
 echo "  ok"
 
 # ── 3. eBPF tooling ──────────────────────────────────────────────────────────
-echo "[3/9] Installing eBPF tools and kernel headers..."
+echo "[3/10] Installing eBPF tools and kernel headers..."
 
 apt-get install -y -qq bpfcc-tools python3-bpfcc "linux-headers-$(uname -r)"
 
@@ -68,7 +68,7 @@ print('  eBPF probe compiled successfully')
 "
 
 # ── 4. Extra system packages ─────────────────────────────────────────────────
-echo "[4/9] Installing tkinter, virtual framebuffer, and browser support..."
+echo "[4/10] Installing tkinter, virtual framebuffer, and browser support..."
 
 apt-get install -y -qq python3.9-tk xvfb w3m xdg-utils unzip git
 
@@ -77,7 +77,7 @@ which w3m > /dev/null && echo "  w3m ok"
 echo "  ok"
 
 # ── 5. Clone the repo from GitHub ────────────────────────────────────────────
-echo "[5/9] Cloning ModelShield from GitHub..."
+echo "[5/10] Cloning ModelShield from GitHub..."
 
 if [ -f "$REPO_DIR/ModelShield_Core_Scripts/model_inspector.py" ]; then
     echo "  $REPO_DIR already populated, skipping clone"
@@ -114,7 +114,7 @@ fi
 echo "  ok"
 
 # ── 6. Build the runtime environment pool ─────────────────────────────────────
-echo "[6/9] Building runtime environment pool (this takes a while)..."
+echo "[6/10] Building runtime environment pool (this takes a while)..."
 
 cd "$RT_ENV_DIR"
 chmod +x build_env_pool.sh
@@ -142,7 +142,7 @@ python3.9 -c "from env_selector import validate_pool; validate_pool()"
 echo "  pool validated"
 
 # ── 7. Extra pip packages for evaluation models ──────────────────────────────
-echo "[7/9] Installing extra packages needed by evaluation models..."
+echo "[7/10] Installing extra packages needed by evaluation models..."
 
 "$ENVS_ROOT/torch_current/bin/pip" install --quiet pydevd Pillow requests
 
@@ -158,8 +158,17 @@ echo "[7/9] Installing extra packages needed by evaluation models..."
 
 echo "  ok"
 
-# ── 8. Create scanner environment ────────────────────────────────────────────
-echo "[8/9] Creating scanner environment..."
+# ── 8. Create bait files for credential-access payloads ──────────────────────
+echo "[8/10] Creating bait SSH key for credential-access payloads..."
+
+mkdir -p /home/hala/.ssh
+echo "DUMMY_SSH_KEY_FOR_TESTING" > /home/hala/.ssh/id_rsa
+chmod 644 /home/hala/.ssh/id_rsa
+
+echo "  ok"
+
+# ── 9. Create scanner environment ────────────────────────────────────────────
+echo "[9/10] Creating scanner environment..."
 
 python3.9 -m venv "$SCANNER_ENV"
 "$SCANNER_ENV/bin/pip" install --quiet huggingface_hub modelscope kaggle requests
@@ -169,7 +178,7 @@ python3.9 -m venv "$SCANNER_ENV"
 chown -R "$REAL_USER":"$REAL_USER" "$REAL_HOME/ms_envs"
 
 # ── 9. Configure scan scripts ───────────────────────────────────────────────
-echo "[9/9] Configuring scan script paths..."
+echo "[10/10] Configuring scan script paths..."
 
 INSPECTOR="$REPO_DIR/ModelShield_Core_Scripts/model_inspector.py"
 CLASSIFIER="$REPO_DIR/ModelShield_Core_Scripts/attack_behavior_classifier.py"
