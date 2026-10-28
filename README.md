@@ -219,6 +219,8 @@ sudo ./cleanup.sh
 ---
 
 ## Claims and Reproduction
+> [!NOTE]
+> **Interpreting BENIGN verdicts.** A `BENIGN` verdict means that no detection pattern matched the observed syscalls. It does not distinguish a genuinely benign model from one whose malicious behavior was blocked by the execution environment (e.g., blocked egress, missing dependencies, or a non-Linux target).
 
 ### Claim 1: 41 Malicious Models on Hugging Face
 
