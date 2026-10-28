@@ -306,6 +306,9 @@ ModelShield flagged 52 of the 84 malicious models. Of the remaining 32, 1 is a m
 
 Pre-computed traces and verdicts are in `All_Results/Detection_Results_PickleBall_Dataset/`.
 
+> [!NOTE]
+> **Relation to the paper's 47/37 result.** The paper reports 47 true positives and 37 false negatives on the 84 malicious models. Five of the 37 false negatives failed only because their payloads require packages absent from the base runtime environments (`mlflow`, `requests`, `Pillow`, `cloudpickle`, `IPython`, `pydevd`). `install.sh` installs these packages, and all five are then detected, which yields the 52/32 result above. The paper reports this re-run in the footnote of the false-negative breakdown table.
+
 ---
 
 ## Output Structure
