@@ -1,0 +1,74 @@
+{
+  "model_path": "/home/halaali_cs/41_malicious_models_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 241,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB4",
+      "behavior_name": "Malicious Code Execution",
+      "sub_behaviors": [
+        "Reconnaissance/network binary execution",
+        "Shell interpreter spawning"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Execution",
+          "technique_id": "T1059.004",
+          "technique_name": "Unix Shell"
+        },
+        {
+          "tactic": "Execution",
+          "technique_id": "T1106",
+          "technique_name": "Native API"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB4-SHELL",
+          "sub_behavior": "Shell interpreter spawning",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/bin/sh",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16947.674468559,
+              "tid": 470352,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1059.004",
+              "technique_name": "Unix Shell"
+            }
+          ]
+        },
+        {
+          "pattern_id": "AB4-SYSBIN-RECON",
+          "sub_behavior": "Reconnaissance/network binary execution",
+          "matched_events": [
+            {
+              "operation": "execve",
+              "filename": "/usr/bin/id",
+              "sub_op": "CodeExec.exec",
+              "timestamp": 16947.675689569,
+              "tid": 470353,
+              "extra_details": {}
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Execution",
+              "technique_id": "T1106",
+              "technique_name": "Native API"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}
