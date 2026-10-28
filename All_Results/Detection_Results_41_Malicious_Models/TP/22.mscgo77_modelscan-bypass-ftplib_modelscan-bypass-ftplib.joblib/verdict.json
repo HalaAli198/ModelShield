@@ -1,0 +1,114 @@
+{
+  "model_path": "/home/halaali_cs/41_malicious_models_results/temp_model/events",
+  "is_malicious": true,
+  "total_loading_events": 75,
+  "total_execution_events": 0,
+  "behaviors": [
+    {
+      "behavior_id": "AB6",
+      "behavior_name": "Remote Control",
+      "sub_behaviors": [
+        "Outbound connection to external endpoint"
+      ],
+      "phase": "LOADING",
+      "mitre_techniques": [
+        {
+          "tactic": "Command and Control",
+          "technique_id": "T1071",
+          "technique_name": "Application Layer Protocol"
+        }
+      ],
+      "pattern_matches": [
+        {
+          "pattern_id": "AB6-OUTBOUND",
+          "sub_behavior": "Outbound connection to external endpoint",
+          "matched_events": [
+            {
+              "operation": "socket",
+              "filename": "AF_UNIX/SOCK_STREAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17080.894409094,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_UNIX",
+                "type": "SOCK_STREAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "209.51.188.20:21",
+              "sub_op": "Network.connect",
+              "timestamp": 17080.91418186,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "209.51.188.20",
+                "port": 21,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET6/SOCK_DGRAM/DEFAULT",
+              "sub_op": "Network.socket",
+              "timestamp": 17080.91421004,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_INET6",
+                "type": "SOCK_DGRAM",
+                "protocol": "DEFAULT"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "[2001:470:142:3::b]:21",
+              "sub_op": "Network.connect",
+              "timestamp": 17080.914220631,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_INET6",
+                "address": "2001:470:142:3::b",
+                "port": 21,
+                "fd": 295
+              }
+            },
+            {
+              "operation": "socket",
+              "filename": "AF_INET/SOCK_STREAM/TCP",
+              "sub_op": "Network.socket",
+              "timestamp": 17080.91440759,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_INET",
+                "type": "SOCK_STREAM",
+                "protocol": "TCP"
+              }
+            },
+            {
+              "operation": "connect",
+              "filename": "209.51.188.20:21",
+              "sub_op": "Network.connect",
+              "timestamp": 17080.91444274,
+              "tid": 470697,
+              "extra_details": {
+                "family": "AF_INET",
+                "address": "209.51.188.20",
+                "port": 21,
+                "fd": 295
+              }
+            }
+          ],
+          "mitre": [
+            {
+              "tactic": "Command and Control",
+              "technique_id": "T1071",
+              "technique_name": "Application Layer Protocol"
+            }
+          ]
+        }
+      ],
+      "loop_matches": []
+    }
+  ]
+}
