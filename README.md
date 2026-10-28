@@ -232,6 +232,10 @@ sudo ./run.sh
 **Expected:** 10 files scanned, 10 MALICIOUS, 0 BENIGN, 0 errors (~5 minutes). Compare output against `expected/expected.txt`.
 
 Pre-computed traces and verdicts for all 41 models are in `All_Results/Detection_Results_41_Malicious_Models/`.
+> [!NOTE]
+> **Clarification on archived results:** The results in `All_Results/Detection_Results_41_Malicious_Models/` cover 60 model files from 41 Hugging Face repositories. ModelShield evaluates each file individually, while the paper reports detection at the repository level; a repository is counted as detected if at least one of its files is classified `MALICIOUS`. The archived run classified 59 files as `MALICIOUS` and one as `BENIGN`, covering 40 of the 41 repositories.
+>
+> The `BENIGN` file is Model 17 (`17.hacnho_pickle-scanner-bypass-smtplib-smtp/exploit-smtplib-smtp.pkl`, archived under `FN/`). Its payload attempts an outbound SMTP connection on port 25, which was blocked in the execution environment. The connection never completed, no malicious behavior was observed, and the classifier returned `BENIGN`. In an environment that permits outbound port-25 traffic, ModelShield flags this model as `MALICIOUS` via `AB6-OUTBOUND`, which gives the 41/41 repository-level result reported in the paper. 
 
 ### Claim 2: 15 Pickle Gadget Substitution Variants
 
