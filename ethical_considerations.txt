@@ -15,9 +15,25 @@ Ethical Considerations
 
 3. Malicious Model Handling
 
-   The 41 malicious models are not included in the public release
-   because they contain live payloads (reverse shells, credential
-   exfiltration, reconnaissance scripts). The crafted evasion variants,
-   TF abuse attacks, and PickleBall dataset are included as they are
-   based on previously published work (Liu et al. [14], Zhu et al. [15],
-   Kellas et al. [17]).
+   The public release includes five representative repositories from
+   the 41 malicious models detected on Hugging Face
+   (Test_Suites/41_Malicious_Models/). All five are proof-of-concept
+   samples. The remaining 36 repositories are not redistributed, as
+   the set includes live payloads; neither of the two real-world
+   malware samples (LQCTestingSpace/lqc_model and
+   cgruzicka/test-lora-weights) is included. Traces and verdicts for
+   all 41 models are provided in
+   All_Results/Detection_Results_41_Malicious_Models/.
+
+   The crafted evasion variants and TensorFlow API abuse attacks are
+   included, as they reproduce previously published techniques
+   (Liu et al., 2025; Zhu et al., 2025). The gadget substitution and
+   loading-path variants access only a dummy SSH key created by
+   install.sh, and the TensorFlow attacks target a private address
+   (192.168.29.129) that stands in for the attacker's server. The
+   PickleBall dataset (Kellas et al., 2025) is not redistributed; it
+   is available from its original record at
+   https://doi.org/10.5281/zenodo.16974644.
+
+   All included samples execute their payloads when loaded or run and
+   must be executed only inside an isolated virtual machine.
